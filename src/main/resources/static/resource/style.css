@@ -1,0 +1,758 @@
+/*노말라이징*/
+* {
+    padding: 0;
+    margin: 0;
+}
+
+ul,
+li {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.cell {
+    float: left;
+}
+
+.cell-right {
+    float: right;
+}
+
+.row:after {
+    display: block;
+    content: "";
+    clear: both;
+}
+
+.head1 ul li {
+    padding-top: 1em;
+}
+
+.head1 ul li {
+    font-size: 14px;
+    color: #666666;
+    padding-left: 0.875em;
+    padding-right: 0.875em;
+}
+
+.head1 > ul > li::after {
+    position: relative;
+    content: "";
+    display: block;
+    width: 1px;
+    height: 11px;
+    border-left: solid 1px #dadada;
+    right: 10px;
+    transform: translateY(-130%);
+}
+
+.head1 > ul > li:first-child::after {
+    display: none;
+    content: "";
+}
+
+.site-header {
+    max-width: 1400px;
+    height: 200px;
+    margin: 0 auto;
+}
+
+.head1 {
+    float: right;
+    height: 40px;
+    width: 100%;
+    border-bottom: solid 1px #dadada;
+}
+
+.head-info {
+    height: 160px;
+}
+
+.head-info-left {
+    width: 10%;
+    height: 100%;
+}
+
+.logo-box {
+    padding-top: 5%;
+}
+
+.head-info-right {
+    width: 90%;
+    height: 100%;
+    max-width: 1260px;
+}
+
+.team-info {
+    height: 50%;
+}
+
+.menu {
+    position: absolute;
+    background-color: #E31B23;
+    width: 100%;
+    max-width: 1260px
+}
+
+.logo-top {
+    height: 50%;
+    text-align: center;
+}
+
+.logo-down {
+    height: 50%;
+    background-color: #E31B23;
+}
+
+.team-info-img1 {
+    height: 100%;
+}
+
+.img1 {
+    height: 80%;
+    padding-left: 15px;
+    border-left: solid 1px #dadada;
+    margin-top: 8px;
+
+}
+
+.team-info-img2 {
+    float: right;
+    margin: 2rem 2.0833333333rem 2.3333333333rem 0;
+}
+
+/*메뉴*/
+.top_menu {
+    line-height: 80px;
+    height: 80px;
+}
+
+.top_menu > li:hover > ul {
+    display: block;
+}
+
+ul ul {
+    display: none;
+    position: absolute;
+    background-color: #E31B23;
+    z-index: 100;
+    top: 80px;
+    right: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.top_menu > li:hover {
+    background-color: #b8161f;
+}
+
+.top_menu > li:hover > a {
+    color: white;
+}
+.top_menu > li>ul>li{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: #E31B23;
+}
+.top_menu > li>ul>li:hover {
+    background-color: #b8161f;
+}
+.top_menu > li>ul>li>a{
+    padding-left: 5%;
+    position: absolute;
+    width: 100%;
+}
+.top_menu>li>a{
+    position: absolute;
+    width: 100%;
+}
+.top_menu > li {
+    position: relative;
+    color: white;
+    width: 15.666666%;
+    padding-left: 1%;
+    height: 100%;
+}
+
+
+/*스케줄*/
+.section-schedule {
+    max-width: 1400px;
+    height: 100px;
+    width: 1440px;
+    margin: 0 auto;
+}
+
+.match {
+    width: 25%;
+    height: 100%;
+}
+
+.match-line {
+    position: relative;
+    height: 80%;
+    width: 80%;
+    top: 10%;
+    left: 10%;
+}
+
+.match::after {
+    position: relative;
+    content: "";
+    display: block;
+    width: 1px;
+    height: 50px;
+    border-left: solid 1px #dadada;
+    transform: translateY(-100%);
+}
+
+.match:first-child::after {
+    display: none;
+    content: "";
+}
+
+.location {
+    position: relative;
+    top: 25%;
+    left: 5%;
+    width: 50px;
+    height: 50px;
+    margin-right: 15px;
+    background-color: #E31B23;
+    text-align: center;
+    line-height: 50px;
+    color: white;
+}
+
+.match-right {
+    position: relative;
+    top: 25%;
+    left: 5%;
+    width: 70%;
+}
+
+.stadium {
+    margin-top: 2%;
+    font-size: 11px;
+}
+
+.league {
+    margin-left: 5%;
+    margin-top: 2%;
+    font-size: 11px;
+}
+
+.round {
+    margin-left: 1%;
+    margin-top: 2%;
+    font-size: 11px;
+}
+
+.date {
+    margin-left: 5%;
+    margin-top: 2%;
+    font-size: 11px;
+}
+
+/*뉴스*/
+.news-slider {
+    max-width: 1400px;
+    height: 250px;
+    width: 1440px;
+    margin: 0 auto;
+}
+
+.section-news {
+    position: relative;
+    width: 24.9%;
+    height: 100%;
+    padding-left: 0.1%;
+}
+
+.section-news img {
+    width: 100%;
+    height: 100%;
+    filter: brightness(70%);
+}
+
+.news-text {
+    position: absolute;
+    top: 70%;
+    left: 10%;
+    width: 80%;
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.news {
+    height: 100%;
+}
+
+.section-news:hover > .news-hover {
+    opacity: 0.5;
+}
+
+.news-hover {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 100%;
+    width: 100%;
+    top: 0;
+    z-index: 1;
+    transition: 1s;
+    opacity: 0;
+}
+
+/*뉴스 끝*/
+
+/*게시판*/
+.section-board {
+    max-width: 1400px;
+    height: 350px;
+    width: 1440px;
+    margin: 0 auto;
+    margin-top: 1%;
+}
+
+.article {
+    position: relative;
+    width: 24.9%;
+    height: 100%;
+    margin-left: 0.1%;
+}
+
+.board-name {
+    height: 10%;
+    margin-left: 5%;
+    font-weight: bold;
+}
+
+.board {
+    height: 18%;
+    width: 100%;
+}
+
+.board-title {
+    height: 60%;
+    line-height: 2;
+    font-size: 20px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-weight: 500;
+    margin-left: 5%;
+}
+
+.board-id {
+    font-size: 11px;
+    margin-top: 0;
+    color: rgba(60, 60, 67, .6);
+    margin-left: 5%;
+}
+
+.board-date {
+    font-size: 11px;
+    margin-top: 0;
+    color: rgba(60, 60, 67, .6);
+    margin-left: 5%;
+}
+
+.article::after {
+    position: relative;
+    content: "";
+    display: block;
+    width: 1px;
+    height: 100%;
+    border-left: solid 1px #ccc;
+    transform: translate(0, -100%);
+}
+
+.article:first-child::after {
+    display: none;
+    content: "";
+}
+
+.league-table {
+    height: 90%;
+    width: 100%;
+}
+
+/*리그 순위표*/
+.table {
+    color: black;
+    width: 98%;
+    height: 100%;
+    margin-left: 2%;
+}
+
+td {
+    text-align: center;
+    border: 1px solid black;
+}
+
+.team-lanking {
+    width: 11%;
+}
+
+.team-name {
+    text-align: left;
+    width: 34%;
+}
+
+.team-game {
+    width: 10%;
+}
+
+.team-win {
+    width: 10%;
+}
+
+.team-draw {
+    width: 10%;
+}
+
+.team-lose {
+    width: 10%;
+}
+
+.team-point {
+    width: 10%;
+}
+
+thead {
+    background-color: #E31B23;
+}
+
+/*선수소개*/
+.player-title {
+    position: relative;
+    max-width: 1400px;
+    width: 1440px;
+    margin: 0 auto;
+    margin-top: 1%;
+}
+
+.group-1 {
+    width: 75%;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    background-color: #E31B23;
+    color: white;
+}
+
+.coach {
+    width: 24%;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    background-color: #E31B23;
+    margin-left: 1%;
+    color: white;
+}
+
+.section-player {
+    max-width: 1400px;
+    height: 359px;
+    width: 1400px;
+    margin: 0 auto;
+    background-color: white;
+}
+
+.player-outside {
+    width: 75%;
+    height: 359px;
+    background-color: #fef8f8;
+}
+
+.player-bundle {
+    height: 80%;
+    width: 90%;
+    margin-left: 4.75%;
+    margin-top: 3%;
+}
+
+.player img {
+    width: 90%;
+    margin-left: 5%;
+}
+
+.player-info {
+    position: relative;
+    width: 90%;
+    height: 55px;
+    margin-left: 5%;
+    background-color: white;
+}
+
+.player-number {
+    height: 100%;
+    width: 25%;
+    background-color: #E31B23;
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    line-height: 55px;
+    text-align: center;
+}
+
+.player-name {
+    height: 55px;
+    width: 75%;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 55px;
+
+}
+
+/*감독정보*/
+.head-coach {
+    width: 24%;
+    height: 359px;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    background-color: #fef8f8;
+    margin-left: 1%;
+    color: white;
+}
+
+.coach-info {
+    width: 63.3%;
+    height: 55px;
+    top: 0;
+    margin-left: 18.3%;
+    background-color: white;
+}
+
+.coach-img {
+    margin-top: 10%;
+    width: 64%;
+    height: 213px;
+    margin-left: 18%;
+
+}
+
+.coach-number {
+    height: 100%;
+    width: 25%;
+    background-color: #E31B23;
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    line-height: 55px;
+    text-align: center;
+}
+
+.coach-name {
+    height: 55px;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 55px;
+    color: black;
+    width: 75%;
+}
+
+
+/*슬릭슬라이더*/
+span.slick-divider.left.slick-arrow {
+    height: 100px;
+    position: absolute;
+    width: 50px;
+    left: -4.9%;
+    top: 22%;
+    text-align: center;
+    background-color: #E31B23;
+}
+
+span.slick-divider.right.slick-arrow {
+    height: 100px;
+    position: absolute;
+    width: 50px;
+    right: -5.3%;
+    top: 22%;
+    text-align: center;
+    background-color: #E31B23;
+}
+
+.arrow-left {
+    position: absolute;
+    left: -3%;
+    top: 29%;
+}
+
+.arrow-right {
+    top: 29%;
+    right: -4%;
+    position: absolute;
+}
+
+.player-bundle .slick-dots li.slick-active button:before {
+    color: #E31B23;
+    opacity: .75;
+}
+
+.player-bundle .slick-dots li button:before {
+    font-family: 'slick';
+    font-size: 50px;
+    line-height: 20px;
+    position: absolute;
+    top: -10px;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    content: '•';
+    text-align: center;
+    opacity: .25;
+    color: #E31B23;
+}
+
+/*스타일*/
+.section-style {
+    max-width: 1400px;
+    height: 200px;
+    width: 1440px;
+    margin: 0 auto;
+}
+
+.section-style img {
+    height: 10%;
+    width: 100%;
+    margin-top: 2%;
+}
+
+
+
+/*스폰서*/
+.section-sponser {
+    max-width: 1400px;
+    height: 440px;
+    width: 1440px;
+    margin: 0 auto;
+    background: #ebebeb;
+    margin-top: 2%;
+}
+
+.sponser-page {
+    width: 90%;
+    height: 100%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.sponser-top {
+    width: 100%;
+    height: 30%;
+    border-bottom: 1px solid #ccc;
+    text-align: center;
+}
+
+.sponser-top-bundle {
+    width: 70%;
+    height: 132px;
+    position: relative;
+    top: 25%;
+    left: 19%;
+}
+
+.sponser-top-img {
+    padding-left: 5%;
+}
+
+.sponser-bot {
+    width: 100%;
+    height: 65%;
+    border-bottom: 1px solid #ccc;
+    text-align: center;
+}
+
+.sponser-bot-bundle {
+    width: 100%;
+    height: 100%;
+}
+
+.bot-bundle1 {
+    width: 100%;
+    height: 48%;
+    margin-top: 2%;
+}
+
+.bot-bundle1 img {
+    margin-left: 5%;
+}
+
+.bot-bundle1 img:first-child {
+    margin-left: 0;
+}
+
+.bot-bundle2 {
+    width: 100%;
+    height: 48%;
+}
+
+.bot-bundle2 img {
+    margin-left: 5%;
+}
+
+.bot-bundle2 img:first-child {
+    margin-left: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*푸터*/
+.section-footer {
+    max-width: 1400px;
+    height: 240px;
+    width: 1440px;
+    margin: 0 auto;
+    background-color: #E31B23;
+}
+
+.footer-logo {
+    width: 100%;
+    height: 60%;
+    text-align: center;
+}
+
+.footer-logo img {
+    margin-top: 1%;
+}
+
+.footer-text {
+    text-align: center;
+    color: white;
+}

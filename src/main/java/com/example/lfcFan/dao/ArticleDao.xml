@@ -20,12 +20,9 @@
 			<if test="body != null">
 				`body` = #{body},
 			</if>
-			<if test="reading != null">
-				`reading` = #{reading},
-			</if>
-			<if test="writer != null">
-				`writer` = #{writer},
-			</if>
+				`reading` = 0,
+				`writer` = "elwl44"
+			
 		</set>
 	</insert>
 </mapper>

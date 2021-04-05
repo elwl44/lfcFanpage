@@ -56,7 +56,7 @@
 
         <div class="btnArea row">
             <span class="btn cell">
-                <a href="#">글쓰기</a>
+                <a href="write">글쓰기</a>
             </span>
 
             <span class="etc cell">

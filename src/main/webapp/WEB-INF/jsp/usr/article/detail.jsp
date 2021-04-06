@@ -32,11 +32,12 @@
 		
 		<div class="detail-edit row">
 			<span class="btn-modify cell">
-				<a href="modify?id=${article.id}">수정</a>
+				<a href="#">수정</a>
 			</span>
 
 			<span class="btn-delete cell">
-				<a href="doDelete?id=${article.id}">삭제</a>
+				<a onclick="if ( confirm('삭제하시겠습니까?') == false ) return false;"
+				href="doDelete?id=${article.id}">삭제</a>
 			</span>
 		</div>
 	</section>

@@ -1,0 +1,93 @@
+/*노말라이징*/
+* {
+    padding: 0;
+    margin: 0;
+}
+
+ul,
+li {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.cell {
+    float: left;
+}
+
+.cell-right {
+    float: right;
+}
+
+.row:after {
+    display: block;
+    content: "";
+    clear: both;
+}
+
+.section-modify {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.modify-title {
+    max-width: 1400px;
+    margin: 0 auto;
+    margin-top: 1%;
+    font-size: 1.5em;
+    padding-bottom: 1%;
+    border-bottom: solid 1px #dadada;
+}
+
+.subject {
+    margin-top: 2%;
+    font-size: 20px;
+    background-color: #fff;
+    width: 100%;
+    color: #8C8C8C;
+    height: 50px;
+    border: 0;
+    margin-bottom: 20px;
+    border: 1px solid #a9a9a9;
+    border-radius: 4px;
+}
+
+.modify-body-form {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    min-height: 300px;
+}
+
+.edit-btn{
+    margin-top: 1%;
+}
+
+.modify-btn {
+    background-color: #E31B23;
+    color: #fff;
+    height: 44px;
+    border-radius: 6px;
+    font-size: 17px;
+    font-weight: 600;
+    width: 180px;
+    cursor: pointer;
+}
+
+.cancel-btn {
+    background-color: #E31B23;
+    color: #fff;
+    height: 44px;
+    border-radius: 6px;
+    font-size: 17px;
+    font-weight: 600;
+    width: 180px;
+    cursor: pointer;
+    margin-left: 5%;
+}

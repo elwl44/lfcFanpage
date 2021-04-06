@@ -65,6 +65,16 @@ public class ArticleController {
 		return String.format("<script> alert('%d번 글을 삭제하였습니다.'); location.replace('/usr/article/notice'); </script>", id);
 	}
 	
+	@RequestMapping("/usr/article/modify")
+	public String showModify(Model model, int id) {
+		Article article = articleService.getArticleById(id);
+
+		model.addAttribute("article", article);
+
+		return "usr/article/modify";
+	}
+
+	
 	@RequestMapping("/usr/article/doModify")
 	@ResponseBody
 	public String doModify(int id, String title, String body) {

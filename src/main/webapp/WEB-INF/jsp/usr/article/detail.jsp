@@ -32,7 +32,7 @@
 		
 		<div class="detail-edit row">
 			<span class="btn-modify cell">
-				<a href="#">수정</a>
+				<a href="modify?id=${article.id}">수정</a>
 			</span>
 
 			<span class="btn-delete cell">

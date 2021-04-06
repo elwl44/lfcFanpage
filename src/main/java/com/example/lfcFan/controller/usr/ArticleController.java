@@ -56,4 +56,12 @@ public class ArticleController {
 
 		return "usr/article/detail";
 	}
+	
+	@RequestMapping("/usr/article/doDelete")
+	@ResponseBody
+	public String doDelete(int id) {
+		articleService.deleteArticleById(id);
+
+		return String.format("<script> alert('%d번 글을 삭제하였습니다.'); location.replace('/usr/article/notice'); </script>", id);
+	}
 }

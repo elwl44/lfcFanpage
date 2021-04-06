@@ -30,4 +30,9 @@
 		FROM article
 		WHERE id = #{id}
 	</select>
+	
+	<delete id="deleteArticleById">
+		DELETE FROM article
+		WHERE id = #{id}
+	</delete>
 </mapper>

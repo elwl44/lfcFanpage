@@ -31,6 +31,7 @@ public class ArticleController {
 	public String showNotice(Model model) {
 		List<Article> articles = articleService.getArticles();
 		model.addAttribute("articles", articles);
+		model.addAttribute("board", "공지사항");
 		return "usr/article/notice";
 	}
 	
@@ -46,5 +47,13 @@ public class ArticleController {
 
 		return String.format("<script> alert('%d번 글이 생성되였습니다.'); location.replace('/usr/article/detail?id=%d'); </script>", id, id);
 	}
+	
+	@RequestMapping("/usr/article/detail")
+	public String showDetail(Model model, int id) {
+		Article article = articleService.getArticleById(id);
 
+		model.addAttribute("article", article);
+
+		return "usr/article/detail";
+	}
 }

@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="/resource/notice.css">
 <body>
     <section class="section-title">
-        <h1 class="con">공지사항</h1>
+        <h1 class="con">${board}</h1>
     </section>
     <section class="section-notice-list row">
         <div class="notice-list-box">
@@ -31,10 +31,10 @@
             <c:forEach items="${articles}" var="article">
                 <div class="notice-list-box-row">
                     <div class="cell">
-                        <a href="/usr/article-notice/detail?id=5&amp;listUrl=%2Fusr%2Farticle-notice%2Flist">${article.id}</a>
+                        <a href="#">${article.id}</a>
                     </div>
                     <div class="cell">
-                        <a href="/usr/article-notice/detail?id=5&amp;listUrl=%2Fusr%2Farticle-notice%2Flist">${article.title}</a>
+                        <a href="/usr/article/detail?id=${article.id}">${article.title}</a>
                     </div>
                     <div class="cell">
                         <span>${article.writer}</span>

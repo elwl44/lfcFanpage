@@ -22,7 +22,12 @@
 			</if>
 				`reading` = 0,
 				`writer` = "elwl44"
-			
 		</set>
 	</insert>
+	
+	<select id="getArticleById" resultType="Article">
+		SELECT *
+		FROM article
+		WHERE id = #{id}
+	</select>
 </mapper>

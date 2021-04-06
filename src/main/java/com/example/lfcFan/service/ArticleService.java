@@ -25,4 +25,10 @@ public class ArticleService {
 
 		return id;
 	}
+
+	public Article getArticleById(int id) {
+		return articleDao.getArticleById(id);
+	}
+	
+	
 }

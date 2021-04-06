@@ -10,7 +10,7 @@ import com.example.lfcFan.dto.Article;
 
 @Mapper
 public interface ArticleDao {
-	List<Article> getArticles();
+	List<Article> getArticles(Map<String, Object> param);
 
 	int writeArticle(Map<String, Object> param);
 

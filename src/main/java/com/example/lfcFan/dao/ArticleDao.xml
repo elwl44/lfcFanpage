@@ -6,6 +6,8 @@
 	<select id="getArticles" resultType="Article">
 		SELECT *
 		FROM article
+		order by id desc
+		Limit ${limitFrom}, ${limitTake}
 	</select>
 
 	<insert id="writeArticle" useGeneratedKeys="true"

@@ -28,8 +28,8 @@ public class ArticleController {
 		return "usr/article/home";
 	}
 	@RequestMapping("/usr/article/notice")
-	public String showNotice(Model model) {
-		List<Article> articles = articleService.getArticles();
+	public String showNotice(Model model, @RequestParam Map<String, Object> param) {
+		List<Article> articles = articleService.getArticles(param);
 		model.addAttribute("articles", articles);
 		model.addAttribute("board", "공지사항");
 		return "usr/article/notice";

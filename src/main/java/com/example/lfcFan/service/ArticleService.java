@@ -33,6 +33,10 @@ public class ArticleService {
 	public void deleteArticleById(int id) {
 		articleDao.deleteArticleById(id);
 	}
+
+	public void modifyArticle(int id, String title, String body) {
+		articleDao.modifyArticle(id,title,body);
+	}
 	
 	
 }

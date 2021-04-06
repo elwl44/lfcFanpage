@@ -38,6 +38,12 @@ a {
     font-size: 1.5em;
 }
 
+.total{
+	display:flex;
+	font-size: 13px;
+	margin-left:0.5%;
+}
+
 .section-notice-list {
     max-width: 1400px;
     height: 100%;

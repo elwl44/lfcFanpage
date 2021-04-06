@@ -6,8 +6,16 @@
 	<select id="getArticles" resultType="Article">
 		SELECT *
 		FROM article
-		order by id desc
-		Limit ${limitFrom}, ${limitTake}
+		ORDER BY id DESC
+		<if test="limitFrom != null and limitTake != null">
+			LIMIT #{limitFrom}, #{limitTake}
+		</if>
+	</select>
+
+	<select id="getTotalCount" resultType="int">
+		SELECT COUNT(*)
+		FROM
+		article
 	</select>
 
 	<insert id="writeArticle" useGeneratedKeys="true"
@@ -22,22 +30,22 @@
 			<if test="body != null">
 				`body` = #{body},
 			</if>
-				`reading` = 0,
-				`writer` = "elwl44"
+			`reading` = 0,
+			`writer` = "elwl44"
 		</set>
 	</insert>
-	
+
 	<select id="getArticleById" resultType="Article">
 		SELECT *
 		FROM article
 		WHERE id = #{id}
 	</select>
-	
+
 	<delete id="deleteArticleById">
 		DELETE FROM article
 		WHERE id = #{id}
 	</delete>
-	
+
 	<update id="modifyArticle">
 		UPDATE article
 		<set>

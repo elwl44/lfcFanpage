@@ -7,6 +7,7 @@
 <body>
     <section class="section-title">
         <h1 class="con">${board}</h1>
+        <span class="total">${totalCount}개의 글</span>
     </section>
     <section class="section-notice-list row">
         <div class="notice-list-box">

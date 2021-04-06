@@ -56,4 +56,8 @@ public class ArticleService {
 		articleDao.modifyArticle(id, title, body);
 	}
 
+	public int getTotalCount() {
+		return articleDao.getTotalCount();
+	}
+
 }

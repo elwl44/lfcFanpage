@@ -114,6 +114,7 @@ a {
 .section-comment {
     max-width: 1400px;
     margin: 0 auto;
+    padding-top:1%;
 }
 
 .comttl {
@@ -155,6 +156,10 @@ a {
 }
 
 .btn-modify {
+    padding-top: 6px;
+    padding-right: 0.5%;
+}
+.btn-modify > a{
     background-color: #E31B23;
     color: white;
     padding: 6px 12px;
@@ -162,9 +167,11 @@ a {
     border-radius: 4px;
     cursor: pointer;
 }
-
 .btn-delete {
-    margin-left: 0.5%;
+    padding-top: 6px;
+    padding-right: 0.5%;
+}
+.btn-delete >a {
     background-color: #E31B23;
     color: white;
     padding: 6px 12px;

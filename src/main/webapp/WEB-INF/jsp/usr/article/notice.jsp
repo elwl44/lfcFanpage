@@ -61,12 +61,8 @@
 
 
 		<div class="btnArea row">
-			<span class="btn cell">
+			<span class="btn-write cell">
 				<a href="write">글쓰기</a>
-			</span>
-
-			<span class="etc cell">
-				<a href="#">목록</a>
 			</span>
 		</div>
 		<div class="pagination">

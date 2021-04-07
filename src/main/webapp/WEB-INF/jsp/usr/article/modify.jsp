@@ -24,7 +24,7 @@
                     <input class="modify-btn" type="submit" value="수정" accesskey="s">
                 </div>
                 <div class="cell">
-                    <input class="cancel-btn" type="submit" value="취소" accesskey="s">
+                    <input class="cancel-btn cell" type="button" value="취소" onclick="javascript:history.back(-1)">
                 </div>
             </div>
 

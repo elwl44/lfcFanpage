@@ -32,8 +32,14 @@ public class ArticleController {
 		List<Article> articles = articleService.getArticles(param);
 		
 		int totalCount = articleService.getTotalCount();
+		int itemsCountInAPage = 10;
+		System.out.println("totalCount : " + totalCount);
+		int totalPage = (int)Math.ceil(totalCount / (double)itemsCountInAPage);
 
+		param.put("itemsCountInAPage", itemsCountInAPage);
+		
 		model.addAttribute("totalCount", totalCount);
+		model.addAttribute("totalPage", totalPage);
 		model.addAttribute("articles", articles);
 		model.addAttribute("board", "공지사항");
 		return "usr/article/notice";

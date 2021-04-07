@@ -66,7 +66,9 @@
         </div>
         <div class="pagination">
             <a href="#" class="prevEnd">첫 페이지</a>
-            <strong>1</strong>
+            <c:forEach var="i" begin="1" end="${totalPage}">
+            	<strong><a href="?page=${i}">${i}</a></strong>
+            </c:forEach>
             <a href="#" class="nextEnd">끝 페이지</a>
         </div>
     </section>

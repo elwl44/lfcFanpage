@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.lfcFan.dto.Article;
 import com.example.lfcFan.service.ArticleService;
+import com.example.lfcFan.util.Util;
 
 @Controller
 public class ArticleController {
@@ -33,13 +34,28 @@ public class ArticleController {
 		
 		int totalCount = articleService.getTotalCount();
 		int itemsCountInAPage = 10;
-		System.out.println("totalCount : " + totalCount);
 		int totalPage = (int)Math.ceil(totalCount / (double)itemsCountInAPage);
+		
+		int pageMenuArmSize = 5;
+		int page = Util.getAsInt(param.get("page"), 1);
 
+		int pageMenuStart = page - pageMenuArmSize;
+		if ( pageMenuStart < 1 ) {
+			pageMenuStart = 1;
+		}
+		int pageMenuEnd = page + pageMenuArmSize;
+		if ( pageMenuEnd > totalPage ) {
+			pageMenuEnd = totalPage;
+		}
+		
 		param.put("itemsCountInAPage", itemsCountInAPage);
 		
 		model.addAttribute("totalCount", totalCount);
 		model.addAttribute("totalPage", totalPage);
+		model.addAttribute("pageMenuArmSize", pageMenuArmSize);
+		model.addAttribute("pageMenuStart", pageMenuStart);
+		model.addAttribute("pageMenuEnd", pageMenuEnd);
+		model.addAttribute("page", page);
 		model.addAttribute("articles", articles);
 		model.addAttribute("board", "공지사항");
 		return "usr/article/notice";

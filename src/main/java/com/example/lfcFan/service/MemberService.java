@@ -33,7 +33,7 @@ public class MemberService {
 	}
 	
 	public boolean isJoinAvailableEmail(String email) {
-		Member member = memberDao.getMemberByLoginId(email);
+		Member member = memberDao.getMemberByEmail(email);
 
 		if ( member == null ) {
 			return true;

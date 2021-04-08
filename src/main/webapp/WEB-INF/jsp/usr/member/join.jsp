@@ -1,23 +1,39 @@
+<%@page import="org.apache.jasper.tagplugins.jstl.core.Import"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@include file="../part/head.jsp"%>
+<%@ page import="com.example.lfcFan.controller.usr.MemberController"%>
 <link rel="stylesheet" type="text/css" href="/resource/join.css">
+<head>
+
+</head>
 <body>
 
 	<section class="section-join row">
 		<div class="join-title">
 			<h1 class="con">회원가입</h1>
 		</div>
-		
+
 		<script>
+		
 			var joinFormSubmitDone = false;
 			function joinFormSubmit(form) {
+				 if($("#check-btn").is(".active")) {
+					 alert('아이디 중복체크 해주세요.');
+					 $("#loginId").focus();
+						return;
+				 }
+				 if($("#check-btn").is(".active")) {
+					 alert('이메일 중복체크 해주세요.');
+					 $("#email").focus();
+						return;
+				 }
 				if (joinFormSubmitDone) {
 					alert('처리중입니다.');
 					return;
 				}
-
+				
 				form.loginId.value = form.loginId.value.trim();
 				if (form.loginId.value.length == 0) {
 					alert('아이디를 입력해주세요.');
@@ -48,18 +64,92 @@
 					form.email.focus();
 					return;
 				}
+				
+				$("#loginId").attr('disabled', false);
+				$("#email").attr('disabled', false);
 				form.submit();
 				joinFormSubmitDone = true;
 			}
+
+
+			function fn_idCheck(form) {
+				var loginId=form.loginId.value;
+				
+				if (loginId.length == 0) {
+					alert('아이디를 입력해주세요.');
+					$("#loginId").focus();
+					return;
+				}
+				$.ajax({
+					url : "${root}idCheck",
+					type : "post",
+					dataType : "json",
+					data : { "loginId" : loginId},
+					success : function(data) {
+						if(data == false) {
+							alert("중복된 아이디 입니다.");
+							$("#loginId").focus();
+						} else if(data == true) {
+							var message = "사용가능한 아이디 입니다. 사용하시겠습니까?";
+							result = window.confirm(message);
+							if(result){		//수락버튼
+								 $("#loginId").css('backgroundColor', '#E2E2E2');
+								 $("#loginId").attr('disabled', true);
+								 $("#check-btn").removeClass("active");
+								 $("#check-btn").attr('disabled', true);
+						    }else{								//취소버튼
+						    	$("#loginId").focus();
+						    	return;
+						    }
+						}
+					}
+				})
+			}
+			
+			function fn_emailCheck(form) {
+				var email=form.email.value;
+				
+				if (email.length == 0) {
+					alert('이메일을 입력해주세요.');
+					$("#email").focus();
+					return;
+				}
+				$.ajax({
+					url : "${root}emailCheck",
+					type : "post",
+					dataType : "json",
+					data : { "email" : email},
+					success : function(data) {
+						if(data == false) {
+							alert("중복된 이메일 입니다.");
+							$("#email").focus();
+						} else if(data == true) {
+							var message = "사용가능한 이메일 입니다. 사용하시겠습니까?";
+							result = window.confirm(message);
+							if(result){		//수락버튼
+								 $("#email").css('backgroundColor', '#E2E2E2');
+								 $("#email").attr('disabled', true);
+								 $("#email-check-btn").removeClass("active");
+								 $("#email-check-btn").attr('disabled', true);
+						    }else{								//취소버튼
+						    	$("#email").focus();
+						    	return;
+						    }
+						}
+					}
+				})
+			}
 		</script>
-		
-		<form action="doJoin" enctype="multipart/form-data" class="join-form" onsubmit="joinFormSubmit(this); return false;">
-		
+
+		<form action="doJoin" class="join-form"
+			onsubmit="joinFormSubmit(this); return false;" id="loginform">
 			<div class="test">
 				<p class="join-name cell">아이디:</p>
 				<input type="text" maxlength="30" placeholder="아이디 입력"
-					name="loginId" class="join-data" />
-				<input class="check-btn" type="button" value="중복체크" accesskey="s">
+					name="loginId" class="join-data" id="loginId" />
+
+				<input class="check-btn active" id="check-btn" type="button"
+					value="중복체크" onclick="fn_idCheck(loginform)" >
 			</div>
 			<div>
 				<p class="join-name cell">비밀번호:</p>
@@ -79,12 +169,12 @@
 			<div>
 				<p class="join-name cell">이메일:</p>
 				<input type="text" maxlength="30" placeholder="이메일 주소 입력"
-					name="email" class="join-data" />
-				<input class="check-btn" type="button" value="중복체크" accesskey="s">
+					name="email" class="join-data" id="email"/>
+				<input class="email-check-btn active" id="email-check-btn" type="button" value="중복체크" onclick="fn_emailCheck(loginform)">
 			</div>
 			<div class="edit-btn">
 				<div class="cell">
-					<input class="join-btn" type="submit" value="가입" accesskey="s">
+					<input class="join-btn" type="submit" value="가입" id="aaa">
 				</div>
 				<div class="cell">
 					<input class="cancel-btn" type="submit" value="취소" accesskey="s">

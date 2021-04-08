@@ -72,7 +72,37 @@ a {
     margin-top: 1%;
 }
 .check-btn{
-    background-color: #E31B23;
+	background-color:white;
+    color: black;
+    height: 44px;
+    border-radius: 6px;
+    font-size: 17px;
+    font-weight: 600;
+    width: 120px;
+    cursor: pointer;
+}
+.check-btn.active{
+	 background-color: #E31B23;
+    color: #fff;
+    height: 44px;
+    border-radius: 6px;
+    font-size: 17px;
+    font-weight: 600;
+    width: 120px;
+    cursor: pointer;
+}
+.email-check-btn{
+	background-color:white;
+    color: black;
+    height: 44px;
+    border-radius: 6px;
+    font-size: 17px;
+    font-weight: 600;
+    width: 120px;
+    cursor: pointer;
+}
+.email-check-btn.active{
+	 background-color: #E31B23;
     color: #fff;
     height: 44px;
     border-radius: 6px;

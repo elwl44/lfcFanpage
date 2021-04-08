@@ -77,12 +77,12 @@ public class ArticleController {
 			model.addAttribute("replaceUri", "/usr/member/login");
 			return "common/redirect";
 		}
-		
+
 		return "usr/article/write";
 	}
 
 	@RequestMapping("/usr/article/doWrite")
-	public String doWrite(HttpSession session,@RequestParam Map<String, Object> param, Model model) {
+	public String doWrite(HttpSession session, @RequestParam Map<String, Object> param, Model model) {
 		int loginedMemberId = 0;
 
 		if (session.getAttribute("loginedMemberId") != null) {
@@ -124,7 +124,7 @@ public class ArticleController {
 			model.addAttribute("replaceUri", "/usr/member/login");
 			return "common/redirect";
 		}
-		
+
 		articleService.deleteArticleById(id);
 
 		model.addAttribute("msg", String.format("%d번 글을 삭제하였습니다.", id));
@@ -145,8 +145,14 @@ public class ArticleController {
 			model.addAttribute("replaceUri", "/usr/member/login");
 			return "common/redirect";
 		}
-		
+
 		Article article = articleService.getArticleById(id);
+
+		if (article.getMemberId() != loginedMemberId) {
+			model.addAttribute("msg", "권한이 없습니다.");
+			model.addAttribute("historyBack", true);
+			return "common/redirect";
+		}
 
 		model.addAttribute("article", article);
 
@@ -164,6 +170,14 @@ public class ArticleController {
 		if (loginedMemberId == 0) {
 			model.addAttribute("msg", "로그인 후 이용해주세요.");
 			model.addAttribute("replaceUri", "/usr/member/login");
+			return "common/redirect";
+		}
+
+		Article article = articleService.getArticleById(id);
+
+		if (article.getMemberId() != loginedMemberId) {
+			model.addAttribute("msg", "권한이 없습니다.");
+			model.addAttribute("historyBack", true);
 			return "common/redirect";
 		}
 		

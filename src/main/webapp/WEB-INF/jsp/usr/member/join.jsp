@@ -143,7 +143,7 @@
 
 		<form action="doJoin" class="join-form"
 			onsubmit="joinFormSubmit(this); return false;" id="loginform">
-			<div class="test">
+			<div>
 				<p class="join-name cell">아이디:</p>
 				<input type="text" maxlength="30" placeholder="아이디 입력"
 					name="loginId" class="join-data" id="loginId" />
@@ -174,10 +174,10 @@
 			</div>
 			<div class="edit-btn">
 				<div class="cell">
-					<input class="join-btn" type="submit" value="가입" id="aaa">
+					<input class="join-btn" type="submit" value="가입" id="join">
 				</div>
 				<div class="cell">
-					<input class="cancel-btn" type="submit" value="취소" accesskey="s">
+					<input class="cancel-btn" type="button" value="취소" onclick="javascript:history.back(-1)">
 				</div>
 			</div>
 		</form>

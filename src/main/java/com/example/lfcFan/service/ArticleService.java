@@ -33,8 +33,7 @@ public class ArticleService {
 
 		param.put("limitFrom", limitFrom);
 		param.put("limitTake", limitTake);
-		int limitFrom2 = Util.getAsInt(param.get("limitFrom"), 1);
-		System.out.println(limitFrom2);
+		
 		return articleDao.getArticles(param);
 	}
 

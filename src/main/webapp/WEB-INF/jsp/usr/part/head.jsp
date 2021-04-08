@@ -24,8 +24,9 @@
     <div class="site-header">
         <div class="head1 row">
             <ul class="row cell-right">
-                <li class="cell"><a href="#">로그인</a></li>
+                <li class="cell"><a href="../member/login">로그인</a></li>
                 <li class="cell"><a href="../member/join">회원가입</a></li>
+                
             </ul>
         </div>
         <div class="head-info">

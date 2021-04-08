@@ -2,16 +2,15 @@ package com.example.lfcFan.controller.usr;
 
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.example.lfcFan.service.ArticleService;
+import com.example.lfcFan.dto.Member;
 import com.example.lfcFan.service.MemberService;
 import com.example.lfcFan.util.Util;
 
@@ -63,5 +62,33 @@ public class MemberController {
 		boolean isJoinAvailableLoginId = memberService.isJoinAvailableEmail(email);
 		
 		return isJoinAvailableLoginId;
+	}
+	
+	@RequestMapping("/usr/member/login")
+	public String showLogin() {
+		return "usr/member/login";
+	}
+	
+	@RequestMapping("/usr/member/doLogin")
+	@ResponseBody
+	public String doLogin(String loginId, String loginPw, HttpSession session) {
+		if (loginId.length() == 0) {
+			return String.format("<script> alert('로그인 아이디를 입력해주세요.'); history.back(); </script>");
+		}
+
+		Member member = memberService.getMemberByLoginId(loginId);
+
+		if (member == null) {
+			return String.format("<script> alert('%s은(는) 존재하지 않는 로그인 아이디 입니다.'); history.back(); </script>", loginId);
+		}
+
+		if (member.getLoginPw().equals(loginPw) == false) {
+			return String.format("<script> alert('비밀번호를 정확히 입력해주세요.'); history.back(); </script>");
+		}
+
+		session.setAttribute("loginedMemberId", member.getId());
+
+		return String.format("<script>location.replace('/usr/article/home'); </script>",
+				member.getName());
 	}
 }

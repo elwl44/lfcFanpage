@@ -41,3 +41,25 @@ CREATE TABLE `member` (
     `name` CHAR(100) NOT NULL,
     email CHAR(100) NOT NULL
 );
+
+# 회원 생성
+INSERT INTO `member`
+SET regDate = NOW(),
+updateDate = NOW(),
+loginId = 'test1',
+loginPw = 'test1',
+`name` = '홍길동';
+
+INSERT INTO `member`
+SET regDate = NOW(),
+updateDate = NOW(),
+loginId = 'test2',
+loginPw = 'test2',
+`name` = '홍길순';
+
+# 게시물 테이블에 memberId 칼럼 추가
+ALTER TABLE article ADD COLUMN memberId INT(10) UNSIGNED NOT NULL AFTER updateDate;
+# 기존 게시물들의 작성자는 1번 회원으로 정한다.
+UPDATE article SET memberId = 1 WHERE memberId = 0;
+
+SELECT * FROM article;

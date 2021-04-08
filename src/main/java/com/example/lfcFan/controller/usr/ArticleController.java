@@ -94,7 +94,7 @@ public class ArticleController {
 			model.addAttribute("replaceUri", "/usr/member/login");
 			return "common/redirect";
 		}
-		
+		param.put("memberId", loginedMemberId);
 		int id = articleService.writeArticle(param);
 
 		model.addAttribute("msg", String.format("%d번 글이 생성되였습니다.", id));

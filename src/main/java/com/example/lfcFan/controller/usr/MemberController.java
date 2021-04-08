@@ -87,8 +87,17 @@ public class MemberController {
 		}
 
 		session.setAttribute("loginedMemberId", member.getId());
-
+		session.setAttribute("loginedMemberName", member.getName());
 		return String.format("<script>location.replace('/usr/article/home'); </script>",
 				member.getName());
 	}
+	
+	@RequestMapping("/usr/member/doLogout")
+	@ResponseBody
+	public String doLogout(HttpSession session) {
+		session.removeAttribute("loginedMemberId");
+		session.removeAttribute("loginedMemberName");
+		return String.format("<script> location.replace('/usr/article/home'); </script>");
+	}
+
 }

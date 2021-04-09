@@ -16,7 +16,7 @@
 			</div>
 			<div class="writer-profile cell">
 				<div class="writer-nickname">
-					<span>${article.writer}</span>
+					<strong>${article.extra.writer}</strong>
 				</div>
 				<div>
 					<div class="regdate cell">

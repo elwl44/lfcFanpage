@@ -42,10 +42,13 @@
 		</set>
 	</insert>
 
-	<select id="getArticleById" resultType="Article">
-		SELECT *
-		FROM article
-		WHERE id = #{id}
+	<select id="getForPrintArticleById" resultMap="article">
+		SELECT A.*,
+		M.loginId AS extra__writer
+		FROM article AS A
+		INNER JOIN `member` AS M
+		ON A.memberId = M.id
+		WHERE A.id = #{id}
 	</select>
 
 	<delete id="deleteArticleById">

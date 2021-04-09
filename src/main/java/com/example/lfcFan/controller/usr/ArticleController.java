@@ -85,8 +85,8 @@ public class ArticleController {
 
 	@RequestMapping("/usr/article/detail")
 	public String showDetail(Model model, int id) {
-		Article article = articleService.getArticleById(id);
-
+		Article article = articleService.getForPrintArticleById(id);
+		System.out.println(article+"**********************");
 		model.addAttribute("article", article);
 
 		return "usr/article/detail";
@@ -96,7 +96,7 @@ public class ArticleController {
 	public String doDelete(HttpServletRequest req, int id, Model model) {
 		int loginedMemberId = (int) req.getAttribute("loginedMemberId");
 
-		Article article = articleService.getArticleById(id);
+		Article article = articleService.getForPrintArticleById(id);
 
 		if ( article.getMemberId() != loginedMemberId ) {
 			model.addAttribute("msg", "권한이 없습니다.");
@@ -115,7 +115,7 @@ public class ArticleController {
 	public String showModify(HttpServletRequest req, Model model, int id) {
 		int loginedMemberId = (int) req.getAttribute("loginedMemberId");
 		
-		Article article = articleService.getArticleById(id);
+		Article article = articleService.getForPrintArticleById(id);
 
 		if (article.getMemberId() != loginedMemberId) {
 			model.addAttribute("msg", "권한이 없습니다.");
@@ -132,7 +132,7 @@ public class ArticleController {
 	public String doModify(HttpServletRequest req, int id, String title, String body, Model model) {
 		int loginedMemberId = (int) req.getAttribute("loginedMemberId");
 
-		Article article = articleService.getArticleById(id);
+		Article article = articleService.getForPrintArticleById(id);
 
 		if (article.getMemberId() != loginedMemberId) {
 			model.addAttribute("msg", "권한이 없습니다.");

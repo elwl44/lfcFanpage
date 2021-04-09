@@ -33,8 +33,6 @@ public class ArticleController {
 
 	@RequestMapping("/usr/article/notice")
 	public String showNotice(Model model, @RequestParam Map<String, Object> param) {
-		List<Article> articles = articleService.getArticles(param);
-
 		int totalCount = articleService.getTotalCount();
 		int itemsCountInAPage = 10;
 		int totalPage = (int) Math.ceil(totalCount / (double) itemsCountInAPage);
@@ -53,6 +51,8 @@ public class ArticleController {
 
 		param.put("itemsCountInAPage", itemsCountInAPage);
 
+		List<Article> articles = articleService.getForPrintArticles(param);
+		
 		model.addAttribute("totalCount", totalCount);
 		model.addAttribute("totalPage", totalPage);
 		model.addAttribute("pageMenuArmSize", pageMenuArmSize);

@@ -15,7 +15,7 @@ public class ArticleService {
 	@Autowired
 	private ArticleDao articleDao;
 
-	public List<Article> getArticles(Map<String, Object> param) {
+	public List<Article> getForPrintArticles(Map<String, Object> param) {
 		int page = Util.getAsInt(param.get("page"), 1);
 
 		// 한 리스트에 나올 수 있는 게시물 게수
@@ -34,7 +34,7 @@ public class ArticleService {
 		param.put("limitFrom", limitFrom);
 		param.put("limitTake", limitTake);
 		
-		return articleDao.getArticles(param);
+		return articleDao.getForPrintArticles(param);
 	}
 
 	public int writeArticle(Map<String, Object> param) {

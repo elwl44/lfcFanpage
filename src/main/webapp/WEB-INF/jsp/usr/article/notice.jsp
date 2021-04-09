@@ -43,7 +43,7 @@
 							<a href="/usr/article/detail?id=${article.id}">${article.title}</a>
 						</div>
 						<div class="cell">
-							<span>${article.writer}</span>
+							<span>${article.extra.writer}</span>
 						</div>
 						<div class="cell">
 							<span>${article.regDate}</span>

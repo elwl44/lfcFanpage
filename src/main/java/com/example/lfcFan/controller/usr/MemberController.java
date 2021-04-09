@@ -113,7 +113,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/usr/member/info")
-	public String showinfo(Model model,HttpServletRequest req) {
+	public String showinfo(Model model, HttpServletRequest req) {
 		int loginedMemberId = (int) req.getAttribute("loginedMemberId");
 		Member member = memberService.getMemberById(loginedMemberId);
 		model.addAttribute("member", member);
@@ -121,8 +121,11 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/usr/member/modify")
-	public String showModify() {
-		return "usr/member/modify";
+	public String showModify(Model model, HttpServletRequest req) {
+		int loginedMemberId = (int) req.getAttribute("loginedMemberId");
+		Member member = memberService.getMemberById(loginedMemberId);
+		model.addAttribute("member", member);
+		return "usr/member/info-modify";
 	}
 
 	@RequestMapping("/usr/member/doModify")
@@ -137,7 +140,7 @@ public class MemberController {
 		memberService.modify(param);
 
 		model.addAttribute("msg", String.format("수정되었습니다."));
-		model.addAttribute("replaceUri", "/usr/article/list");
+		model.addAttribute("replaceUri", "/usr/article/home");
 		return "common/redirect";
 	}
 }

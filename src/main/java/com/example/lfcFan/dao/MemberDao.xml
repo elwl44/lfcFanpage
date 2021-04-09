@@ -34,19 +34,23 @@
 		FROM member
 		WHERE email = #{email}
 	</select>
-	
+
 	<select id="getMemberById" resultType="Member">
 		SELECT *
 		FROM member
-		WHERE id = #{id}
+		WHERE
+		id = #{id}
 	</select>
-	
+
 	<update id="modify">
 		UPDATE member
 		<set>
 			updateDate = NOW(),
 			<if test="name != null">
 				`name` = #{name},
+			</if>
+			<if test="email != null">
+				`email` = #{email},
 			</if>
 		</set>
 		WHERE id = #{id}

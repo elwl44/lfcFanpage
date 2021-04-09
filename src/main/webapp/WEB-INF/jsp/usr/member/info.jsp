@@ -21,12 +21,12 @@
                         <td class="text"><span>${member.loginId} </span></td>
                     </tr>
                     <tr>
-                        <th scope="row">이메일 주소</th>
-                        <td class="text"><span>${member.email }</span></td>
-                    </tr>
-                    <tr>
                         <th scope="row">이름</th>
                         <td class="text"><span>${member.name}</span></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">이메일 주소</th>
+                        <td class="text"><span>${member.email }</span></td>
                     </tr>
                     <tr>
                         <th>가입일</th>
@@ -48,7 +48,7 @@
                 <a href="write">비밀번호 변경</a>
             </span>
             <span class="btn-write cell-right">
-                <a href="write">회원정보 변경</a>
+                <a href="modify">회원정보 변경</a>
             </span>
         </div>
     </section>

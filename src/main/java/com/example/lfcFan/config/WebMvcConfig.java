@@ -28,8 +28,8 @@ public class WebMvcConfig implements WebMvcConfigurer{
 			// 로그인 없이도 접속할 수 있는 URI 전부 기술
 			registry.addInterceptor(needToLoginInterceptor).addPathPatterns("/**").excludePathPatterns("/resource/**")
 					.excludePathPatterns("/").excludePathPatterns("/usr/article/home").excludePathPatterns("/usr/member/login")
-					.excludePathPatterns("/usr/member/doLogin").excludePathPatterns("/usr/member/join")
-					.excludePathPatterns("/usr/member/doJoin").excludePathPatterns("/usr/article/notice")
+					.excludePathPatterns("/usr/member/doLogin").excludePathPatterns("/usr/member/join").excludePathPatterns("/usr/member/idCheck")
+					.excludePathPatterns("/usr/member/emailCheck").excludePathPatterns("/usr/member/doJoin").excludePathPatterns("/usr/article/notice")
 					.excludePathPatterns("/usr/article/detail").excludePathPatterns("/error");
 		}
 }

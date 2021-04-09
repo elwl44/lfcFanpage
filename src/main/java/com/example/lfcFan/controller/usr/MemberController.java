@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.lfcFan.dto.Article;
 import com.example.lfcFan.dto.Member;
@@ -52,6 +53,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/usr/member/idCheck")
+	@ResponseBody
 	public boolean idCheck(@RequestParam Map<String, Object> param) {
 		String loginId = Util.getAsStr(param.get("loginId"), "");
 
@@ -60,6 +62,7 @@ public class MemberController {
 		return isJoinAvailableLoginId;
 	}
 	@RequestMapping("/usr/member/emailCheck")
+	@ResponseBody
 	public boolean emailCheck(@RequestParam Map<String, Object> param) {
 		String email = Util.getAsStr(param.get("email"), "");
 

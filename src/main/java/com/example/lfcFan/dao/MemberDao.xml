@@ -34,4 +34,10 @@
 		FROM member
 		WHERE email = #{email}
 	</select>
+	
+	<select id="getMemberById" resultType="Member">
+		SELECT *
+		FROM member
+		WHERE id = #{id}
+	</select>
 </mapper>

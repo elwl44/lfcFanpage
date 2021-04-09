@@ -3,6 +3,7 @@ package com.example.lfcFan.controller.usr;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.lfcFan.dto.Article;
 import com.example.lfcFan.service.ArticleService;
@@ -112,14 +112,11 @@ public class ArticleController {
 	}
 
 	@RequestMapping("/usr/article/doDelete")
-	public String doDelete(HttpSession session, int id, Model model) {
-		int loginedMemberId = 0;
+	public String doDelete(HttpServletRequest req, int id, Model model) {
+		boolean isLogined = (boolean) req.getAttribute("isLogined");
+		int loginedMemberId = (int) req.getAttribute("loginedMemberId");
 
-		if (session.getAttribute("loginedMemberId") != null) {
-			loginedMemberId = (int) session.getAttribute("loginedMemberId");
-		}
-
-		if (loginedMemberId == 0) {
+		if (isLogined == false) {
 			model.addAttribute("msg", "로그인 후 이용해주세요.");
 			model.addAttribute("replaceUri", "/usr/member/login");
 			return "common/redirect";

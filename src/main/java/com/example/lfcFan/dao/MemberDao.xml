@@ -40,4 +40,15 @@
 		FROM member
 		WHERE id = #{id}
 	</select>
+	
+	<update id="modify">
+		UPDATE member
+		<set>
+			updateDate = NOW(),
+			<if test="name != null">
+				`name` = #{name},
+			</if>
+		</set>
+		WHERE id = #{id}
+	</update>
 </mapper>

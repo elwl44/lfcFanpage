@@ -394,9 +394,13 @@ ul ul {
     margin-left: 2%;
 }
 
-td {
-    text-align: center;
-    border: 1px solid black;
+.table td{
+	border: 1px solid black;
+	text-align: center;
+}
+.table td:nth-child(2)
+{
+	text-align: left;
 }
 
 .team-lanking {

@@ -33,7 +33,7 @@
 			<ul class="row cell-right">
 				<c:if test="${sessionScope.loginedMemberId > 0}">
 					<li class="cell">
-						<a href="#info">내정보</a>
+						<a href="../member/info">내정보</a>
 					</li>
 					<li class="cell">
 						<a href="../member/doLogout">로그아웃</a>

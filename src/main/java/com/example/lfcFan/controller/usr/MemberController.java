@@ -2,6 +2,7 @@ package com.example.lfcFan.controller.usr;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.example.lfcFan.dto.Article;
 import com.example.lfcFan.dto.Member;
 import com.example.lfcFan.service.MemberService;
 import com.example.lfcFan.util.Util;
@@ -107,5 +108,33 @@ public class MemberController {
 		model.addAttribute("replaceUri", "/usr/article/home");
 		return "common/redirect";
 	}
+	
+	@RequestMapping("/usr/member/info")
+	public String showinfo(Model model,HttpServletRequest req) {
+		int loginedMemberId = (int) req.getAttribute("loginedMemberId");
+		Member member = memberService.getMemberById(loginedMemberId);
+		model.addAttribute("member", member);
+		return "usr/member/info";
+	}
+	
+	@RequestMapping("/usr/member/modify")
+	public String showModify() {
+		return "usr/member/modify";
+	}
 
+	@RequestMapping("/usr/member/doModify")
+	public String doModify(Model model, HttpServletRequest req, @RequestParam Map<String, Object> param) {
+		int loginedMemberId = (int)req.getAttribute("loginedMemberId");
+		param.put("id", loginedMemberId);
+
+		// 해킹방지
+		param.remove("loginId");
+		param.remove("loginPw");
+
+		memberService.modify(param);
+
+		model.addAttribute("msg", String.format("수정되었습니다."));
+		model.addAttribute("replaceUri", "/usr/article/list");
+		return "common/redirect";
+	}
 }

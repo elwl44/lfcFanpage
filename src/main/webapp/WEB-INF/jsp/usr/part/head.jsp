@@ -33,6 +33,9 @@
 			<ul class="row cell-right">
 				<c:if test="${sessionScope.loginedMemberId > 0}">
 					<li class="cell">
+						<span>${loginedMember.loginId }님</span>
+					</li>
+					<li class="cell">
 						<a href="../member/info">내정보</a>
 					</li>
 					<li class="cell">

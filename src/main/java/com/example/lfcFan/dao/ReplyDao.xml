@@ -25,7 +25,8 @@
 
 	<select id="getForPrintReplies" resultMap="reply">
 		SELECT RE.*,
-		M.loginId AS
+		M.loginId
+		AS
 		extra__writer
 		FROM reply AS RE
 		INNER JOIN member AS M
@@ -36,7 +37,19 @@
 		ORDER
 		BY RE.id DESC
 	</select>
-	
+
+	<select id="getReply" resultType="Reply">
+		SELECT *
+		FROM reply
+		WHERE id =
+		#{id}
+	</select>
+
+	<delete id="deleteReplyById">
+		DELETE FROM reply
+		WHERE id = #{id}
+	</delete>
+
 	<resultMap type="Reply" id="reply">
 		<id property="id" column="id" />
 		<id property="regDate" column="regDate" />

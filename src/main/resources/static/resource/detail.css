@@ -203,3 +203,8 @@ a {
     color: rgba(60, 60, 67, .6);
     font-size: 10px;
 }
+
+.comment-edit {
+    color: black;
+    font-size: 10px;
+}

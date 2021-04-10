@@ -60,6 +60,10 @@
 						</div>
 						<div class="memo">${reply.body}</div>
 						<span class="comment-date">${reply.regDate } </span>
+						<div>
+							<a href="/usr/reply/modify?id=${reply.id}&redirectUrl=${encodedCurrentUri}" class="comment-edit">수정</a>
+							<a onclick="if ( confirm('삭제하시겠습니까?') == false ) return false;" href="/usr/reply/doDelete?id=${reply.id}&redirectUrl=${encodedCurrentUri}" class="comment-edit">삭제</a>
+						</div>
 					</div>
 				</div>
 			</c:forEach>

@@ -49,18 +49,20 @@
 			<h3>댓글 1개</h3>
 		</div>
 		<div class="comment-container">
-			<div class="comment-area row">
-				<div class="comment-img cell">
-					<img class="img2 cell" src="/resource/img/nonimg.jpg" />
-				</div>
-				<div class="comment-info cell">
-					<div class="comment-user">
-						<strong>로얄이</strong>
+			<c:forEach items="${replies}" var="reply">
+				<div class="comment-area row">
+					<div class="comment-img cell">
+						<img class="img2 cell" src="/resource/img/nonimg.jpg" />
 					</div>
-					<div class="memo">안녕하세요</div>
-					<span class="comment-date">5시간 전</span>
+					<div class="comment-info cell">
+						<div class="comment-user">
+							<strong>${reply.extra.writer}</strong>
+						</div>
+						<div class="memo">${reply.body}</div>
+						<span class="comment-date">${reply.regDate } </span>
+					</div>
 				</div>
-			</div>
+			</c:forEach>
 			<form action="/usr/reply/doWrite" method="POST" class="comment-write"
 				name="comment-write" id="comment-write">
 

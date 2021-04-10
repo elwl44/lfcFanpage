@@ -56,8 +56,8 @@ public class ArticleService {
 		articleDao.modifyArticle(id, title, body);
 	}
 
-	public int getTotalCount() {
-		return articleDao.getTotalCount();
+	public int getTotalCount(Map<String, Object> param) {
+		return articleDao.getTotalCount(param);
 	}
 
 }

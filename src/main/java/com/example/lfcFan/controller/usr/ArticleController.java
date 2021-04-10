@@ -33,7 +33,7 @@ public class ArticleController {
 
 	@RequestMapping("/usr/article/notice")
 	public String showNotice(Model model, @RequestParam Map<String, Object> param) {
-		int totalCount = articleService.getTotalCount();
+		int totalCount = articleService.getTotalCount(param);
 		int itemsCountInAPage = 10;
 		int totalPage = (int) Math.ceil(totalCount / (double) itemsCountInAPage);
 
@@ -86,7 +86,6 @@ public class ArticleController {
 	@RequestMapping("/usr/article/detail")
 	public String showDetail(Model model, int id) {
 		Article article = articleService.getForPrintArticleById(id);
-		System.out.println(article+"**********************");
 		model.addAttribute("article", article);
 
 		return "usr/article/detail";

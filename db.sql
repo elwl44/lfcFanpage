@@ -10,8 +10,7 @@ CREATE TABLE article (
     updateDate DATETIME NOT NULL,
     title CHAR(200) NOT NULL,
     `body` TEXT NOT NULL,
-    reading INT(10) NOT NULL,
-    writer CHAR(20) NOT NULL
+    reading INT(10) NOT NULL
 );
 
 # 게시물 데이터 생성
@@ -20,16 +19,14 @@ SET regDate = NOW(),
 updateDate = NOW(),
 title = '제목1',
 `body` = '내용1',
-reading=0,
-writer='작성자1';
+reading=0;
 
 INSERT INTO article
 SET regDate = NOW(),
 updateDate = NOW(),
 title = '제목2',
 `body` = '내용2',
-reading=0,
-writer='작성자2';
+reading=0;
 
 # 게시물 테이블 생성
 CREATE TABLE `member` (
@@ -46,16 +43,19 @@ CREATE TABLE `member` (
 INSERT INTO `member`
 SET regDate = NOW(),
 updateDate = NOW(),
-loginId = 'test1',
-loginPw = 'test1',
-`name` = '홍길동';
+loginId = 'elwl44',
+loginPw = '1234',
+`name` = '박범규',
+email='pakbk1908@gmail.com';
 
+# 회원 생성
 INSERT INTO `member`
 SET regDate = NOW(),
 updateDate = NOW(),
-loginId = 'test2',
-loginPw = 'test2',
-`name` = '홍길순';
+loginId = 'elwl45',
+loginPw = '1234',
+`name` = '박범규2',
+email='pakbk11908@gmail.com';
 
 # 게시물 테이블에 memberId 칼럼 추가
 ALTER TABLE article ADD COLUMN memberId INT(10) UNSIGNED NOT NULL AFTER updateDate;

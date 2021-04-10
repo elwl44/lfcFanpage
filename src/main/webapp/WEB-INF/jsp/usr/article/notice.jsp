@@ -98,13 +98,12 @@
 		<form>
 			<select name="search_target" class="select-bar cell">
 				<option value="title">제목</option>
-				<option value="content">내용</option>
+				<option value="body">내용</option>
 				<option value="title_content">제목+내용</option>
-				<option value="user_name">이름</option>
-				<option value="nick_name">닉네임</option>
-				<option value="user_id">아이디</option>
+				<option value="name">이름</option>
+				<option value="loginId">아이디</option>
 			</select>
-			<input type="text" name="search_keyword" value="" class="iText cell"
+			<input type="text" name="searchKeyword" value="" class="iText cell"
 				title="검색">
 			<span class="search cell">
 				<input class="search-btn" type="submit" value="검색">

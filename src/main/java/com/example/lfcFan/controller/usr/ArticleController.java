@@ -50,9 +50,10 @@ public class ArticleController {
 		}
 
 		param.put("itemsCountInAPage", itemsCountInAPage);
-
-		List<Article> articles = articleService.getForPrintArticles(param);
+		String search_target= Util.getAsStr(param.get("search_target"),"");
 		
+		List<Article> articles = articleService.getForPrintArticles(param);
+		model.addAttribute("search_target",search_target);
 		model.addAttribute("totalCount", totalCount);
 		model.addAttribute("totalPage", totalPage);
 		model.addAttribute("pageMenuArmSize", pageMenuArmSize);

@@ -32,12 +32,16 @@
 		<div class="detail-body">${article.body}</div>
 		<div class="detail-edit row">
 			<span class="btn-modify cell">
-				<a href="modify?id=${article.id}&redirectUrl=${encodedCurrentUri}">수정</a>
+				<c:if test="${loginedMemberId == article.memberId}">
+					<a href="modify?id=${article.id}&redirectUrl=${encodedCurrentUri}">수정</a>
+				</c:if>
 			</span>
 
 			<span class="btn-delete cell">
-				<a onclick="if ( confirm('삭제하시겠습니까?') == false ) return false;"
-					href="doDelete?id=${article.id}">삭제</a>
+				<c:if test="${loginedMemberId == article.memberId}">
+					<a onclick="if ( confirm('삭제하시겠습니까?') == false ) return false;"
+						href="doDelete?id=${article.id}">삭제</a>
+				</c:if>
 			</span>
 		</div>
 	</section>
@@ -58,22 +62,30 @@
 						</div>
 						<div class="memo" id="memo${count.index}">${reply.body}</div>
 						<div class="row">
-							<form action="/usr/reply/doModify" method="POST"
-								class="doModify" name="doModify" id="doModify">
+							<form action="/usr/reply/doModify" method="POST" class="doModify"
+								name="doModify" id="doModify">
 								<input type="hidden" name="redirectUrl" value="${currentUri}" />
 								<input type="hidden" name="id" value="${reply.id}" />
-								<textarea  class="comment-modify cell" id="body${count.index}" name="body">${reply.body}</textarea>
-								<input type="hidden" value="수정" class="comment-modify-btn cell" name="modify-btn" />
-								<input type="hidden" value="취소" class="comment-cancel-btn cell" name="cancel-btn" onclick="fn_cancel(${count.index })"/>
+								<textarea class="comment-modify cell" id="body${count.index}"
+									name="body">${reply.body}</textarea>
+								<input type="hidden" value="수정" class="comment-modify-btn cell"
+									name="modify-btn" />
+								<input type="hidden" value="취소" class="comment-cancel-btn cell"
+									name="cancel-btn" onclick="fn_cancel(${count.index })" />
 							</form>
 						</div>
 
 						<span class="comment-date row">${reply.time} </span>
 						<div>
-							<a href="javascript:fn_modify(${count.index })" class="comment-edit">수정</a>
-							<a onclick="if ( confirm('삭제하시겠습니까?') == false ) return false;"
-								href="/usr/reply/doDelete?id=${reply.id}&redirectUrl=${encodedCurrentUri}"
-								class="comment-edit">삭제</a>
+							<c:if test="${loginedMemberId == reply.memberId}">
+								<a href="javascript:fn_modify(${count.index })"
+									class="comment-edit">수정</a>
+							</c:if>
+							<c:if test="${loginedMemberId == reply.memberId}">
+								<a onclick="if ( confirm('삭제하시겠습니까?') == false ) return false;"
+									href="/usr/reply/doDelete?id=${reply.id}&redirectUrl=${encodedCurrentUri}"
+									class="comment-edit">삭제</a>
+							</c:if>
 						</div>
 					</div>
 				</div>
@@ -84,7 +96,7 @@
 				<input type="hidden" name="relTypeCode" value="article" />
 				<input type="hidden" name="relId" value="${param.id}" />
 				<input type="hidden" name="redirectUrl" value="${currentUri}" />
-				
+
 				<div>
 					<textarea name="body" placeholder="댓글 쓰기" class="comment-body cell"
 						style="resize: none" id="comment-body" name="comment-body"></textarea>

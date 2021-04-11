@@ -60,6 +60,7 @@
 						<div class="row">
 							<form action="/usr/reply/doModify" method="POST"
 								class="doModify" name="doModify" id="doModify">
+								<input type="hidden" name="redirectUrl" value="${currentUri}" />
 								<input type="hidden" name="id" value="${reply.id}" />
 								<textarea  class="comment-modify cell" id="body${count.index}" name="body">${reply.body}</textarea>
 								<input type="hidden" value="수정" class="comment-modify-btn cell" name="modify-btn" />

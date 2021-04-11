@@ -28,7 +28,11 @@ public class ReplyController {
 
 		String relTypeCode = (String)param.get("relTypeCode");
 		int relId = Util.getAsInt(param.get("relId"));
-
+		
+		if ( redirectUrl == null || redirectUrl.length() == 0 ) {
+			redirectUrl = String.format("/usr/%s/detail?id=%d", relTypeCode, relId);
+		}
+		
 		model.addAttribute("msg", String.format("%d번 댓글이 생성되였습니다.", id));
 		model.addAttribute("replaceUri", redirectUrl);
 		return "common/redirect";
@@ -81,9 +85,16 @@ public class ReplyController {
 			return "common/redirect";
 		}
 		
+		String relTypeCode = (String)param.get("relTypeCode");
+		int relId = Util.getAsInt(param.get("relId"));
+		
+		if ( redirectUrl == null || redirectUrl.length() == 0 ) {
+			redirectUrl = String.format("/usr/%s/detail?id=%d", relTypeCode, relId);
+		}
+		
 		replyService.modify(param);
 		
-		model.addAttribute("msg", String.format("댓글이 수정되었습니다."));
+		model.addAttribute("replaceUri", redirectUrl);
 		return "common/redirect";
 	}
 }

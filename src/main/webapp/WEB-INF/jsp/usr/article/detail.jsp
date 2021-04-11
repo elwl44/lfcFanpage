@@ -30,10 +30,9 @@
 			</div>
 		</div>
 		<div class="detail-body">${article.body}</div>
-
 		<div class="detail-edit row">
 			<span class="btn-modify cell">
-				<a href="modify?id=${article.id}&listUrl=${listUrl}">수정</a>
+				<a href="modify?id=${article.id}&redirectUrl=${encodedCurrentUri}">수정</a>
 			</span>
 
 			<span class="btn-delete cell">

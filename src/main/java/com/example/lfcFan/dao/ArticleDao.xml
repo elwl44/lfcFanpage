@@ -20,6 +20,9 @@
 				A.body LIKE CONCAT('%', #{searchKeyword}, '%')
 				)
 			</if>
+			<if test="search_target == ''">
+				AND A.title LIKE CONCAT('%', #{searchKeyword}, '%')
+			</if>
 			<if test="search_target == 'title'">
 				AND A.title LIKE CONCAT('%', #{searchKeyword}, '%')
 			</if>
@@ -49,8 +52,10 @@
 		ON A.memberId =
 		M.id
 		WHERE 1
-
 		<if test="searchKeyword != null">
+			<if test="search_target == ''">
+				AND A.title LIKE CONCAT('%', #{searchKeyword}, '%')
+			</if>
 			<if test="search_target == 'title_content'">
 				and (title like CONCAT('%', #{searchKeyword}, '%')
 				or body

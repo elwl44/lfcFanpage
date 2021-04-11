@@ -35,12 +35,14 @@
 			</div>
 			<div class="notice-list-box-body">
 				<c:forEach items="${articles}" var="article">
+					<c:set var="detailUrl"
+						value="/usr/article/detail?id=${article.id}&listUrl=${encodedCurrentUri}" />
 					<div class="notice-list-box-row">
 						<div class="cell">
 							<a href="#">${article.id}</a>
 						</div>
 						<div class="cell">
-							<a href="/usr/article/detail?id=${article.id}">${article.title}</a>
+							<a href="${detailUrl}">${article.title}</a>
 						</div>
 						<div class="cell">
 							<span>${article.extra.writer}</span>
@@ -75,21 +77,26 @@
 
 			<!-- 첫 페이지로 이동버튼이 노출될 필요가 있다면 노출 -->
 			<c:if test="${goFirstBtnNeedToShow}">
-				<a href="?page=1&search_target=${search_target }&searchKeyword=${param.searchKeyword}" class="prevEnd">첫 페이지</a>
+				<a
+					href="?page=1&search_target=${search_target }&searchKeyword=${param.searchKeyword}"
+					class="prevEnd">첫 페이지</a>
 			</c:if>
-			
+
 			<c:forEach var="i" begin="${pageMenuStart}" end="${pageMenuEnd}">
 				<c:set var="className" value="${i == page ? 'selected' : ''}" />
-				<a class="${className}" href="?page=${i}&search_target=${search_target}&searchKeyword=${param.searchKeyword}">${i}</a>
+				<a class="${className}"
+					href="?page=${i}&search_target=${search_target}&searchKeyword=${param.searchKeyword}">${i}</a>
 
 				<!-- 방금 노출된 페이지 번호가 마지막 페이지의 번호였다면, 마지막으로 이동하는 버튼이 노출될 필요가 없다고 설정 -->
 				<c:if test="${i == totalPage}">
 					<c:set var="goLastBtnNeedToShow" value="false" />
 				</c:if>
 			</c:forEach>
-			
+
 			<c:if test="${goLastBtnNeedToShow}">
-				<a href="?page=${totalPage}&search_target=${search_target}&searchKeyword=${param.searchKeyword}" class="nextEnd">끝 페이지</a>
+				<a
+					href="?page=${totalPage}&search_target=${search_target}&searchKeyword=${param.searchKeyword}"
+					class="nextEnd">끝 페이지</a>
 			</c:if>
 
 		</div>
@@ -97,14 +104,19 @@
 	<section class="section-search">
 		<form>
 			<select name="search_target" class="select-bar cell">
-				<option value="title" <c:if test="${search_target == 'title'}">selected="selected"</c:if>>제목</option>
-				<option value="body"<c:if test="${search_target == 'body'}">selected="selected"</c:if>>내용</option>
-				<option value="title_content" <c:if test="${search_target == 'title_content'}">selected="selected"</c:if>>제목+내용</option>
-				<option value="name" <c:if test="${search_target == 'name'}">selected="selected"</c:if>>이름</option>
-				<option value="loginId" <c:if test="${search_target == 'loginId'}">selected="selected"</c:if>>아이디</option>
+				<option value="title"
+					<c:if test="${search_target == 'title'}">selected="selected"</c:if>>제목</option>
+				<option value="body"
+					<c:if test="${search_target == 'body'}">selected="selected"</c:if>>내용</option>
+				<option value="title_content"
+					<c:if test="${search_target == 'title_content'}">selected="selected"</c:if>>제목+내용</option>
+				<option value="name"
+					<c:if test="${search_target == 'name'}">selected="selected"</c:if>>이름</option>
+				<option value="loginId"
+					<c:if test="${search_target == 'loginId'}">selected="selected"</c:if>>아이디</option>
 			</select>
-			<input type="text" name="searchKeyword" value="${param.searchKeyword }" class="iText cell"
-				title="검색">
+			<input type="text" name="searchKeyword"
+				value="${param.searchKeyword }" class="iText cell" title="검색">
 			<span class="search cell">
 				<input class="search-btn" type="submit" value="검색">
 			</span>

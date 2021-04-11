@@ -27,9 +27,9 @@ public class ReplyService {
 	}
 	
 	public List<Reply> getForPrintReplies(String relTypeCode, int relId) {
-		List<Reply> rep=replyDao.getForPrintReplies(relTypeCode, relId);
-		formatTimeString(rep);
-		return rep;
+		List<Reply> replies=replyDao.getForPrintReplies(relTypeCode, relId);
+		formatTimeString(replies);
+		return replies;
 	}
 	
 	public Reply getReply(int id) {
@@ -49,10 +49,13 @@ public class ReplyService {
 				String time=Util.calculateTime(transFormat.parse(datetime));
 				replies.get(i).setTime(time);
 			} catch (ParseException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
+	}
+
+	public void modify(Map<String, Object> param) {
+		replyDao.modify(param);
 	}
 	
 }

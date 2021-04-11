@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<script type="text/javascript"
-	src="http://code.jquery.com/jquery-1.8.2.js"></script>
+
 <%@include file="../part/head.jsp"%>
 <link rel="stylesheet" href="/resource/detail.css">
 <body>
@@ -49,7 +48,7 @@
 			<h3>댓글 ${replies.size()}개</h3>
 		</div>
 		<div class="comment-container">
-			<c:forEach items="${replies}" var="reply">
+			<c:forEach items="${replies}" var="reply" varStatus="count">
 				<div class="comment-area row">
 					<div class="comment-img cell">
 						<img class="img2 cell" src="/resource/img/nonimg.jpg" />
@@ -58,11 +57,23 @@
 						<div class="comment-user">
 							<strong>${reply.extra.writer}</strong>
 						</div>
-						<div class="memo">${reply.body}</div>
-						<span class="comment-date">${reply.time} </span>
+						<div class="memo" id="memo${count.index}">${reply.body}</div>
+						<div class="row">
+							<form action="/usr/reply/doModify" method="POST"
+								class="doModify" name="doModify" id="doModify">
+								<input type="hidden" name="id" value="${reply.id}" />
+								<textarea  class="comment-modify cell" id="body${count.index}" name="body">${reply.body}</textarea>
+								<input type="hidden" value="수정" class="comment-modify-btn cell" name="modify-btn" />
+								<input type="hidden" value="취소" class="comment-cancel-btn cell" name="cancel-btn" onclick="fn_cancel(${count.index })"/>
+							</form>
+						</div>
+
+						<span class="comment-date row">${reply.time} </span>
 						<div>
-							<a href="/usr/reply/modify?id=${reply.id}&redirectUrl=${encodedCurrentUri}" class="comment-edit">수정</a>
-							<a onclick="if ( confirm('삭제하시겠습니까?') == false ) return false;" href="/usr/reply/doDelete?id=${reply.id}&redirectUrl=${encodedCurrentUri}" class="comment-edit">삭제</a>
+							<a href="javascript:fn_modify(${count.index })" class="comment-edit">수정</a>
+							<a onclick="if ( confirm('삭제하시겠습니까?') == false ) return false;"
+								href="/usr/reply/doDelete?id=${reply.id}&redirectUrl=${encodedCurrentUri}"
+								class="comment-edit">삭제</a>
 						</div>
 					</div>
 				</div>
@@ -90,6 +101,30 @@
 			else if(${isLogined}==true){
 				$('#comment-write').css('display', 'block');
 			}
+
+			function fn_modify(count) {
+				var memo="#memo"+count;
+				var body="#body"+count;
+				$(memo).hide();
+				$(body).show();
+				var test = document.getElementsByName("modify-btn")[count];
+				test.setAttribute('type', 'submit');
+
+				var test = document.getElementsByName("cancel-btn")[count];
+				test.setAttribute('type', 'button');
+			}
+
+			function fn_cancel(count){
+				var memo="#memo"+count;
+				var body="#body"+count;
+				$(memo).show();
+				$(body).hide();
+				var test = document.getElementsByName("modify-btn")[count];
+				test.setAttribute('type', 'hidden');
+
+				var test = document.getElementsByName("cancel-btn")[count];
+				test.setAttribute('type', 'hidden');
+			} 
 		</script>
 	</section>
 </body>

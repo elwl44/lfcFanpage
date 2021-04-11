@@ -162,7 +162,33 @@ a {
     height: 70px;
     font-size: 20px;
 }
-
+.comment-modify{
+	height: 30px;
+	resize: none; 
+	display: none;
+}
+.comment-modify-btn{
+	height: 30px;
+	width: 70px;
+    background-color: #E31B23;
+    color: white;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 1%;
+}
+.comment-cancel-btn{
+	height: 30px;
+	width: 70px;
+    background-color: #E31B23;
+    color: white;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+	margin-left:0.5%;
+}
 .comment-btn{
         width: 110px;
     height: 70px;

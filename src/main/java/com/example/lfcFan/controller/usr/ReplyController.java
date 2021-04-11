@@ -58,4 +58,28 @@ public class ReplyController {
 		model.addAttribute("replaceUri", String.format("/usr/%s/detail?id=%d", reply.getRelTypeCode(), reply.getRelId()));
 		return "common/redirect";
 	}
+	
+	@RequestMapping("/usr/reply/doModify")
+	public String doModify(HttpServletRequest req, Model model, int id,String body, String redirectUrl, @RequestParam Map<String, Object> param) {
+		int loginedMemberId = (int) req.getAttribute("loginedMemberId");
+		
+		Reply reply = replyService.getReply(id);
+
+		if (reply == null) {
+			model.addAttribute("msg", "존재하지 않는 댓글입니다.");
+			model.addAttribute("historyBack", true);
+			return "common/redirect";
+		}
+
+		if (loginedMemberId != reply.getMemberId()) {
+			model.addAttribute("msg", "권한이 없습니다.");
+			model.addAttribute("historyBack", true);
+			return "common/redirect";
+		}
+		
+		replyService.modify(param);
+		
+		model.addAttribute("msg", String.format("댓글이 수정되었습니다."));
+		return "common/redirect";
+	}
 }

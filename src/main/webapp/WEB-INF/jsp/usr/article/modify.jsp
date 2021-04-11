@@ -11,6 +11,7 @@
         </div>
         <form action="doModify" enctype="multipart/form-data">
         <input type="hidden" name="id" value="${article.id}"/>
+        <input type="hidden" name="redirectUrl" value="${redirectUrl}"/>
             <div>
                 <input type="text" name="title" id="title" placeholder="제목" class="subject" value="${article.title }">
             </div>

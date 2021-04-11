@@ -122,7 +122,7 @@ public class ArticleController {
 	}
 
 	@RequestMapping("/usr/article/modify")
-	public String showModify(HttpServletRequest req, Model model, int id, String listUrl) {
+	public String showModify(HttpServletRequest req, Model model, int id, String redirectUrl) {
 		int loginedMemberId = (int) req.getAttribute("loginedMemberId");
 		
 		Article article = articleService.getForPrintArticleById(id);
@@ -133,18 +133,17 @@ public class ArticleController {
 			return "common/redirect";
 		}
 		
-		if ( listUrl == null ) {
-			listUrl = "/usr/article/notice";
+		if ( redirectUrl == null ) {
+			redirectUrl = "/usr/article/notice";
 		}
-		
-		model.addAttribute("listUrl", listUrl);
+		model.addAttribute("redirectUrl", redirectUrl);
 		model.addAttribute("article", article);
 
 		return "usr/article/modify";
 	}
 
 	@RequestMapping("/usr/article/doModify")
-	public String doModify(HttpServletRequest req, int id, String title, String body, Model model, String listUrl) {
+	public String doModify(HttpServletRequest req, int id, String title, String body, Model model, String redirectUrl) {
 		int loginedMemberId = (int) req.getAttribute("loginedMemberId");
 
 		Article article = articleService.getForPrintArticleById(id);
@@ -154,16 +153,15 @@ public class ArticleController {
 			model.addAttribute("historyBack", true);
 			return "common/redirect";
 		}
-		
 		articleService.modifyArticle(id, title, body);
 
 		model.addAttribute("msg", String.format("%d번 글을 수정하였습니다.", id));
 		model.addAttribute("replaceUri", String.format("/usr/article/detail?id=%d", id));
-		if(listUrl.equals("")) {
+		if(redirectUrl.equals("")) {
 			model.addAttribute("replaceUri", String.format("/usr/notice/detail?id=%d", id));
 		}
 		else {
-			model.addAttribute("replaceUri", String.format("/usr/notice/detail?id=%d&listUrl=%s", id,listUrl));
+			model.addAttribute("replaceUri", redirectUrl);
 		}
 		return "common/redirect";
 	}

@@ -54,10 +54,8 @@ public class ArticleController {
 		}
 
 		param.put("itemsCountInAPage", itemsCountInAPage);
-		String search_target= Util.getAsStr(param.get("search_target"),"");
 		
 		List<Article> articles = articleService.getForPrintArticles(param);
-		model.addAttribute("search_target",search_target);
 		model.addAttribute("totalCount", totalCount);
 		model.addAttribute("totalPage", totalPage);
 		model.addAttribute("pageMenuArmSize", pageMenuArmSize);
@@ -89,12 +87,17 @@ public class ArticleController {
 	}
 
 	@RequestMapping("/usr/article/detail")
-	public String showDetail(Model model, int id) {
+	public String showDetail(Model model, int id, String listUrl) {
 		Article article = articleService.getForPrintArticleById(id);
 		List<Reply> replies = replyService.getForPrintReplies("article", id);
 		
+		if ( listUrl == null ) {
+			listUrl = "/usr/article/notice";
+		}
+		
 		model.addAttribute("article", article);
 		model.addAttribute("replies", replies);
+		model.addAttribute("listUrl", listUrl);
 		
 		return "usr/article/detail";
 	}
@@ -129,7 +132,6 @@ public class ArticleController {
 			model.addAttribute("historyBack", true);
 			return "common/redirect";
 		}
-
 		model.addAttribute("article", article);
 
 		return "usr/article/modify";
@@ -151,6 +153,7 @@ public class ArticleController {
 
 		model.addAttribute("msg", String.format("%d번 글을 수정하였습니다.", id));
 		model.addAttribute("replaceUri", String.format("/usr/article/detail?id=%d", id));
+
 		return "common/redirect";
 	}
 }

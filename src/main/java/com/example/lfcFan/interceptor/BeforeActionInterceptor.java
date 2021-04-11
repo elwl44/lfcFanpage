@@ -10,6 +10,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 
 import com.example.lfcFan.dto.Member;
 import com.example.lfcFan.service.MemberService;
+import com.example.lfcFan.util.Util;
 
 @Component("beforeActionInterceptor")
 public class BeforeActionInterceptor implements HandlerInterceptor{
@@ -36,6 +37,17 @@ public class BeforeActionInterceptor implements HandlerInterceptor{
 		request.setAttribute("isLogined", isLogined);
 		request.setAttribute("loginedMemberId", loginedMemberId);
 		request.setAttribute("loginedMember", loginedMember);
+		
+		String currentUri = request.getRequestURI();
+
+		if (request.getQueryString() != null) {
+			currentUri += "?" + request.getQueryString();
+		}
+
+		String encodedCurrentUri = Util.getUriEncoded(currentUri);
+
+		request.setAttribute("currentUri", currentUri);
+		request.setAttribute("encodedCurrentUri", encodedCurrentUri);
 
 		return HandlerInterceptor.super.preHandle(request, response, handler);
 	}

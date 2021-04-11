@@ -8,7 +8,7 @@
 
 	<section class="section-detail row">
 		<div class="detail-title">
-			<strong><a href="./">공지사항</a></strong>
+			<strong><a href="${listUrl}">공지사항</a></strong>
 			<h1>${article.title}</h1>
 		</div>
 		<div class="writer-info">
@@ -33,7 +33,7 @@
 
 		<div class="detail-edit row">
 			<span class="btn-modify cell">
-				<a href="modify?id=${article.id}">수정</a>
+				<a href="modify?id=${article.id}&listUrl=${listUrl}">수정</a>
 			</span>
 
 			<span class="btn-delete cell">

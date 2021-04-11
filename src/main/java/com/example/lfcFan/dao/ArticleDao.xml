@@ -7,22 +7,38 @@
 		SELECT A.*,
 		M.loginId AS extra__writer
 		FROM article AS A
-		INNER JOIN member
+		INNER JOIN
+		member
 		AS M
 		ON A.memberId = M.id
 		WHERE 1
-		<if test="search_target != 'title_content'.toString() and search_target != null and searchKeyword != null">
-			AND ${search_target} LIKE CONCAT('%', #{searchKeyword}, '%')
+		<if test="searchKeyword != null">
+			<if test="search_target == 'title_content'">
+				AND (
+				A.title LIKE CONCAT('%', #{searchKeyword}, '%')
+				OR
+				A.body LIKE CONCAT('%', #{searchKeyword}, '%')
+				)
+			</if>
+			<if test="search_target == 'title'">
+				AND A.title LIKE CONCAT('%', #{searchKeyword}, '%')
+			</if>
+			<if test="search_target == 'body'">
+				AND A.body LIKE CONCAT('%', #{searchKeyword}, '%')
+			</if>
+			<if test="search_target == 'name'">
+				AND m.name LIKE CONCAT('%', #{searchKeyword}, '%')
+			</if>
+			<if test="search_target == 'loginId'">
+				AND m.loginId LIKE CONCAT('%', #{searchKeyword}, '%')
+			</if>
 		</if>
-		<if test="search_target == 'title_content'.toString()">
-				and (title like CONCAT('%', #{searchKeyword}, '%')
-					or body like CONCAT('%', #{searchKeyword}, '%'))
-		</if>
+
 		ORDER BY A.id DESC
 		<if test="limitFrom != null and limitTake != null">
 			LIMIT #{limitFrom}, #{limitTake}
 		</if>
-		
+
 	</select>
 
 	<select id="getTotalCount" resultType="int">
@@ -30,14 +46,28 @@
 		FROM article AS A
 		INNER JOIN member
 		AS M
-		ON A.memberId = M.id
+		ON A.memberId =
+		M.id
 		WHERE 1
-		<if test="search_target != 'title_content'.toString() and search_target != null and searchKeyword != null">
-			AND ${search_target} LIKE CONCAT('%', #{searchKeyword}, '%')
-		</if>
-		<if test="search_target == 'title_content'.toString()">
+
+		<if test="searchKeyword != null">
+			<if test="search_target == 'title_content'">
 				and (title like CONCAT('%', #{searchKeyword}, '%')
-					or body like CONCAT('%', #{searchKeyword}, '%'))
+				or body
+				like CONCAT('%', #{searchKeyword}, '%'))
+			</if>
+			<if test="search_target == 'title'">
+				AND A.title LIKE CONCAT('%', #{searchKeyword}, '%')
+			</if>
+			<if test="search_target == 'body'">
+				AND A.body LIKE CONCAT('%', #{searchKeyword}, '%')
+			</if>
+			<if test="search_target == 'name'">
+				AND m.name LIKE CONCAT('%', #{searchKeyword}, '%')
+			</if>
+			<if test="search_target == 'loginId'">
+				AND m.loginId LIKE CONCAT('%', #{searchKeyword}, '%')
+			</if>
 		</if>
 	</select>
 
@@ -65,7 +95,8 @@
 		M.loginId AS extra__writer
 		FROM article AS A
 		INNER JOIN `member` AS M
-		ON A.memberId = M.id
+		ON
+		A.memberId = M.id
 		WHERE A.id = #{id}
 	</select>
 
@@ -87,7 +118,7 @@
 		</set>
 		WHERE id = #{id}
 	</update>
-	
+
 	<resultMap type="Article" id="article">
 		<id property="id" column="id" />
 		<id property="regDate" column="regDate" />

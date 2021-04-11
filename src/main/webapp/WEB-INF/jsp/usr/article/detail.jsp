@@ -82,7 +82,8 @@
 
 				<input type="hidden" name="relTypeCode" value="article" />
 				<input type="hidden" name="relId" value="${param.id}" />
-
+				<input type="hidden" name="redirectUrl" value="${currentUri}" />
+				
 				<div>
 					<textarea name="body" placeholder="댓글 쓰기" class="comment-body cell"
 						style="resize: none" id="comment-body" name="comment-body"></textarea>

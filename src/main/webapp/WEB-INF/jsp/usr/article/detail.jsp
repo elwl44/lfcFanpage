@@ -46,7 +46,7 @@
 
 	<section class="section-comment">
 		<div class="comttl">
-			<h3>댓글 1개</h3>
+			<h3>댓글 ${replies.size()}개</h3>
 		</div>
 		<div class="comment-container">
 			<c:forEach items="${replies}" var="reply">
@@ -59,7 +59,7 @@
 							<strong>${reply.extra.writer}</strong>
 						</div>
 						<div class="memo">${reply.body}</div>
-						<span class="comment-date">${reply.regDate } </span>
+						<span class="comment-date">${reply.time} </span>
 						<div>
 							<a href="/usr/reply/modify?id=${reply.id}&redirectUrl=${encodedCurrentUri}" class="comment-edit">수정</a>
 							<a onclick="if ( confirm('삭제하시겠습니까?') == false ) return false;" href="/usr/reply/doDelete?id=${reply.id}&redirectUrl=${encodedCurrentUri}" class="comment-edit">삭제</a>

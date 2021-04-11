@@ -17,6 +17,7 @@ public class Reply {
 	private int relId;
 	private int memberId;
 	private String body;
-
+	private String time;
+	
 	private Map<String, Object> extra;
 }

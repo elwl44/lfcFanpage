@@ -1,5 +1,8 @@
 package com.example.lfcFan.service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -24,7 +27,9 @@ public class ReplyService {
 	}
 	
 	public List<Reply> getForPrintReplies(String relTypeCode, int relId) {
-		return replyDao.getForPrintReplies(relTypeCode, relId);
+		List<Reply> rep=replyDao.getForPrintReplies(relTypeCode, relId);
+		formatTimeString(rep);
+		return rep;
 	}
 	
 	public Reply getReply(int id) {
@@ -34,4 +39,20 @@ public class ReplyService {
 	public void deleteReplyById(int id) {
 		replyDao.deleteReplyById(id);
 	}
+	
+	public void formatTimeString(List<Reply> replies){
+		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+		for (int i = 0; i < replies.size(); i++) {
+			String datetime = replies.get(i).getUpdateDate();
+			try {
+				String time=Util.calculateTime(transFormat.parse(datetime));
+				replies.get(i).setTime(time);
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+	
 }

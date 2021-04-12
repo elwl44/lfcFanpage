@@ -8,7 +8,7 @@
 
 	<section class="section-detail row">
 		<div class="detail-title">
-			<strong><a href="${listUrl}">공지사항</a></strong>
+			<strong><a href="${listUrl}">${board.name }</a></strong>
 			<h1>${article.title}</h1>
 		</div>
 		<div class="writer-info">
@@ -41,7 +41,7 @@
 			<span class="btn-delete cell">
 				<c:if test="${article.extra.actorCanDelete}">
 					<a onclick="if ( confirm('삭제하시겠습니까?') == false ) return false;"
-						href="doDelete?id=${article.id}">삭제</a>
+						href="doDelete?id=${article.id}&listUrl=${listUrl}">삭제</a>
 				</c:if>
 			</span>
 		</div>

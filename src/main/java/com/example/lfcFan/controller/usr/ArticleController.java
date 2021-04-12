@@ -103,7 +103,7 @@ public class ArticleController {
 		List<Reply> replies = replyService.getForPrintReplies(loginedMember, "article", id);
 		
 		if ( listUrl == null ) {
-			listUrl = "/usr/article/notice";
+			listUrl = "/usr/article-free/list";
 		}
 		
 		model.addAttribute("article", article);
@@ -114,11 +114,12 @@ public class ArticleController {
 	}
 
 	@RequestMapping("/usr/article/doDelete")
-	public String doDelete(HttpServletRequest req, int id, Model model) {
+	public String doDelete(HttpServletRequest req, int id, Model model, String listUrl) {
 		Member loginedMember = (Member) req.getAttribute("loginedMember");
-
+		
 		Article article = articleService.getForPrintArticleById(loginedMember, id);
 
+		
 		if ( (boolean) article.getExtra().get("actorCanDelete") == false ) {
 			model.addAttribute("msg", "권한이 없습니다.");
 			model.addAttribute("historyBack", true);
@@ -127,8 +128,7 @@ public class ArticleController {
 		
 		articleService.deleteArticleById(id);
 
-		model.addAttribute("msg", String.format("%d번 글을 삭제하였습니다.", id));
-		model.addAttribute("replaceUri", String.format("/usr/article/notice"));
+		model.addAttribute("replaceUri", listUrl);
 		return "common/redirect";
 	}
 
@@ -145,7 +145,7 @@ public class ArticleController {
 		}
 		
 		if ( redirectUrl == null ) {
-			redirectUrl = "/usr/article/notice";
+			redirectUrl = "/usr/article-free/list";
 		}
 		model.addAttribute("redirectUrl", redirectUrl);
 		model.addAttribute("article", article);
@@ -169,7 +169,7 @@ public class ArticleController {
 		model.addAttribute("msg", String.format("%d번 글을 수정하였습니다.", id));
 		model.addAttribute("replaceUri", String.format("/usr/article/detail?id=%d", id));
 		if(redirectUrl.equals("")) {
-			model.addAttribute("replaceUri", String.format("/usr/notice/detail?id=%d", id));
+			model.addAttribute("replaceUri", String.format("/usr/article/detail?id=%d", id));
 		}
 		else {
 			model.addAttribute("replaceUri", redirectUrl);

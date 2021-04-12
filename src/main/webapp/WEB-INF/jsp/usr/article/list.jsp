@@ -71,7 +71,11 @@
 				value="${page > pageMenuArmSize + 1}" />
 
 			<!-- 마지막 페이지로 이동버튼이 노출될 필요가 있는지 여부 -->
-			<c:set var="goLastBtnNeedToShow" value="${page<pageMenuEnd}" />
+			<c:set var="goLastBtnNeedToShow" value="true" />
+				
+			<c:if test="${0 == totalPage}">
+				<c:set var="goFirstBtnNeedToShow" value="false" />
+			</c:if>
 
 			<!-- 첫 페이지로 이동버튼이 노출될 필요가 있다면 노출 -->
 			<c:if test="${goFirstBtnNeedToShow}">
@@ -91,6 +95,9 @@
 				</c:if>
 			</c:forEach>
 
+			<c:if test="${0 == totalPage}">
+				<c:set var="goLastBtnNeedToShow" value="false" />
+			</c:if>
 			<c:if test="${goLastBtnNeedToShow}">
 				<a
 					href="?page=${totalPage}&search_target=${search_target}&searchKeyword=${param.searchKeyword}"

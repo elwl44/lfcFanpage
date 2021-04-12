@@ -28,18 +28,13 @@ public class ArticleController {
 	@Autowired
 	private ReplyService replyService;
 	
-	@RequestMapping("/usr/article/list")
-	public String showMain(Model model) {
-		return "usr/article/list";
-	}
-
 	@RequestMapping("/usr/article/home")
 	public String showHome(Model model) {
 		return "usr/article/home";
 	}
 
-	@RequestMapping("/usr/article-{boardCode}/notice")
-	public String showNotice(HttpServletRequest req, Model model, @RequestParam Map<String, Object> param, @PathVariable("boardCode") String boardCode) {
+	@RequestMapping("/usr/article-{boardCode}/list")
+	public String showList(HttpServletRequest req, Model model, @RequestParam Map<String, Object> param, @PathVariable("boardCode") String boardCode) {
 		Board board = articleService.getBoardByCode(boardCode);
 
 		if (board == null) {
@@ -80,8 +75,7 @@ public class ArticleController {
 		model.addAttribute("pageMenuEnd", pageMenuEnd);
 		model.addAttribute("page", page);
 		model.addAttribute("articles", articles);
-		model.addAttribute("board", "공지사항");
-		return "usr/article/notice";
+		return "usr/article/list";
 	}
 
 	@RequestMapping("/usr/article/write")

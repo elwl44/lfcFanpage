@@ -36,7 +36,7 @@
 			<div class="notice-list-box-body">
 				<c:forEach items="${articles}" var="article">
 					<c:set var="detailUrl"
-						value="/usr/article/detail?id=${article.id}&listUrl=${encodedCurrentUri}" />
+						value="/usr/article-${board.code}/detail?id=${article.id}&listUrl=${encodedCurrentUri}" />
 					<div class="notice-list-box-row">
 						<div class="cell">
 							<a href="#">${article.id}</a>
@@ -60,11 +60,9 @@
 		</div>
 	</section>
 	<section class="section-boardNavigation">
-
-
 		<div class="btnArea row">
 			<span class="btn-write cell">
-				<a href="write">글쓰기</a>
+				<a href="/usr/article-${board.code}/write">글쓰기</a>
 			</span>
 		</div>
 		<div class="pagination">

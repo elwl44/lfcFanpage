@@ -79,7 +79,14 @@ public class ArticleController {
 	}
 
 	@RequestMapping("/usr/article-{boardCode}/write")
-	public String showWrite(HttpServletRequest req, Model model) {
+	public String showWrite(HttpServletRequest req, Model model, @PathVariable("boardCode") String boardCode) {
+		Board board = articleService.getBoardByCode(boardCode);
+		if (board == null) {
+			model.addAttribute("msg", "존재하지 않는 게시판 입니다.");
+			model.addAttribute("historyBack", true);
+			return "common/redirect";
+		}
+		model.addAttribute("board", board);
 		return "usr/article/write";
 	}
 
@@ -93,21 +100,23 @@ public class ArticleController {
 		int id = articleService.writeArticle(param);
 
 		model.addAttribute("msg", String.format("%d번 글이 생성되였습니다.", id));
-		model.addAttribute("replaceUri", String.format("/usr/article/detail?id=%d", id));
+		model.addAttribute("replaceUri", String.format("/usr/article-%s/detail?id=%d",boardCode, id));
 		return "common/redirect";
 	}
 
-	@RequestMapping("/usr/article/detail")
-	public String showDetail(HttpServletRequest req, Model model, int id, String listUrl) {
+	@RequestMapping("/usr/article-{boardCode}/detail")
+	public String showDetail(HttpServletRequest req, Model model, int id, String listUrl, @PathVariable("boardCode") String boardCode) {
 		Member loginedMember = (Member) req.getAttribute("loginedMember");
+		Board board = articleService.getBoardByCode(boardCode);
 		
 		Article article = articleService.getForPrintArticleById(loginedMember, id);
 		List<Reply> replies = replyService.getForPrintReplies(loginedMember, "article", id);
 		
-		if ( listUrl == null ) {
-			listUrl = "/usr/article-free/list";
+		if ( listUrl == null && boardCode!=null) {
+			listUrl = "/usr/article-"+boardCode+"/list";
 		}
 		
+		model.addAttribute("board", board);
 		model.addAttribute("article", article);
 		model.addAttribute("replies", replies);
 		model.addAttribute("listUrl", listUrl);

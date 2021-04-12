@@ -6,7 +6,7 @@
 <body>
     <section class="section-write row">
         <div class="write-title">
-            <h1 class="con">공지사항 작성</h1>
+            <h1 class="con">${board.name } 글쓰기</h1>
         </div>
         <form action="doWrite" enctype="multipart/form-data">
             <div>

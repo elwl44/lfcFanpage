@@ -25,6 +25,7 @@
 					</div>
 					<div class="view cell">
 						<span>조회 ${article.reading}</span>
+						
 					</div>
 				</div>
 			</div>
@@ -32,13 +33,13 @@
 		<div class="detail-body">${article.body}</div>
 		<div class="detail-edit row">
 			<span class="btn-modify cell">
-				<c:if test="${loginedMemberId == article.memberId}">
+				<c:if test="${article.extra.actorCanModify}">
 					<a href="modify?id=${article.id}&redirectUrl=${encodedCurrentUri}">수정</a>
 				</c:if>
 			</span>
 
 			<span class="btn-delete cell">
-				<c:if test="${loginedMemberId == article.memberId}">
+				<c:if test="${article.extra.actorCanDelete}">
 					<a onclick="if ( confirm('삭제하시겠습니까?') == false ) return false;"
 						href="doDelete?id=${article.id}">삭제</a>
 				</c:if>
@@ -77,11 +78,11 @@
 
 						<span class="comment-date row">${reply.time} </span>
 						<div>
-							<c:if test="${loginedMemberId == reply.memberId}">
+							<c:if test="${article.extra.actorCanModify}">
 								<a href="javascript:fn_modify(${count.index })"
 									class="comment-edit">수정</a>
 							</c:if>
-							<c:if test="${loginedMemberId == reply.memberId}">
+							<c:if test="${article.extra.actorCanDelete}">
 								<a onclick="if ( confirm('삭제하시겠습니까?') == false ) return false;"
 									href="/usr/reply/doDelete?id=${reply.id}&redirectUrl=${encodedCurrentUri}"
 									class="comment-edit">삭제</a>

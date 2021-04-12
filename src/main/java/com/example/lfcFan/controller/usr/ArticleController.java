@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.lfcFan.dto.Article;
+import com.example.lfcFan.dto.Member;
 import com.example.lfcFan.dto.Reply;
 import com.example.lfcFan.service.ArticleService;
 import com.example.lfcFan.service.ReplyService;
@@ -36,7 +37,9 @@ public class ArticleController {
 	}
 
 	@RequestMapping("/usr/article/notice")
-	public String showNotice(Model model, @RequestParam Map<String, Object> param) {
+	public String showNotice(HttpServletRequest req, Model model, @RequestParam Map<String, Object> param) {
+		Member loginedMember = (Member)req.getAttribute("loginedMember");
+		
 		int totalCount = articleService.getTotalCount(param);
 		int itemsCountInAPage = 10;
 		int totalPage = (int) Math.ceil(totalCount / (double) itemsCountInAPage);
@@ -55,7 +58,8 @@ public class ArticleController {
 
 		param.put("itemsCountInAPage", itemsCountInAPage);
 		
-		List<Article> articles = articleService.getForPrintArticles(param);
+		List<Article> articles = articleService.getForPrintArticles(loginedMember, param);
+
 		model.addAttribute("totalCount", totalCount);
 		model.addAttribute("totalPage", totalPage);
 		model.addAttribute("pageMenuArmSize", pageMenuArmSize);
@@ -87,8 +91,10 @@ public class ArticleController {
 	}
 
 	@RequestMapping("/usr/article/detail")
-	public String showDetail(Model model, int id, String listUrl) {
-		Article article = articleService.getForPrintArticleById(id);
+	public String showDetail(HttpServletRequest req, Model model, int id, String listUrl) {
+		Member loginedMember = (Member) req.getAttribute("loginedMember");
+		
+		Article article = articleService.getForPrintArticleById(loginedMember, id);
 		List<Reply> replies = replyService.getForPrintReplies("article", id);
 		
 		if ( listUrl == null ) {
@@ -104,11 +110,11 @@ public class ArticleController {
 
 	@RequestMapping("/usr/article/doDelete")
 	public String doDelete(HttpServletRequest req, int id, Model model) {
-		int loginedMemberId = (int) req.getAttribute("loginedMemberId");
+		Member loginedMember = (Member) req.getAttribute("loginedMember");
 
-		Article article = articleService.getForPrintArticleById(id);
+		Article article = articleService.getForPrintArticleById(loginedMember, id);
 
-		if ( article.getMemberId() != loginedMemberId ) {
+		if ( (boolean) article.getExtra().get("actorCanDelete") == false ) {
 			model.addAttribute("msg", "권한이 없습니다.");
 			model.addAttribute("historyBack", true);
 			return "common/redirect";
@@ -123,11 +129,11 @@ public class ArticleController {
 
 	@RequestMapping("/usr/article/modify")
 	public String showModify(HttpServletRequest req, Model model, int id, String redirectUrl) {
-		int loginedMemberId = (int) req.getAttribute("loginedMemberId");
+		Member loginedMember = (Member) req.getAttribute("loginedMember");
 		
-		Article article = articleService.getForPrintArticleById(id);
+		Article article = articleService.getForPrintArticleById(loginedMember, id);
 
-		if (article.getMemberId() != loginedMemberId) {
+		if ((boolean) article.getExtra().get("actorCanModify") == false) {
 			model.addAttribute("msg", "권한이 없습니다.");
 			model.addAttribute("historyBack", true);
 			return "common/redirect";
@@ -144,11 +150,11 @@ public class ArticleController {
 
 	@RequestMapping("/usr/article/doModify")
 	public String doModify(HttpServletRequest req, int id, String title, String body, Model model, String redirectUrl) {
-		int loginedMemberId = (int) req.getAttribute("loginedMemberId");
+		Member loginedMember = (Member) req.getAttribute("loginedMember");
 
-		Article article = articleService.getForPrintArticleById(id);
+		Article article = articleService.getForPrintArticleById(loginedMember, id);
 
-		if (article.getMemberId() != loginedMemberId) {
+		if ((boolean) article.getExtra().get("actorCanModify") == false) {
 			model.addAttribute("msg", "권한이 없습니다.");
 			model.addAttribute("historyBack", true);
 			return "common/redirect";

@@ -49,6 +49,12 @@
 					<li class="cell">
 						<a href="../member/join">회원가입</a>
 					</li>
+					<li class="cell">
+						<a href="../member/findLoginId">아이디 찾기</a>
+					</li>
+					<li class="cell">
+						<a href="../member/join">비밀번호 찾기</a>
+					</li>
 				</c:if>
 
 			</ul>

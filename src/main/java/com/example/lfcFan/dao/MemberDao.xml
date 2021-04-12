@@ -35,6 +35,15 @@
 		WHERE email = #{email}
 	</select>
 
+	<select id="getMemberByNameAndEmail" resultType="Member">
+		SELECT *
+		FROM
+		member
+		WHERE `name` = #{name}
+		AND email = #{email}
+		LIMIT 1
+	</select>
+
 	<select id="getMemberById" resultType="Member">
 		SELECT *
 		FROM member

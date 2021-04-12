@@ -78,11 +78,11 @@
 
 						<span class="comment-date row">${reply.time} </span>
 						<div>
-							<c:if test="${article.extra.actorCanModify}">
+							<c:if test="${reply.extra.actorCanModify}">
 								<a href="javascript:fn_modify(${count.index })"
 									class="comment-edit">수정</a>
 							</c:if>
-							<c:if test="${article.extra.actorCanDelete}">
+							<c:if test="${reply.extra.actorCanDelete}">
 								<a onclick="if ( confirm('삭제하시겠습니까?') == false ) return false;"
 									href="/usr/reply/doDelete?id=${reply.id}&redirectUrl=${encodedCurrentUri}"
 									class="comment-edit">삭제</a>

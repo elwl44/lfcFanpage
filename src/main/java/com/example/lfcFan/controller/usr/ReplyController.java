@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.lfcFan.dto.Member;
 import com.example.lfcFan.dto.Reply;
 import com.example.lfcFan.service.ReplyService;
 import com.example.lfcFan.util.Util;
@@ -40,9 +41,9 @@ public class ReplyController {
 	
 	@RequestMapping("/usr/reply/doDelete")
 	public String doDelete(HttpServletRequest req, Model model, int id, String redirectUrl) {
-		int loginedMemberId = (int)req.getAttribute("loginedMemberId");
+		Member loginedMember = (Member) req.getAttribute("loginedMember");
 
-		Reply reply = replyService.getReply(id);
+		Reply reply = replyService.getForPrintReply(loginedMember, id);
 		
 		if ( redirectUrl == null || redirectUrl.length() == 0 ) {
 			redirectUrl = String.format("/usr/%s/detail?id=%d", reply.getRelTypeCode(), reply.getRelId());
@@ -54,7 +55,7 @@ public class ReplyController {
 			return "common/redirect";
 		}
 
-		if ( loginedMemberId != reply.getMemberId() ) {
+		if ((boolean) reply.getExtra().get("actorCanDelete") == false) {
 			model.addAttribute("msg", "권한이 없습니다.");
 			model.addAttribute("historyBack", true);
 			return "common/redirect";
@@ -69,9 +70,9 @@ public class ReplyController {
 	
 	@RequestMapping("/usr/reply/doModify")
 	public String doModify(HttpServletRequest req, Model model, int id,String body, String redirectUrl, @RequestParam Map<String, Object> param) {
-		int loginedMemberId = (int) req.getAttribute("loginedMemberId");
+		Member loginedMember = (Member) req.getAttribute("loginedMember");
 		
-		Reply reply = replyService.getReply(id);
+		Reply reply = replyService.getForPrintReply(loginedMember, id);
 
 		if (reply == null) {
 			model.addAttribute("msg", "존재하지 않는 댓글입니다.");
@@ -79,7 +80,7 @@ public class ReplyController {
 			return "common/redirect";
 		}
 
-		if (loginedMemberId != reply.getMemberId()) {
+		if ((boolean) reply.getExtra().get("actorCanModify") == false) {
 			model.addAttribute("msg", "권한이 없습니다.");
 			model.addAttribute("historyBack", true);
 			return "common/redirect";

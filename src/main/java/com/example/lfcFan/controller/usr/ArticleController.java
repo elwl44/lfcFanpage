@@ -73,8 +73,6 @@ public class ArticleController {
 
 	@RequestMapping("/usr/article/write")
 	public String showWrite(HttpServletRequest req, Model model) {
-		int loginedMemberId = (int) req.getAttribute("loginedMemberId");
-
 		return "usr/article/write";
 	}
 
@@ -95,7 +93,7 @@ public class ArticleController {
 		Member loginedMember = (Member) req.getAttribute("loginedMember");
 		
 		Article article = articleService.getForPrintArticleById(loginedMember, id);
-		List<Reply> replies = replyService.getForPrintReplies("article", id);
+		List<Reply> replies = replyService.getForPrintReplies(loginedMember, "article", id);
 		
 		if ( listUrl == null ) {
 			listUrl = "/usr/article/notice";

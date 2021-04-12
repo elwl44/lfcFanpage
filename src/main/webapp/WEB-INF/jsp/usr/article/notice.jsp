@@ -73,7 +73,7 @@
 				value="${page > pageMenuArmSize + 1}" />
 
 			<!-- 마지막 페이지로 이동버튼이 노출될 필요가 있는지 여부 -->
-			<c:set var="goLastBtnNeedToShow" value="true" />
+			<c:set var="goLastBtnNeedToShow" value="${page<pageMenuEnd}" />
 
 			<!-- 첫 페이지로 이동버튼이 노출될 필요가 있다면 노출 -->
 			<c:if test="${goFirstBtnNeedToShow}">

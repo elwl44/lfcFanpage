@@ -12,6 +12,9 @@
 		AS M
 		ON A.memberId = M.id
 		WHERE 1
+		<if test="boardId != null">
+			AND A.boardId = #{boardId}
+		</if>
 		<if test="searchKeyword != null">
 			<if test="search_target == 'title_content'">
 				AND (
@@ -52,6 +55,9 @@
 		ON A.memberId =
 		M.id
 		WHERE 1
+		<if test="boardId != null">
+			AND boardId = #{boardId}
+		</if>
 		<if test="searchKeyword != null">
 			<if test="search_target == ''">
 				AND A.title LIKE CONCAT('%', #{searchKeyword}, '%')

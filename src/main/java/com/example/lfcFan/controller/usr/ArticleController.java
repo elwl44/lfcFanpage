@@ -49,6 +49,7 @@ public class ArticleController {
 		}
 		
 		Member loginedMember = (Member)req.getAttribute("loginedMember");
+		param.put("boardId", board.getId());
 		
 		int totalCount = articleService.getTotalCount(param);
 		int itemsCountInAPage = 10;
@@ -65,7 +66,8 @@ public class ArticleController {
 		if (pageMenuEnd > totalPage) {
 			pageMenuEnd = totalPage;
 		}
-
+		
+		
 		param.put("itemsCountInAPage", itemsCountInAPage);
 		
 		List<Article> articles = articleService.getForPrintArticles(loginedMember, param);

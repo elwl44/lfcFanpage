@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.example.lfcFan.dto.Article;
+import com.example.lfcFan.dto.Board;
 
 @Mapper
 public interface ArticleDao {
@@ -21,4 +22,6 @@ public interface ArticleDao {
 	void modifyArticle(@Param("id") int id, @Param("title") String title, @Param("body") String body);
 
 	int getTotalCount(Map<String, Object> param);
+
+	Board getBoardByCode(String boardCode);
 }

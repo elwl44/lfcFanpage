@@ -8,10 +8,12 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.lfcFan.dto.Article;
+import com.example.lfcFan.dto.Board;
 import com.example.lfcFan.dto.Member;
 import com.example.lfcFan.dto.Reply;
 import com.example.lfcFan.service.ArticleService;
@@ -36,8 +38,16 @@ public class ArticleController {
 		return "usr/article/home";
 	}
 
-	@RequestMapping("/usr/article/notice")
-	public String showNotice(HttpServletRequest req, Model model, @RequestParam Map<String, Object> param) {
+	@RequestMapping("/usr/article-{boardCode}/notice")
+	public String showNotice(HttpServletRequest req, Model model, @RequestParam Map<String, Object> param, @PathVariable("boardCode") String boardCode) {
+		Board board = articleService.getBoardByCode(boardCode);
+
+		if (board == null) {
+			model.addAttribute("msg", "존재하지 않는 게시판 입니다.");
+			model.addAttribute("historyBack", true);
+			return "common/redirect";
+		}
+		
 		Member loginedMember = (Member)req.getAttribute("loginedMember");
 		
 		int totalCount = articleService.getTotalCount(param);
@@ -60,6 +70,7 @@ public class ArticleController {
 		
 		List<Article> articles = articleService.getForPrintArticles(loginedMember, param);
 
+		model.addAttribute("board", board);
 		model.addAttribute("totalCount", totalCount);
 		model.addAttribute("totalPage", totalPage);
 		model.addAttribute("pageMenuArmSize", pageMenuArmSize);

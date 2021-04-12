@@ -80,7 +80,7 @@
 							<a href="/usr/article/home">HOME</a>
 						</li>
 						<li class="cell">
-							<a href="/usr/article/notice">공지</a>
+							<a href="/usr/article-notice/notice">공지</a>
 						</li>
 						<li class="cell">
 							<a href="#team">TEAM</a>
@@ -92,10 +92,10 @@
 							<a href="#comunity">커뮤니티</a>
 							<ul>
 								<li>
-									<a href="#soccer-article">축구게시판</a>
+									<a href="/usr/article-soccer/notice">축구게시판</a>
 								</li>
 								<li>
-									<a href="#free-article">자유게시판</a>
+									<a href="/usr/article-free/notice">자유게시판</a>
 								</li>
 							</ul>
 						</li>

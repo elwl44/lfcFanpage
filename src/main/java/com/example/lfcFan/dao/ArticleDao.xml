@@ -123,7 +123,13 @@
 		</set>
 		WHERE id = #{id}
 	</update>
-
+	
+	<select id="getBoardByCode" resultType="Board">
+		SELECT *
+		FROM board
+		WHERE code = #{boardCode}
+	</select>
+	
 	<resultMap type="Article" id="article">
 		<id property="id" column="id" />
 		<id property="regDate" column="regDate" />
@@ -131,6 +137,7 @@
 		<id property="memberId" column="memberId" />
 		<id property="title" column="title" />
 		<id property="body" column="body" />
+		<id property="boardId" column="boardId" />
 		<id property="reading" column="reading" />
 
 		<association property="extra" javaType="map">

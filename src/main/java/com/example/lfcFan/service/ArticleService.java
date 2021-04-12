@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.lfcFan.dao.ArticleDao;
 import com.example.lfcFan.dto.Article;
+import com.example.lfcFan.dto.Board;
 import com.example.lfcFan.dto.Member;
 import com.example.lfcFan.util.Util;
 
@@ -104,4 +105,7 @@ public class ArticleService {
 		return articleDao.getTotalCount(param);
 	}
 
+	public Board getBoardByCode(String boardCode) {
+		return articleDao.getBoardByCode(boardCode);
+	}
 }

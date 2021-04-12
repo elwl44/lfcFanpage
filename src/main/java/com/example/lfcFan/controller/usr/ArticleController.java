@@ -124,8 +124,8 @@ public class ArticleController {
 		return "usr/article/detail";
 	}
 
-	@RequestMapping("/usr/article/doDelete")
-	public String doDelete(HttpServletRequest req, int id, Model model, String listUrl) {
+	@RequestMapping("/usr/article-{boardCode}/doDelete")
+	public String doDelete(HttpServletRequest req, int id, Model model, String listUrl, @PathVariable("boardCode") String boardCode) {
 		Member loginedMember = (Member) req.getAttribute("loginedMember");
 		
 		Article article = articleService.getForPrintArticleById(loginedMember, id);
@@ -139,12 +139,14 @@ public class ArticleController {
 		
 		articleService.deleteArticleById(id);
 
+		model.addAttribute("msg", String.format("%d번 글을 삭제하였습니다.", id));
 		model.addAttribute("replaceUri", listUrl);
 		return "common/redirect";
 	}
 
-	@RequestMapping("/usr/article/modify")
-	public String showModify(HttpServletRequest req, Model model, int id, String redirectUrl) {
+	@RequestMapping("/usr/article-{boardCode}/modify")
+	public String showModify(HttpServletRequest req, Model model, int id, String redirectUrl, @PathVariable("boardCode") String boardCode) {
+		Board board = articleService.getBoardByCode(boardCode);
 		Member loginedMember = (Member) req.getAttribute("loginedMember");
 		
 		Article article = articleService.getForPrintArticleById(loginedMember, id);
@@ -158,14 +160,16 @@ public class ArticleController {
 		if ( redirectUrl == null ) {
 			redirectUrl = "/usr/article-free/list";
 		}
+		
+		model.addAttribute("board", board);
 		model.addAttribute("redirectUrl", redirectUrl);
 		model.addAttribute("article", article);
 
 		return "usr/article/modify";
 	}
 
-	@RequestMapping("/usr/article/doModify")
-	public String doModify(HttpServletRequest req, int id, String title, String body, Model model, String redirectUrl) {
+	@RequestMapping("/usr/article-{boardCode}/doModify")
+	public String doModify(HttpServletRequest req, int id, String title, String body, Model model, String redirectUrl, @PathVariable("boardCode") String boardCode) {
 		Member loginedMember = (Member) req.getAttribute("loginedMember");
 
 		Article article = articleService.getForPrintArticleById(loginedMember, id);
@@ -178,9 +182,9 @@ public class ArticleController {
 		articleService.modifyArticle(id, title, body);
 
 		model.addAttribute("msg", String.format("%d번 글을 수정하였습니다.", id));
-		model.addAttribute("replaceUri", String.format("/usr/article/detail?id=%d", id));
+		model.addAttribute("replaceUri", String.format("/usr/article-%s/detail?id=%d",boardCode, id));
 		if(redirectUrl.equals("")) {
-			model.addAttribute("replaceUri", String.format("/usr/article/detail?id=%d", id));
+			model.addAttribute("replaceUri", String.format("/usr/article-%s/detail?id=%d",boardCode, id));
 		}
 		else {
 			model.addAttribute("replaceUri", redirectUrl);

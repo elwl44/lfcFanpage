@@ -7,7 +7,7 @@
 <body>
     <section class="section-modify row">
         <div class="modify-title">
-            <h1 class="con">수정</h1>
+            <h1 class="con">${board.name } 글 수정</h1>
         </div>
         <form action="doModify" enctype="multipart/form-data">
         <input type="hidden" name="id" value="${article.id}"/>

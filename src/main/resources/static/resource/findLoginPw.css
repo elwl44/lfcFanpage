@@ -29,12 +29,12 @@ a {
 	clear: both;
 }
 
-.section-join {
+.section-findLoginPw {
 	max-width: 1400px;
 	margin: 0 auto;
 }
 
-.join-title {
+.find-title {
 	max-width: 1400px;
 	margin: 0 auto;
 	margin-top: 1%;
@@ -44,37 +44,42 @@ a {
 	text-align: center;
 }
 
-.box6 {
+.find-form {
+	padding-top: 1%;
+}
+
+.edit{
+		display: flex;
+	justify-content: center;
+}
+
+.find-name {
+	width: 10%;
+	height: 50px;
+	justify-content: center;
+	display: flex;
+	flex-direction: column;
+}
+
+.find-data {
+	font-size: 20px;
+	background-color: #fff;
+	width: 30%;
+	color: #000;
+	height: 50px;
+	border: 0;
+	margin-bottom: 20px;
+	border: 1px solid #a9a9a9;
+	border-radius: 4px;
+}
+
+.edit-btn {
 	margin-top: 1%;
-	position: relative;
-	z-index: 88;
-	padding: 39px 40px 20px;
-	border: 1px solid #e5e5e5;
-}
-
-.list_id {
-	display: inline-block;
-	padding-bottom: 11px;
-}
-
-.list_id li {
-	padding-bottom: 8px;
-	text-align: left;
-}
-
-.list_id strong {
-	display: inline-block;
-	min-width: 208px;
-	padding-right: 31px;
-}
-
-.section_find .btn_area {
-	padding: 17px 0 15px;
 	display: flex;
 	justify-content: center;
 }
 
-.join-btn {
+.find-btn {
 	background-color: #E31B23;
 	color: #fff;
 	height: 44px;

@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.example.lfcFan.dto.Article;
 import com.example.lfcFan.dto.Member;
+import com.example.lfcFan.dto.ResultData;
 import com.example.lfcFan.service.MemberService;
 import com.example.lfcFan.util.Util;
 
@@ -164,4 +164,32 @@ public class MemberController {
 		return "usr/member/findLoginId2";
 	}
 	
+	@RequestMapping("/usr/member/findLoginPw")
+	public String showFindLoginPw() {
+		return "usr/member/findLoginPw";
+	}
+
+	@RequestMapping("/usr/member/doFindLoginPw")
+	public String doFindLoginPw(Model model, String loginId, String email) {
+		Member member = memberService.getMemberByLoginId(loginId);
+
+		if (member == null) {
+			model.addAttribute("msg", String.format("해당회원은 존재하지 않습니다."));
+			model.addAttribute("historyBack", true);
+			return "common/redirect";
+		}
+
+		if (member.getEmail().equals(email) == false) {
+			model.addAttribute("msg", String.format("해당회원은 존재하지 않습니다."));
+			model.addAttribute("historyBack", true);
+			return "common/redirect";
+		}
+
+		ResultData setTempPasswordAndNotifyRsData = memberService.setTempPasswordAndNotify(member);
+
+		model.addAttribute("msg", String.format(setTempPasswordAndNotifyRsData.getMsg()));
+		model.addAttribute("replaceUri", "/usr/member/login");
+		return "common/redirect";
+	}
+
 }

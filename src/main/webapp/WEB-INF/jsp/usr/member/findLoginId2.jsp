@@ -53,7 +53,7 @@
 					</div>
 					<div class="cell">
 						<input class="cancel-btn" type="button" value="비밀번호 찾기"
-							onclick="javascript:history.back(-1)">
+							onclick="location.href='findLoginPw'">
 					</div>
 				</div>
 			</div>

@@ -53,7 +53,7 @@
 						<a href="../member/findLoginId">아이디 찾기</a>
 					</li>
 					<li class="cell">
-						<a href="../member/join">비밀번호 찾기</a>
+						<a href="../member/findLoginId2">비밀번호 찾기</a>
 					</li>
 				</c:if>
 

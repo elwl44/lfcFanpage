@@ -159,8 +159,9 @@ public class MemberController {
 			return "common/redirect";
 		}
 
-		model.addAttribute("msg", String.format("가입날짜 : %s, 로그인아이디 : %s", member.getRegDate(), member.getLoginId()));
-		model.addAttribute("historyBack", true);
-		return "common/redirect";
+		model.addAttribute("MemberId",  member.getLoginId());
+		model.addAttribute("MemberRegDate", member.getRegDate());
+		return "usr/member/findLoginId2";
 	}
+	
 }

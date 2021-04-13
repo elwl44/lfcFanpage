@@ -1,0 +1,99 @@
+
+/*노말라이징*/
+* {
+    padding: 0;
+    margin: 0;
+}
+
+ul,
+li {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.cell {
+    float: left;
+}
+
+.cell-right {
+    float: right;
+}
+
+.row:after {
+    display: block;
+    content: "";
+    clear: both;
+}
+
+.section-join {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+.join-title {
+    max-width: 1400px;
+    margin: 0 auto;
+    margin-top: 1%;
+    font-size: 1.5em;
+    padding-bottom: 1%;
+    border-bottom: solid 1px #dadada;
+    text-align: center;
+}
+
+.box6 {
+	margin-top:1%;
+    position: relative;
+    z-index: 100;
+    padding: 39px 40px 20px;
+    border: 1px solid #e5e5e5;
+}
+
+.list_id {
+    display: inline-block;
+    padding-bottom: 11px;
+}
+
+.list_id li {
+    padding-bottom: 8px;
+    text-align: left;
+}
+
+.list_id strong {
+    display: inline-block;
+    min-width: 208px;
+    padding-right: 31px;
+}
+
+.section_find .btn_area {
+    padding: 17px 0 15px;
+        display: flex;
+    justify-content: center;
+}
+
+.join-btn {
+    background-color: #E31B23;
+    color: #fff;
+    height: 44px;
+    border-radius: 6px;
+    font-size: 17px;
+    font-weight: 600;
+    width: 180px;
+    cursor: pointer;
+}
+
+.cancel-btn {
+    background-color: #E31B23;
+    color: #fff;
+    height: 44px;
+    border-radius: 6px;
+    font-size: 17px;
+    font-weight: 600;
+    width: 180px;
+    cursor: pointer;
+    margin-left: 5%;
+}

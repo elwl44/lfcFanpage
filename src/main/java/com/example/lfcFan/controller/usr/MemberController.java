@@ -191,5 +191,38 @@ public class MemberController {
 		model.addAttribute("replaceUri", "/usr/member/login");
 		return "common/redirect";
 	}
+	
+	@RequestMapping("/usr/member/changeLoginPw")
+	public String showChangeLoginPw() {
+		return "usr/member/changeLoginPw";
+	}
 
+	@RequestMapping("/usr/member/doChangeLoginPw")
+	public String doChangeLoginPw(Model model, HttpServletRequest req, @RequestParam Map<String, Object> param) {
+		int loginedMemberId = (int)req.getAttribute("loginedMemberId");
+		param.put("id", loginedMemberId);
+
+		String loginId=(String) param.get("loginId");
+		String loginPw=(String) param.get("loginPw");
+		
+		Member member = memberService.getMemberByLoginId(loginId);
+		
+		if(member.getLoginPw().equals(loginPw)==false) {
+			model.addAttribute("msg", String.format("비밀번호가 일치하지 않습니다."));
+			model.addAttribute("historyBack", true);
+			return "common/redirect";
+		}
+		
+		// 해킹방지
+		param.remove("loginId");
+		param.remove("loginPw");
+		
+		memberService.modifyPw(param);
+		
+		param.remove("newloginPw");
+		
+		model.addAttribute("msg", String.format("비밀번호가 변경되었습니다."));
+		model.addAttribute("replaceUri", "/usr/article/home");
+		return "common/redirect";
+	}
 }

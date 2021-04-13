@@ -20,4 +20,6 @@ public interface MemberDao {
 	Member getMemberById(@Param("id") int id);
 
 	void modify(Map<String, Object> param);
+
+	void modifyPw(Map<String, Object> param);
 }

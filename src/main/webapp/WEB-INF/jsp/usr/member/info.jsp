@@ -45,7 +45,7 @@
             </span>
 
             <span class="btn-write cell-right">
-                <a href="write">비밀번호 변경</a>
+                <a href="changeLoginPw">비밀번호 변경</a>
             </span>
             <span class="btn-write cell-right">
                 <a href="modify">회원정보 변경</a>

@@ -67,4 +67,15 @@
 		</set>
 		WHERE id = #{id}
 	</update>
+
+	<update id="modifyPw">
+		UPDATE member
+		<set>
+			updateDate = NOW(),
+			<if test="newloginPw != null">
+				loginPw = #{newloginPw},
+			</if>
+		</set>
+		WHERE id = #{id}
+	</update>
 </mapper>

@@ -111,4 +111,8 @@ public class MemberService {
 
 		return new ResultData("S-1", "임시 패스워드를 메일로 발송하였습니다.");
 	}
+
+	public void modifyPw(Map<String, Object> param) {
+		memberDao.modifyPw(param);
+	}
 }

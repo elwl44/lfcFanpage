@@ -31,7 +31,7 @@
 	<div class="find-title">
 		<h1 class="con">비밀번호 찾기</h1>
 	</div>
-	<form action="doFindLoginPw" method="POST" class="find-form"
+	<form action="doChangeLoginPw" method="POST" class="find-form"
 		onsubmit="findLoginPwFormSubmit(this); return false;">
 		<div class="edit">
 			<p class="find-name cell">아이디:</p>

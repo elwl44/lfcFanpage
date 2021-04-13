@@ -1,6 +1,17 @@
 spring:
   profiles:
     active: local # 기본적으로 local이 선택된다는 뜻
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: parkbk1908@gmail.com
+    password: lvzqgkkpzvqzcckl
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
   mvc:
     view:
       prefix: /WEB-INF/jsp/
@@ -19,7 +30,10 @@ server:
     include-message: always
     include-binding-errors: always
 custom:
-  siteName: 롤하이
+  siteName: LiverpoolFanPage
+  siteMainUri: http://localhost:8095/usr/article/home
+  emailFrom: no-reply@localhost
+  emailFromName: LiverpoolFanPage
   logging:
     dir: log
     level: info

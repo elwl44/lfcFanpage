@@ -243,13 +243,15 @@ public class MemberController {
 
 		// String authCode =
 		// memberService.genCheckPasswordAuthCode(loginedMember.getId());
-
+		String authCode = memberService.genCheckLoginPwAuthCode(loginedMember.getId());
+		
 		if (redirectUrl == null || redirectUrl.length() == 0) {
 			redirectUrl = "/usr/home/main";
 		}
 
 		//redirectUri = Util.getNewUri(redirectUri, "checkPasswordAuthCode", authCode);
-
+		redirectUrl = Util.getNewUri(redirectUrl, "checkLoginPwAuthCode", authCode);
+		System.out.println(redirectUrl);
 		model.addAttribute("replaceUri", redirectUrl);
 
 		return "common/redirect";

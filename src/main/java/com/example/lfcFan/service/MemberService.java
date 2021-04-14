@@ -3,6 +3,7 @@ package com.example.lfcFan.service;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -29,6 +30,9 @@ public class MemberService {
 	
 	@Autowired
 	private MailService mailService;
+	
+	@Autowired
+	private AttrService attrService;
 
 	public int join(Map<String, Object> param) {
 		memberDao.join(param);
@@ -114,5 +118,13 @@ public class MemberService {
 
 	public void modifyPw(Map<String, Object> param) {
 		memberDao.modifyPw(param);
+	}
+	
+	public String genCheckLoginPwAuthCode(int actorId) {
+		String authCode = UUID.randomUUID().toString();
+		attrService.setValue("member__" + actorId + "__extra__modifyPrivateAuthCode", authCode,
+				Util.getDateStrLater(60 * 60));
+		
+		return authCode;
 	}
 }

@@ -29,9 +29,9 @@
 	<div class="check-title">
 		<h1 class="con">본인 확인</h1>
 	</div>
-	<form action="info" method="POST" class="check-form"
+	<form action="doCheckLoginPw" method="POST" class="check-form"
 		onsubmit="checkLoginPwFormSubmit(this); return false;">
-		<input type="hidden" name="redirectUrl" value="/usr/member/modify">
+		<input type="hidden" name="redirectUrl" value="/usr/member/info">
 		<div class="edit">
 			<p class="check-name cell">비밀번호:</p>
 			<input type="password" maxlength="30" placeholder="비밀번호 입력"

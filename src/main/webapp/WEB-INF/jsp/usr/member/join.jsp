@@ -5,6 +5,7 @@
 <%@include file="../part/head.jsp"%>
 <%@ page import="com.example.lfcFan.controller.usr.MemberController"%>
 <link rel="stylesheet" type="text/css" href="/resource/join.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js"></script>
 <head>
 
 </head>
@@ -67,6 +68,10 @@
 				
 				$("#loginId").attr('disabled', false);
 				$("#email").attr('disabled', false);
+				
+				form.loginPw.value = sha256(form.loginPw.value);
+				form.loginPwConfirm.value = '';
+				
 				form.submit();
 				joinFormSubmitDone = true;
 			}

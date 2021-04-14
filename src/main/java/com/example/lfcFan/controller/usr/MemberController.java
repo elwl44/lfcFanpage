@@ -203,7 +203,7 @@ public class MemberController {
 		param.put("id", loginedMemberId);
 
 		String loginId=(String) param.get("loginId");
-		String loginPw=(String) param.get("loginPw");
+		String loginPw=Util.sha256((String) param.get("loginPw"));
 		
 		Member member = memberService.getMemberByLoginId(loginId);
 		

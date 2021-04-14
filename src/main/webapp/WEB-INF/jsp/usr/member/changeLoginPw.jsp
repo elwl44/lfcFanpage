@@ -4,6 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@include file="../part/head.jsp"%>
 <%@ page import="com.example.lfcFan.controller.usr.MemberController"%>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="/resource/changeLoginPw.css">
 <head>
@@ -58,6 +59,8 @@
 					return;
 				}
 				$("#loginId").attr('disabled', false);
+				form.newloginPw.value = sha256(form.newloginPw.value);
+				form.newloginPwConfirm.value = '';
 				form.submit();
 				joinFormSubmitDone = true;
 			}

@@ -5,6 +5,7 @@
 <%@include file="../part/head.jsp"%>
 <%@ page import="com.example.lfcFan.controller.usr.MemberController"%>
 <link rel="stylesheet" type="text/css" href="/resource/login.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js"></script>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -33,6 +34,7 @@
 				form.loginPw.focus();
 				return;
 			}
+			form.loginPw.value = sha256(form.loginPw.value);
 			form.submit();
 			loginFormSubmitDone = true;
 		}

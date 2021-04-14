@@ -68,7 +68,7 @@
 			<div class="edit">
 				<p class="change-name cell">아이디:</p>
 				<input type="text" maxlength="30" placeholder="아이디 입력"
-					name="loginId" class="join-data" id="loginId" disabled="disabled" value="${requestScope.loginedMember.loginId }"/>
+					name="loginId" class="join-data loginId" id="loginId" disabled="disabled" value="${requestScope.loginedMember.loginId }"/>
 			</div>
 			<div class="edit">
 				<p class="change-name cell">현재 비밀번호:</p>

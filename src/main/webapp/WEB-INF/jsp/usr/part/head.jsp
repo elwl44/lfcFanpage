@@ -36,7 +36,7 @@
 						<span>${loginedMember.loginId }님</span>
 					</li>
 					<li class="cell">
-						<a href="../member/info">내정보</a>
+						<a href="../member/checkLoginPw">내정보</a>
 					</li>
 					<li class="cell">
 						<a href="../member/doLogout">로그아웃</a>

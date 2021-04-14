@@ -25,7 +25,7 @@
 					 $("#loginId").focus();
 						return;
 				 }
-				 if($("#check-btn").is(".active")) {
+				 if($("#email-check-btn").is(".active")) {
 					 alert('이메일 중복체크 해주세요.');
 					 $("#email").focus();
 						return;
@@ -59,6 +59,7 @@
 					form.name.focus();
 					return;
 				}
+				
 				form.email.value = form.email.value.trim();
 				if (form.email.value.length == 0) {
 					alert('이메일을 입력해주세요.');

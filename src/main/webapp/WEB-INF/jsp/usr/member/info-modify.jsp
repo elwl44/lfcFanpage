@@ -49,6 +49,8 @@
 
 		</script>
 		<form action="doModify" enctype="multipart/form-data" class="modify-form" onsubmit="joinFormSubmit(this); return false;">
+		<input type="text" name="checkLoginPwAuthCode"
+		value="${param.checkLoginPwAuthCode}" />
 			<div class="test">
 				<p class="modify-name cell">아이디:</p>
 				<input type="text" maxlength="30" name="loginId" class="login-data"

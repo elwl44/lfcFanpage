@@ -48,7 +48,8 @@
                 <a href="changeLoginPw">비밀번호 변경</a>
             </span>
             <span class="btn-write cell-right">
-                <a href="modify">회원정보 변경</a>
+            	<input type="hidden" name="redirectUrl" value="/usr/member/info-modify">
+                <a href="modify?checkLoginPwAuthCode=${param.checkLoginPwAuthCode }">회원정보 변경</a>
             </span>
         </div>
     </section>

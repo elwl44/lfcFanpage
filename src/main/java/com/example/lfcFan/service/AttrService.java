@@ -24,7 +24,11 @@ public class AttrService {
 	public Attr get(String relTypeCode, int relId, String typeCode, String type2Code) {
 		return attrDao.get(relTypeCode, relId, typeCode, type2Code);
 	}
-
+	
+	public int setValue(String name, String value) {
+		return setValue(name, value, null);
+	}
+	
 	public int setValue(String name, String value, String expireDate) {
 		String[] nameBits = name.split("__");
 		String relTypeCode = nameBits[0];

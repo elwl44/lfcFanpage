@@ -113,8 +113,25 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/usr/member/info")
-	public String showinfo(Model model, HttpServletRequest req) {
+	public String showinfo(Model model, HttpServletRequest req, String checkLoginPwAuthCode) {
+		
+		if (checkLoginPwAuthCode == null || checkLoginPwAuthCode.length() == 0) {
+			model.addAttribute("historyBack", true);
+			model.addAttribute("msg", "비밀번호 체크 인증코드가 없습니다.");
+			return "common/redirect";
+		}
+		
 		int loginedMemberId = (int) req.getAttribute("loginedMemberId");
+
+		ResultData checkValidCheckPasswordAuthCodeResultData = memberService
+				.checkValidCheckLoginPwAuthCode(loginedMemberId, checkLoginPwAuthCode);
+
+		if (checkValidCheckPasswordAuthCodeResultData.isFail()) {
+			model.addAttribute("historyBack", true);
+			model.addAttribute("msg", checkValidCheckPasswordAuthCodeResultData.getMsg());
+			return "common/redirect";
+		}
+
 		Member member = memberService.getMemberById(loginedMemberId);
 		model.addAttribute("member", member);
 		return "usr/member/info";

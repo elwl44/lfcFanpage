@@ -43,8 +43,45 @@
 					return;
 				}
 			}
-			form.submit();
+			
+			const startSubmitForm = function(data) {
+				let genFileIdsStr = '';
+				if (data && data.body && data.body.genFileIdsStr) {
+					genFileIdsStr = data.body.genFileIdsStr;
+				}
+				
+				form.genFileIdsStr.value = genFileIdsStr;
+				
+				form.file__article__0__common__attachment__1.value = '';
+				form.file__article__0__common__attachment__2.value = '';
+				
+				form.submit();
+			};
+			const startUploadFiles = function(onSuccess) {
+				var needToUpload = form.file__article__0__common__attachment__1.value.length > 0;
+				if (!needToUpload) {
+					needToUpload = form.file__article__0__common__attachment__2.value.length > 0;
+				}
+				
+				if (needToUpload == false) {
+					onSuccess();
+					return;
+				}
+				
+				var fileUploadFormData = new FormData(form);
+				
+				$.ajax({
+					url : '/common/genFile/doUpload',
+					data : fileUploadFormData,
+					processData : false,
+					contentType : false,
+					dataType : "json",
+					type : 'POST',
+					success : onSuccess
+				});
+			}
 			ArticleAdd__submited = true;
+			startUploadFiles(startSubmitForm);
 		}
 	</script>
 	<section class="section-write row">
@@ -53,6 +90,7 @@
 		</div>
 		<form action="doWrite" onsubmit="ArticleAdd__checkAndSubmit(this); return false;" method="post" enctype="multipart/form-data">
 			<div>
+				<input type="hidden" name="genFileIdsStr" value="" />
 				<input type="text" name="title" id="title" placeholder="제목"
 					class="subject" value="">
 			</div>

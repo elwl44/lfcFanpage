@@ -20,4 +20,5 @@ public class Article {
 	private int reading;
 	
 	private Map<String, Object> extra;
+	private String extra__thumbImg;
 }

@@ -32,6 +32,7 @@ server:
     include-message: always
     include-binding-errors: always
 custom:
+  genFileDirPath: C:/work/sts-4.8.0.RELEASE-workspace/lfcFan/img
   siteName: LiverpoolFanPage
   siteUrl: http://localhost:8095
   siteMainUri: http://localhost:8095/usr/article/home

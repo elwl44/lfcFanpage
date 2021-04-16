@@ -9,7 +9,7 @@
 	<section class="section-detail row">
 		<div class="detail-title">
 			<strong><a href="${listUrl}">${board.name }</a></strong>
-			<h1>${article.title}</h1>
+			<h1>${articless}</h1>
 		</div>
 		<div class="writer-info">
 			<div class="writer-img cell">
@@ -25,10 +25,15 @@
 					</div>
 					<div class="view cell">
 						<span>조회 ${article.reading}</span>
-						
+
 					</div>
 				</div>
 			</div>
+		</div>
+		<div class="detail-img">
+			<c:if test="${article.extra__thumbImg != null}">
+				<img src="${article.extra__thumbImg}" alt="" />
+			</c:if>
 		</div>
 		<div class="detail-body">${article.body}</div>
 		<div class="detail-edit row">

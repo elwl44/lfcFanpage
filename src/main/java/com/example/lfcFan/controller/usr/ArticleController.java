@@ -16,9 +16,9 @@ import org.springframework.web.multipart.MultipartRequest;
 
 import com.example.lfcFan.dto.Article;
 import com.example.lfcFan.dto.Board;
+import com.example.lfcFan.dto.GenFile;
 import com.example.lfcFan.dto.Member;
 import com.example.lfcFan.dto.Reply;
-import com.example.lfcFan.dto.ResultData;
 import com.example.lfcFan.service.ArticleService;
 import com.example.lfcFan.service.GenFileService;
 import com.example.lfcFan.service.ReplyService;
@@ -111,31 +111,10 @@ public class ArticleController {
 
 		for (String fileInputName : fileMap.keySet()) {
 			MultipartFile multipartFile = fileMap.get(fileInputName);
-			String[] fileInputNameBits = fileInputName.split("__");
 
-			if (fileInputNameBits[0].equals("file") == false) {
-				continue;
+			if ( multipartFile.isEmpty() == false ) {
+				genFileService.save(multipartFile, id);	
 			}
-
-			int fileSize = (int) multipartFile.getSize();
-
-			if (fileSize <= 0) {
-				continue;
-			}
-			
-			String relTypeCode = fileInputNameBits[1];
-			int relId = id;
-			String typeCode = fileInputNameBits[3];
-			String type2Code = fileInputNameBits[4];
-			int fileNo = Integer.parseInt(fileInputNameBits[5]);
-			String originFileName = multipartFile.getOriginalFilename();
-			String fileExtTypeCode = Util.getFileExtTypeCodeFromFileName(multipartFile.getOriginalFilename());
-			String fileExtType2Code = Util.getFileExtType2CodeFromFileName(multipartFile.getOriginalFilename());
-			String fileExt = Util.getFileExtFromFileName(multipartFile.getOriginalFilename()).toLowerCase();
-			String fileDir = Util.getNowYearMonthDateStr();
-
-			genFileService.saveMeta(relTypeCode, relId, typeCode, type2Code, fileNo, originFileName, fileExtTypeCode,
-					fileExtType2Code, fileExt, fileSize, fileDir);
 		}
 		
 		model.addAttribute("msg", String.format("%d번 글이 생성되였습니다.", id));
@@ -153,6 +132,12 @@ public class ArticleController {
 		
 		if ( listUrl == null && boardCode!=null) {
 			listUrl = "/usr/article-"+boardCode+"/list";
+		}
+		
+		GenFile genFile = genFileService.getGenFile("article", article.getId(), "common", "attachment", 1);
+		
+		if ( genFile != null ) {
+			article.setExtra__thumbImg(genFile.getForPrintUrl());
 		}
 		
 		model.addAttribute("board", board);

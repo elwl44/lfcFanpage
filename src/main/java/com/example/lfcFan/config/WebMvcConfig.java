@@ -2,13 +2,18 @@ package com.example.lfcFan.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer{
+	@Value("${custom.genFileDirPath}")
+	private String genFileDirPath;
+	
 	// needToLoginInterceptor 인터셉터 불러오기
 		@Autowired
 		@Qualifier("needToLoginInterceptor")
@@ -33,5 +38,11 @@ public class WebMvcConfig implements WebMvcConfigurer{
 					.excludePathPatterns("/usr/article-*/detail").excludePathPatterns("/usr/member/findLoginId").excludePathPatterns("/usr/member/doFindLoginId")
 					.excludePathPatterns("/usr/member/findLoginId2").excludePathPatterns("/usr/member/findLoginPw").excludePathPatterns("/usr/member/doFindLoginPw")
 					.excludePathPatterns("/usr/member/doAuthEmail").excludePathPatterns("/error");
+		}
+		
+		@Override
+		public void addResourceHandlers(ResourceHandlerRegistry registry) {
+			registry.addResourceHandler("/gen/**").addResourceLocations("file:///" + genFileDirPath + "/")
+					.setCachePeriod(20);
 		}
 }

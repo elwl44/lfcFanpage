@@ -4,6 +4,10 @@
 <%@include file="../part/head.jsp"%>
 <link rel="stylesheet" type="text/css" href="/resource/write.css">
 <body>
+	<c:set var="fileInputMaxCount" value="2" />
+	<script>
+		ArticleAdd__fileInputMaxCount = parseInt("${fileInputMaxCount}");
+	</script>
 	<script>
 		ArticleAdd__submited = false;
 		function ArticleAdd__checkAndSubmit(form) {
@@ -26,47 +30,48 @@
 			}
 			var maxSizeMb = 50;
 			var maxSize = maxSizeMb * 1024 * 1024;
-			if (form.file__article__0__common__attachment__1.value) {
-				if (form.file__article__0__common__attachment__1.files[0].size > maxSize) {
-					alert(maxSizeMb + "MB 이하의 파일을 업로드 해주세요.");
-					form.file__article__0__common__attachment__1.focus();
-
-					return;
+			for ( let inputNo = 1; inputNo <= ArticleAdd__fileInputMaxCount; inputNo++ ) {
+				const input = form["file__article__0__common__attachment__" + inputNo];
+				
+				if (input.value) {
+					if (input.files[0].size > maxSize) {
+						alert(maxSizeMb + "MB 이하의 파일을 업로드 해주세요.");
+						input.focus();
+						
+						return;
+					}
 				}
 			}
 
-			if (form.file__article__0__common__attachment__2.value) {
-				if (form.file__article__0__common__attachment__2.files[0].size > maxSize) {
-					alert(maxSizeMb + "MB 이하의 파일을 업로드 해주세요.");
-					form.file__article__0__common__attachment__2.focus();
-
-					return;
-				}
-			}
-			
 			const startSubmitForm = function(data) {
 				if (data && data.body && data.body.genFileIdsStr) {
 					form.genFileIdsStr.value = data.body.genFileIdsStr;
 				}
-				
-				form.file__article__0__common__attachment__1.value = '';
-				form.file__article__0__common__attachment__2.value = '';
+
+				for ( let inputNo = 1; inputNo <= ArticleAdd__fileInputMaxCount; inputNo++ ) {
+					const input = form["file__article__0__common__attachment__" + inputNo];
+					input.value = '';
+				}
 				
 				form.submit();
 			};
 			const startUploadFiles = function(onSuccess) {
-				var needToUpload = form.file__article__0__common__attachment__1.value.length > 0;
-				if (!needToUpload) {
-					needToUpload = form.file__article__0__common__attachment__2.value.length > 0;
+				var needToUpload = false;
+				for ( let inputNo = 1; inputNo <= ArticleAdd__fileInputMaxCount; inputNo++ ) {
+					const input = form["file__article__0__common__attachment__" + inputNo];
+					if ( input.value.length > 0 ) {
+						needToUpload = true;
+						break;
+					}
 				}
-				
+
 				if (needToUpload == false) {
 					onSuccess();
 					return;
 				}
-				
+
 				var fileUploadFormData = new FormData(form);
-				
+
 				$.ajax({
 					url : '/common/genFile/doUpload',
 					data : fileUploadFormData,
@@ -85,30 +90,25 @@
 		<div class="write-title">
 			<h1 class="con">${board.name }글쓰기</h1>
 		</div>
-		<form action="doWrite" onsubmit="ArticleAdd__checkAndSubmit(this); return false;" method="post" enctype="multipart/form-data">
+		<form action="doWrite"
+			onsubmit="ArticleAdd__checkAndSubmit(this); return false;"
+			method="post" enctype="multipart/form-data">
 			<div>
 				<input type="hidden" name="genFileIdsStr" value="" />
 				<input type="text" name="title" id="title" placeholder="제목"
 					class="subject" value="">
 			</div>
-			<div class="add-file">
-				<div class="cell">
-					<span>첨부파일 1</span>
+			<c:forEach begin="1" end="${fileInputMaxCount}" var="inputNo">
+				<div class="add-file">
+					<div class="cell">
+						<span>첨부파일  ${inputNo}</span>
+					</div>
+					<div class="cell">
+						<input type="file" name="file__article__0__common__attachment__${inputNo}"
+							class="add-file1" />
+					</div>
 				</div>
-				<div class="cell">
-					<input type="file" name="file__article__0__common__attachment__1"
-						class="add-file1" />
-				</div>
-			</div>
-			<div class="add-file">
-				<div class="cell">
-					<span>첨부파일 2</span>
-				</div>
-				<div class="cell">
-					<input type="file" name="file__article__0__common__attachment__2"
-						class="add-file1" />
-				</div>
-			</div>
+			</c:forEach>
 			<div>
 				<textarea class="write-body-form" maxlength="2000"
 					placeholder="내용을 입력해주세요." name="body" style="resize: none"></textarea>

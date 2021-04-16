@@ -45,12 +45,9 @@
 			}
 			
 			const startSubmitForm = function(data) {
-				let genFileIdsStr = '';
 				if (data && data.body && data.body.genFileIdsStr) {
-					genFileIdsStr = data.body.genFileIdsStr;
+					form.genFileIdsStr.value = data.body.genFileIdsStr;
 				}
-				
-				form.genFileIdsStr.value = genFileIdsStr;
 				
 				form.file__article__0__common__attachment__1.value = '';
 				form.file__article__0__common__attachment__2.value = '';

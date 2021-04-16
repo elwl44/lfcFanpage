@@ -5,9 +5,12 @@ import java.math.BigInteger;
 import java.net.URLEncoder;
 import java.security.MessageDigest;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 
 public class Util {
@@ -258,5 +261,44 @@ public class Util {
 		String dateStr = format1.format(System.currentTimeMillis());
 
 		return dateStr;
+	}
+	
+	public static boolean isEmpty(Object data) {
+		if (data == null) {
+			return true;
+		}
+
+		if (data instanceof String) {
+			String strData = (String) data;
+
+			return strData.trim().length() == 0;
+		} else if (data instanceof Integer) {
+			Integer integerData = (Integer) data;
+
+			return integerData != 0;
+		} else if (data instanceof List) {
+			List listData = (List) data;
+
+			return listData.isEmpty();
+		} else if (data instanceof Map) {
+			Map mapData = (Map) data;
+
+			return mapData.isEmpty();
+		}
+
+		return true;
+	}
+
+	
+	public static <T> T ifEmpty(T data, T defaultValue) {
+		if ( isEmpty(data) ) {
+			return defaultValue;
+		}
+		
+		return data;
+	}
+	
+	public static List<Integer> getListDividedBy(String str, String divideBy) {
+		return Arrays.asList(str.split(divideBy)).stream().map(s -> Integer.parseInt(s.trim())).collect(Collectors.toList());
 	}
 }

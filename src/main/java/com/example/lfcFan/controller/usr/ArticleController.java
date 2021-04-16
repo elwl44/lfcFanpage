@@ -1,5 +1,6 @@
 package com.example.lfcFan.controller.usr;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -175,6 +176,16 @@ public class ArticleController {
 		
 		Article article = articleService.getForPrintArticleById(loginedMember, id);
 
+		List<GenFile> files = genFileService.getGenFiles("article", article.getId(), "common", "attachment");
+
+		Map<String, GenFile> filesMap = new HashMap<>();
+
+		for (GenFile file : files) {
+			filesMap.put(file.getFileNo() + "", file);
+		}
+
+		article.getExtraNotNull().put("file__common__attachment", filesMap);
+		
 		if ((boolean) article.getExtra().get("actorCanModify") == false) {
 			model.addAttribute("msg", "권한이 없습니다.");
 			model.addAttribute("historyBack", true);

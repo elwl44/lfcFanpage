@@ -110,6 +110,7 @@ public class ArticleService {
 
 	public void deleteArticleById(int id) {
 		articleDao.deleteArticleById(id);
+		genFileService.deleteFiles("article", id);
 	}
 
 	public void modifyArticle(int id, String title, String body) {

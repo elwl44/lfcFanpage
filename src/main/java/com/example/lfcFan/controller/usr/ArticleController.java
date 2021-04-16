@@ -11,12 +11,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartRequest;
 
 import com.example.lfcFan.dto.Article;
 import com.example.lfcFan.dto.Board;
 import com.example.lfcFan.dto.Member;
 import com.example.lfcFan.dto.Reply;
+import com.example.lfcFan.dto.ResultData;
 import com.example.lfcFan.service.ArticleService;
+import com.example.lfcFan.service.GenFileService;
 import com.example.lfcFan.service.ReplyService;
 import com.example.lfcFan.util.Util;
 
@@ -27,6 +31,9 @@ public class ArticleController {
 
 	@Autowired
 	private ReplyService replyService;
+	
+	@Autowired
+	private GenFileService genFileService;
 	
 	@RequestMapping("/usr/article/home")
 	public String showHome(Model model) {
@@ -62,7 +69,6 @@ public class ArticleController {
 			pageMenuEnd = totalPage;
 		}
 		
-		
 		param.put("itemsCountInAPage", itemsCountInAPage);
 		
 		List<Article> articles = articleService.getForPrintArticles(loginedMember, param);
@@ -91,7 +97,9 @@ public class ArticleController {
 	}
 
 	@RequestMapping("/usr/article-{boardCode}/doWrite")
-	public String doWrite(HttpServletRequest req, @RequestParam Map<String, Object> param, Model model, @PathVariable("boardCode") String boardCode) {
+	public String doWrite(HttpServletRequest req, @RequestParam Map<String, Object> param, Model model, 
+			@PathVariable("boardCode") String boardCode, MultipartRequest multipartRequest) {
+
 		Board board = articleService.getBoardByCode(boardCode);
 		int loginedMemberId = (int) req.getAttribute("loginedMemberId");
 		
@@ -99,6 +107,37 @@ public class ArticleController {
 		param.put("memberId", loginedMemberId);
 		int id = articleService.writeArticle(param);
 
+		Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
+
+		for (String fileInputName : fileMap.keySet()) {
+			MultipartFile multipartFile = fileMap.get(fileInputName);
+			String[] fileInputNameBits = fileInputName.split("__");
+
+			if (fileInputNameBits[0].equals("file") == false) {
+				continue;
+			}
+
+			int fileSize = (int) multipartFile.getSize();
+
+			if (fileSize <= 0) {
+				continue;
+			}
+			
+			String relTypeCode = fileInputNameBits[1];
+			int relId = id;
+			String typeCode = fileInputNameBits[3];
+			String type2Code = fileInputNameBits[4];
+			int fileNo = Integer.parseInt(fileInputNameBits[5]);
+			String originFileName = multipartFile.getOriginalFilename();
+			String fileExtTypeCode = Util.getFileExtTypeCodeFromFileName(multipartFile.getOriginalFilename());
+			String fileExtType2Code = Util.getFileExtType2CodeFromFileName(multipartFile.getOriginalFilename());
+			String fileExt = Util.getFileExtFromFileName(multipartFile.getOriginalFilename()).toLowerCase();
+			String fileDir = Util.getNowYearMonthDateStr();
+
+			genFileService.saveMeta(relTypeCode, relId, typeCode, type2Code, fileNo, originFileName, fileExtTypeCode,
+					fileExtType2Code, fileExt, fileSize, fileDir);
+		}
+		
 		model.addAttribute("msg", String.format("%d번 글이 생성되였습니다.", id));
 		model.addAttribute("replaceUri", String.format("/usr/article-%s/detail?id=%d",boardCode, id));
 		return "common/redirect";

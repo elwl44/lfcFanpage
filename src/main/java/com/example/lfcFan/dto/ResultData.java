@@ -3,24 +3,22 @@ package com.example.lfcFan.dto;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import com.example.lfcFan.util.Util;
+
 import lombok.Data;
 
 @Data
 public class ResultData {
 	private String resultCode;
 	private String msg;
-	private Object body;
+	private Map<String, Object> body;
 
-	public ResultData(String resultCode, String msg) {
-		this(resultCode, msg, null);
-	}
-
-	public ResultData(String resultCode, String msg, Object body) {
+	public ResultData(String resultCode, String msg, Object... args) {
 		this.resultCode = resultCode;
 		this.msg = msg;
-		this.body = body;
+		this.body = Util.mapOf(args);
 	}
-
+	
 	public boolean isFail() {
 		return isSuccess() == false;
 	}

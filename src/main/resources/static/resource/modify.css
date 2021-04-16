@@ -67,6 +67,12 @@ a {
 .detail-img{
 	display: flex;
 }
+.check-box{
+	display: flex;
+	justify-content: center;
+    flex-direction: column; 
+    margin-left: 1%;
+}
 .detail-img span{
 	display: flex;
 	justify-content: center;

@@ -66,6 +66,7 @@ a {
 }
 .detail-img{
 	display: flex;
+	margin-top: 1%;
 }
 .check-box{
 	display: flex;

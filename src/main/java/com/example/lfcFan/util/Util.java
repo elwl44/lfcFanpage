@@ -4,6 +4,7 @@ import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
 import java.net.URLEncoder;
 import java.security.MessageDigest;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
@@ -309,5 +310,15 @@ public class Util {
 		}
 
 		return true;
+	}
+	
+	public static String numberFormat(int num) {
+		DecimalFormat df = new DecimalFormat("###,###,###");
+
+		return df.format(num);
+	}
+
+	public static String numberFormat(String numStr) {
+		return numberFormat(Integer.parseInt(numStr));
 	}
 }

@@ -54,7 +54,14 @@
 					const input = form["file__article__" + articleId + "__common__attachment__" + inputNo];
 					input.value = '';
 				}
-
+				
+				for ( let inputNo = 1; inputNo <= ArticleModify__fileInputMaxCount; inputNo++ ) {
+					const input = form["deleteFile__article__" + articleId + "__common__attachment__" + inputNo];
+					if ( input ) {
+						input.checked = false;
+					}
+				}
+				
 				form.submit();
 			};
 			const startUploadFiles = function(onSuccess) {
@@ -66,7 +73,17 @@
 						break;
 					}
 				}
-
+				
+				if ( needToUpload == false ) {
+					for ( let inputNo = 1; inputNo <= ArticleModify__fileInputMaxCount; inputNo++ ) {
+						const input = form["deleteFile__article__" + articleId + "__common__attachment__" + inputNo];
+						if ( input && input.checked ) {
+							needToUpload = true;
+							break;
+						}
+					}
+				}
+				
 				if (needToUpload == false) {
 					onSuccess();
 					return;
@@ -120,7 +137,7 @@
 
 			<div>
 				<c:forEach begin="1" end="${fileInputMaxCount}" var="inputNo">
-					<div class="detail-img row" >
+					<div class="detail-img row input-file-wrap" >
 						<c:set var="fileNo" value="${String.valueOf(inputNo)}" />
 						<c:set var="file"	value="${article.extra.file__common__attachment[fileNo]}" />
 						<c:if test="${file != null && file.fileExtTypeCode == 'img'}">
@@ -128,9 +145,9 @@
 							<a class="inline-block cell" href="${file.forPrintUrl}" target="_blank" title="자세히 보기">
 	                            <img class="max-w-sm" src="${file.forPrintUrl}">
 	                         </a>
-							<span class="cell">${file.originFileName}(${Util.numberFormat(file.fileSize)} Byte)</span>
+							<span class="cell filename">${file.originFileName}<br>(${Util.numberFormat(file.fileSize)} Byte)</span>
 							<label class="check-box cell">
-								<input class="cell check" type="checkbox" name="deleteFile__article__${article.id}__common__attachment__${fileNo}" value="Y" />
+								<input onclick="$(this).closest('.input-file-wrap').find(' > input[type=file]').val('')" type="checkbox" name="deleteFile__article__${article.id}__common__attachment__${fileNo}" value="Y" />
 							</label>
 							<span class="cell">삭제</span>
 						</c:if>

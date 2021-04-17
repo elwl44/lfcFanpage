@@ -119,9 +119,6 @@ public class ArticleService {
 
 	public void modifyArticle(Map<String, Object> param) {
 		articleDao.modifyArticle(param);
-		int id = Util.getAsInt(param.get("id"), 0);
-
-		changeInputFileRelIds(param, id);
 	}
 
 	public int getTotalCount(Map<String, Object> param) {

@@ -9,6 +9,7 @@
 	<c:set var="fileInputMaxCount" value="2" />
 	<script>
 		ArticleModify__fileInputMaxCount = parseInt("${fileInputMaxCount}");
+		const articleId = parseInt("${article.id}");
 	</script>
 	<script>
 		ArticleModify__submited = false;
@@ -33,8 +34,7 @@
 			var maxSizeMb = 50;
 			var maxSize = maxSizeMb * 1024 * 1024;
 			for (let inputNo = 1; inputNo <= ArticleModify__fileInputMaxCount; inputNo++) {
-				const input = form["file__article__0__common__attachment__"
-						+ inputNo];
+				const input = form["file__article__" + articleId + "__common__attachment__" + inputNo];
 
 				if (input.value) {
 					if (input.files[0].size > maxSize) {
@@ -51,8 +51,7 @@
 				}
 
 				for (let inputNo = 1; inputNo <= ArticleModify__fileInputMaxCount; inputNo++) {
-					const input = form["file__article__0__common__attachment__"
-							+ inputNo];
+					const input = form["file__article__" + articleId + "__common__attachment__" + inputNo];
 					input.value = '';
 				}
 
@@ -61,8 +60,7 @@
 			const startUploadFiles = function(onSuccess) {
 				var needToUpload = false;
 				for (let inputNo = 1; inputNo <= ArticleModify__fileInputMaxCount; inputNo++) {
-					const input = form["file__article__0__common__attachment__"
-							+ inputNo];
+					const input = form["file__article__" + articleId + "__common__attachment__" + inputNo];
 					if (input.value.length > 0) {
 						needToUpload = true;
 						break;
@@ -114,9 +112,7 @@
 							<span>첨부파일 ${inputNo}</span>
 						</div>
 						<div class="cell">
-							<input type="file"
-								name="file__article__0__common__attachment__${inputNo}"
-								class="add-file1" />
+							<input type="file" name="file__article__${article.id}__common__attachment__${inputNo}" class="add-file1" />
 						</div>
 					</div>
 				</div>

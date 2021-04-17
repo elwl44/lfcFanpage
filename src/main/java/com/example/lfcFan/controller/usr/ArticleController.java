@@ -108,16 +108,6 @@ public class ArticleController {
 		param.put("memberId", loginedMemberId);
 		int id = articleService.writeArticle(param);
 
-		Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
-
-		for (String fileInputName : fileMap.keySet()) {
-			MultipartFile multipartFile = fileMap.get(fileInputName);
-
-			if ( multipartFile.isEmpty() == false ) {
-				genFileService.save(multipartFile, id);	
-			}
-		}
-		
 		model.addAttribute("msg", String.format("%d번 글이 생성되였습니다.", id));
 		model.addAttribute("replaceUri", String.format("/usr/article-%s/detail?id=%d",boardCode, id));
 		return "common/redirect";

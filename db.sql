@@ -46,7 +46,7 @@ updateDate = NOW(),
 loginId = 'elwl44',
 loginPw = '1234',
 `name` = '박범규',
-email='pakbk1908@gmail.com';
+email='pbk11908@naver.com';
 
 # 회원 생성
 INSERT INTO `member`
@@ -55,7 +55,7 @@ updateDate = NOW(),
 loginId = 'elwl45',
 loginPw = '1234',
 `name` = '박범규2',
-email='pakbk11908@gmail.com';
+email='parkbk1908@gmail.com';
 
 # 게시물 테이블에 memberId 칼럼 추가
 ALTER TABLE article ADD COLUMN memberId INT(10) UNSIGNED NOT NULL AFTER updateDate;
@@ -113,6 +113,12 @@ updateDate = NOW(),
 `name` = '자유',
 `code` = 'free'; 
 
+INSERT INTO board
+SET regDate = NOW(),
+updateDate = NOW(),
+`name` = '축구',
+`code` = 'soccer'; 
+
 # 게시물 테이블에 boardId 칼럼 추가
 ALTER TABLE article ADD COLUMN boardId INT(10) UNSIGNED NOT NULL AFTER updateDate;
 UPDATE article SET boardId = 1 WHERE id <= 2;
@@ -148,3 +154,44 @@ SET loginPw = SHA2(loginPw, 256);
 # 기존 인덱스 삭제후 유니크로 변경, 왜냐하면 attr의 특정 조합은 유니크여야 하기 때문에
 ALTER TABLE `attr` DROP INDEX relTypeCode;
 ALTER TABLE `attr` ADD UNIQUE INDEX (`relTypeCode`, `relId`, `typeCode`, `type2Code`);  
+
+# 이메일 본인인증쿼리
+INSERT INTO attr (regDate, updateDate, `relTypeCode`,
+		`relId`, `typeCode`, `type2Code`, `value`, expireDate)
+		VALUES (NOW(),
+		NOW(), 'member', 1, 'extra', 'emailAuthCode', 'c1136e1f-1fbf-4acc-9393-eea1bb5fdb7c',
+		NULL)
+		ON DUPLICATE KEY UPDATE
+		updateDate = NOW() , `value` =
+		'c1136e1f-1fbf-4acc-9393-eea1bb5fdb7c', expireDate = NULL;
+
+INSERT INTO attr (regDate, updateDate, `relTypeCode`,
+		`relId`, `typeCode`, `type2Code`, `value`, expireDate)
+		VALUES (NOW(),
+		NOW(), 'member', 1, 'extra', 'authedEmail', 'pbk11908@naver.com',
+		NULL)
+		ON DUPLICATE KEY UPDATE
+		updateDate = NOW() , `value` =
+		'pbk11908@naver.com', expireDate = NULL;
+
+# 파일 테이블 추가
+CREATE TABLE genFile (
+  id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT, # 번호
+  regDate DATETIME DEFAULT NULL, # 작성날짜
+  updateDate DATETIME DEFAULT NULL, # 갱신날짜
+  delDate DATETIME DEFAULT NULL, # 삭제날짜
+  delStatus TINYINT(1) UNSIGNED NOT NULL DEFAULT 0, # 삭제상태(0:미삭제,1:삭제)
+  relTypeCode CHAR(50) NOT NULL, # 관련 데이터 타입(article, member)
+  relId INT(10) UNSIGNED NOT NULL, # 관련 데이터 번호
+  originFileName VARCHAR(100) NOT NULL, # 업로드 당시의 파일이름
+  fileExt CHAR(10) NOT NULL, # 확장자
+  typeCode CHAR(20) NOT NULL, # 종류코드 (common)
+  type2Code CHAR(20) NOT NULL, # 종류2코드 (attatchment)
+  fileSize INT(10) UNSIGNED NOT NULL, # 파일의 사이즈
+  fileExtTypeCode CHAR(10) NOT NULL, # 파일규격코드(img, video)
+  fileExtType2Code CHAR(10) NOT NULL, # 파일규격2코드(jpg, mp4)
+  fileNo SMALLINT(2) UNSIGNED NOT NULL, # 파일번호 (1)
+  fileDir CHAR(20) NOT NULL, # 파일이 저장되는 폴더명
+  PRIMARY KEY (id),
+  KEY relId (relId,relTypeCode,typeCode,type2Code,fileNo)
+);

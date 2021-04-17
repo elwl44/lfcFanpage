@@ -204,9 +204,10 @@ public class ArticleController {
 	}
 
 	@RequestMapping("/usr/article-{boardCode}/doModify")
-	public String doModify(HttpServletRequest req, int id, String title, String body, Model model, String redirectUrl, @PathVariable("boardCode") String boardCode) {
+	public String doModify(@RequestParam Map<String, Object> param, HttpServletRequest req, Model model, String redirectUrl, @PathVariable("boardCode") String boardCode) {
 		Member loginedMember = (Member) req.getAttribute("loginedMember");
-
+		int id = Util.getAsInt(param.get("id"), 0);
+		
 		Article article = articleService.getForPrintArticleById(loginedMember, id);
 
 		if ((boolean) article.getExtra().get("actorCanModify") == false) {
@@ -214,7 +215,7 @@ public class ArticleController {
 			model.addAttribute("historyBack", true);
 			return "common/redirect";
 		}
-		articleService.modifyArticle(id, title, body);
+		articleService.modifyArticle(param);
 
 		model.addAttribute("msg", String.format("%d번 글을 수정하였습니다.", id));
 		model.addAttribute("replaceUri", String.format("/usr/article-%s/detail?id=%d",boardCode, id));

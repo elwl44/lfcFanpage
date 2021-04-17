@@ -9,7 +9,7 @@
 	<section class="section-detail row">
 		<div class="detail-title">
 			<strong><a href="${listUrl}">${board.name }</a></strong>
-			<h1>${articless}</h1>
+			<h1>${article.title}</h1>
 		</div>
 		<div class="writer-info">
 			<div class="writer-img cell">

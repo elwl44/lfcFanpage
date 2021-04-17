@@ -67,6 +67,12 @@ public class ArticleService {
 		articleDao.writeArticle(param);
 		int id = Util.getAsInt(param.get("id"));
 		
+		changeInputFileRelIds(param, id);
+		
+		return id;
+	}
+	
+	private void changeInputFileRelIds(Map<String, Object> param, int id) {
 		String genFileIdsStr = Util.ifEmpty((String)param.get("genFileIdsStr"), null);
 
 		if ( genFileIdsStr != null ) {
@@ -78,10 +84,8 @@ public class ArticleService {
 				genFileService.changeRelId(genFileId, id);
 			}
 		}
-		
-		return id;
 	}
-
+	
 	public Article getForPrintArticleById(Member actorMember, int id) {
 		Article article = articleDao.getForPrintArticleById(id);
 
@@ -113,8 +117,11 @@ public class ArticleService {
 		genFileService.deleteFiles("article", id);
 	}
 
-	public void modifyArticle(int id, String title, String body) {
-		articleDao.modifyArticle(id, title, body);
+	public void modifyArticle(Map<String, Object> param) {
+		articleDao.modifyArticle(param);
+		int id = Util.getAsInt(param.get("id"), 0);
+
+		changeInputFileRelIds(param, id);
 	}
 
 	public int getTotalCount(Map<String, Object> param) {

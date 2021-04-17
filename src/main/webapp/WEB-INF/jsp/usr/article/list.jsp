@@ -9,6 +9,7 @@
 	color: #E31B23;
 }
 </style>
+
 <body>
 	<section class="section-title">
 		<h1 class="con">${board.name}</h1>

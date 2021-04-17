@@ -119,6 +119,14 @@
 		WHERE id = #{id}
 	</delete>
 
+	<update id="addArticleReading">
+		update article
+		<set>
+			reading=reading+1
+		</set>
+		WHERE id = #{id}
+	</update>
+
 	<update id="modifyArticle">
 		UPDATE article
 		<set>

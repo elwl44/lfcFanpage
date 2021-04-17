@@ -111,7 +111,11 @@ public class ArticleService {
 
 		return article;
 	}
-
+	
+	public void addArticleReading(int id) {
+		articleDao.addArticleReading(id);
+	}
+	
 	public void deleteArticleById(int id) {
 		articleDao.deleteArticleById(id);
 		genFileService.deleteGenFiles("article", id);

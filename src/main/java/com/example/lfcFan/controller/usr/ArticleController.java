@@ -117,7 +117,7 @@ public class ArticleController {
 	public String showDetail(HttpServletRequest req, Model model, int id, String listUrl, @PathVariable("boardCode") String boardCode) {
 		Member loginedMember = (Member) req.getAttribute("loginedMember");
 		Board board = articleService.getBoardByCode(boardCode);
-		
+		articleService.addArticleReading(id);
 		Article article = articleService.getForPrintArticleById(loginedMember, id);
 		List<Reply> replies = replyService.getForPrintReplies(loginedMember, "article", id);
 		

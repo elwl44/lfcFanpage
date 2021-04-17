@@ -24,4 +24,6 @@ public interface ArticleDao {
 	int getTotalCount(Map<String, Object> param);
 
 	Board getBoardByCode(String boardCode);
+
+	void addArticleReading(@Param("id") int id);
 }

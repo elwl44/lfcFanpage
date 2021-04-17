@@ -114,7 +114,7 @@ public class ArticleService {
 
 	public void deleteArticleById(int id) {
 		articleDao.deleteArticleById(id);
-		genFileService.deleteFiles("article", id);
+		genFileService.deleteGenFiles("article", id);
 	}
 
 	public void modifyArticle(Map<String, Object> param) {

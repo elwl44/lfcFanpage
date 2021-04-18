@@ -12,7 +12,10 @@
 		</div>
 		<div id="cover">
 			<div class="player-profile-image  ">
-				<img class="img2 cell" src="${player.extra__thumbImg }" />
+				<c:set var="fileNo" value="${String.valueOf(2)}" />
+				<c:set var="file"	value="${player.extra.file__common__attachment[fileNo]}" />
+
+				<img class="img2 cell" src="${file.forPrintUrl}" />
 
 				<div class="redBar">
 					<img
@@ -54,17 +57,17 @@
 				</div>
 			</div>
 		</div>
-	
-	<div class="detail-edit row">
-		<span class="btn-modify cell">
-			<a href="modify?id=${player.id}&redirectUrl=${encodedCurrentUri}">수정</a>
-		</span>
 
-		<span class="btn-delete cell">
-			<a onclick="if ( confirm('삭제하시겠습니까?') == false ) return false;"
-				href="doDelete?id=${article.id}&listUrl=${listUrl}">삭제</a>
-		</span>
-	</div>
+		<div class="detail-edit row">
+			<span class="btn-modify cell">
+				<a href="modify?id=${player.id}&redirectUrl=${encodedCurrentUri}">수정</a>
+			</span>
+
+			<span class="btn-delete cell">
+				<a onclick="if ( confirm('삭제하시겠습니까?') == false ) return false;"
+					href="doDelete?id=${article.id}&listUrl=${listUrl}">삭제</a>
+			</span>
+		</div>
 	</section>
 </body>
 <%@include file="../part/footer.jsp"%>

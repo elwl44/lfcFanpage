@@ -208,6 +208,17 @@ public class ArticleController {
 			if (genFile != null) {
 				player.setExtra__thumbImg(genFile.getForPrintUrl());
 			}
+			
+			List<GenFile> files = genFileService.getGenFiles("player", player.getId(), "common", "attachment");
+			
+			Map<String, GenFile> filesMap = new HashMap<>();
+			
+			for (GenFile file : files) {
+				filesMap.put(file.getFileNo() + "", file);
+			}
+			
+			player.getExtraNotNull().put("file__common__attachment", filesMap);
+			System.out.println(player+"*******************");
 			model.addAttribute("player", player);
 			model.addAttribute("listUrl", listUrl);
 			return "usr/article/detail-player";

@@ -140,7 +140,7 @@ public class ArticleService {
 		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 		for (int i = 0; i < articles.size(); i++) {
-			String datetime = articles.get(i).getUpdateDate();
+			String datetime = articles.get(i).getRegDate();
 			try {
 				String time=Util.calculateTime(transFormat.parse(datetime));
 				articles.get(i).getExtra().put("time", time);

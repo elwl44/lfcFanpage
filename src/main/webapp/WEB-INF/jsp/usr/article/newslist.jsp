@@ -18,8 +18,10 @@
 	<section class="section-title row">
 		<div class="box-list">
 			<c:forEach items="${articles}" var="article">
+				<c:set var="detailUrl"
+						value="/usr/article-${board.code}/detail?id=${article.id}&listUrl=${encodedCurrentUri}" />
 				<div class="news-box">
-					<a href="asdasd">
+					<a href="${detailUrl}">
 						<div class="new-picture">
 							<c:if test="${article.extra__thumbImg == null}">
 								<img src="/resource/img/noimage.png" />

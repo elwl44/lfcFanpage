@@ -89,7 +89,7 @@
 							<a href="/usr/article-notice/list">공지</a>
 						</li>
 						<li class="cell">
-							<a href="#team">TEAM</a>
+							<a href="/usr/article/team">TEAM</a>
 						</li>
 						<li class="cell">
 							<a href="/usr/article/news">NEWS</a>

@@ -143,6 +143,12 @@ public class ArticleController {
 		return "usr/article/write";
 	}
 
+	@RequestMapping("/usr/article/team")
+	public String showTeam(HttpServletRequest req, Model model) {
+
+		return "usr/article/team";
+	}
+	
 	@RequestMapping("/usr/article-{boardCode}/doWrite")
 	public String doWrite(HttpServletRequest req, @RequestParam Map<String, Object> param, Model model,
 			@PathVariable("boardCode") String boardCode, MultipartRequest multipartRequest) {

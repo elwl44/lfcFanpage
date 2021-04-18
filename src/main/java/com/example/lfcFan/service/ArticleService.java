@@ -121,6 +121,11 @@ public class ArticleService {
 		return article;
 	}
 	
+	public Player getForPrintPlayerById(int id) {
+		Player article = articleDao.getForPrintPlayerById(id);
+		return article;
+	}
+	
 	public void addArticleReading(int id) {
 		articleDao.addArticleReading(id);
 	}

@@ -145,6 +145,7 @@ public class ArticleController {
 				article.setExtra__thumbImg(genFile.getForPrintUrl());
 			}
 		}
+		model.addAttribute("board", board);
 		model.addAttribute("players", players);
 		return "usr/article/team";
 	}
@@ -193,25 +194,34 @@ public class ArticleController {
 			@PathVariable("boardCode") String boardCode) {
 		Member loginedMember = (Member) req.getAttribute("loginedMember");
 		Board board = articleService.getBoardByCode(boardCode);
-		articleService.addArticleReading(id);
-		Article article = articleService.getForPrintArticleById(loginedMember, id);
-		List<Reply> replies = replyService.getForPrintReplies(loginedMember, "article", id);
+		if(boardCode.equals("player")) {
+			Player player = articleService.getForPrintPlayerById(id);
+			model.addAttribute("player", player);
+			model.addAttribute("listUrl", listUrl);
+		}
+		else {
+			articleService.addArticleReading(id);
+			Article article = articleService.getForPrintArticleById(loginedMember, id);
+			List<Reply> replies = replyService.getForPrintReplies(loginedMember, "article", id);
+			model.addAttribute("board", board);
+			model.addAttribute("article", article);
+			model.addAttribute("replies", replies);
+			model.addAttribute("listUrl", listUrl);
+			GenFile genFile = genFileService.getGenFile("article", article.getId(), "common", "attachment", 1);
+
+			if (genFile != null) {
+				article.setExtra__thumbImg(genFile.getForPrintUrl());
+			}
+		}
 
 		if (listUrl == null && boardCode != null) {
 			listUrl = "/usr/article-" + boardCode + "/list";
 		}
-
-		GenFile genFile = genFileService.getGenFile("article", article.getId(), "common", "attachment", 1);
-
-		if (genFile != null) {
-			article.setExtra__thumbImg(genFile.getForPrintUrl());
+		
+		if(boardCode.equals("player")) {
+			return "usr/article/detail-player";
 		}
-
-		model.addAttribute("board", board);
-		model.addAttribute("article", article);
-		model.addAttribute("replies", replies);
-		model.addAttribute("listUrl", listUrl);
-
+		
 		return "usr/article/detail";
 	}
 

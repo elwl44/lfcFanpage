@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <%@include file="../part/head.jsp"%>
+<link rel="stylesheet" href="/resource/style.css">
 <link rel="stylesheet" href="/resource/detail.css">
 <body>
 
@@ -147,3 +148,4 @@
 		</script>
 	</section>
 </body>
+<%@include file="../part/footer.jsp"%>

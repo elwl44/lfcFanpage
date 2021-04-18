@@ -16,7 +16,7 @@
 				<c:forEach items="${players}" var="player">
 					<c:if test="${player.position eq 'GOALKEEPERS'}">
 						<li class="team-player-list-item" onclick="#1">
-							<a href="/team/first-team/player/alisson-becker">
+							<a href="/usr/article-${board.code}/detail?id=${player.id}">
 								<div class="img-wrap">
 									<c:if test="${player.extra__thumbImg != null}">
 										<img src="${player.extra__thumbImg }" />

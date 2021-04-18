@@ -12,44 +12,44 @@
 		</div>
 		<div id="cover">
 			<div class="player-profile-image  ">
-				<img class="img2 cell" src="/resource/img/ali2.jpeg" />
+				<img class="img2 cell" src="${player.extra__thumbImg }" />
 
 				<div class="redBar">
 					<img
 						src="https://d3j2s6hdd6a7rg.cloudfront.net/v2/JE-617/bundles/applicationsonatafrontend/images/redbar.png">
 				</div>
 				<div class="top">
-					<span class="number smallNum"> 12 </span>
+					<span class="number smallNum"> ${player.backNumber } </span>
 				</div>
 				<div class="left">
-					<span class="value firstName">Alisson</span>
+					<span class="value firstName">${player.firstName }</span>
 
-					<span class="value surName">Becker</span>
+					<span class="value surName">${player.lastName }</span>
 
-					<span class="value position">Goalkeeper</span>
+					<span class="value position">${player.position }</span>
 				</div>
 				<div class="right">
 					<div class="dob">
 						<span class="title">D.O.B</span>
 						<span class="value">
-							<strong>2/10/92</strong>
+							<strong>${player.dateofBirth }</strong>
 						</span>
 					</div>
 
 					<div class="pob">
 						<span class="title">Nation</span>
 						<span class="value">
-							<strong>Brazil</strong>
+							<strong>${player.nationality }</strong>
 						</span>
 					</div>
 				</div>
 				<div class="bot">
 					<span class="title">Body information</span>
 					<span class="value">
-						<strong>Height:192cm</strong>
+						<strong>Height: ${player.height }cm</strong>
 					</span>
 					<span>
-						<strong>Weight:86kg</strong>
+						<strong>Weight: ${player.weight }kg</strong>
 					</span>
 				</div>
 			</div>

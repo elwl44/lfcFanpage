@@ -192,34 +192,40 @@ public class ArticleController {
 	@RequestMapping("/usr/article-{boardCode}/detail")
 	public String showDetail(HttpServletRequest req, Model model, int id, String listUrl,
 			@PathVariable("boardCode") String boardCode) {
+		
 		Member loginedMember = (Member) req.getAttribute("loginedMember");
+		
 		Board board = articleService.getBoardByCode(boardCode);
-		if(boardCode.equals("player")) {
-			Player player = articleService.getForPrintPlayerById(id);
-			model.addAttribute("player", player);
-			model.addAttribute("listUrl", listUrl);
-		}
-		else {
-			articleService.addArticleReading(id);
-			Article article = articleService.getForPrintArticleById(loginedMember, id);
-			List<Reply> replies = replyService.getForPrintReplies(loginedMember, "article", id);
-			model.addAttribute("board", board);
-			model.addAttribute("article", article);
-			model.addAttribute("replies", replies);
-			model.addAttribute("listUrl", listUrl);
-			GenFile genFile = genFileService.getGenFile("article", article.getId(), "common", "attachment", 1);
-
-			if (genFile != null) {
-				article.setExtra__thumbImg(genFile.getForPrintUrl());
-			}
-		}
-
+		
 		if (listUrl == null && boardCode != null) {
 			listUrl = "/usr/article-" + boardCode + "/list";
 		}
 		
 		if(boardCode.equals("player")) {
+			Player player = articleService.getForPrintPlayerById(id);
+			GenFile genFile = genFileService.getGenFile("player", player.getId(), "common", "attachment", 1);
+
+			if (genFile != null) {
+				player.setExtra__thumbImg(genFile.getForPrintUrl());
+			}
+			model.addAttribute("player", player);
+			model.addAttribute("listUrl", listUrl);
 			return "usr/article/detail-player";
+		}
+		else {
+			articleService.addArticleReading(id);
+			Article article = articleService.getForPrintArticleById(loginedMember, id);
+			List<Reply> replies = replyService.getForPrintReplies(loginedMember, "article", id);
+			GenFile genFile = genFileService.getGenFile("article", article.getId(), "common", "attachment", 1);
+
+			if (genFile != null) {
+				article.setExtra__thumbImg(genFile.getForPrintUrl());
+			}
+			
+			model.addAttribute("board", board);
+			model.addAttribute("article", article);
+			model.addAttribute("replies", replies);
+			model.addAttribute("listUrl", listUrl);
 		}
 		
 		return "usr/article/detail";
@@ -250,7 +256,7 @@ public class ArticleController {
 			@PathVariable("boardCode") String boardCode) {
 		Board board = articleService.getBoardByCode(boardCode);
 		Member loginedMember = (Member) req.getAttribute("loginedMember");
-
+		
 		Article article = articleService.getForPrintArticleById(loginedMember, id);
 
 		List<GenFile> files = genFileService.getGenFiles("article", article.getId(), "common", "attachment");

@@ -257,32 +257,53 @@ public class ArticleController {
 		Board board = articleService.getBoardByCode(boardCode);
 		Member loginedMember = (Member) req.getAttribute("loginedMember");
 		
-		Article article = articleService.getForPrintArticleById(loginedMember, id);
-
-		List<GenFile> files = genFileService.getGenFiles("article", article.getId(), "common", "attachment");
-
-		Map<String, GenFile> filesMap = new HashMap<>();
-
-		for (GenFile file : files) {
-			filesMap.put(file.getFileNo() + "", file);
-		}
-
-		article.getExtraNotNull().put("file__common__attachment", filesMap);
-
-		if ((boolean) article.getExtra().get("actorCanModify") == false) {
-			model.addAttribute("msg", "권한이 없습니다.");
-			model.addAttribute("historyBack", true);
-			return "common/redirect";
-		}
-
 		if (redirectUrl == null) {
 			redirectUrl = "/usr/article-free/list";
 		}
-
-		model.addAttribute("board", board);
-		model.addAttribute("redirectUrl", redirectUrl);
-		model.addAttribute("article", article);
-
+		
+		if(boardCode.equals("player")) {
+			Player player = articleService.getForPrintPlayerById(id);
+			
+			List<GenFile> files = genFileService.getGenFiles("player", player.getId(), "common", "attachment");
+			
+			Map<String, GenFile> filesMap = new HashMap<>();
+			
+			for (GenFile file : files) {
+				filesMap.put(file.getFileNo() + "", file);
+			}
+	
+			player.getExtraNotNull().put("file__common__attachment", filesMap);
+			
+			model.addAttribute("board", board);
+			model.addAttribute("redirectUrl", redirectUrl);
+			model.addAttribute("player", player);
+			
+			return "usr/article/modify-player";
+		}
+		else {
+			Article article = articleService.getForPrintArticleById(loginedMember, id);
+	
+			List<GenFile> files = genFileService.getGenFiles("article", article.getId(), "common", "attachment");
+	
+			Map<String, GenFile> filesMap = new HashMap<>();
+	
+			for (GenFile file : files) {
+				filesMap.put(file.getFileNo() + "", file);
+			}
+	
+			article.getExtraNotNull().put("file__common__attachment", filesMap);
+	
+			if ((boolean) article.getExtra().get("actorCanModify") == false) {
+				model.addAttribute("msg", "권한이 없습니다.");
+				model.addAttribute("historyBack", true);
+				return "common/redirect";
+			}
+			
+			model.addAttribute("board", board);
+			model.addAttribute("redirectUrl", redirectUrl);
+			model.addAttribute("article", article);
+		}
+		
 		return "usr/article/modify";
 	}
 
@@ -292,21 +313,27 @@ public class ArticleController {
 		Member loginedMember = (Member) req.getAttribute("loginedMember");
 		int id = Util.getAsInt(param.get("id"), 0);
 
-		Article article = articleService.getForPrintArticleById(loginedMember, id);
-
-		if ((boolean) article.getExtra().get("actorCanModify") == false) {
-			model.addAttribute("msg", "권한이 없습니다.");
-			model.addAttribute("historyBack", true);
-			return "common/redirect";
-		}
-		articleService.modifyArticle(param);
-
-		model.addAttribute("msg", String.format("%d번 글을 수정하였습니다.", id));
-		model.addAttribute("replaceUri", String.format("/usr/article-%s/detail?id=%d", boardCode, id));
 		if (redirectUrl.equals("")) {
 			model.addAttribute("replaceUri", String.format("/usr/article-%s/detail?id=%d", boardCode, id));
 		} else {
 			model.addAttribute("replaceUri", redirectUrl);
+		}
+		
+		if(boardCode.equals("player")) {
+			articleService.modifyPlayer(param);
+		}
+		else {
+			Article article = articleService.getForPrintArticleById(loginedMember, id);
+	
+			if ((boolean) article.getExtra().get("actorCanModify") == false) {
+				model.addAttribute("msg", "권한이 없습니다.");
+				model.addAttribute("historyBack", true);
+				return "common/redirect";
+			}
+			articleService.modifyArticle(param);
+	
+			model.addAttribute("msg", String.format("%d번 글을 수정하였습니다.", id));
+			model.addAttribute("replaceUri", String.format("/usr/article-%s/detail?id=%d", boardCode, id));
 		}
 		return "common/redirect";
 	}

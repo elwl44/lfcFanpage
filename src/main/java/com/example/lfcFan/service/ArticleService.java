@@ -139,6 +139,10 @@ public class ArticleService {
 		articleDao.modifyArticle(param);
 	}
 
+	public void modifyPlayer(Map<String, Object> param) {
+		articleDao.modifyPlayer(param);
+	}
+	
 	public int getTotalCount(Map<String, Object> param) {
 		return articleDao.getTotalCount(param);
 	}

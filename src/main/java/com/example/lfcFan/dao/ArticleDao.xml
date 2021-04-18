@@ -187,6 +187,38 @@
 		WHERE id = #{id}
 	</update>
 
+	<update id="modifyPlayer">
+		UPDATE player
+		<set>
+			updateDate = NOW(),
+			<if test="FirstName != null">
+				FirstName = #{FirstName},
+			</if>
+			<if test="LastName != null">
+				`LastName` = #{LastName},
+			</if>
+			<if test="BackNumber != null">
+				`BackNumber` = #{BackNumber},
+			</if>
+			<if test="Position != null">
+				`Position` = #{Position},
+			</if>
+			<if test="Nationality != null">
+				`Nationality` = #{Nationality},
+			</if>
+			<if test="Height != null">
+				`Height` = #{Height},
+			</if>
+			<if test="Weight != null">
+				`Weight` = #{Weight},
+			</if>
+			<if test="dateofBirth != null">
+				`dateofBirth` = #{dateofBirth},
+			</if>
+		</set>
+		WHERE id = #{id}
+	</update>
+
 	<select id="getBoardByCode" resultType="Board">
 		SELECT *
 		FROM board

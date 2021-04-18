@@ -26,6 +26,8 @@ public interface ArticleDao {
 
 	void modifyArticle(Map<String, Object> param);
 
+	void modifyPlayer(Map<String, Object> param);
+	
 	int getTotalCount(Map<String, Object> param);
 
 	Board getBoardByCode(String boardCode);

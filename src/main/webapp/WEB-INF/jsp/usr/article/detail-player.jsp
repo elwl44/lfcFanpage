@@ -57,7 +57,7 @@
 	
 	<div class="detail-edit row">
 		<span class="btn-modify cell">
-			<a href="modify?id=${article.id}&redirectUrl=${encodedCurrentUri}">수정</a>
+			<a href="modify?id=${player.id}&redirectUrl=${encodedCurrentUri}">수정</a>
 		</span>
 
 		<span class="btn-delete cell">

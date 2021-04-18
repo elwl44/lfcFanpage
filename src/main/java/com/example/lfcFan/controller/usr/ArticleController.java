@@ -131,21 +131,6 @@ public class ArticleController {
 		return "usr/article/newslist";
 	}
 
-	@RequestMapping("/usr/article-{boardCode}/write")
-	public String showWrite(HttpServletRequest req, Model model, @PathVariable("boardCode") String boardCode) {
-		Board board = articleService.getBoardByCode(boardCode);
-		if (board == null) {
-			model.addAttribute("msg", "존재하지 않는 게시판 입니다.");
-			model.addAttribute("historyBack", true);
-			return "common/redirect";
-		}
-		model.addAttribute("board", board);
-		if(board.getCode().equals("player")) {
-			return "usr/article/write-player";
-		}
-		return "usr/article/write";
-	}
-
 	@RequestMapping("/usr/article/team")
 	public String showTeam(HttpServletRequest req, Model model, @RequestParam Map<String, Object> param) {
 		Board board = articleService.getBoardByCode("player");
@@ -164,35 +149,42 @@ public class ArticleController {
 		return "usr/article/team";
 	}
 	
+	@RequestMapping("/usr/article-{boardCode}/write")
+	public String showWrite(HttpServletRequest req, Model model, @PathVariable("boardCode") String boardCode) {
+		Board board = articleService.getBoardByCode(boardCode);
+		if (board == null) {
+			model.addAttribute("msg", "존재하지 않는 게시판 입니다.");
+			model.addAttribute("historyBack", true);
+			return "common/redirect";
+		}
+		model.addAttribute("board", board);
+		if(board.getCode().equals("player")) {
+			return "usr/article/write-player";
+		}
+		return "usr/article/write";
+	}
+	
 	@RequestMapping("/usr/article-{boardCode}/doWrite")
 	public String doWrite(HttpServletRequest req, @RequestParam Map<String, Object> param, Model model,
 			@PathVariable("boardCode") String boardCode, MultipartRequest multipartRequest) {
-		System.out.println("asdasdasd");
+		
 		Board board = articleService.getBoardByCode(boardCode);
 		int loginedMemberId = (int) req.getAttribute("loginedMemberId");
 
 		param.put("boardId", board.getId());
 		param.put("memberId", loginedMemberId);
-		int id = articleService.writeArticle(param);
-
-		model.addAttribute("msg", String.format("%d번 글이 생성되였습니다.", id));
-		model.addAttribute("replaceUri", String.format("/usr/article-%s/detail?id=%d", boardCode, id));
-		return "common/redirect";
-	}
-	
-	@RequestMapping("/usr/article-{boardCode}/doWritePlayer")
-	public String doWritePlayer(HttpServletRequest req, @RequestParam Map<String, Object> param, Model model,
-			@PathVariable("boardCode") String boardCode, MultipartRequest multipartRequest) {
-
-		Board board = articleService.getBoardByCode(boardCode);
-		int loginedMemberId = (int) req.getAttribute("loginedMemberId");
-
-		param.put("boardId", board.getId());
-		param.put("memberId", loginedMemberId);
-		articleService.writePlayer(param);
-
-		//model.addAttribute("msg", String.format("%d번 글이 생성되였습니다.", id));
-		model.addAttribute("replaceUri", String.format("/usr/article/team"));
+		
+		if(boardCode.equals("player")) {
+			articleService.writePlayer(param);
+			
+			model.addAttribute("replaceUri", String.format("/usr/article/team"));
+		}
+		else {
+			int id = articleService.writeArticle(param);
+			
+			model.addAttribute("msg", String.format("%d번 글이 생성되였습니다.", id));
+			model.addAttribute("replaceUri", String.format("/usr/article-%s/detail?id=%d", boardCode, id));
+		}
 		return "common/redirect";
 	}
 

@@ -121,7 +121,7 @@
 		<div class="write-title">
 			<h1 class="con">선수정보 입력</h1>
 		</div>
-		<form action="doWritePlayer"
+		<form action="doWrite"
 			onsubmit="ArticleAdd__checkAndSubmit(this); return false;"
 			method="post" enctype="multipart/form-data">
 			<div>

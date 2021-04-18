@@ -12,13 +12,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartRequest;
 
 import com.example.lfcFan.dto.Article;
 import com.example.lfcFan.dto.Board;
 import com.example.lfcFan.dto.GenFile;
 import com.example.lfcFan.dto.Member;
+import com.example.lfcFan.dto.Player;
 import com.example.lfcFan.dto.Reply;
 import com.example.lfcFan.service.ArticleService;
 import com.example.lfcFan.service.GenFileService;
@@ -140,19 +140,34 @@ public class ArticleController {
 			return "common/redirect";
 		}
 		model.addAttribute("board", board);
+		if(board.getCode().equals("player")) {
+			return "usr/article/write-player";
+		}
 		return "usr/article/write";
 	}
 
 	@RequestMapping("/usr/article/team")
-	public String showTeam(HttpServletRequest req, Model model) {
+	public String showTeam(HttpServletRequest req, Model model, @RequestParam Map<String, Object> param) {
+		Board board = articleService.getBoardByCode("player");
+		Member loginedMember = (Member) req.getAttribute("loginedMember");
+		param.put("boardId", board.getId());
 
+		List<Player> players = articleService.getForPrintPlayers(loginedMember, param);
+		for ( Player article : players ) {
+			GenFile genFile = genFileService.getGenFile("player", article.getId(), "common", "attachment", 1);
+
+			if ( genFile != null ) {
+				article.setExtra__thumbImg(genFile.getForPrintUrl());
+			}
+		}
+		model.addAttribute("players", players);
 		return "usr/article/team";
 	}
 	
 	@RequestMapping("/usr/article-{boardCode}/doWrite")
 	public String doWrite(HttpServletRequest req, @RequestParam Map<String, Object> param, Model model,
 			@PathVariable("boardCode") String boardCode, MultipartRequest multipartRequest) {
-
+		System.out.println("asdasdasd");
 		Board board = articleService.getBoardByCode(boardCode);
 		int loginedMemberId = (int) req.getAttribute("loginedMemberId");
 
@@ -162,6 +177,22 @@ public class ArticleController {
 
 		model.addAttribute("msg", String.format("%d번 글이 생성되였습니다.", id));
 		model.addAttribute("replaceUri", String.format("/usr/article-%s/detail?id=%d", boardCode, id));
+		return "common/redirect";
+	}
+	
+	@RequestMapping("/usr/article-{boardCode}/doWritePlayer")
+	public String doWritePlayer(HttpServletRequest req, @RequestParam Map<String, Object> param, Model model,
+			@PathVariable("boardCode") String boardCode, MultipartRequest multipartRequest) {
+
+		Board board = articleService.getBoardByCode(boardCode);
+		int loginedMemberId = (int) req.getAttribute("loginedMemberId");
+
+		param.put("boardId", board.getId());
+		param.put("memberId", loginedMemberId);
+		articleService.writePlayer(param);
+
+		//model.addAttribute("msg", String.format("%d번 글이 생성되였습니다.", id));
+		model.addAttribute("replaceUri", String.format("/usr/article/team"));
 		return "common/redirect";
 	}
 

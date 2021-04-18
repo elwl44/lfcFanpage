@@ -134,3 +134,23 @@ a {
 	display: block;
 	width: 40px;
 }
+
+.btnArea {
+    max-width: 1400px;
+    margin: 0 auto;
+
+}
+
+.btn-write {
+    padding-top: 6px;
+    padding-right: 0.5%;
+}
+
+.btn-write > a{
+    background-color: #E31B23;
+    color: white;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}

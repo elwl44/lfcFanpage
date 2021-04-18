@@ -46,7 +46,13 @@
 		</if>
 
 	</select>
-
+	
+	<select id="getForPrintPlayers" resultType="Player">
+		SELECT *
+		FROM player
+		ORDER BY id DESC
+	</select>
+	
 	<select id="getTotalCount" resultType="int">
 		SELECT COUNT(*)
 		FROM article AS A
@@ -104,6 +110,39 @@
 		</set>
 	</insert>
 
+	<insert id="writePlayer" useGeneratedKeys="true"
+		keyProperty="id">
+		INSERT INTO player
+		<set>
+			regDate = NOW(),
+			updateDate = NOW(),
+			<if test="FirstName != null">
+				FirstName = #{FirstName},
+			</if>
+			<if test="LastName != null">
+				`LastName` = #{LastName},
+			</if>
+			<if test="BackNumber != null">
+				`BackNumber` = #{BackNumber},
+			</if>
+			<if test="Position != null">
+				`Position` = #{Position},
+			</if>
+			<if test="Nationality != null">
+				`Nationality` = #{Nationality},
+			</if>
+			<if test="Height != null">
+				`Height` = #{Height},
+			</if>
+			<if test="Weight != null">
+				`Weight` = #{Weight},
+			</if>
+			<if test="dateofBirth != null">
+				`dateofBirth` = #{dateofBirth},
+			</if>
+		</set>
+	</insert>
+
 	<select id="getForPrintArticleById" resultMap="article">
 		SELECT A.*,
 		M.loginId AS extra__writer
@@ -140,13 +179,14 @@
 		</set>
 		WHERE id = #{id}
 	</update>
-	
+
 	<select id="getBoardByCode" resultType="Board">
 		SELECT *
 		FROM board
-		WHERE code = #{boardCode}
+		WHERE
+		code = #{boardCode}
 	</select>
-	
+
 	<resultMap type="Article" id="article">
 		<id property="id" column="id" />
 		<id property="regDate" column="regDate" />

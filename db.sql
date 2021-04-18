@@ -119,6 +119,18 @@ updateDate = NOW(),
 `name` = '축구',
 `code` = 'soccer'; 
 
+INSERT INTO board
+SET regDate = NOW(),
+updateDate = NOW(),
+`name` = '뉴스',
+`code` = 'news'; 
+
+INSERT INTO board
+SET regDate = NOW(),
+updateDate = NOW(),
+`name` = '선수소개',
+`code` = 'player';
+ 
 # 게시물 테이블에 boardId 칼럼 추가
 ALTER TABLE article ADD COLUMN boardId INT(10) UNSIGNED NOT NULL AFTER updateDate;
 UPDATE article SET boardId = 1 WHERE id <= 2;
@@ -194,4 +206,19 @@ CREATE TABLE genFile (
   fileDir CHAR(20) NOT NULL, # 파일이 저장되는 폴더명
   PRIMARY KEY (id),
   KEY relId (relId,relTypeCode,typeCode,type2Code,fileNo)
+);
+
+#선수 테이블 추가
+CREATE TABLE player (
+    id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    regDate DATETIME NOT NULL,
+    updateDate DATETIME NOT NULL,
+    firstName CHAR(30) NOT NULL,
+    lastName CHAR(30) NOT NULL,
+    backNumber INT(10) NOT NULL,
+    POSITION CHAR(20) NOT NULL,
+    nationality CHAR(30) NOT NULL,
+    height INT(10) NOT NULL,
+    weight INT(10) NOT NULL,
+    dateofBirth CHAR(10) NOT NULL
 );

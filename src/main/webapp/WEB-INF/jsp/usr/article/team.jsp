@@ -8,18 +8,19 @@
 <section class="section-join row">
 	<div class="join-title">
 		<h1 class="con">FIRST TEAM</h1>
+		${players }
 	</div>
 	<div class="GOALKEEPERS row">
 		<div class="team-player-list">
 			<h2>GOALKEEPERS</h2>
 			<ul>
-				<c:forEach var="i" begin="0" end="3">
+				<c:forEach items="${players}" var="player">
 					<li class="team-player-list-item" onclick="#1">
 						<a href="/team/first-team/player/alisson-becker">
 							<div class="img-wrap">
-								<img
-									src="https://d3j2s6hdd6a7rg.cloudfront.net/v2/uploads/media/misc/0002/14/thumb_113591_misc_general_500.jpeg"
-									alt="Alisson Becker">
+								<c:if test="${player.extra__thumbImg != null}">
+								<img src="${player.extra__thumbImg }" />
+							</c:if>
 							</div>
 							<div class="number">1</div>
 							<div class="about">
@@ -116,7 +117,7 @@
 			</ul>
 		</div>
 	</div>
-	
+
 	<div class="ONLOAN row">
 		<div class="team-player-list">
 			<h2>ON LOAN</h2>
@@ -142,6 +143,11 @@
 				</c:forEach>
 			</ul>
 		</div>
+	</div>
+	<div class="btnArea row">
+		<span class="btn-write cell">
+			<a href="/usr/article-player/write">글쓰기</a>
+		</span>
 	</div>
 </section>
 

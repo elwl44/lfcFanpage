@@ -8,11 +8,14 @@ import org.apache.ibatis.annotations.Param;
 
 import com.example.lfcFan.dto.Article;
 import com.example.lfcFan.dto.Board;
+import com.example.lfcFan.dto.Player;
 
 @Mapper
 public interface ArticleDao {
-	List<Article> getForPrintArticles(Map<String, Object> param);
+	List<Player> getForPrintPlayers(Map<String, Object> param);
 
+	List<Article> getForPrintArticles(Map<String, Object> param);
+	
 	int writeArticle(Map<String, Object> param);
 
 	Article getForPrintArticleById(@Param("id") int id);
@@ -26,4 +29,6 @@ public interface ArticleDao {
 	Board getBoardByCode(String boardCode);
 
 	void addArticleReading(@Param("id") int id);
+
+	void writePlayer(Map<String, Object> param);
 }

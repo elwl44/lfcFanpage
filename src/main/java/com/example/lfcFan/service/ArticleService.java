@@ -13,7 +13,7 @@ import com.example.lfcFan.dao.ArticleDao;
 import com.example.lfcFan.dto.Article;
 import com.example.lfcFan.dto.Board;
 import com.example.lfcFan.dto.Member;
-import com.example.lfcFan.dto.Reply;
+import com.example.lfcFan.dto.Player;
 import com.example.lfcFan.util.Util;
 
 @Service
@@ -24,6 +24,12 @@ public class ArticleService {
 	@Autowired
 	private ArticleDao articleDao;
 
+	public List<Player> getForPrintPlayers(Member actorMember, Map<String, Object> param) {
+		List<Player> players = articleDao.getForPrintPlayers(param);
+		
+		return players;
+	}
+	
 	public List<Article> getForPrintArticles(Member actorMember, Map<String, Object> param) {
 		int page = Util.getAsInt(param.get("page"), 1);
 
@@ -148,5 +154,11 @@ public class ArticleService {
 				e.printStackTrace();
 			}
 		}
+	}
+
+	public void writePlayer(Map<String, Object> param) {
+		articleDao.writePlayer(param);
+		int id = Util.getAsInt(param.get("id"));
+		changeInputFileRelIds(param, id);		
 	}
 }

@@ -92,10 +92,10 @@
 							<a href="#team">TEAM</a>
 						</li>
 						<li class="cell">
-							<a href="#news">NEWS</a>
+							<a href="/usr/article/news">NEWS</a>
 						</li>
 						<li class="cell">
-							<a href="#comunity">커뮤니티</a>
+							<a href="/usr/article-soccer/list">커뮤니티</a>
 							<ul>
 								<li>
 									<a href="/usr/article-soccer/list">축구게시판</a>

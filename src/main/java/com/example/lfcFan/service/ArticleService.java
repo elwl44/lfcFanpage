@@ -1,5 +1,7 @@
 package com.example.lfcFan.service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,6 +13,7 @@ import com.example.lfcFan.dao.ArticleDao;
 import com.example.lfcFan.dto.Article;
 import com.example.lfcFan.dto.Board;
 import com.example.lfcFan.dto.Member;
+import com.example.lfcFan.dto.Reply;
 import com.example.lfcFan.util.Util;
 
 @Service
@@ -131,5 +134,19 @@ public class ArticleService {
 
 	public Board getBoardByCode(String boardCode) {
 		return articleDao.getBoardByCode(boardCode);
+	}
+	
+	public void formatTimeString(List<Article> articles){
+		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+		for (int i = 0; i < articles.size(); i++) {
+			String datetime = articles.get(i).getUpdateDate();
+			try {
+				String time=Util.calculateTime(transFormat.parse(datetime));
+				articles.get(i).getExtra().put("time", time);
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 }

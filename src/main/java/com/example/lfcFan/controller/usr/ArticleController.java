@@ -32,17 +32,18 @@ public class ArticleController {
 
 	@Autowired
 	private ReplyService replyService;
-	
+
 	@Autowired
 	private GenFileService genFileService;
-	
+
 	@RequestMapping("/usr/article/home")
 	public String showHome(Model model) {
 		return "usr/article/home";
 	}
 
 	@RequestMapping("/usr/article-{boardCode}/list")
-	public String showList(HttpServletRequest req, Model model, @RequestParam Map<String, Object> param, @PathVariable("boardCode") String boardCode) {
+	public String showList(HttpServletRequest req, Model model, @RequestParam Map<String, Object> param,
+			@PathVariable("boardCode") String boardCode) {
 		Board board = articleService.getBoardByCode(boardCode);
 
 		if (board == null) {
@@ -50,10 +51,10 @@ public class ArticleController {
 			model.addAttribute("historyBack", true);
 			return "common/redirect";
 		}
-		
-		Member loginedMember = (Member)req.getAttribute("loginedMember");
+
+		Member loginedMember = (Member) req.getAttribute("loginedMember");
 		param.put("boardId", board.getId());
-		
+
 		int totalCount = articleService.getTotalCount(param);
 		int itemsCountInAPage = 10;
 		int totalPage = (int) Math.ceil(totalCount / (double) itemsCountInAPage);
@@ -69,9 +70,9 @@ public class ArticleController {
 		if (pageMenuEnd > totalPage) {
 			pageMenuEnd = totalPage;
 		}
-		
+
 		param.put("itemsCountInAPage", itemsCountInAPage);
-		
+
 		List<Article> articles = articleService.getForPrintArticles(loginedMember, param);
 
 		model.addAttribute("board", board);
@@ -83,6 +84,51 @@ public class ArticleController {
 		model.addAttribute("page", page);
 		model.addAttribute("articles", articles);
 		return "usr/article/list";
+	}
+
+	@RequestMapping("/usr/article/news")
+	public String showNewsList(HttpServletRequest req, Model model, @RequestParam Map<String, Object> param) {
+		Board board = articleService.getBoardByCode("news");
+		Member loginedMember = (Member) req.getAttribute("loginedMember");
+		param.put("boardId", board.getId());
+
+		int totalCount = articleService.getTotalCount(param);
+		int itemsCountInAPage = 9;
+		int totalPage = (int) Math.ceil(totalCount / (double) itemsCountInAPage);
+
+		int pageMenuArmSize = 5;
+		int page = Util.getAsInt(param.get("page"), 1);
+
+		int pageMenuStart = page - pageMenuArmSize;
+		if (pageMenuStart < 1) {
+			pageMenuStart = 1;
+		}
+		int pageMenuEnd = page + pageMenuArmSize;
+		if (pageMenuEnd > totalPage) {
+			pageMenuEnd = totalPage;
+		}
+		
+		param.put("itemsCountInAPage", itemsCountInAPage);
+
+		List<Article> articles = articleService.getForPrintArticles(loginedMember, param);
+
+		for ( Article article : articles ) {
+			GenFile genFile = genFileService.getGenFile("article", article.getId(), "common", "attachment", 1);
+
+			if ( genFile != null ) {
+				article.setExtra__thumbImg(genFile.getForPrintUrl());
+			}
+		}
+		articleService.formatTimeString(articles);
+		model.addAttribute("board", board);
+		model.addAttribute("totalCount", totalCount);
+		model.addAttribute("totalPage", totalPage);
+		model.addAttribute("pageMenuArmSize", pageMenuArmSize);
+		model.addAttribute("pageMenuStart", pageMenuStart);
+		model.addAttribute("pageMenuEnd", pageMenuEnd);
+		model.addAttribute("page", page);
+		model.addAttribute("articles", articles);
+		return "usr/article/newslist";
 	}
 
 	@RequestMapping("/usr/article-{boardCode}/write")
@@ -98,60 +144,61 @@ public class ArticleController {
 	}
 
 	@RequestMapping("/usr/article-{boardCode}/doWrite")
-	public String doWrite(HttpServletRequest req, @RequestParam Map<String, Object> param, Model model, 
+	public String doWrite(HttpServletRequest req, @RequestParam Map<String, Object> param, Model model,
 			@PathVariable("boardCode") String boardCode, MultipartRequest multipartRequest) {
 
 		Board board = articleService.getBoardByCode(boardCode);
 		int loginedMemberId = (int) req.getAttribute("loginedMemberId");
-		
+
 		param.put("boardId", board.getId());
 		param.put("memberId", loginedMemberId);
 		int id = articleService.writeArticle(param);
 
 		model.addAttribute("msg", String.format("%d번 글이 생성되였습니다.", id));
-		model.addAttribute("replaceUri", String.format("/usr/article-%s/detail?id=%d",boardCode, id));
+		model.addAttribute("replaceUri", String.format("/usr/article-%s/detail?id=%d", boardCode, id));
 		return "common/redirect";
 	}
 
 	@RequestMapping("/usr/article-{boardCode}/detail")
-	public String showDetail(HttpServletRequest req, Model model, int id, String listUrl, @PathVariable("boardCode") String boardCode) {
+	public String showDetail(HttpServletRequest req, Model model, int id, String listUrl,
+			@PathVariable("boardCode") String boardCode) {
 		Member loginedMember = (Member) req.getAttribute("loginedMember");
 		Board board = articleService.getBoardByCode(boardCode);
 		articleService.addArticleReading(id);
 		Article article = articleService.getForPrintArticleById(loginedMember, id);
 		List<Reply> replies = replyService.getForPrintReplies(loginedMember, "article", id);
-		
-		if ( listUrl == null && boardCode!=null) {
-			listUrl = "/usr/article-"+boardCode+"/list";
+
+		if (listUrl == null && boardCode != null) {
+			listUrl = "/usr/article-" + boardCode + "/list";
 		}
-		
+
 		GenFile genFile = genFileService.getGenFile("article", article.getId(), "common", "attachment", 1);
-		
-		if ( genFile != null ) {
+
+		if (genFile != null) {
 			article.setExtra__thumbImg(genFile.getForPrintUrl());
 		}
-		
+
 		model.addAttribute("board", board);
 		model.addAttribute("article", article);
 		model.addAttribute("replies", replies);
 		model.addAttribute("listUrl", listUrl);
-		
+
 		return "usr/article/detail";
 	}
 
 	@RequestMapping("/usr/article-{boardCode}/doDelete")
-	public String doDelete(HttpServletRequest req, int id, Model model, String listUrl, @PathVariable("boardCode") String boardCode) {
+	public String doDelete(HttpServletRequest req, int id, Model model, String listUrl,
+			@PathVariable("boardCode") String boardCode) {
 		Member loginedMember = (Member) req.getAttribute("loginedMember");
-		
+
 		Article article = articleService.getForPrintArticleById(loginedMember, id);
 
-		
-		if ( (boolean) article.getExtra().get("actorCanDelete") == false ) {
+		if ((boolean) article.getExtra().get("actorCanDelete") == false) {
 			model.addAttribute("msg", "권한이 없습니다.");
 			model.addAttribute("historyBack", true);
 			return "common/redirect";
 		}
-		
+
 		articleService.deleteArticleById(id);
 
 		model.addAttribute("msg", String.format("%d번 글을 삭제하였습니다.", id));
@@ -160,10 +207,11 @@ public class ArticleController {
 	}
 
 	@RequestMapping("/usr/article-{boardCode}/modify")
-	public String showModify(HttpServletRequest req, Model model, int id, String redirectUrl, @PathVariable("boardCode") String boardCode) {
+	public String showModify(HttpServletRequest req, Model model, int id, String redirectUrl,
+			@PathVariable("boardCode") String boardCode) {
 		Board board = articleService.getBoardByCode(boardCode);
 		Member loginedMember = (Member) req.getAttribute("loginedMember");
-		
+
 		Article article = articleService.getForPrintArticleById(loginedMember, id);
 
 		List<GenFile> files = genFileService.getGenFiles("article", article.getId(), "common", "attachment");
@@ -175,17 +223,17 @@ public class ArticleController {
 		}
 
 		article.getExtraNotNull().put("file__common__attachment", filesMap);
-		
+
 		if ((boolean) article.getExtra().get("actorCanModify") == false) {
 			model.addAttribute("msg", "권한이 없습니다.");
 			model.addAttribute("historyBack", true);
 			return "common/redirect";
 		}
-		
-		if ( redirectUrl == null ) {
+
+		if (redirectUrl == null) {
 			redirectUrl = "/usr/article-free/list";
 		}
-		
+
 		model.addAttribute("board", board);
 		model.addAttribute("redirectUrl", redirectUrl);
 		model.addAttribute("article", article);
@@ -194,10 +242,11 @@ public class ArticleController {
 	}
 
 	@RequestMapping("/usr/article-{boardCode}/doModify")
-	public String doModify(@RequestParam Map<String, Object> param, HttpServletRequest req, Model model, String redirectUrl, @PathVariable("boardCode") String boardCode) {
+	public String doModify(@RequestParam Map<String, Object> param, HttpServletRequest req, Model model,
+			String redirectUrl, @PathVariable("boardCode") String boardCode) {
 		Member loginedMember = (Member) req.getAttribute("loginedMember");
 		int id = Util.getAsInt(param.get("id"), 0);
-		
+
 		Article article = articleService.getForPrintArticleById(loginedMember, id);
 
 		if ((boolean) article.getExtra().get("actorCanModify") == false) {
@@ -208,11 +257,10 @@ public class ArticleController {
 		articleService.modifyArticle(param);
 
 		model.addAttribute("msg", String.format("%d번 글을 수정하였습니다.", id));
-		model.addAttribute("replaceUri", String.format("/usr/article-%s/detail?id=%d",boardCode, id));
-		if(redirectUrl.equals("")) {
-			model.addAttribute("replaceUri", String.format("/usr/article-%s/detail?id=%d",boardCode, id));
-		}
-		else {
+		model.addAttribute("replaceUri", String.format("/usr/article-%s/detail?id=%d", boardCode, id));
+		if (redirectUrl.equals("")) {
+			model.addAttribute("replaceUri", String.format("/usr/article-%s/detail?id=%d", boardCode, id));
+		} else {
 			model.addAttribute("replaceUri", redirectUrl);
 		}
 		return "common/redirect";

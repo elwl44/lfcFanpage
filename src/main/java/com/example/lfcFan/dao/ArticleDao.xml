@@ -50,7 +50,7 @@
 	<select id="getForPrintPlayers" resultType="Player">
 		SELECT *
 		FROM player
-		ORDER BY id DESC
+		ORDER BY backnumber asc
 	</select>
 	
 	<select id="getTotalCount" resultType="int">

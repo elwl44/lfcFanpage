@@ -69,11 +69,11 @@ a {
 	text-decoration: none;
 }
 
-.team-player-list-item:hover>a .number {
+.team-player-list-item:hover> .number {
 	width: 10%;
 }
 
-.team-player-list-item:hover>a .about>.name {
+.team-player-list-item:hover> .about>.name {
 	color: #e31b23;
 }
 

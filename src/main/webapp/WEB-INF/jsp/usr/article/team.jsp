@@ -15,21 +15,20 @@
 			<ul>
 				<c:forEach items="${players}" var="player">
 					<c:if test="${player.position eq 'GOALKEEPERS'}">
-						<li class="team-player-list-item" onclick="#1">
-							<a href="/usr/article-${board.code}/detail?id=${player.id}&listUrl=${encodedCurrentUri}">
-								<div class="img-wrap">
-									<c:if test="${player.extra__thumbImg != null}">
-										<img src="${player.extra__thumbImg }" />
-									</c:if>
+						<li class="team-player-list-item"
+							onclick="location.href='/usr/article-${board.code}/detail?id=${player.id}&listUrl=${encodedCurrentUri}'">
+							<div class="img-wrap">
+								<c:if test="${player.extra__thumbImg != null}">
+									<img src="${player.extra__thumbImg }" />
+								</c:if>
+							</div>
+							<div class="number">${player.backNumber }</div>
+							<div class="about">
+								<div class="name">
+									<span>${player.firstName }</span>
+									<span>${player.lastName }</span>
 								</div>
-								<div class="number">${player.backNumber }</div>
-								<div class="about">
-									<div class="name">
-										<span>${player.firstName }</span>
-										<span>${player.lastName }</span>
-									</div>
-								</div>
-							</a>
+							</div>
 						</li>
 					</c:if>
 				</c:forEach>
@@ -44,21 +43,20 @@
 			<ul>
 				<c:forEach items="${players}" var="player">
 					<c:if test="${player.position eq 'DEFENDERS'}">
-						<li class="team-player-list-item" onclick="#1">
-							<a href="/usr/article-${board.code}/detail?id=${player.id}&listUrl=${encodedCurrentUri}">
-								<div class="img-wrap">
-									<c:if test="${player.extra__thumbImg != null}">
-										<img src="${player.extra__thumbImg }" />
-									</c:if>
+						<li class="team-player-list-item"
+							onclick="location.href='/usr/article-${board.code}/detail?id=${player.id}&listUrl=${encodedCurrentUri}'">
+							<div class="img-wrap">
+								<c:if test="${player.extra__thumbImg != null}">
+									<img src="${player.extra__thumbImg }" />
+								</c:if>
+							</div>
+							<div class="number">${player.backNumber }</div>
+							<div class="about">
+								<div class="name">
+									<span>${player.firstName }</span>
+									<span>${player.lastName }</span>
 								</div>
-								<div class="number">${player.backNumber }</div>
-								<div class="about">
-									<div class="name">
-										<span>${player.firstName }</span>
-										<span>${player.lastName }</span>
-									</div>
-								</div>
-							</a>
+							</div>
 						</li>
 					</c:if>
 				</c:forEach>
@@ -72,21 +70,20 @@
 			<ul>
 				<c:forEach items="${players}" var="player">
 					<c:if test="${player.position eq 'MIDFIELDERS'}">
-						<li class="team-player-list-item" onclick="#1">
-							<a href="/usr/article-${board.code}/detail?id=${player.id}&listUrl=${encodedCurrentUri}">
-								<div class="img-wrap">
-									<c:if test="${player.extra__thumbImg != null}">
-										<img src="${player.extra__thumbImg }" />
-									</c:if>
+						<li class="team-player-list-item"
+							onclick="location.href='/usr/article-${board.code}/detail?id=${player.id}&listUrl=${encodedCurrentUri}'">
+							<div class="img-wrap">
+								<c:if test="${player.extra__thumbImg != null}">
+									<img src="${player.extra__thumbImg }" />
+								</c:if>
+							</div>
+							<div class="number">${player.backNumber }</div>
+							<div class="about">
+								<div class="name">
+									<span>${player.firstName }</span>
+									<span>${player.lastName }</span>
 								</div>
-								<div class="number">${player.backNumber }</div>
-								<div class="about">
-									<div class="name">
-										<span>${player.firstName }</span>
-										<span>${player.lastName }</span>
-									</div>
-								</div>
-							</a>
+							</div>
 						</li>
 					</c:if>
 				</c:forEach>
@@ -100,21 +97,20 @@
 			<ul>
 				<c:forEach items="${players}" var="player">
 					<c:if test="${player.position eq 'FORWARDS'}">
-						<li class="team-player-list-item" onclick="#1">
-							<a href="/usr/article-${board.code}/detail?id=${player.id}&listUrl=${encodedCurrentUri}">
-								<div class="img-wrap">
-									<c:if test="${player.extra__thumbImg != null}">
-										<img src="${player.extra__thumbImg }" />
-									</c:if>
+						<li class="team-player-list-item"
+							onclick="location.href='/usr/article-${board.code}/detail?id=${player.id}&listUrl=${encodedCurrentUri}'">
+							<div class="img-wrap">
+								<c:if test="${player.extra__thumbImg != null}">
+									<img src="${player.extra__thumbImg }" />
+								</c:if>
+							</div>
+							<div class="number">${player.backNumber }</div>
+							<div class="about">
+								<div class="name">
+									<span>${player.firstName }</span>
+									<span>${player.lastName }</span>
 								</div>
-								<div class="number">${player.backNumber }</div>
-								<div class="about">
-									<div class="name">
-										<span>${player.firstName }</span>
-										<span>${player.lastName }</span>
-									</div>
-								</div>
-							</a>
+							</div>
 						</li>
 					</c:if>
 				</c:forEach>
@@ -128,21 +124,22 @@
 			<ul>
 				<c:forEach items="${players}" var="player">
 					<c:if test="${player.position eq 'ONLOAN'}">
-						<li class="team-player-list-item" onclick="#1">
-							<a href="/usr/article-${board.code}/detail?id=${player.id}&listUrl=${encodedCurrentUri}">
-								<div class="img-wrap">
-									<c:if test="${player.extra__thumbImg != null}">
-										<img src="${player.extra__thumbImg }" />
-									</c:if>
+						<li class="team-player-list-item"
+							onclick="location.href='/usr/article-${board.code}/detail?id=${player.id}&listUrl=${encodedCurrentUri}'">
+
+							<div class="img-wrap">
+								<c:if test="${player.extra__thumbImg != null}">
+									<img src="${player.extra__thumbImg }" />
+								</c:if>
+							</div>
+							<div class="number">${player.backNumber }</div>
+							<div class="about">
+								<div class="name">
+									<span>${player.firstName }</span>
+									<span>${player.lastName }</span>
 								</div>
-								<div class="number">${player.backNumber }</div>
-								<div class="about">
-									<div class="name">
-										<span>${player.firstName }</span>
-										<span>${player.lastName }</span>
-									</div>
-								</div>
-							</a>
+							</div>
+
 						</li>
 					</c:if>
 				</c:forEach>

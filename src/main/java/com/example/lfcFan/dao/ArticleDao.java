@@ -23,7 +23,9 @@ public interface ArticleDao {
 	Player getForPrintPlayerById(@Param("id") int id);
 
 	void deleteArticleById(@Param("id") int id);
-
+	
+	void deletePlayerById(@Param("id") int id);
+	
 	void modifyArticle(Map<String, Object> param);
 
 	void modifyPlayer(Map<String, Object> param);

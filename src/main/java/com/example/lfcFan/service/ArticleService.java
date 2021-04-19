@@ -134,6 +134,11 @@ public class ArticleService {
 		articleDao.deleteArticleById(id);
 		genFileService.deleteGenFiles("article", id);
 	}
+	
+	public void deletePlayerById(int id) {
+		articleDao.deletePlayerById(id);
+		genFileService.deleteGenFiles("player", id);
+	}
 
 	public void modifyArticle(Map<String, Object> param) {
 		articleDao.modifyArticle(param);

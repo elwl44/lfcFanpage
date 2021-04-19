@@ -246,16 +246,23 @@ public class ArticleController {
 			@PathVariable("boardCode") String boardCode) {
 		Member loginedMember = (Member) req.getAttribute("loginedMember");
 
-		Article article = articleService.getForPrintArticleById(loginedMember, id);
-
-		if ((boolean) article.getExtra().get("actorCanDelete") == false) {
-			model.addAttribute("msg", "권한이 없습니다.");
-			model.addAttribute("historyBack", true);
+		if(boardCode.equals("player")) {
+			articleService.deletePlayerById(id);
+			
+			model.addAttribute("replaceUri", listUrl);
 			return "common/redirect";
 		}
-
-		articleService.deleteArticleById(id);
-
+		else {
+			Article article = articleService.getForPrintArticleById(loginedMember, id);
+	
+			if ((boolean) article.getExtra().get("actorCanDelete") == false) {
+				model.addAttribute("msg", "권한이 없습니다.");
+				model.addAttribute("historyBack", true);
+				return "common/redirect";
+			}
+	
+			articleService.deleteArticleById(id);
+		}
 		model.addAttribute("msg", String.format("%d번 글을 삭제하였습니다.", id));
 		model.addAttribute("replaceUri", listUrl);
 		return "common/redirect";

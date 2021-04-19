@@ -65,7 +65,7 @@
 
 			<span class="btn-delete cell">
 				<a onclick="if ( confirm('삭제하시겠습니까?') == false ) return false;"
-					href="doDelete?id=${article.id}&listUrl=${listUrl}">삭제</a>
+					href="doDelete?id=${player.id}&listUrl=${listUrl}">삭제</a>
 			</span>
 		</div>
 	</section>

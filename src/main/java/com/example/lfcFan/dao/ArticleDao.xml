@@ -165,6 +165,11 @@
 		WHERE id = #{id}
 	</delete>
 
+	<delete id="deletePlayerById">
+		DELETE FROM player
+		WHERE id = #{id}
+	</delete>
+
 	<update id="addArticleReading">
 		update article
 		<set>

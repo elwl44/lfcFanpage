@@ -321,4 +321,26 @@ public class Util {
 	public static String numberFormat(String numStr) {
 		return numberFormat(Integer.parseInt(numStr));
 	}
+
+	public static int sumGame(Map<String, Object> param) {
+		int win=getAsInt(param.get("win"),0);
+		int draw=getAsInt(param.get("draw"),0);
+		int lose=getAsInt(param.get("lose"),0);
+		int game=win+draw+lose;
+		return game;
+	}
+
+	public static int goalGap(Map<String, Object> param) {
+		int gainGoal=getAsInt(param.get("gainGoal"),0);
+		int loseGoal=getAsInt(param.get("loseGoal"),0);
+		int goalGap=gainGoal-loseGoal;
+		return goalGap;
+	}
+
+	public static int getPoint(Map<String, Object> param) {
+		int win=getAsInt(param.get("win"),0);
+		int draw=getAsInt(param.get("draw"),0);
+		int point=win*3+draw*1;
+		return point;
+	}
 }

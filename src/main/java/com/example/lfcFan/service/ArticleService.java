@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.example.lfcFan.dao.ArticleDao;
 import com.example.lfcFan.dto.Article;
 import com.example.lfcFan.dto.Board;
+import com.example.lfcFan.dto.League;
 import com.example.lfcFan.dto.Member;
 import com.example.lfcFan.dto.Player;
 import com.example.lfcFan.util.Util;
@@ -23,6 +24,11 @@ public class ArticleService {
 	
 	@Autowired
 	private ArticleDao articleDao;
+
+	public List<League> getForPrintLeagues(){
+		List<League> leaguetables=articleDao.getForPrintLeagues();
+		return leaguetables;
+	}
 
 	public List<Player> getForPrintPlayers(Member actorMember, Map<String, Object> param) {
 		List<Player> players = articleDao.getForPrintPlayers(param);
@@ -126,6 +132,11 @@ public class ArticleService {
 		return article;
 	}
 	
+	public League getForPrintLeagueById(int id) {
+		League league = articleDao.getForPrintLeagueById(id);
+		return league;
+	}
+	
 	public void addArticleReading(int id) {
 		articleDao.addArticleReading(id);
 	}
@@ -146,6 +157,13 @@ public class ArticleService {
 
 	public void modifyPlayer(Map<String, Object> param) {
 		articleDao.modifyPlayer(param);
+	}
+	
+	public void modifyLeague(Map<String, Object> param) {
+		param.put("game", Util.sumGame(param));
+		param.put("goalGap", Util.goalGap(param));
+		param.put("point", Util.getPoint(param));
+		articleDao.modifyLeague(param);
 	}
 	
 	public int getTotalCount(Map<String, Object> param) {

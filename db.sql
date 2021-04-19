@@ -222,3 +222,17 @@ CREATE TABLE player (
     weight INT(10) NOT NULL,
     dateofBirth CHAR(10) NOT NULL
 );
+
+#리그순위 테이블 추가
+CREATE TABLE leagueTable (
+    id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    `name` CHAR(30) NOT NULL,
+    game INT(10) NOT NULL,
+    `point` INT(10) NOT NULL,
+    win INT(10) NOT NULL,
+    draw INT(10) NOT NULL,
+    lose INT(10) NOT NULL,
+    gainGoal INT(10) NOT NULL,
+    loseGoal INT(10) NOT NULL,
+    goalGap INT(10) NOT NULL
+);

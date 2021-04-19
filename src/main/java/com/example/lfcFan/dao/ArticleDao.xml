@@ -47,6 +47,13 @@
 
 	</select>
 
+	<select id="getForPrintLeagues" resultType="League">
+		SELECT *
+		FROM
+		LeagueTable
+		ORDER BY point desc, goalGap DESC
+	</select>
+
 	<select id="getForPrintPlayers" resultType="Player">
 		SELECT *
 		FROM player
@@ -155,7 +162,16 @@
 
 	<select id="getForPrintPlayerById" resultType="Player">
 		SELECT *
-		FROM player
+		FROM
+		player
+		WHERE
+		id = #{id}
+	</select>
+
+	<select id="getForPrintLeagueById" resultType="League">
+		SELECT *
+		FROM
+		leagueTable
 		WHERE
 		id = #{id}
 	</select>
@@ -219,6 +235,40 @@
 			</if>
 			<if test="dateofBirth != null">
 				`dateofBirth` = #{dateofBirth},
+			</if>
+		</set>
+		WHERE id = #{id}
+	</update>
+
+	<update id="modifyLeague">
+		UPDATE leagueTable
+		<set>
+			<if test="name != null">
+				name = #{name},
+			</if>
+			<if test="game != null">
+				`game` = #{game},
+			</if>
+			<if test="point != null">
+				`point` = #{point},
+			</if>
+			<if test="win != null">
+				`win` = #{win},
+			</if>
+			<if test="draw != null">
+				`draw` = #{draw},
+			</if>
+			<if test="lose != null">
+				`lose` = #{lose},
+			</if>
+			<if test="gainGoal != null">
+				`gainGoal` = #{gainGoal},
+			</if>
+			<if test="loseGoal != null">
+				`loseGoal` = #{loseGoal},
+			</if>
+			<if test="goalGap != null">
+				`goalGap` = #{goalGap},
 			</if>
 		</set>
 		WHERE id = #{id}

@@ -37,7 +37,8 @@ public class WebMvcConfig implements WebMvcConfigurer{
 					.excludePathPatterns("/usr/member/emailCheck").excludePathPatterns("/usr/member/doJoin").excludePathPatterns("/usr/article-*/list")
 					.excludePathPatterns("/usr/article-*/detail").excludePathPatterns("/usr/member/findLoginId").excludePathPatterns("/usr/member/doFindLoginId")
 					.excludePathPatterns("/usr/member/findLoginId2").excludePathPatterns("/usr/member/findLoginPw").excludePathPatterns("/usr/member/doFindLoginPw")
-					.excludePathPatterns("/usr/member/doAuthEmail").excludePathPatterns("/error");
+					.excludePathPatterns("/usr/member/doAuthEmail").excludePathPatterns("/usr/article/leaguetable").excludePathPatterns("/usr/article/modify-league")
+					.excludePathPatterns("/error");
 		}
 		
 		@Override

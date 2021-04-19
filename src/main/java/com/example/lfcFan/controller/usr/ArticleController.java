@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartRequest;
 import com.example.lfcFan.dto.Article;
 import com.example.lfcFan.dto.Board;
 import com.example.lfcFan.dto.GenFile;
+import com.example.lfcFan.dto.League;
 import com.example.lfcFan.dto.Member;
 import com.example.lfcFan.dto.Player;
 import com.example.lfcFan.dto.Reply;
@@ -72,14 +73,14 @@ public class ArticleController {
 		}
 
 		param.put("itemsCountInAPage", itemsCountInAPage);
-		
-		if(boardCode.equals("news")) {
+
+		if (boardCode.equals("news")) {
 			List<Article> articles = articleService.getForPrintArticles(loginedMember, param);
 
-			for ( Article article : articles ) {
+			for (Article article : articles) {
 				GenFile genFile = genFileService.getGenFile("article", article.getId(), "common", "attachment", 1);
 
-				if ( genFile != null ) {
+				if (genFile != null) {
 					article.setExtra__thumbImg(genFile.getForPrintUrl());
 				}
 			}
@@ -94,7 +95,7 @@ public class ArticleController {
 			model.addAttribute("articles", articles);
 			return "usr/article/list-news";
 		}
-		
+
 		List<Article> articles = articleService.getForPrintArticles(loginedMember, param);
 
 		model.addAttribute("board", board);
@@ -107,7 +108,7 @@ public class ArticleController {
 		model.addAttribute("articles", articles);
 		return "usr/article/list";
 	}
-	
+
 	@RequestMapping("/usr/article/team")
 	public String showTeam(HttpServletRequest req, Model model, @RequestParam Map<String, Object> param) {
 		Board board = articleService.getBoardByCode("player");
@@ -115,10 +116,10 @@ public class ArticleController {
 		param.put("boardId", board.getId());
 
 		List<Player> players = articleService.getForPrintPlayers(loginedMember, param);
-		for ( Player article : players ) {
+		for (Player article : players) {
 			GenFile genFile = genFileService.getGenFile("player", article.getId(), "common", "attachment", 1);
 
-			if ( genFile != null ) {
+			if (genFile != null) {
 				article.setExtra__thumbImg(genFile.getForPrintUrl());
 			}
 		}
@@ -126,7 +127,14 @@ public class ArticleController {
 		model.addAttribute("players", players);
 		return "usr/article/team";
 	}
-	
+
+	@RequestMapping("/usr/article/leaguetable")
+	public String showLeaguetable(HttpServletRequest req, Model model, @RequestParam Map<String, Object> param) {
+		List<League> leaguetables = articleService.getForPrintLeagues();
+		model.addAttribute("leaguetables", leaguetables);
+		return "usr/article/league-table";
+	}
+
 	@RequestMapping("/usr/article-{boardCode}/write")
 	public String showWrite(HttpServletRequest req, Model model, @PathVariable("boardCode") String boardCode) {
 		Board board = articleService.getBoardByCode(boardCode);
@@ -136,30 +144,29 @@ public class ArticleController {
 			return "common/redirect";
 		}
 		model.addAttribute("board", board);
-		if(board.getCode().equals("player")) {
+		if (board.getCode().equals("player")) {
 			return "usr/article/write-player";
 		}
 		return "usr/article/write";
 	}
-	
+
 	@RequestMapping("/usr/article-{boardCode}/doWrite")
 	public String doWrite(HttpServletRequest req, @RequestParam Map<String, Object> param, Model model,
 			@PathVariable("boardCode") String boardCode, MultipartRequest multipartRequest) {
-		
+
 		Board board = articleService.getBoardByCode(boardCode);
 		int loginedMemberId = (int) req.getAttribute("loginedMemberId");
 
 		param.put("boardId", board.getId());
 		param.put("memberId", loginedMemberId);
-		
-		if(boardCode.equals("player")) {
+
+		if (boardCode.equals("player")) {
 			articleService.writePlayer(param);
-			
+
 			model.addAttribute("replaceUri", String.format("/usr/article/team"));
-		}
-		else {
+		} else {
 			int id = articleService.writeArticle(param);
-			
+
 			model.addAttribute("msg", String.format("%d번 글이 생성되였습니다.", id));
 			model.addAttribute("replaceUri", String.format("/usr/article-%s/detail?id=%d", boardCode, id));
 		}
@@ -169,37 +176,36 @@ public class ArticleController {
 	@RequestMapping("/usr/article-{boardCode}/detail")
 	public String showDetail(HttpServletRequest req, Model model, int id, String listUrl,
 			@PathVariable("boardCode") String boardCode) {
-		
+
 		Member loginedMember = (Member) req.getAttribute("loginedMember");
-		
+
 		Board board = articleService.getBoardByCode(boardCode);
-		
+
 		if (listUrl == null && boardCode != null) {
 			listUrl = "/usr/article-" + boardCode + "/list";
 		}
-		
-		if(boardCode.equals("player")) {
+
+		if (boardCode.equals("player")) {
 			Player player = articleService.getForPrintPlayerById(id);
 			GenFile genFile = genFileService.getGenFile("player", player.getId(), "common", "attachment", 1);
 
 			if (genFile != null) {
 				player.setExtra__thumbImg(genFile.getForPrintUrl());
 			}
-			
+
 			List<GenFile> files = genFileService.getGenFiles("player", player.getId(), "common", "attachment");
-			
+
 			Map<String, GenFile> filesMap = new HashMap<>();
-			
+
 			for (GenFile file : files) {
 				filesMap.put(file.getFileNo() + "", file);
 			}
-			
+
 			player.getExtraNotNull().put("file__common__attachment", filesMap);
 			model.addAttribute("player", player);
 			model.addAttribute("listUrl", listUrl);
 			return "usr/article/detail-player";
-		}
-		else {
+		} else {
 			articleService.addArticleReading(id);
 			Article article = articleService.getForPrintArticleById(loginedMember, id);
 			List<Reply> replies = replyService.getForPrintReplies(loginedMember, "article", id);
@@ -208,13 +214,13 @@ public class ArticleController {
 			if (genFile != null) {
 				article.setExtra__thumbImg(genFile.getForPrintUrl());
 			}
-			
+
 			model.addAttribute("board", board);
 			model.addAttribute("article", article);
 			model.addAttribute("replies", replies);
 			model.addAttribute("listUrl", listUrl);
 		}
-		
+
 		return "usr/article/detail";
 	}
 
@@ -223,21 +229,20 @@ public class ArticleController {
 			@PathVariable("boardCode") String boardCode) {
 		Member loginedMember = (Member) req.getAttribute("loginedMember");
 
-		if(boardCode.equals("player")) {
+		if (boardCode.equals("player")) {
 			articleService.deletePlayerById(id);
-			
+
 			model.addAttribute("replaceUri", listUrl);
 			return "common/redirect";
-		}
-		else {
+		} else {
 			Article article = articleService.getForPrintArticleById(loginedMember, id);
-	
+
 			if ((boolean) article.getExtra().get("actorCanDelete") == false) {
 				model.addAttribute("msg", "권한이 없습니다.");
 				model.addAttribute("historyBack", true);
 				return "common/redirect";
 			}
-	
+
 			articleService.deleteArticleById(id);
 		}
 		model.addAttribute("msg", String.format("%d번 글을 삭제하였습니다.", id));
@@ -250,54 +255,53 @@ public class ArticleController {
 			@PathVariable("boardCode") String boardCode) {
 		Board board = articleService.getBoardByCode(boardCode);
 		Member loginedMember = (Member) req.getAttribute("loginedMember");
-		
+
 		if (redirectUrl == null) {
 			redirectUrl = "/usr/article-free/list";
 		}
-		
-		if(boardCode.equals("player")) {
+
+		if (boardCode.equals("player")) {
 			Player player = articleService.getForPrintPlayerById(id);
-			
+
 			List<GenFile> files = genFileService.getGenFiles("player", player.getId(), "common", "attachment");
-			
+
 			Map<String, GenFile> filesMap = new HashMap<>();
-			
+
 			for (GenFile file : files) {
 				filesMap.put(file.getFileNo() + "", file);
 			}
-	
+
 			player.getExtraNotNull().put("file__common__attachment", filesMap);
-			
+
 			model.addAttribute("board", board);
 			model.addAttribute("redirectUrl", redirectUrl);
 			model.addAttribute("player", player);
-			
+
 			return "usr/article/modify-player";
-		}
-		else {
+		} else {
 			Article article = articleService.getForPrintArticleById(loginedMember, id);
-	
+
 			List<GenFile> files = genFileService.getGenFiles("article", article.getId(), "common", "attachment");
-	
+
 			Map<String, GenFile> filesMap = new HashMap<>();
-	
+
 			for (GenFile file : files) {
 				filesMap.put(file.getFileNo() + "", file);
 			}
-	
+
 			article.getExtraNotNull().put("file__common__attachment", filesMap);
-	
+
 			if ((boolean) article.getExtra().get("actorCanModify") == false) {
 				model.addAttribute("msg", "권한이 없습니다.");
 				model.addAttribute("historyBack", true);
 				return "common/redirect";
 			}
-			
+
 			model.addAttribute("board", board);
 			model.addAttribute("redirectUrl", redirectUrl);
 			model.addAttribute("article", article);
 		}
-		
+
 		return "usr/article/modify";
 	}
 
@@ -312,23 +316,46 @@ public class ArticleController {
 		} else {
 			model.addAttribute("replaceUri", redirectUrl);
 		}
-		
-		if(boardCode.equals("player")) {
+
+		if (boardCode.equals("player")) {
 			articleService.modifyPlayer(param);
-		}
-		else {
+		} else {
 			Article article = articleService.getForPrintArticleById(loginedMember, id);
-	
+
 			if ((boolean) article.getExtra().get("actorCanModify") == false) {
 				model.addAttribute("msg", "권한이 없습니다.");
 				model.addAttribute("historyBack", true);
 				return "common/redirect";
 			}
 			articleService.modifyArticle(param);
-	
+
 			model.addAttribute("msg", String.format("%d번 글을 수정하였습니다.", id));
 			model.addAttribute("replaceUri", String.format("/usr/article-%s/detail?id=%d", boardCode, id));
 		}
+		return "common/redirect";
+	}
+
+	@RequestMapping("/usr/article/modify-league")
+	public String showModifyLeague(HttpServletRequest req, Model model, String redirectUrl, int id) {
+		if (redirectUrl == null) {
+			redirectUrl = "/usr/article-free/list";
+		}
+		Member loginedMember = (Member) req.getAttribute("loginedMember");
+
+		League leaguetable = articleService.getForPrintLeagueById(id);
+
+		model.addAttribute("loginedMember", loginedMember);
+		model.addAttribute("leaguetable", leaguetable);
+		model.addAttribute("redirectUrl", redirectUrl);
+
+		return "usr/article/modify-league";
+	}
+
+	@RequestMapping("/usr/article/doModifyLeague")
+	public String doModifyLeague(@RequestParam Map<String, Object> param, HttpServletRequest req, Model model,
+			String redirectUrl) {
+		articleService.modifyLeague(param);
+		model.addAttribute("replaceUri", String.format("/usr/article/leaguetable"));
 		return "common/redirect";
 	}
 }

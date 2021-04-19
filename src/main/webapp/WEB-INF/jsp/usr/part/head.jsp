@@ -106,7 +106,7 @@
 							</ul>
 						</li>
 						<li class="cell">
-							<a href="#">LEAGUE TABLE</a>
+							<a href="/usr/article/leaguetable">LEAGUE TABLE</a>
 						</li>
 					</ul>
 				</div>

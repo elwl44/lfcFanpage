@@ -218,7 +218,6 @@ public class ArticleController {
 			}
 			
 			player.getExtraNotNull().put("file__common__attachment", filesMap);
-			System.out.println(player+"*******************");
 			model.addAttribute("player", player);
 			model.addAttribute("listUrl", listUrl);
 			return "usr/article/detail-player";

@@ -3,8 +3,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@include file="../part/head.jsp"%>
 <link rel="stylesheet" type="text/css" href="/resource/write.css">
+
+<c:set var="fileInputMaxCount" value="2" />
+<script>
+	ArticleAdd__fileInputMaxCount = parseInt("${fileInputMaxCount}");
+</script>
+
 <body>
-	<c:set var="fileInputMaxCount" value="1" />
 	<script>
 		ArticleAdd__fileInputMaxCount = parseInt("${fileInputMaxCount}");
 	</script>
@@ -64,20 +69,29 @@
 				form.dateofBirth.focus();
 				return false;
 			}
-			var fileCheck = document.getElementById("file-input").value;
-			console.log(fileCheck);
-		    if(!fileCheck){
-		        alert("선수 사진을 첨부해 주세요");
-		        return false;
-		    }
+			var fileCheck = document.getElementById("file-input1").value;
+			if (!fileCheck) {
+				alert("선수 사진을 첨부해 주세요");
+				return false;
+			}
+
+			var fileCheck = document.getElementById("file-input2").value;
+			if (!fileCheck) {
+				alert("선수 사진을 첨부해 주세요");
+				return false;
+			}
 			var maxSizeMb = 50;
 			var maxSize = maxSizeMb * 1024 * 1024;
-			if (form.file__player__0__common__attachment__1.value) {
-				if (form.file__player__0__common__attachment__1.files[0].size > maxSize) {
-					alert(maxSizeMb + "MB 이하의 파일을 업로드 해주세요.");
-					form.file__player__0__common__attachment__1.focus();
-					
-					return;
+			for (let inputNo = 1; inputNo <= ArticleAdd__fileInputMaxCount; inputNo++) {
+				const input = form["file__player__0__common__attachment__"
+						+ inputNo];
+
+				if (input.value) {
+					if (input.files[0].size > maxSize) {
+						alert(maxSizeMb + "MB 이하의 파일을 업로드 해주세요.");
+						input.focus();
+						return;
+					}
 				}
 			}
 
@@ -86,22 +100,35 @@
 				if (data && data.body && data.body.genFileIdsStr) {
 					genFileIdsStr = data.body.genFileIdsStr;
 				}
-				
+
 				form.genFileIdsStr.value = genFileIdsStr;
-				
-				form.file__player__0__common__attachment__1.value = '';
-				
+
+				for (let inputNo = 1; inputNo <= ArticleAdd__fileInputMaxCount; inputNo++) {
+					const input = form["file__player__0__common__attachment__"
+							+ inputNo];
+					input.value = '';
+				}
+
 				form.submit();
 			};
 			const startUploadFiles = function(onSuccess) {
-				var needToUpload = form.file__player__0__common__attachment__1.value.length > 0;
+				var needToUpload = false;
+				for (let inputNo = 1; inputNo <= ArticleAdd__fileInputMaxCount; inputNo++) {
+					const input = form["file__player__0__common__attachment__"
+							+ inputNo];
+					if (input.value.length > 0) {
+						needToUpload = true;
+						break;
+					}
+				}
+
 				if (needToUpload == false) {
 					onSuccess();
 					return;
 				}
-				
+
 				var fileUploadFormData = new FormData(form);
-				
+
 				$.ajax({
 					url : '/common/genFile/doUpload',
 					data : fileUploadFormData,
@@ -146,19 +173,22 @@
 					class="add-file">
 				<input type="number" name="Weight" id="Weight" placeholder="Weight"
 					class="add-file">
-				<input placeholder="Date of Birth" class="add-file" type="text" name="dateofBirth"
-					onfocus="(this.type='date')" onblur="(this.type='text')" id="date" />
+				<input placeholder="Date of Birth" class="add-file" type="text"
+					name="dateofBirth" onfocus="(this.type='date')"
+					onblur="(this.type='text')" id="date" />
 			</div>
-			<div class="add-file">
+			<c:forEach begin="1" end="${fileInputMaxCount}" var="inputNo">
+				<div class="add-file">
 					<div class="cell">
-						<span>선수사진</span>
+						<span>첨부파일 ${inputNo}</span>
 					</div>
 					<div class="cell">
-						<input type="file" id="file-input"
-							name="file__player__0__common__attachment__1"
-							class="add-file1" />
+						<input type="file"
+							name="file__player__0__common__attachment__${inputNo}"
+							class="add-file1" id="file-input${inputNo }" />
 					</div>
 				</div>
+			</c:forEach>
 			<div>
 				<input class="write-btn" type="submit" value="작성" accesskey="s">
 			</div>

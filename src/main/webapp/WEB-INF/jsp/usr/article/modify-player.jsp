@@ -148,7 +148,7 @@
 	</script>
 	<section class="section-modify row">
 		<div class="modify-title">
-			<h1 class="con">${player }글수정</h1>
+			<h1 class="con">선수 수정</h1>
 		</div>
 		<form onsubmit="ArticleModify__checkAndSubmit(this); return false;"
 			action="doModify" enctype="multipart/form-data">

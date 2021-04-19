@@ -9,6 +9,7 @@
 	<section class="section-detail row">
 		<div class="detail-title">
 			<strong><a href="${listUrl}">FIRST TEAM</a></strong>
+			<strong>${listUrl }</strong>
 		</div>
 		<div id="cover">
 			<div class="player-profile-image  ">

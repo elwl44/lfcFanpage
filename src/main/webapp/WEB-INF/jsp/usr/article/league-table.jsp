@@ -26,7 +26,7 @@
 					<td class="team-lose2">수정</td>
 				</c:if>
 			</thead>
-			<tbody>
+			<tbody class="tt">
 				<c:forEach items="${leaguetables}" var="League" varStatus="count">
 					<tr class="top">
 						<td>${count.index+1}</td>

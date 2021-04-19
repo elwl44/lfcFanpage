@@ -45,7 +45,7 @@
 	<section class="section-boardNavigation">
 		<div class="btnArea row">
 			<span class="btn-write cell">
-				<a href="/usr/article-${board.code}/write">글쓰기</a>
+				<a href="/usr/article-${board.code}/write?listUrl=${encodedCurrentUri}">글쓰기</a>
 			</span>
 		</div>
 		<div class="pagination">

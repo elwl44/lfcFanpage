@@ -108,6 +108,7 @@
 	<section class="section-modify row">
 		<div class="modify-title">
 			<h1 class="con">${board.name }글 수정</h1>
+			<strong>${redirectUrl }</strong>
 		</div>
 		<form onsubmit="ArticleModify__checkAndSubmit(this); return false;"
 			action="doModify" enctype="multipart/form-data">

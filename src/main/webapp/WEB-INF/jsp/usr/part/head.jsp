@@ -92,7 +92,7 @@
 							<a href="/usr/article/team">TEAM</a>
 						</li>
 						<li class="cell">
-							<a href="/usr/article/news">NEWS</a>
+							<a href="/usr/article-news/list">NEWS</a>
 						</li>
 						<li class="cell">
 							<a href="/usr/article-soccer/list">커뮤니티</a>

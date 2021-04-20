@@ -19,15 +19,17 @@
 		<div class="box-list">
 			<c:forEach items="${articles}" var="article">
 				<c:set var="detailUrl"
-						value="/usr/article-${board.code}/detail?id=${article.id}&listUrl=${encodedCurrentUri}" />
+					value="/usr/article-${board.code}/detail?id=${article.id}&listUrl=${encodedCurrentUri}" />
 				<div class="news-box">
 					<a href="${detailUrl}">
 						<div class="new-picture">
 							<c:if test="${article.extra__thumbImg == null}">
-								<img src="/resource/img/noimage.png" />
+								<p style="background-image: url('/resource/img/noimage.png');"
+									class="news-image"></p>
 							</c:if>
 							<c:if test="${article.extra__thumbImg != null}">
-								<img src="${article.extra__thumbImg }" />
+								<p style="background-image: url('${article.extra__thumbImg }');"
+									class="news-image"></p>
 							</c:if>
 						</div>
 						<div class="container">
@@ -45,7 +47,8 @@
 	<section class="section-boardNavigation">
 		<div class="btnArea row">
 			<span class="btn-write cell">
-				<a href="/usr/article-${board.code}/write?listUrl=${encodedCurrentUri}">글쓰기</a>
+				<a
+					href="/usr/article-${board.code}/write?listUrl=${encodedCurrentUri}">글쓰기</a>
 			</span>
 		</div>
 		<div class="pagination">

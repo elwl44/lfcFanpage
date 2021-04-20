@@ -37,11 +37,6 @@ public class ArticleController {
 	@Autowired
 	private GenFileService genFileService;
 
-	@RequestMapping("/usr/article/home")
-	public String showHome(Model model) {
-		return "usr/article/home";
-	}
-
 	@RequestMapping("/usr/article-{boardCode}/list")
 	public String showList(HttpServletRequest req, Model model, @RequestParam Map<String, Object> param,
 			@PathVariable("boardCode") String boardCode) {

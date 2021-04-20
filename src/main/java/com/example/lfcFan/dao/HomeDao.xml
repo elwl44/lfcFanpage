@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.lfcFan.dao.HomeDao">
+	<select id="getForPrintnews" resultType="Article">
+		SELECT * 
+		FROM article 
+		WHERE boardid=4 
+		ORDER BY regdate 
+		DESC LIMIT 4;
+	</select>
+
+	<resultMap type="Article" id="article">
+		<id property="id" column="id" />
+		<id property="regDate" column="regDate" />
+		<id property="updateDate" column="updateDate" />
+		<id property="memberId" column="memberId" />
+		<id property="title" column="title" />
+		<id property="body" column="body" />
+		<id property="boardId" column="boardId" />
+		<id property="reading" column="reading" />
+
+		<association property="extra" javaType="map">
+			<id property="writer" column="extra__writer" />
+		</association>
+	</resultMap>
+</mapper>

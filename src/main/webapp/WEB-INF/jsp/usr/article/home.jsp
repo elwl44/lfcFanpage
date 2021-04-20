@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@include file="../part/head.jsp"%>
- 
+
 <body>
 
 	<!--스케줄 시작-->
@@ -77,44 +77,20 @@
 
 	<!--뉴스 시작-->
 	<section class="news-slider">
-		<div class="section-news1 section-news cell">
-			<div class="news">
-				<img src="/resource/img/thiago.png" />
-				<div class="news-text">英 언론 “티아고 알칸타라, 리버풀과 이적 합의…이적료 최대
-					380억원”</div>
-			</div>
-			<div class="news-hover">
-				<a href="##1" class="news-hover"></a>
-			</div>
-		</div>
-		<div class="section-news1 section-news cell">
-			<div class="news">
-				<img src="/resource/img/konate.png" />
-				<div class="news-text">리버풀, 라이프치히 CB 코나테 영입 임박...몸값 533억원
-					(英매체)</div>
-			</div>
-			<div class="news-hover">
-				<a href="##2" class="news-hover"></a>
-			</div>
-		</div>
-		<div class="section-news1 section-news cell">
-			<div class="news">
-				<img src="/resource/img/odego.png" />
-				<div class="news-text">외데고르 주가 급상승, 첼시·리버풀이 노린다…아스널 완전영입 '암초'</div>
-			</div>
-			<div class="news-hover">
-				<a href="##3" class="news-hover"></a>
-			</div>
-		</div>
-		<div class="section-news1 section-news cell">
-			<div class="news">
-				<img src="/resource/img/kuliba.png" />
-				<div class="news-text">점점 떨어지는 쿨리발리 이적료…리버풀, 540억 원에 영입 제안</div>
-			</div>
-			<div class="news-hover">
-				<a href="##4" class="news-hover"></a>
-			</div>
-		</div>
+		<c:forEach items="${articles}" var="article">
+			<li style="width: 325px; float: left; display: block;"
+				class="section-news">
+				<a href="">
+					<p style="background-image: url('${article.extra__thumbImg}');"
+						class="news"></p>
+					<div class="news-container">
+						<strong> 
+							${article.title }
+						</strong>
+					</div>
+				</a>
+			</li>
+		</c:forEach>
 	</section>
 	<!--뉴스 끝-->
 
@@ -594,7 +570,7 @@
 		</div>
 	</section>
 
-		
+
 </body>
 
 <%@include file="../part/footer.jsp"%>

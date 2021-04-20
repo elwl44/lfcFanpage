@@ -344,6 +344,15 @@ ul ul {
     font-weight: bold;
 }
 
+.more{
+	padding-top: 2px;
+    color: #999;
+    font-size: 12px;
+    margin-right: 2%;
+}
+.more:hover{
+	border-bottom: solid 1px #ccc;
+}
 .board {
     height: 18%;
     width: 100%;

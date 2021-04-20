@@ -99,6 +99,7 @@
 		<div class="board-left article cell">
 			<div class="board-name">
 				<a href="/usr/article-notice/list">공지사항</a>
+				<a href="/usr/article-notice/list" class="cell-right more">더보기></a>
 			</div>
 			<c:forEach items="${noticeArticles}" var="article">
 				<c:set var="detailUrl"
@@ -118,6 +119,7 @@
 		<div class="board-mid1 article cell">
 			<div class="board-name">
 				<a href="/usr/article-soccer/list">축구 게시판</a>
+				<a href="/usr/article-soccer/list" class="cell-right more">더보기></a>
 			</div>
 			<c:forEach items="${soccerArticles}" var="article">
 				<c:set var="detailUrl"
@@ -133,12 +135,13 @@
 				</div>
 			</c:forEach>
 		</div>
-		
+
 		<div class="board-mid2 article cell">
 			<div class="board-name">
 				<a href="/usr/article-free/list">자유 게시판</a>
+				<a href="/usr/article-free/list" class="cell-right more">더보기></a>
 			</div>
-			
+
 			<c:forEach items="${freeArticles}" var="article">
 				<c:set var="detailUrl"
 					value="/usr/article-free/detail?id=${article.id}&listUrl=/usr/article-free/list" />
@@ -152,7 +155,7 @@
 					<div class="board-date cell">${article.extra.time }</div>
 				</div>
 			</c:forEach>
-			
+
 		</div>
 		<div class="board-right article cell">
 			<div class="board-name">
@@ -290,18 +293,22 @@
 					</div>
 				</div>
 				<div class="player cell">
-					<img src="/resource/img/van.jpeg" />
-					<div class="player-info">
-						<div class="player-number cell">4</div>
-						<div class="player-name cell">Van Dijk</div>
-					</div>
+					<a href="#4">
+						<img src="/resource/img/van.jpeg" />
+						<div class="player-info">
+							<div class="player-number cell">4</div>
+							<div class="player-name cell">Van Dijk</div>
+						</div>
+					</a>
 				</div>
 				<div class="player cell">
-					<img src="/resource/img/wijnal.jpeg" />
-					<div class="player-info">
-						<div class="player-number cell">5</div>
-						<div class="player-name cell">Wijnaldum</div>
-					</div>
+					<a href="#5">
+						<img src="/resource/img/wijnal.jpeg" />
+						<div class="player-info">
+							<div class="player-number cell">5</div>
+							<div class="player-name cell">Wijnaldum</div>
+						</div>
+					</a>
 				</div>
 				<div class="player cell">
 					<img src="/resource/img/thiago.jpeg" />

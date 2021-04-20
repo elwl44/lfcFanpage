@@ -80,7 +80,9 @@
 		<c:forEach items="${articles}" var="article">
 			<li style="width: 325px; float: left; display: block;"
 				class="section-news">
-				<a href="">
+				<c:set var="detailUrl"
+					value="/usr/article-news/detail?id=${article.id}&listUrl=/usr/article-news/list" />
+				<a href=${detailUrl }>
 					<p style="background-image: url('${article.extra__thumbImg}');"
 						class="news"></p>
 					<div class="news-container">

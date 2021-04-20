@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.lfcFan.dto.Article;
 import com.example.lfcFan.dto.GenFile;
+import com.example.lfcFan.dto.League;
 import com.example.lfcFan.service.GenFileService;
 import com.example.lfcFan.service.HomeService;
 
@@ -71,6 +72,11 @@ public class HomeController {
 		}
 		homeService.formatTimeString(freeArticles);
 		
+		/*리그 테이블*/
+		List<League> leaguetables = homeService.getForPrintLeagues();
+		
+		
+		model.addAttribute("leaguetables", leaguetables);
 		model.addAttribute("freeArticles", freeArticles);
 		model.addAttribute("soccerArticles", soccerArticles);
 		model.addAttribute("noticeArticles", noticeArticles);

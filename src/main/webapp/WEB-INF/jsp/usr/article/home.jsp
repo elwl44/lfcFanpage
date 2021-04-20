@@ -158,8 +158,9 @@
 
 		</div>
 		<div class="board-right article cell">
-			<div class="board-name">
-				<a href="#board-table">순위표</a>
+			<div class="board-name-t">
+				<a href="/usr/article/leaguetable">순위표</a>
+				<a href="/usr/article/leaguetable" class="cell-right more">더보기&gt;</a>
 			</div>
 			<div class="league-table">
 				<table class="table">
@@ -167,102 +168,23 @@
 						<td class="team-lanking">순위</td>
 						<td class="team-name">팀명</td>
 						<td class="team-game">경기</td>
+						<td class="team-point">승점</td>
 						<td class="team-win">승</td>
 						<td class="team-draw">무</td>
 						<td class="team-lose">패</td>
-						<td class="team-point">승점</td>
 					</thead>
-					<tbody>
-						<tr class="top">
-							<td>1</td>
-							<td class="team-name">맨시티</td>
-							<td>7</td>
-							<td>6</td>
-							<td>1</td>
-							<td>0</td>
-							<td>19</td>
-						</tr>
-						<tr class="top">
-							<td>2</td>
-							<td class="team-name">리버풀</td>
-							<td>7</td>
-							<td>6</td>
-							<td>1</td>
-							<td>0</td>
-							<td>19</td>
-						</tr>
-						<tr class="top">
-							<td>3</td>
-							<td class="team-name">첼시</td>
-							<td>7</td>
-							<td>5</td>
-							<td>2</td>
-							<td>0</td>
-							<td>17</td>
-						</tr>
-						<tr class="top">
-							<td>4</td>
-							<td class="team-name">토트넘</td>
-							<td>7</td>
-							<td>5</td>
-							<td>0</td>
-							<td>2</td>
-							<td>15</td>
-						</tr>
-						<tr>
-							<td>5</td>
-							<td class="team-name">아스날</td>
-							<td>7</td>
-							<td>5</td>
-							<td>0</td>
-							<td>2</td>
-							<td>15</td>
-						</tr>
-						<tr>
-							<td>6</td>
-							<td class="team-name">왓포드</td>
-							<td>7</td>
-							<td>4</td>
-							<td>1</td>
-							<td>2</td>
-							<td>13</td>
-						</tr>
-						<tr>
-							<td>7</td>
-							<td class="team-name">본머스</td>
-							<td>7</td>
-							<td>4</td>
-							<td>1</td>
-							<td>2</td>
-							<td>13</td>
-						</tr>
-						<tr>
-							<td>8</td>
-							<td class="team-name">레스터시티</td>
-							<td>7</td>
-							<td>4</td>
-							<td>0</td>
-							<td>3</td>
-							<td>12</td>
-						</tr>
-						<tr>
-							<td>9</td>
-							<td class="team-name">울버햄튼</td>
-							<td>7</td>
-							<td>3</td>
-							<td>3</td>
-							<td>1</td>
-							<td>12</td>
-						</tr>
-						<tr>
-							<td>10</td>
-							<td class="team-name">에버턴</td>
-							<td>7</td>
-							<td>3</td>
-							<td>3</td>
-							<td>1</td>
-							<td>12</td>
-						</tr>
+					<tbody class="table-set">
+						<c:forEach items="${leaguetables}" var="League" varStatus="count">
+							<tr class="top">
+								<td>${count.index+1}</td>
+								<td class="team-name">${League.name}</td>
+								<td>${League.game}</td>
+								<td>${League.point}</td>
+								<td>${League.win}</td>
+								<td>${League.draw}</td>
+								<td>${League.lose}</td>
+							</tr>
+						</c:forEach>
 					</tbody>
 				</table>
 			</div>

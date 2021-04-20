@@ -75,7 +75,7 @@ a {
     width: 5%;
 }
 
-.tt tr:nth-child(even) {
+.table-set tr:nth-child(even) {
     background-color: #E8E8E8;
 }
 

@@ -13,7 +13,8 @@
 
 	<select id="getForPrintnotice" resultMap="article">
 		SELECT A.*,
-		M.loginId AS extra__writer
+		M.loginId AS
+		extra__writer
 		FROM article AS A
 		INNER JOIN
 		member
@@ -30,7 +31,8 @@
 
 	<select id="getForPrintsoccer" resultMap="article">
 		SELECT A.*,
-		M.loginId AS extra__writer
+		M.loginId AS
+		extra__writer
 		FROM article AS A
 		INNER JOIN
 		member
@@ -47,7 +49,8 @@
 
 	<select id="getForPrintfree" resultMap="article">
 		SELECT A.*,
-		M.loginId AS extra__writer
+		M.loginId AS
+		extra__writer
 		FROM article AS A
 		INNER JOIN
 		member
@@ -61,7 +64,15 @@
 
 		LIMIT 0, 5
 	</select>
-	
+
+	<select id="getForPrintLeagues" resultType="League">
+		SELECT *
+		FROM
+		LeagueTable
+		ORDER BY point desc, goalGap DESC
+		LIMIT 0, 10
+	</select>
+
 	<resultMap type="Article" id="article">
 		<id property="id" column="id" />
 		<id property="regDate" column="regDate" />

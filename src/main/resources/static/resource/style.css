@@ -343,7 +343,11 @@ ul ul {
     margin-left: 5%;
     font-weight: bold;
 }
-
+.board-name-t {
+    height: 10%;
+    margin-left: 2.5%;
+    font-weight: bold;
+}
 .more{
 	padding-top: 2px;
     color: #999;
@@ -411,10 +415,16 @@ ul ul {
 .table td{
 	border: 1px solid black;
 	text-align: center;
+	    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 .table td:nth-child(2)
 {
 	text-align: left;
+	overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .team-lanking {
@@ -450,6 +460,9 @@ thead {
     background-color: #E31B23;
 }
 
+.table-set tr:nth-child(even) {
+    background-color: #E8E8E8;
+}
 /*선수소개*/
 .player-title {
     position: relative;

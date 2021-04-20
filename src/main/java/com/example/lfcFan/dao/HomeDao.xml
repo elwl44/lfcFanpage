@@ -4,13 +4,64 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.lfcFan.dao.HomeDao">
 	<select id="getForPrintnews" resultType="Article">
-		SELECT * 
-		FROM article 
-		WHERE boardid=4 
-		ORDER BY regdate 
+		SELECT *
+		FROM article
+		WHERE boardid=4
+		ORDER BY regdate
 		DESC LIMIT 4;
 	</select>
 
+	<select id="getForPrintnotice" resultMap="article">
+		SELECT A.*,
+		M.loginId AS extra__writer
+		FROM article AS A
+		INNER JOIN
+		member
+		AS M
+		ON A.memberId = M.id
+		WHERE 1
+
+		AND A.boardId = 1
+
+		ORDER BY A.id DESC
+
+		LIMIT 0, 5
+	</select>
+
+	<select id="getForPrintsoccer" resultMap="article">
+		SELECT A.*,
+		M.loginId AS extra__writer
+		FROM article AS A
+		INNER JOIN
+		member
+		AS M
+		ON A.memberId = M.id
+		WHERE 1
+
+		AND A.boardId = 3
+
+		ORDER BY A.id DESC
+
+		LIMIT 0, 5
+	</select>
+
+	<select id="getForPrintfree" resultMap="article">
+		SELECT A.*,
+		M.loginId AS extra__writer
+		FROM article AS A
+		INNER JOIN
+		member
+		AS M
+		ON A.memberId = M.id
+		WHERE 1
+
+		AND A.boardId = 2
+
+		ORDER BY A.id DESC
+
+		LIMIT 0, 5
+	</select>
+	
 	<resultMap type="Article" id="article">
 		<id property="id" column="id" />
 		<id property="regDate" column="regDate" />

@@ -333,7 +333,7 @@ ul ul {
 
 .article {
     position: relative;
-    width: 24.9%;
+    width: 24.8%;
     height: 100%;
     margin-left: 0.1%;
 }
@@ -371,22 +371,19 @@ ul ul {
     font-size: 11px;
     margin-top: 0;
     color: rgba(60, 60, 67, .6);
-    margin-left: 5%;
+    margin-left: 2%;
 }
 
-.article::after {
-    position: relative;
-    content: "";
-    display: block;
-    width: 1px;
-    height: 100%;
+.article {
+	flex: 1 0 33%;
+    overflow: hidden;
     border-left: solid 1px #ccc;
-    transform: translate(0, -100%);
 }
 
-.article:first-child::after {
-    display: none;
-    content: "";
+.article:first-child {
+    flex: 1 0 33%;
+    overflow: hidden;
+    border-left: none;
 }
 
 .league-table {

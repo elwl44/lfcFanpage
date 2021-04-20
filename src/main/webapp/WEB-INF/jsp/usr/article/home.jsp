@@ -77,7 +77,7 @@
 
 	<!--뉴스 시작-->
 	<section class="news-slider">
-		<c:forEach items="${articles}" var="article">
+		<c:forEach items="${newsArticles}" var="article">
 			<li style="width: 325px; float: left; display: block;"
 				class="section-news">
 				<c:set var="detailUrl"
@@ -86,9 +86,7 @@
 					<p style="background-image: url('${article.extra__thumbImg}');"
 						class="news"></p>
 					<div class="news-container">
-						<strong> 
-							${article.title }
-						</strong>
+						<strong> ${article.title } </strong>
 					</div>
 				</a>
 			</li>
@@ -100,130 +98,61 @@
 	<section class="section-board">
 		<div class="board-left article cell">
 			<div class="board-name">
-				<a href="#board-notice">공지사항</a>
+				<a href="/usr/article-notice/list">공지사항</a>
 			</div>
-
-			<div class="board-notice1 board">
-				<div class="board-title">
-					<a href="#notice1">공지사항1입니다 숙지해주세요 잘부탁드립니다</a>
+			<c:forEach items="${noticeArticles}" var="article">
+				<c:set var="detailUrl"
+					value="/usr/article-notice/detail?id=${article.id}&listUrl=/usr/article-notice/list" />
+				<div class="board-notice1 board">
+					<div class="board-title">
+						<a href="${detailUrl }">${article.title}</a>
+					</div>
+					<div class="board-id cell">${article.extra.writer}
+						<span>·</span>
+					</div>
+					<div class="board-date cell">${article.extra.time }</div>
 				</div>
-				<div class="board-id cell">elwl44</div>
-				<div class="board-date cell">2021.3.31</div>
-			</div>
-
-			<div class="board-notice2 board">
-				<div class="board-title">
-					<a href="#notice2">공지사항2입니다 숙지해주세요 잘부탁드립니다</a>
-				</div>
-				<div class="board-id cell">elwl44</div>
-				<div class="board-date cell">2021.3.30</div>
-			</div>
-
-			<div class="board-notice3 board">
-				<div class="board-title">
-					<a href="#notice3">공지사항3입니다 숙지해주세요 잘부탁드립니다</a>
-				</div>
-				<div class="board-id cell">elwl44</div>
-				<div class="board-date cell">2021.3.29</div>
-			</div>
-			<div class="board-notice4 board">
-				<div class="board-title">
-					<a href="#notice4">공지사항4입니다 숙지해주세요 잘부탁드립니다</a>
-				</div>
-				<div class="board-id cell">elwl44</div>
-				<div class="board-date cell">2021.3.28</div>
-			</div>
-			<div class="board-notice5 board">
-				<div class="board-title">
-					<a href="#notice5">공지사항5입니다 숙지해주세요 잘부탁드립니다</a>
-				</div>
-				<div class="board-id cell">elwl44</div>
-				<div class="board-date cell">2021.3.27</div>
-			</div>
+			</c:forEach>
 		</div>
+
 		<div class="board-mid1 article cell">
 			<div class="board-name">
-				<a href="#board-soccer">축구 게시판</a>
+				<a href="/usr/article-soccer/list">축구 게시판</a>
 			</div>
-			<div class="board-soccer1 board">
-				<div class="board-title">
-					<a href="#soccer1">축구게시판1입니다 잘부탁드립니다</a>
+			<c:forEach items="${soccerArticles}" var="article">
+				<c:set var="detailUrl"
+					value="/usr/article-soccer/detail?id=${article.id}&listUrl=/usr/article-soccer/list" />
+				<div class="board-soccer1 board">
+					<div class="board-title">
+						<a href="${detailUrl }">${article.title}</a>
+					</div>
+					<div class="board-id cell">${article.extra.writer}
+						<span>·</span>
+					</div>
+					<div class="board-date cell">${article.extra.time }</div>
 				</div>
-				<div class="board-id cell">elwl44</div>
-				<div class="board-date cell">2021.3.31</div>
-			</div>
-
-			<div class="board-soccer2 board">
-				<div class="board-title">
-					<a href="#soccer2">축구게시판2입니다 잘부탁드립니다</a>
-				</div>
-				<div class="board-id cell">elwl44</div>
-				<div class="board-date cell">2021.3.30</div>
-			</div>
-
-			<div class="board-soccer3 board">
-				<div class="board-title">
-					<a href="#soccer3">축구게시판3입니다 잘부탁드립니다</a>
-				</div>
-				<div class="board-id cell">elwl44</div>
-				<div class="board-date cell">2021.3.29</div>
-			</div>
-			<div class="board-soccer4 board">
-				<div class="board-title">
-					<a href="#soccer4">축구게시판4입니다 잘부탁드립니다</a>
-				</div>
-				<div class="board-id cell">elwl44</div>
-				<div class="board-date cell">2021.3.28</div>
-			</div>
-			<div class="board-soccer5 board">
-				<div class="board-title">
-					<a href="#soccer5">축구게시판5입니다 잘부탁드립니다</a>
-				</div>
-				<div class="board-id cell">elwl44</div>
-				<div class="board-date cell">2021.3.27</div>
-			</div>
+			</c:forEach>
 		</div>
+		
 		<div class="board-mid2 article cell">
 			<div class="board-name">
-				<a href="#board-free">자유 게시판</a>
+				<a href="/usr/article-free/list">자유 게시판</a>
 			</div>
-			<div class="board-free1 board">
-				<div class="board-title">
-					<a href="#free1">자유게시판1입니다 잘부탁드립니다</a>
+			
+			<c:forEach items="${freeArticles}" var="article">
+				<c:set var="detailUrl"
+					value="/usr/article-free/detail?id=${article.id}&listUrl=/usr/article-free/list" />
+				<div class="board-free1 board">
+					<div class="board-title">
+						<a href="${detailUrl }">${article.title}</a>
+					</div>
+					<div class="board-id cell">${article.extra.writer}
+						<span>·</span>
+					</div>
+					<div class="board-date cell">${article.extra.time }</div>
 				</div>
-				<div class="board-id cell">elwl44</div>
-				<div class="board-date cell">2021.3.31</div>
-			</div>
-
-			<div class="board-free2 board">
-				<div class="board-title">
-					<a href="#free2">자유게시판2입니다 잘부탁드립니다</a>
-				</div>
-				<div class="board-id cell">elwl44</div>
-				<div class="board-date cell">2021.3.30</div>
-			</div>
-
-			<div class="board-free3 board">
-				<div class="board-title">
-					<a href="#free3">자유게시판3입니다 잘부탁드립니다</a>
-				</div>
-				<div class="board-id cell">elwl44</div>
-				<div class="board-date cell">2021.3.29</div>
-			</div>
-			<div class="board-free4 board">
-				<div class="board-title">
-					<a href="#free4">자유게시판4입니다 잘부탁드립니다</a>
-				</div>
-				<div class="board-id cell">elwl44</div>
-				<div class="board-date cell">2021.3.28</div>
-			</div>
-			<div class="board-free5 board">
-				<div class="board-title">
-					<a href="#free5">자유게시판5입니다 잘부탁드립니다</a>
-				</div>
-				<div class="board-id cell">elwl44</div>
-				<div class="board-date cell">2021.3.27</div>
-			</div>
+			</c:forEach>
+			
 		</div>
 		<div class="board-right article cell">
 			<div class="board-name">

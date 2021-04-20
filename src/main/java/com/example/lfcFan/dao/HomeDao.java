@@ -10,4 +10,10 @@ import com.example.lfcFan.dto.Article;
 @Mapper
 public interface HomeDao {
 	List<Article> getForPrintnews();
+	
+	List<Article> getForPrintnotice();
+	
+	List<Article> getForPrintsoccer();
+	
+	List<Article> getForPrintfree();
 }

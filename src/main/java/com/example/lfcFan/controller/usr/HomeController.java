@@ -28,16 +28,53 @@ public class HomeController {
 	@RequestMapping("/usr/article/home")
 	public String showHome(Model model) {
 		/*뉴스 4개*/
-		List<Article> articles = homeService.getForPrintnews();
+		List<Article> newsArticles = homeService.getForPrintnews();
 
-		for (Article article : articles) {
+		for (Article article : newsArticles) {
 			GenFile genFile = genFileService.getGenFile("article", article.getId(), "common", "attachment", 1);
 
 			if (genFile != null) {
 				article.setExtra__thumbImg(genFile.getForPrintUrl());
 			}
 		}
-		model.addAttribute("articles", articles);
+		
+		/*공지게시판 5개*/
+		List<Article> noticeArticles = homeService.getForPrintnotice();
+		for (Article article : noticeArticles) {
+			GenFile genFile = genFileService.getGenFile("article", article.getId(), "common", "attachment", 1);
+
+			if (genFile != null) {
+				article.setExtra__thumbImg(genFile.getForPrintUrl());
+			}
+		}
+		homeService.formatTimeString(noticeArticles);
+		
+		/*축구게시판 5개*/
+		List<Article> soccerArticles = homeService.getForPrintsoccer();
+		for (Article article : soccerArticles) {
+			GenFile genFile = genFileService.getGenFile("article", article.getId(), "common", "attachment", 1);
+
+			if (genFile != null) {
+				article.setExtra__thumbImg(genFile.getForPrintUrl());
+			}
+		}
+		homeService.formatTimeString(soccerArticles);
+		
+		/*자유게시판 5개*/
+		List<Article> freeArticles = homeService.getForPrintfree();
+		for (Article article : freeArticles) {
+			GenFile genFile = genFileService.getGenFile("article", article.getId(), "common", "attachment", 1);
+
+			if (genFile != null) {
+				article.setExtra__thumbImg(genFile.getForPrintUrl());
+			}
+		}
+		homeService.formatTimeString(freeArticles);
+		
+		model.addAttribute("freeArticles", freeArticles);
+		model.addAttribute("soccerArticles", soccerArticles);
+		model.addAttribute("noticeArticles", noticeArticles);
+		model.addAttribute("newsArticles", newsArticles);
 		return "usr/article/home";
 	}
 }

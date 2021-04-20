@@ -112,10 +112,9 @@ public class ArticleController {
 	@RequestMapping("/usr/article/team")
 	public String showTeam(HttpServletRequest req, Model model, @RequestParam Map<String, Object> param) {
 		Board board = articleService.getBoardByCode("player");
-		Member loginedMember = (Member) req.getAttribute("loginedMember");
 		param.put("boardId", board.getId());
 
-		List<Player> players = articleService.getForPrintPlayers(loginedMember, param);
+		List<Player> players = articleService.getForPrintPlayers(param);
 		for (Player article : players) {
 			GenFile genFile = genFileService.getGenFile("player", article.getId(), "common", "attachment", 1);
 

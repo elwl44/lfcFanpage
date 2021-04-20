@@ -30,7 +30,7 @@ public class ArticleService {
 		return leaguetables;
 	}
 
-	public List<Player> getForPrintPlayers(Member actorMember, Map<String, Object> param) {
+	public List<Player> getForPrintPlayers(Map<String, Object> param) {
 		List<Player> players = articleDao.getForPrintPlayers(param);
 		
 		return players;

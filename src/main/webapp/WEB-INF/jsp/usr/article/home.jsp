@@ -192,230 +192,26 @@
 	</section>
 	<!--게시판 끝-->
 	<div class="player-title row">
-		<div class="group-1 cell">1군 선수단</div>
+		<div class="group-1 cell"><a href="/usr/article/team">1군 선수단</a></div>
 		<div class="coach cell">Head Coach</div>
+		<a href="/usr/article/team" class="cell-right more-player">더보기></a>
 	</div>
 
 	<!--선수소개-->
 	<section class="section-player row">
 		<div class="player-outside cell">
 			<div class="player-bundle cell">
-				<div class="player cell">
-					<img src="/resource/img/alisson.jpeg" />
-					<div class="player-info">
-						<div class="player-number cell">1</div>
-						<div class="player-name cell">Alisson</div>
-					</div>
-				</div>
-				<div class="player cell">
-					<img src="/resource/img/fabinho.jpeg" />
-					<div class="player-info">
-						<div class="player-number cell">3</div>
-						<div class="player-name cell">Fabinho</div>
-					</div>
-				</div>
-				<div class="player cell">
-					<a href="#4">
-						<img src="/resource/img/van.jpeg" />
-						<div class="player-info">
-							<div class="player-number cell">4</div>
-							<div class="player-name cell">Van Dijk</div>
+				<c:forEach items="${players}" var="player">
+					<a href="/usr/article-player/detail?id=${player.id}&listUrl=/usr/article/team">
+						<div class="player cell">
+							<img src="${player.extra__thumbImg }" />
+							<div class="player-info">
+								<div class="player-number cell">${player.backNumber }</div>
+								<div class="player-name cell">${player.firstName }</div>
+							</div>
 						</div>
 					</a>
-				</div>
-				<div class="player cell">
-					<a href="#5">
-						<img src="/resource/img/wijnal.jpeg" />
-						<div class="player-info">
-							<div class="player-number cell">5</div>
-							<div class="player-name cell">Wijnaldum</div>
-						</div>
-					</a>
-				</div>
-				<div class="player cell">
-					<img src="/resource/img/thiago.jpeg" />
-					<div class="player-info">
-						<div class="player-number cell">6</div>
-						<div class="player-name cell">Thiago</div>
-					</div>
-				</div>
-				<div class="player cell">
-					<img src="/resource/img/milner.jpeg" />
-					<div class="player-info">
-						<div class="player-number cell">7</div>
-						<div class="player-name cell">Milner</div>
-					</div>
-				</div>
-				<div class="player cell">
-					<img src="/resource/img/keita.jpeg" />
-					<div class="player-info">
-						<div class="player-number cell">8</div>
-						<div class="player-name cell">Keita</div>
-					</div>
-				</div>
-				<div class="player cell">
-					<img src="/resource/img/filmino.jpeg" />
-					<div class="player-info">
-						<div class="player-number cell">9</div>
-						<div class="player-name cell">Firmino</div>
-					</div>
-				</div>
-				<div class="player cell">
-					<img src="/resource/img/mane.jpeg" />
-					<div class="player-info">
-						<div class="player-number cell">10</div>
-						<div class="player-name cell">Mane</div>
-					</div>
-				</div>
-				<div class="player cell">
-					<img src="/resource/img/salah.jpeg" />
-					<div class="player-info">
-						<div class="player-number cell">11</div>
-						<div class="player-name cell">Salah</div>
-					</div>
-				</div>
-				<div class="player cell">
-					<img src="/resource/img/gomez.jpeg" />
-					<div class="player-info">
-						<div class="player-number cell">12</div>
-						<div class="player-name cell">Gomez</div>
-					</div>
-				</div>
-				<div class="player cell">
-					<img src="/resource/img/adrian.jpeg" />
-					<div class="player-info">
-						<div class="player-number cell">13</div>
-						<div class="player-name cell">Adrian</div>
-					</div>
-				</div>
-				<div class="player cell">
-					<img src="/resource/img/henderson.jpeg" />
-					<div class="player-info">
-						<div class="player-number cell">14</div>
-						<div class="player-name cell">Henderson</div>
-					</div>
-				</div>
-				<div class="player cell">
-					<img src="/resource/img/chambo.jpeg" />
-					<div class="player-info">
-						<div class="player-number cell">15</div>
-						<div class="player-name cell">Oxlade-Chamberlain</div>
-					</div>
-				</div>
-				<div class="player cell">
-					<img src="/resource/img/jones.jpeg" />
-					<div class="player-info">
-						<div class="player-number cell">17</div>
-						<div class="player-name cell">Jones</div>
-					</div>
-				</div>
-				<div class="player cell">
-					<img src="/resource/img/Kabak.jpeg" />
-					<div class="player-info">
-						<div class="player-number cell">19</div>
-						<div class="player-name cell">Kabak</div>
-					</div>
-				</div>
-				<div class="player cell">
-					<img src="/resource/img/jota.jpeg" />
-					<div class="player-info">
-						<div class="player-number cell">20</div>
-						<div class="player-name cell">Jota</div>
-					</div>
-				</div>
-				<div class="player cell">
-					<img src="/resource/img/Tsimikas.jpeg" />
-					<div class="player-info">
-						<div class="player-number cell">21</div>
-						<div class="player-name cell">Tsimikas</div>
-					</div>
-				</div>
-				<div class="player cell">
-					<img src="/resource/img/shaqiri.jpeg" />
-					<div class="player-info">
-						<div class="player-number cell">23</div>
-						<div class="player-name cell">Shaqiri</div>
-					</div>
-				</div>
-				<div class="player cell">
-					<img src="/resource/img/Robertson.jpeg" />
-					<div class="player-info">
-						<div class="player-number cell">26</div>
-						<div class="player-name cell">Robertson</div>
-					</div>
-				</div>
-				<div class="player cell">
-					<img src="/resource/img/origi.jpeg" />
-					<div class="player-info">
-						<div class="player-number cell">27</div>
-						<div class="player-name cell">Origi</div>
-					</div>
-				</div>
-				<div class="player cell">
-					<img src="/resource/img/davies.jpeg" />
-					<div class="player-info">
-						<div class="player-number cell">28</div>
-						<div class="player-name cell">Davies</div>
-					</div>
-				</div>
-				<div class="player cell">
-					<img src="/resource/img/matip.jpeg" />
-					<div class="player-info">
-						<div class="player-number cell">32</div>
-						<div class="player-name cell">Matip</div>
-					</div>
-				</div>
-				<div class="player cell">
-					<img src="/resource/img/williams.jpeg" />
-					<div class="player-info">
-						<div class="player-number cell">46</div>
-						<div class="player-name cell">Williams</div>
-					</div>
-				</div>
-
-				<div class="player cell">
-					<img src="/resource/img/phillips.jpeg" />
-					<div class="player-info">
-						<div class="player-number cell">47</div>
-						<div class="player-name cell">Phillips</div>
-					</div>
-				</div>
-				<div class="player cell">
-					<img src="/resource/img/woodburn.jpeg" />
-					<div class="player-info">
-						<div class="player-number cell">58</div>
-						<div class="player-name cell">Woodburn</div>
-					</div>
-				</div>
-				<div class="player cell">
-					<img src="/resource/img/kelleher.jpeg" />
-					<div class="player-info">
-						<div class="player-number cell">65</div>
-						<div class="player-name cell">Kelleher</div>
-					</div>
-				</div>
-				<div class="player cell">
-					<img src="/resource/img/arnold.jpeg" />
-					<div class="player-info">
-						<div class="player-number cell">66</div>
-						<div class="player-name cell">Alexander-Arnold</div>
-					</div>
-				</div>
-				<div class="player cell">
-					<img src="/resource/img/neco.jpeg" />
-					<div class="player-info">
-						<div class="player-number cell">76</div>
-						<div class="player-name cell">Neco-Williams</div>
-					</div>
-				</div>
-				<div class="player cell">
-					<img src="/resource/img/pitaluga.jpeg" />
-					<div class="player-info">
-						<div class="player-number cell"></div>
-						<div class="player-name cell">Pitaluga</div>
-					</div>
-				</div>
-
+				</c:forEach>
 			</div>
 		</div>
 

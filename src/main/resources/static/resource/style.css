@@ -357,6 +357,19 @@ ul ul {
 .more:hover{
 	border-bottom: solid 1px #ccc;
 }
+
+.more-player{
+	position:absolute;
+	right:27%;
+	top:35%;
+    color: white;
+    font-size: 12px;
+}
+
+.more-player:hover{
+	border-bottom: solid 1px white;
+}
+
 .board {
     height: 18%;
     width: 100%;
@@ -605,6 +618,7 @@ span.slick-divider.left.slick-arrow {
     top: 22%;
     text-align: center;
     background-color: #E31B23;
+    cursor: pointer;
 }
 
 span.slick-divider.right.slick-arrow {
@@ -615,18 +629,21 @@ span.slick-divider.right.slick-arrow {
     top: 22%;
     text-align: center;
     background-color: #E31B23;
+    cursor: pointer;
 }
 
 .arrow-left {
     position: absolute;
     left: -3%;
     top: 29%;
+    cursor: pointer;
 }
 
 .arrow-right {
     top: 29%;
     right: -4%;
     position: absolute;
+    cursor: pointer;
 }
 
 .player-bundle .slick-dots li.slick-active button:before {

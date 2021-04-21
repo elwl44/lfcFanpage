@@ -1,15 +1,19 @@
 package com.example.lfcFan.controller.usr;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.lfcFan.dto.Article;
 import com.example.lfcFan.dto.GenFile;
 import com.example.lfcFan.dto.League;
+import com.example.lfcFan.dto.Player;
+import com.example.lfcFan.service.ArticleService;
 import com.example.lfcFan.service.GenFileService;
 import com.example.lfcFan.service.HomeService;
 
@@ -21,13 +25,16 @@ public class HomeController {
 	@Autowired
 	private HomeService homeService;
 	
+	@Autowired
+	private ArticleService articleService;
+	
 	@RequestMapping("/")
 	public String showMain() {
 		return "redirect:/usr/article/home";
 	}
 	
 	@RequestMapping("/usr/article/home")
-	public String showHome(Model model) {
+	public String showHome(Model model, @RequestParam Map<String, Object> param) {
 		/*뉴스 4개*/
 		List<Article> newsArticles = homeService.getForPrintnews();
 
@@ -75,7 +82,17 @@ public class HomeController {
 		/*리그 테이블*/
 		List<League> leaguetables = homeService.getForPrintLeagues();
 		
+		/*선수 소개*/
+		List<Player> players = articleService.getForPrintPlayers(param);
+		for (Player article : players) {
+			GenFile genFile = genFileService.getGenFile("player", article.getId(), "common", "attachment", 1);
+
+			if (genFile != null) {
+				article.setExtra__thumbImg(genFile.getForPrintUrl());
+			}
+		}
 		
+		model.addAttribute("players", players);
 		model.addAttribute("leaguetables", leaguetables);
 		model.addAttribute("freeArticles", freeArticles);
 		model.addAttribute("soccerArticles", soccerArticles);

@@ -135,7 +135,6 @@ public class ArticleController {
 			month=String.valueOf(cal.get(Calendar.MONTH)+1);
 		}
 		List<MatchSchedule> matchschedule = articleService.getForPrintMatch(month);
-		System.out.println(matchschedule+"**********************");
 		model.addAttribute("month", month);
 		model.addAttribute("matchschedule", matchschedule);
 		return "usr/article/match-list";
@@ -160,13 +159,16 @@ public class ArticleController {
 		if (board.getCode().equals("player")) {
 			return "usr/article/write-player";
 		}
+		else if (board.getCode().equals("match")) {
+			return "usr/article/write-match";
+		}
 		return "usr/article/write";
 	}
 
 	@RequestMapping("/usr/article-{boardCode}/doWrite")
 	public String doWrite(HttpServletRequest req, @RequestParam Map<String, Object> param, Model model,
 			@PathVariable("boardCode") String boardCode, MultipartRequest multipartRequest) {
-
+		System.out.println(Util.getAsStr(param.get("selboxDirect"), "")+"*******************");
 		Board board = articleService.getBoardByCode(boardCode);
 		int loginedMemberId = (int) req.getAttribute("loginedMemberId");
 

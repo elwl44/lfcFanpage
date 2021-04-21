@@ -62,7 +62,9 @@
 			<tbody>
 				<c:forEach items="${matchschedule}" var="article">
 					<tr class="laliga">
-					<td class="result"><span>${article.venue }</span></td>
+						<td class="result">
+							<span>${article.venue}</span>
+						</td>
 						<td class="team_home draw">
 							<c:choose>
 								<c:when test="${article.venue eq 'H'}">
@@ -90,6 +92,11 @@
 				</c:forEach>
 			</tbody>
 		</table>
+		<div class="btnArea row">
+			<span class="btn-write cell">
+				<a href="/usr/article-match/write">일정 추가</a>
+			</span>
+		</div>
 	</section>
 </body>
 

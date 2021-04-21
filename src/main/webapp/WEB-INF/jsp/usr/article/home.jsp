@@ -98,7 +98,7 @@
 	<section class="section-board">
 		<div class="board-left article cell">
 			<div class="board-name">
-				<a href="/usr/article-notice/list">공지사항</a>
+				<a href="/usr/article-notice/list" class="board-name-title">공지사항</a>
 				<a href="/usr/article-notice/list" class="cell-right more">더보기></a>
 			</div>
 			<c:forEach items="${noticeArticles}" var="article">
@@ -118,7 +118,7 @@
 
 		<div class="board-mid1 article cell">
 			<div class="board-name">
-				<a href="/usr/article-soccer/list">축구 게시판</a>
+				<a href="/usr/article-soccer/list" class="board-name-title">축구 게시판</a>
 				<a href="/usr/article-soccer/list" class="cell-right more">더보기></a>
 			</div>
 			<c:forEach items="${soccerArticles}" var="article">
@@ -138,7 +138,7 @@
 
 		<div class="board-mid2 article cell">
 			<div class="board-name">
-				<a href="/usr/article-free/list">자유 게시판</a>
+				<a href="/usr/article-free/list" class="board-name-title">자유 게시판</a>
 				<a href="/usr/article-free/list" class="cell-right more">더보기></a>
 			</div>
 
@@ -159,7 +159,7 @@
 		</div>
 		<div class="board-right article cell">
 			<div class="board-name-t">
-				<a href="/usr/article/leaguetable">순위표</a>
+				<a href="/usr/article/leaguetable" class="board-name-title">순위표</a>
 				<a href="/usr/article/leaguetable" class="cell-right more">더보기&gt;</a>
 			</div>
 			<div class="league-table">

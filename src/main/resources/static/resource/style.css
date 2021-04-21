@@ -343,17 +343,24 @@ ul ul {
     margin-left: 5%;
     font-weight: bold;
 }
+
+.board-name-title:hover{
+	opacity: .7;
+}
+
 .board-name-t {
     height: 10%;
     margin-left: 2.5%;
     font-weight: bold;
 }
+
 .more{
 	padding-top: 2px;
     color: #999;
     font-size: 12px;
     margin-right: 2%;
 }
+
 .more:hover{
 	border-bottom: solid 1px #ccc;
 }
@@ -384,6 +391,10 @@ ul ul {
     text-overflow: ellipsis;
     font-weight: 500;
     margin-left: 5%;
+}
+
+.board-title:hover {
+	text-decoration: underline;
 }
 
 .board-id {

@@ -104,6 +104,11 @@ a {
 	margin-bottom: 20px;
 }
 
+#match_list_section table td.result {
+    width: 40px;
+    text-align: center;
+}
+
 #match_list_section table td.team_home {
 	width: 17%;
 	text-align: right;

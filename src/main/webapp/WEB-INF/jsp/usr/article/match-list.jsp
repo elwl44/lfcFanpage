@@ -62,6 +62,7 @@
 			<tbody>
 				<c:forEach items="${matchschedule}" var="article">
 					<tr class="laliga">
+					<td class="result"><span>${article.venue }</span></td>
 						<td class="team_home draw">
 							<c:choose>
 								<c:when test="${article.venue eq 'H'}">
@@ -83,7 +84,7 @@
 								</c:otherwise>
 							</c:choose>
 						</td>
-						<td class="category">${article.venue }</td>
+						<td class="category">${article.round }</td>
 						<td class="description">${article.stadium }·${article.date }</td>
 					</tr>
 				</c:forEach>

@@ -121,7 +121,13 @@ public class ArticleController {
 		model.addAttribute("players", players);
 		return "usr/article/team";
 	}
+	
+	@RequestMapping("/usr/article/match")
+	public String showMatch(HttpServletRequest req, Model model, @RequestParam Map<String, Object> param) {
 
+		return "usr/article/match-list";
+	}
+	
 	@RequestMapping("/usr/article/leaguetable")
 	public String showLeaguetable(HttpServletRequest req, Model model, @RequestParam Map<String, Object> param) {
 		List<League> leaguetables = articleService.getForPrintLeagues();

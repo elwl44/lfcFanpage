@@ -1,0 +1,137 @@
+/*노말라이징*/
+* {
+	padding: 0;
+	margin: 0;
+}
+
+ul, li {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+.cell {
+	float: left;
+}
+
+.cell-right {
+	float: right;
+}
+
+.row:after {
+	display: block;
+	content: "";
+	clear: both;
+}
+
+.section-title {
+	max-width: 1400px;
+	margin: 0 auto;
+	margin-top: 1%;
+	font-size: 1.5em;
+}
+
+.section-notice-list {
+	max-width: 1400px;
+	height: 100%;
+	margin: 0 auto;
+	margin-top: 1%;
+}
+
+.season_list {
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	margin-top: 20px;
+	justify-content: center;
+}
+
+.season_list li {
+	width: 90px;
+	margin-right: 0;
+}
+
+.season_list li.selected a {
+	color: #fff;
+	background-color: #1C1C1E;
+}
+
+.season_list li a:hover {
+	background-color: #F2F2F7;
+	color: #000;
+	padding: 4px 0;
+	border-radius: 100px;
+}
+
+.season_list li a {
+	display: block;
+	text-align: center;
+	width: 100%;
+	font-size: 20px;
+	font-weight: 600;
+	color: rgba(235, 235, 245, .3);
+	background-color: transparent;
+	padding: 4px 0;
+	border-radius: 100px;
+}
+
+.season_list li a {
+	color: rgba(60, 60, 67, .3);
+}
+
+#match_list_section {
+	max-width: 1400px;
+	height: 100%;
+	margin: 0 auto;
+	width: 100%;
+	margin-top: 40px;
+}
+
+#match_list_section table {
+	width: 100%;
+	font-size: 22px;
+	margin-top: 20px;
+}
+
+#match_list_section h2 {
+	font-size: 28px;
+	font-weight: 700;
+	margin-bottom: 20px;
+}
+
+#match_list_section table td.team_home {
+	width: 17%;
+	text-align: right;
+	padding-right: 1%;
+}
+
+#match_list_section table td.score {
+	width: 10%;
+	text-align: center;
+}
+
+#match_list_section table td {/*행 길이*/
+	padding: 15px 0;
+	vertical-align: middle;
+}
+
+#match_list_section table td.team_away {/*어웨이팀*/
+	width: 23%;
+	text-align: left;
+}
+
+
+#match_list_section table td.description {/*날짜*/
+	font-size: 13px;
+	color: rgba(60, 60, 67, .6);
+}
+
+
+#match_list_section table tr:nth-child(even) {/*짝수 배경*/
+	    background-image: linear-gradient(to bottom, rgba(10,132,255,.05) 50%, rgba(10,132,255,.05));
+}

@@ -109,7 +109,7 @@
 							<a href="/usr/article/leaguetable">LEAGUE TABLE</a>
 						</li>
 						<li class="cell">
-							<a href="/usr/article/leaguetable">Match</a>
+							<a href="/usr/article/match">Match</a>
 						</li>
 					</ul>
 				</div>

@@ -13,6 +13,7 @@ import com.example.lfcFan.dao.ArticleDao;
 import com.example.lfcFan.dto.Article;
 import com.example.lfcFan.dto.Board;
 import com.example.lfcFan.dto.League;
+import com.example.lfcFan.dto.MatchSchedule;
 import com.example.lfcFan.dto.Member;
 import com.example.lfcFan.dto.Player;
 import com.example.lfcFan.util.Util;
@@ -29,7 +30,11 @@ public class ArticleService {
 		List<League> leaguetables=articleDao.getForPrintLeagues();
 		return leaguetables;
 	}
-
+	
+	public List<MatchSchedule> getForPrintMatch(String match){
+		return articleDao.getForPrintMatch(match);
+	}
+	
 	public List<Player> getForPrintPlayers(Map<String, Object> param) {
 		List<Player> players = articleDao.getForPrintPlayers(param);
 		

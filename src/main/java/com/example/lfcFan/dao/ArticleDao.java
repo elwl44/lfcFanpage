@@ -9,10 +9,13 @@ import org.apache.ibatis.annotations.Param;
 import com.example.lfcFan.dto.Article;
 import com.example.lfcFan.dto.Board;
 import com.example.lfcFan.dto.League;
+import com.example.lfcFan.dto.MatchSchedule;
 import com.example.lfcFan.dto.Player;
 
 @Mapper
 public interface ArticleDao {
+	List<MatchSchedule> getForPrintMatch(String match);
+	
 	List<Player> getForPrintPlayers(Map<String, Object> param);
 
 	List<Article> getForPrintArticles(Map<String, Object> param);

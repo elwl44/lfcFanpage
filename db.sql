@@ -236,3 +236,14 @@ CREATE TABLE leagueTable (
     loseGoal INT(10) NOT NULL,
     goalGap INT(10) NOT NULL
 );
+
+# 경기 일정 테이블 생성
+CREATE TABLE matchschedule (
+    id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    NAME CHAR(30) NOT NULL,
+    DATE CHAR(30) NOT NULL,
+    MONTH CHAR(10) NOT NULL,
+    ROUND CHAR(30) NOT NULL,
+    venue CHAR(10) NOT NULL,
+    stadium CHAR(30) NOT NULL
+);

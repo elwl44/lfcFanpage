@@ -1,5 +1,6 @@
 package com.example.lfcFan.controller.usr;
 
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +19,7 @@ import com.example.lfcFan.dto.Article;
 import com.example.lfcFan.dto.Board;
 import com.example.lfcFan.dto.GenFile;
 import com.example.lfcFan.dto.League;
+import com.example.lfcFan.dto.MatchSchedule;
 import com.example.lfcFan.dto.Member;
 import com.example.lfcFan.dto.Player;
 import com.example.lfcFan.dto.Reply;
@@ -123,8 +125,19 @@ public class ArticleController {
 	}
 	
 	@RequestMapping("/usr/article/match")
-	public String showMatch(HttpServletRequest req, Model model, @RequestParam Map<String, Object> param) {
-
+	public String showMatch(HttpServletRequest req, Model model, @RequestParam Map<String, Object> param, String input_month) {
+		String month="";
+		if(input_month!=null) {
+			month=input_month;
+		}
+		if(month.equals("")) {
+			Calendar cal = Calendar.getInstance(); //객체 생성 및 현재 일시분초...셋팅
+			month=String.valueOf(cal.get(Calendar.MONTH)+1);
+		}
+		List<MatchSchedule> matchschedule = articleService.getForPrintMatch(month);
+		System.out.println(matchschedule+"**********************");
+		model.addAttribute("month", month);
+		model.addAttribute("matchschedule", matchschedule);
 		return "usr/article/match-list";
 	}
 	

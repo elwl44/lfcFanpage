@@ -60,6 +60,16 @@
 		ORDER BY backnumber asc
 	</select>
 
+	<select id="getForPrintMatch" resultType="MatchSchedule">
+		SELECT *
+		FROM matchschedule
+		WHERE
+		<if test="month != null">
+			month = #{month}
+		</if>
+		ORDER BY date asc
+	</select>
+
 	<select id="getTotalCount" resultType="int">
 		SELECT COUNT(*)
 		FROM article AS A

@@ -24,7 +24,6 @@
 				</div>
 			</div>
 		</c:forEach>
-		
 	</section>
 	<!--스케줄 끝-->
 

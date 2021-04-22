@@ -57,6 +57,7 @@ public class HomeService {
 
 	public List<MatchSchedule> getForPrintMatches() {
 		List<MatchSchedule> matches = homeDao.getForPrintMatch();
+		Util.getMonthDate(matches);
 		return Util.splitLeague(matches);
 	}
 }

@@ -38,7 +38,7 @@ public class HomeController {
 	public String showHome(Model model, @RequestParam Map<String, Object> param) {
 		/*경기일정 4개*/
 		List<MatchSchedule> matches = homeService.getForPrintMatches();
-		System.out.println(matches+"*******************");
+		
 		/*뉴스 4개*/
 		List<Article> newsArticles = homeService.getForPrintnews();
 
@@ -96,6 +96,7 @@ public class HomeController {
 			}
 		}
 		
+		model.addAttribute("matches", matches);
 		model.addAttribute("players", players);
 		model.addAttribute("leaguetables", leaguetables);
 		model.addAttribute("freeArticles", freeArticles);

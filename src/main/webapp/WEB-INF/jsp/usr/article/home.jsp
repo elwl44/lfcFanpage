@@ -7,78 +7,31 @@
 
 	<!--스케줄 시작-->
 	<section class="section-schedule">
-		<div class="match1 match cell">
-			<div class="match-line">
-				<div class="location1 location cell">H</div>
-				<div class="match-right cell">
-					<div class="match-right-top row">
-						<div class="match-team-name cell">Manchester Utd</div>
-					</div>
-					<div class="match-right-bot row">
-						<div class="stadium cell">Anfiled</div>
-						<div class="league cell">EPL</div>
-						<div class="round cell">3R</div>
-						<div class="date cell">3.3 23:30</div>
-					</div>
-				</div>
-
-			</div>
-		</div>
-		<div class="match2 match cell">
-			<div class="match-line">
-				<div class="location2 location cell">H</div>
-				<div class="match-right cell">
-					<div class="match-right-top row">
-						<div class="match-team-name cell">Barcelona</div>
-					</div>
-					<div class="match-right-bot row">
-						<div class="stadium cell">Anfiled</div>
-						<div class="league cell">EPL</div>
-						<div class="round cell">3R</div>
-						<div class="date cell">3.3 23:30</div>
+		<c:forEach items="${matches}" var="article">
+			<div class="match1 match cell" OnClick="location.href ='match?input_month=${article.month}'" style="cursor:pointer;">
+				<div class="match-line">
+					<div class="location1 location cell">${article.venue }</div>
+					<div class="match-right cell">
+						<div class="match-right-top row">
+							<div class="match-team-name cell">${article.name }</div>
+						</div>
+						<div class="match-right-bot row">
+							<div class="stadium cell">${article.stadium }</div>
+							<div class="league cell">${article.league }</div>
+							<div class="date cell">${article.date }</div>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-		<div class="match3 match cell">
-			<div class="match-line">
-				<div class="location3 location cell">H</div>
-				<div class="match-right cell">
-					<div class="match-right-top row">
-						<div class="match-team-name cell">Chelsea</div>
-					</div>
-					<div class="match-right-bot row">
-						<div class="stadium cell">Anfiled</div>
-						<div class="league cell">EPL</div>
-						<div class="round cell">3R</div>
-						<div class="date cell">3.3 23:30</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="match4 match cell">
-			<div class="match-line">
-				<div class="location4 location cell">H</div>
-				<div class="match-right cell">
-					<div class="match-right-top row">
-						<div class="match-team-name cell">Real Madrid</div>
-					</div>
-					<div class="match-right-bot row">
-						<div class="stadium cell">Anfiled</div>
-						<div class="league cell">UCL</div>
-						<div class="round cell">3R</div>
-						<div class="date cell">3.3 23:30</div>
-					</div>
-				</div>
-			</div>
-		</div>
+		</c:forEach>
+		
 	</section>
 	<!--스케줄 끝-->
 
 	<!--뉴스 시작-->
 	<section class="news-slider">
 		<c:forEach items="${newsArticles}" var="article">
-			<li style="width: 325px; float: left; display: block;"
+			<li 
 				class="section-news">
 				<c:set var="detailUrl"
 					value="/usr/article-news/detail?id=${article.id}&listUrl=/usr/article-news/list" />

@@ -390,4 +390,22 @@ public class Util {
 			match.setLeague(result[1]);
 		}
 	}
+
+	public static void getMonthDate(List<MatchSchedule> matches) {
+		for (MatchSchedule match : matches) {
+			String iDate =  Util.getAsStr(match.getDate(),"");
+			DateFormat dateFormat = new SimpleDateFormat ("yyyy-MM-dd");
+			String monthdate="";
+			try {
+				Date inputDate = dateFormat.parse(iDate);
+
+				SimpleDateFormat fm = new SimpleDateFormat("MM-dd");
+
+				match.setDate(fm.format(inputDate));
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
 }

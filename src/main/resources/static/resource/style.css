@@ -203,7 +203,15 @@ ul ul {
     top: 10%;
     left: 10%;
 }
-
+.testt:after{
+	    position: relative;
+    content: "";
+    display: block;
+    width: 1px;
+    height: 50px;
+    border-left: solid 1px #dadada;
+    transform: translateY(-100%);
+}
 .match::after {
     position: relative;
     content: "";
@@ -236,29 +244,42 @@ ul ul {
     position: relative;
     top: 25%;
     left: 5%;
-    width: 70%;
+    width: 75%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+.match-right-top{
+	font-size: 15px;
+    font-weight: 600;
+}
+
+.match-right-bot{
+	display: block;
+    font-size: 11px;
+    color: rgba(60,60,67,.6);
+    margin-top: 4px;
 }
 
 .stadium {
-    margin-top: 2%;
     font-size: 11px;
 }
 
 .league {
     margin-left: 5%;
-    margin-top: 2%;
     font-size: 11px;
 }
 
 .round {
     margin-left: 1%;
-    margin-top: 2%;
     font-size: 11px;
 }
 
 .date {
     margin-left: 5%;
-    margin-top: 2%;
     font-size: 11px;
 }
 
@@ -268,15 +289,18 @@ ul ul {
     height: 250px;
     width: 1440px;
     margin: 0 auto;
+    padding-top: 0.5%;
 }
 
 .section-news {
-	width: 349px !important;
+	width: 349px;
     height: 100%;
     overflow: hidden;
     border-right: 1px solid white;
     background-color: white;
     position: relative;
+    display: block;
+    float:left;
 }
 
 .news{

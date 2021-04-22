@@ -88,6 +88,11 @@
 						</td>
 						<td class="category">${article.round }</td>
 						<td class="description">${article.stadium }·${article.date }</td>
+						<c:if test="${loginedMember.id ==1}">
+							<td>
+								<a href="/usr/article/modify-league?id=${League.id }">수정</a>
+							</td>
+						</c:if>
 					</tr>
 				</c:forEach>
 			</tbody>

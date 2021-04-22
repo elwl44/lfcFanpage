@@ -168,7 +168,6 @@ public class ArticleController {
 	@RequestMapping("/usr/article-{boardCode}/doWrite")
 	public String doWrite(HttpServletRequest req, @RequestParam Map<String, Object> param, Model model,
 			@PathVariable("boardCode") String boardCode, MultipartRequest multipartRequest) {
-		System.out.println(Util.getAsStr(param.get("selboxDirect"), "")+"*******************");
 		Board board = articleService.getBoardByCode(boardCode);
 		int loginedMemberId = (int) req.getAttribute("loginedMemberId");
 
@@ -179,7 +178,8 @@ public class ArticleController {
 			articleService.writePlayer(param);
 
 			model.addAttribute("replaceUri", String.format("/usr/article/team"));
-		} else {
+		}
+		else {
 			int id = articleService.writeArticle(param);
 
 			model.addAttribute("msg", String.format("%d번 글이 생성되였습니다.", id));
@@ -187,7 +187,19 @@ public class ArticleController {
 		}
 		return "common/redirect";
 	}
+	@RequestMapping("/usr/article-{boardCode}/doWriteMatch")
+	public String doWriteMatch(HttpServletRequest req, @RequestParam Map<String, Object> param, Model model, @PathVariable("boardCode") String boardCode) {
+		Board board = articleService.getBoardByCode(boardCode);
+		int loginedMemberId = (int) req.getAttribute("loginedMemberId");
 
+		param.put("boardId", board.getId());
+		param.put("memberId", loginedMemberId);
+
+		articleService.writeMatch(param);
+
+		model.addAttribute("replaceUri", String.format("/usr/article/match"));
+		return "common/redirect";
+	}
 	@RequestMapping("/usr/article-{boardCode}/detail")
 	public String showDetail(HttpServletRequest req, Model model, int id, String listUrl,
 			@PathVariable("boardCode") String boardCode) {

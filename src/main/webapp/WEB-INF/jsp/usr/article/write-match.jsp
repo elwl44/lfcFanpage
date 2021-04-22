@@ -85,10 +85,10 @@
 	</script>
 	<section class="section-write row">
 		<div class="write-title">
-			<h1 class="con">경기정보 입력</h1>
+			<h1 class="con">경기일정 추가</h1>
 		</div>
-		<form action="doJoin" class="join-form"
-			onsubmit="joinFormSubmit(this); return false;" id="loginform">
+		<form action="doWriteMatch" class="join-form"
+			onsubmit="joinFormSubmit(this); return false;" id="loginform" enctype="multipart/form-data">
 			<div>
 				<input type="text" name="name" id="teamname" placeholder="상대팀"
 					class="subject" value="">

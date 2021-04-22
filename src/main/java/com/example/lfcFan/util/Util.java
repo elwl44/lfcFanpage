@@ -4,7 +4,9 @@ import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
 import java.net.URLEncoder;
 import java.security.MessageDigest;
+import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
@@ -342,5 +344,34 @@ public class Util {
 		int draw=getAsInt(param.get("draw"),0);
 		int point=win*3+draw*1;
 		return point;
+	}
+	
+	public static String getMonth(Map<String, Object> param) {
+		String iDate =  Util.getAsStr(param.get("date"),"");
+		DateFormat dateFormat = new SimpleDateFormat ("yyyy-MM-dd");
+		String month="";
+		try {
+			Date inputDate = dateFormat.parse(iDate);
+
+			SimpleDateFormat fm = new SimpleDateFormat("M");
+
+			month = fm.format(inputDate);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return month;
+	}
+
+	public static String sumRound(Map<String, Object> param) {
+		String round="";
+		if(Util.getAsStr(param.get("League"),"").equals("direct")) {
+			round=Util.getAsStr(param.get("other"),"")+Util.getAsStr(param.get("round"),"")+"R";
+		}
+		else{
+			round=getAsStr(param.get("League"),"")+Util.getAsStr(param.get("round"),"")+"R";
+		}
+		
+		return round;
 	}
 }

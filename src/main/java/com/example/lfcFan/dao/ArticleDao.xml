@@ -160,6 +160,31 @@
 		</set>
 	</insert>
 
+	<insert id="writeMatch" useGeneratedKeys="true"
+		keyProperty="id">
+		INSERT INTO matchschedule
+		<set>
+			<if test="name != null">
+				name = #{name},
+			</if>
+			<if test="date != null">
+				`date` = #{date},
+			</if>
+			<if test="month != null">
+				`month` = #{month},
+			</if>
+			<if test="round != null">
+				`round` = #{round},
+			</if>
+			<if test="venue != null">
+				`venue` = #{venue},
+			</if>
+			<if test="stadium != null">
+				`stadium` = #{stadium},
+			</if>
+		</set>
+	</insert>
+
 	<select id="getForPrintArticleById" resultMap="article">
 		SELECT A.*,
 		M.loginId AS extra__writer

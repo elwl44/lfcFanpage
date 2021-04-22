@@ -1,7 +1,9 @@
 package com.example.lfcFan.service;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -197,5 +199,13 @@ public class ArticleService {
 		articleDao.writePlayer(param);
 		int id = Util.getAsInt(param.get("id"));
 		changeInputFileRelIds(param, id);		
+	}
+	
+	public void writeMatch(Map<String, Object> param) {
+		String month=Util.getMonth(param);
+		param.put("month", month);
+		String round=Util.sumRound(param);
+		param.replace("round", round);
+		articleDao.writeMatch(param);
 	}
 }

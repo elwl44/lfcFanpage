@@ -46,5 +46,7 @@ public interface ArticleDao {
 
 	void writePlayer(Map<String, Object> param);
 
+	void writeMatch(Map<String, Object> param);
+	
 	List<League> getForPrintLeagues();
 }

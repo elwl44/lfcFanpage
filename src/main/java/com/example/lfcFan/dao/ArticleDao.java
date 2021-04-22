@@ -34,6 +34,8 @@ public interface ArticleDao {
 	
 	void deletePlayerById(@Param("id") int id);
 	
+	void deleteMatchById(@Param("id") int id);
+	
 	void modifyArticle(Map<String, Object> param);
 	
 	void modifyPlayer(Map<String, Object> param);

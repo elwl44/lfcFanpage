@@ -87,10 +87,14 @@
 							</c:choose>
 						</td>
 						<td class="category">${article.league }</td>
-						<td class="description">${article.stadium }·${article.date } ${article.time }</td>
+						<td class="description">${article.stadium }·${article.date }
+							${article.time }</td>
 						<c:if test="${loginedMember.id ==1}">
 							<td>
 								<a href="/usr/article/modify-match?id=${article.id }">수정</a>
+							</td>
+							<td>
+								<a href="/usr/article-match/doDelete?id=${article.id }&listUrl=${encodedCurrentUri}">삭제</a>
 							</td>
 						</c:if>
 					</tr>

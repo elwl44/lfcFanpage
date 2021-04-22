@@ -231,6 +231,11 @@
 		WHERE id = #{id}
 	</delete>
 
+	<delete id="deleteMatchById">
+		DELETE FROM matchschedule
+		WHERE id = #{id}
+	</delete>
+
 	<update id="addArticleReading">
 		update article
 		<set>

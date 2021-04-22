@@ -263,7 +263,12 @@ public class ArticleController {
 
 			model.addAttribute("replaceUri", listUrl);
 			return "common/redirect";
-		} else {
+		}else if (boardCode.equals("match")) {
+			articleService.deleteMatchById(id);
+
+			model.addAttribute("replaceUri", listUrl);
+			return "common/redirect";
+		}else {
 			Article article = articleService.getForPrintArticleById(loginedMember, id);
 
 			if ((boolean) article.getExtra().get("actorCanDelete") == false) {

@@ -15,6 +15,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import com.example.lfcFan.dto.GenFile;
+import com.example.lfcFan.dto.MatchSchedule;
+import com.example.lfcFan.dto.Player;
+
 
 public class Util {
 	
@@ -363,19 +367,27 @@ public class Util {
 		return month;
 	}
 
-	public static String sumRound(Map<String, Object> param) {
-		String round="";
-		if(Util.getAsStr(param.get("League"),"").equals("direct")) {
-			round=Util.getAsStr(param.get("other"),"")+Util.getAsStr(param.get("round"),"")+"R";
-		}
-		else{
-			round=getAsStr(param.get("League"),"")+Util.getAsStr(param.get("round"),"")+"R";
-		}
-		
-		return round;
+	public static String changeParam(Map<String, Object> param) {
+		return "direct@"+Util.getAsStr(param.get("other"),"");
 	}
 
-	public static String changeParam(Map<String, Object> param) {
-		return "driect-"+Util.getAsStr(param.get("other"),"");
+	public static List<MatchSchedule> splitLeague(List<MatchSchedule> matches) {
+		for (MatchSchedule match : matches) {
+			String[] result = match.getLeague().split("@"); 
+			if(result.length>1)
+			{
+				match.setLeague(result[1]);
+			}
+		}
+		return matches;
+	}
+
+	public static void checkLeague(MatchSchedule match) {
+		String[] result = match.getLeague().split("@"); 
+		if(result.length>1)
+		{
+			match.getExtraNotNull().put("other", result[0]);
+			match.setLeague(result[1]);
+		}
 	}
 }

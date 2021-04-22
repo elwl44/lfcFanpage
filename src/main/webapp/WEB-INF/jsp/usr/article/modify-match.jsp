@@ -107,10 +107,10 @@
 						<c:if test="${matchschedule.league == 'League Cup'}">selected="selected"</c:if>>League
 						Cup</option>
 					<option value="direct"
-						<c:if test="${matchschedule.league == 'direct'}">selected="selected"</c:if>>직접입력</option>
+						<c:if test="${matchschedule.extra.other == 'direct'}">selected="selected"</c:if>>직접입력</option>
 				</select>
 				<input type="text" id="selboxDirect" name="other"
-					class="add-file" placeholder="기타 리그를 입력해주세요">
+					class="add-file" placeholder="기타 리그를 입력해주세요" value="${matchschedule.league }">
 				<select name="venue" class="add-file" id="venue">
 					<option value="">장소</option>
 					<option value="H"

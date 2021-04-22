@@ -34,7 +34,8 @@ public class ArticleService {
 	}
 	
 	public List<MatchSchedule> getForPrintMatch(String match){
-		return articleDao.getForPrintMatch(match);
+		List<MatchSchedule> matches = articleDao.getForPrintMatch(match);
+		return Util.splitLeague(matches);
 	}
 	
 	public List<Player> getForPrintPlayers(Map<String, Object> param) {
@@ -145,7 +146,9 @@ public class ArticleService {
 	}
 	
 	public MatchSchedule getForPrintMatchById(int id) {
-		return articleDao.getForPrintMatchById(id);
+		MatchSchedule match=articleDao.getForPrintMatchById(id);
+		Util.checkLeague(match);
+		return match;
 	}
 	
 	public void addArticleReading(int id) {
@@ -214,6 +217,9 @@ public class ArticleService {
 	
 	public void writeMatch(Map<String, Object> param) {
 		String month=Util.getMonth(param);
+		if(param.get("League").equals("direct")) {
+			param.replace("League",Util.changeParam(param));
+		}
 		param.put("month", month);
 		articleDao.writeMatch(param);
 	}

@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.example.lfcFan.dto.Article;
 import com.example.lfcFan.dto.League;
+import com.example.lfcFan.dto.MatchSchedule;
 
 @Mapper
 public interface HomeDao {
@@ -19,4 +20,6 @@ public interface HomeDao {
 	List<Article> getForPrintfree();
 	
 	List<League> getForPrintLeagues();
+
+	List<MatchSchedule> getForPrintMatch();
 }

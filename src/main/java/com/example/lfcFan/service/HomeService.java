@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.example.lfcFan.dao.HomeDao;
 import com.example.lfcFan.dto.Article;
 import com.example.lfcFan.dto.League;
+import com.example.lfcFan.dto.MatchSchedule;
 import com.example.lfcFan.util.Util;
 
 @Service
@@ -52,5 +53,10 @@ public class HomeService {
 				e.printStackTrace();
 			}
 		}
+	}
+
+	public List<MatchSchedule> getForPrintMatches() {
+		List<MatchSchedule> matches = homeDao.getForPrintMatch();
+		return Util.splitLeague(matches);
 	}
 }

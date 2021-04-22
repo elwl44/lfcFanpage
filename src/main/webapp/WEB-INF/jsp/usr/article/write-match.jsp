@@ -27,6 +27,15 @@
 				}
 			})
 
+			$("#venue").change(function() {
+				if ($("#venue").val() == "H") {
+					 $('#stadium').val('Anfield');
+				}
+				else if($("#venue").val() == "A"){
+					$('#stadium').val('');
+					$('#stadium').focus();
+				}
+			})
 		});
 
 		var joinFormSubmitDone = false;
@@ -42,22 +51,22 @@
 				form.name.focus();
 				return;
 			}
-			
+
 			form.date.value = form.date.value.trim();
 			if (form.date.value.length == 0) {
 				alert('경기일을 입력해주세요.');
 				form.date.focus();
 				return;
 			}
-			
+
 			form.League.value = form.League.value.trim();
 			console.log(form.League.value.length);
-			if (form.League.value.length == 0 && $("#League").val() != "direct"){
+			if (form.League.value.length == 0 && $("#League").val() != "direct") {
 				alert('리그를 골라주세요.');
 				form.League.focus();
 				return;
 			}
-			
+
 			form.other.value = form.other.value.trim();
 			if (form.other.value.length == 0 && $("#League").val() == "direct") {
 				alert('기타리그를 입력해주세요.');
@@ -81,13 +90,15 @@
 			<h1 class="con">경기일정 추가</h1>
 		</div>
 		<form action="doWriteMatch" class="join-form"
-			onsubmit="joinFormSubmit(this); return false;" id="loginform" enctype="multipart/form-data">
+			onsubmit="joinFormSubmit(this); return false;" id="loginform"
+			enctype="multipart/form-data">
 			<div>
 				<input type="text" name="name" id="teamname" placeholder="상대팀"
 					class="subject" value="">
 				<input placeholder="경기일" class="add-file" type="text" name="date"
 					onfocus="(this.type='date')" onblur="(this.type='text')" id="date" />
-				<input type="time" name="time" placeholder="시작시간" value="21:00" class="add-file">
+				<input type="time" name="time" placeholder="시작시간" value="21:00"
+					class="add-file">
 				<select name="League" class="add-file" id="League">
 					<option value="">리그를 골라주세요</option>
 					<option value="Premier League">Premier League</option>

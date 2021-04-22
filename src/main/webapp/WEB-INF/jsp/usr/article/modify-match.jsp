@@ -81,7 +81,7 @@
 	</script>
 	<section class="section-write row">
 		<div class="write-title">
-			<h1 class="con">경기일정 수정${matchschedule }</h1>
+			<h1 class="con">경기일정 수정</h1>
 		</div>
 
 		<form action="doModifyMatch" class="join-form"

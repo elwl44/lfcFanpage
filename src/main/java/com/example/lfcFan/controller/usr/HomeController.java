@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.example.lfcFan.dto.Article;
 import com.example.lfcFan.dto.GenFile;
 import com.example.lfcFan.dto.League;
+import com.example.lfcFan.dto.MatchSchedule;
 import com.example.lfcFan.dto.Player;
 import com.example.lfcFan.service.ArticleService;
 import com.example.lfcFan.service.GenFileService;
@@ -35,6 +36,9 @@ public class HomeController {
 	
 	@RequestMapping("/usr/article/home")
 	public String showHome(Model model, @RequestParam Map<String, Object> param) {
+		/*경기일정 4개*/
+		List<MatchSchedule> matches = homeService.getForPrintMatches();
+		System.out.println(matches+"*******************");
 		/*뉴스 4개*/
 		List<Article> newsArticles = homeService.getForPrintnews();
 

@@ -3,6 +3,14 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.lfcFan.dao.HomeDao">
+	<select id="getForPrintMatch" resultType="MatchSchedule">
+		SELECT *
+		FROM
+		matchschedule
+		ORDER BY date desc
+		LIMIT 0, 4
+	</select>
+
 	<select id="getForPrintnews" resultType="Article">
 		SELECT *
 		FROM article

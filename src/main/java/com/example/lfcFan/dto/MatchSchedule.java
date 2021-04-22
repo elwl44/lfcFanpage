@@ -8,10 +8,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class MatchSchedule {
+	int id;
 	String name;
 	String date;
+	String time;
 	String month;
-	String round;
+	String league;
 	String venue;
 	String stadium;
 }

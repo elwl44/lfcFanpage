@@ -160,8 +160,7 @@
 		</set>
 	</insert>
 
-	<insert id="writeMatch" useGeneratedKeys="true"
-		keyProperty="id">
+	<insert id="writeMatch" useGeneratedKeys="true" keyProperty="id">
 		INSERT INTO matchschedule
 		<set>
 			<if test="name != null">
@@ -173,8 +172,11 @@
 			<if test="month != null">
 				`month` = #{month},
 			</if>
-			<if test="round != null">
-				`round` = #{round},
+			<if test="time != null">
+				`time` = #{time},
+			</if>
+			<if test="League != null">
+				`league` = #{League},
 			</if>
 			<if test="venue != null">
 				`venue` = #{venue},
@@ -207,6 +209,14 @@
 		SELECT *
 		FROM
 		leagueTable
+		WHERE
+		id = #{id}
+	</select>
+
+	<select id="getForPrintMatchById" resultType="MatchSchedule">
+		SELECT *
+		FROM
+		matchschedule
 		WHERE
 		id = #{id}
 	</select>
@@ -304,6 +314,34 @@
 			</if>
 			<if test="goalGap != null">
 				`goalGap` = #{goalGap},
+			</if>
+		</set>
+		WHERE id = #{id}
+	</update>
+
+	<update id="modifyMatch" >
+		UPDATE matchschedule
+		<set>
+			<if test="name != null">
+				name = #{name},
+			</if>
+			<if test="date != null">
+				`date` = #{date},
+			</if>
+			<if test="month != null">
+				`month` = #{month},
+			</if>
+			<if test="time != null">
+				`time` = #{time},
+			</if>
+			<if test="League != null">
+				`league` = #{League},
+			</if>
+			<if test="venue != null">
+				`venue` = #{venue},
+			</if>
+			<if test="stadium != null">
+				`stadium` = #{stadium},
 			</if>
 		</set>
 		WHERE id = #{id}

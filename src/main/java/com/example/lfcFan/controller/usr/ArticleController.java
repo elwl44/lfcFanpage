@@ -187,6 +187,7 @@ public class ArticleController {
 		}
 		return "common/redirect";
 	}
+	
 	@RequestMapping("/usr/article-{boardCode}/doWriteMatch")
 	public String doWriteMatch(HttpServletRequest req, @RequestParam Map<String, Object> param, Model model, @PathVariable("boardCode") String boardCode) {
 		Board board = articleService.getBoardByCode(boardCode);
@@ -200,6 +201,7 @@ public class ArticleController {
 		model.addAttribute("replaceUri", String.format("/usr/article/match"));
 		return "common/redirect";
 	}
+	
 	@RequestMapping("/usr/article-{boardCode}/detail")
 	public String showDetail(HttpServletRequest req, Model model, int id, String listUrl,
 			@PathVariable("boardCode") String boardCode) {
@@ -385,4 +387,28 @@ public class ArticleController {
 		model.addAttribute("replaceUri", String.format("/usr/article/leaguetable"));
 		return "common/redirect";
 	}
+	
+	@RequestMapping("/usr/article/modify-match")
+	public String showModifyMatch(HttpServletRequest req, Model model, String redirectUrl, int id) {
+		if (redirectUrl == null) {
+			redirectUrl = "/usr/article-free/list";
+		}
+		Member loginedMember = (Member) req.getAttribute("loginedMember");
+		MatchSchedule matchschedule = articleService.getForPrintMatchById(id);
+
+		model.addAttribute("loginedMember", loginedMember);
+		model.addAttribute("matchschedule", matchschedule);
+		model.addAttribute("redirectUrl", redirectUrl);
+
+		return "usr/article/modify-match";
+	}
+	
+	@RequestMapping("/usr/article/doModifyMatch")
+	public String doModifyMatch(@RequestParam Map<String, Object> param, HttpServletRequest req, Model model,
+			String redirectUrl) {
+		articleService.modifyMatch(param);
+		model.addAttribute("replaceUri", String.format("/usr/article/match"));
+		return "common/redirect";
+	}
+	
 }

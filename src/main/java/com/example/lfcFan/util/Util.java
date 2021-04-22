@@ -374,4 +374,8 @@ public class Util {
 		
 		return round;
 	}
+
+	public static String changeParam(Map<String, Object> param) {
+		return "driect-"+Util.getAsStr(param.get("other"),"");
+	}
 }

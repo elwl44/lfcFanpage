@@ -125,6 +125,10 @@ a {
 	vertical-align: middle;
 }
 
+#match_list_section table td.category {
+    font-size: 13px;
+}
+
 #match_list_section table td.team_away {/*어웨이팀*/
 	width: 23%;
 	text-align: left;

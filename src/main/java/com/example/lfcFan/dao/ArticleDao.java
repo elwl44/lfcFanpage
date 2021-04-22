@@ -28,6 +28,8 @@ public interface ArticleDao {
 	
 	League getForPrintLeagueById(@Param("id") int id);
 
+	MatchSchedule getForPrintMatchById(@Param("id") int id);
+	
 	void deleteArticleById(@Param("id") int id);
 	
 	void deletePlayerById(@Param("id") int id);
@@ -37,6 +39,8 @@ public interface ArticleDao {
 	void modifyPlayer(Map<String, Object> param);
 	
 	void modifyLeague(Map<String, Object> param);
+	
+	void modifyMatch(Map<String, Object> param);
 	
 	int getTotalCount(Map<String, Object> param);
 

@@ -86,11 +86,11 @@
 								</c:otherwise>
 							</c:choose>
 						</td>
-						<td class="category">${article.round }</td>
-						<td class="description">${article.stadium }·${article.date }</td>
+						<td class="category">${article.league }</td>
+						<td class="description">${article.stadium }·${article.date } ${article.time }</td>
 						<c:if test="${loginedMember.id ==1}">
 							<td>
-								<a href="/usr/article/modify-league?id=${League.id }">수정</a>
+								<a href="/usr/article/modify-match?id=${article.id }">수정</a>
 							</td>
 						</c:if>
 					</tr>

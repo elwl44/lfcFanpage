@@ -144,6 +144,10 @@ public class ArticleService {
 		return league;
 	}
 	
+	public MatchSchedule getForPrintMatchById(int id) {
+		return articleDao.getForPrintMatchById(id);
+	}
+	
 	public void addArticleReading(int id) {
 		articleDao.addArticleReading(id);
 	}
@@ -171,6 +175,13 @@ public class ArticleService {
 		param.put("goalGap", Util.goalGap(param));
 		param.put("point", Util.getPoint(param));
 		articleDao.modifyLeague(param);
+	}
+	
+	public void modifyMatch(Map<String, Object> param) {
+		if(param.get("League").equals("direct")) {
+			param.replace("League",Util.changeParam(param));
+		}
+		articleDao.modifyMatch(param);
 	}
 	
 	public int getTotalCount(Map<String, Object> param) {
@@ -204,8 +215,6 @@ public class ArticleService {
 	public void writeMatch(Map<String, Object> param) {
 		String month=Util.getMonth(param);
 		param.put("month", month);
-		String round=Util.sumRound(param);
-		param.replace("round", round);
 		articleDao.writeMatch(param);
 	}
 }

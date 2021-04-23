@@ -94,7 +94,7 @@
 								<a href="/usr/article/modify-match?id=${article.id }">수정</a>
 							</td>
 							<td>
-								<a href="/usr/article-match/doDelete?id=${article.id }&listUrl=${encodedCurrentUri}">삭제</a>
+								<a onclick="if ( confirm('삭제하시겠습니까?') == false ) return false;" href="/usr/article-match/doDelete?id=${article.id }&listUrl=${encodedCurrentUri}">삭제</a>
 							</td>
 						</c:if>
 					</tr>

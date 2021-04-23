@@ -279,12 +279,10 @@ public class ArticleController {
 		boolean isAdmin = (boolean) req.getAttribute("isAdmin");
 		if (boardCode.equals("player")) {
 			articleService.deletePlayerById(id);
-
 			model.addAttribute("replaceUri", listUrl);
 			return "common/redirect";
 		}else if (boardCode.equals("match")) {
 			articleService.deleteMatchById(id);
-
 			model.addAttribute("replaceUri", listUrl);
 			return "common/redirect";
 		}else {

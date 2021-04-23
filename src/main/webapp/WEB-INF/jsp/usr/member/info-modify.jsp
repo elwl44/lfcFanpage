@@ -99,8 +99,16 @@
 				value="${param.checkLoginPwAuthCode}" />
 			<input type="hidden" name="genFileIdsStr" value="" />
 			<div class="profile-form">
-				<p id="profile_picture" class="profile_picture"
-					style="background-image: url(/bbs/wc1765118.jpg)"></p>
+				<c:choose>
+					<c:when test="${member.extra__thumbImg==null}">
+						<p id="profile_picture" class="profile_picture"
+							style="background-image: url('/resource/img/none-profile.jpg')"></p>
+					</c:when>
+					<c:when test="${member.extra__thumbImg != null}">
+						<p id="profile_picture" class="profile_picture"
+							style="background-image: url('${member.extra__thumbImg}')"></p>
+					</c:when>
+				</c:choose>
 				<h3>프로필 사진 변경</h3>
 				<input type="file" name="file__profile__0__common__attachment__1"
 					class="picture" accept="image/gif, image/jpeg" maxlength="255"

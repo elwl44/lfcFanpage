@@ -164,6 +164,11 @@ public class MemberController {
 	public String showModify(Model model, HttpServletRequest req) {
 		int loginedMemberId = (int) req.getAttribute("loginedMemberId");
 		Member member = memberService.getMemberById(loginedMemberId);
+		GenFile genFile = genFileService.getGenFile("profile", member.getId(), "common", "attachment", 1);
+
+		if ( genFile != null ) {
+			member.setExtra__thumbImg(genFile.getForPrintUrl());
+		}
 		model.addAttribute("member", member);
 		return "usr/member/info-modify";
 	}

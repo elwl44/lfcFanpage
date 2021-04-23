@@ -40,8 +40,11 @@ public class ArticleService {
 	
 	public List<Player> getForPrintPlayers(Map<String, Object> param) {
 		List<Player> players = articleDao.getForPrintPlayers(param);
-		
 		return players;
+	}
+	
+	public List<Article> getForPrintArticlesByid(int id){
+		return articleDao.getForPrintArticlesByid(id);
 	}
 	
 	public List<Article> getForPrintArticles(Member actorMember, Map<String, Object> param) {
@@ -167,6 +170,10 @@ public class ArticleService {
 	
 	public void deleteMatchById(int id) {
 		articleDao.deleteMatchById(id);
+	}
+	
+	public void deleteArticlesByMemberId(int memberid) {
+		articleDao.deleteArticlesByMemberId(memberid);
 	}
 	
 	public void modifyArticle(Map<String, Object> param) {

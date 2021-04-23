@@ -1,5 +1,6 @@
 package com.example.lfcFan.controller.usr;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartRequest;
 
+import com.example.lfcFan.dto.Article;
 import com.example.lfcFan.dto.GenFile;
 import com.example.lfcFan.dto.Member;
 import com.example.lfcFan.dto.ResultData;
+import com.example.lfcFan.service.ArticleService;
 import com.example.lfcFan.service.GenFileService;
 import com.example.lfcFan.service.MemberService;
 import com.example.lfcFan.util.Util;
@@ -27,6 +30,9 @@ public class MemberController {
 	
 	@Autowired
 	private GenFileService genFileService;
+	
+	@Autowired
+	private ArticleService articleService;
 	
 	@RequestMapping("/usr/member/join")
 	public String showJoin() {
@@ -344,6 +350,20 @@ public class MemberController {
 
 		model.addAttribute("msg", "이메일 인증에 성공하였습니다.");
 		model.addAttribute("replaceUri", "/");
+		return "common/redirect";
+	}
+	
+	@RequestMapping("/usr/member/doSecession")
+	public String doSecession(HttpSession session, HttpServletRequest req, int memberid, Model model, String listUrl, String checkLoginPwAuthCode) {
+		
+		if (checkLoginPwAuthCode == null || checkLoginPwAuthCode.length() == 0) {
+			model.addAttribute("historyBack", true);
+			model.addAttribute("msg", "비밀번호 체크 인증코드가 없습니다.");
+			return "common/redirect";
+		}
+		List<Article> articles=articleService.getForPrintArticlesByid(memberid);
+		memberService.secessionById(session, memberid,articles);
+		model.addAttribute("replaceUri", String.format("/usr/article/home"));
 		return "common/redirect";
 	}
 }

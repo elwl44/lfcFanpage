@@ -47,6 +47,16 @@
 
 	</select>
 
+	<select id="getForPrintArticlesByid" resultType="Article">
+		SELECT *
+		FROM
+		article
+		WHERE 
+		<if test="id != null">
+			memberid = #{id}
+		</if>
+	</select>
+
 	<select id="getForPrintLeagues" resultType="League">
 		SELECT *
 		FROM
@@ -224,6 +234,11 @@
 	<delete id="deleteArticleById">
 		DELETE FROM article
 		WHERE id = #{id}
+	</delete>
+
+	<delete id="deleteArticlesByMemberId">
+		DELETE FROM article
+		WHERE memberid = #{memberid}
 	</delete>
 
 	<delete id="deletePlayerById">

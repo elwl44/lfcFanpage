@@ -22,4 +22,6 @@ public interface MemberDao {
 	void modify(Map<String, Object> param);
 
 	void modifyPw(Map<String, Object> param);
+
+	void secessionById(@Param("id") int id);
 }

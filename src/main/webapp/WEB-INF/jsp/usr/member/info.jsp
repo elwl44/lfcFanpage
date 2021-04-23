@@ -62,7 +62,7 @@
 		</div>
 		<div class="btnArea row row">
 			<span class="btn-write cell-right">
-				<a href="write">탈퇴</a>
+				<a onclick="if ( confirm('삭제하시겠습니까?') == false ) return false;" href="doSecession?memberid=${member.id }&checkLoginPwAuthCode=${param.checkLoginPwAuthCode }">탈퇴</a>
 			</span>
 
 			<span class="btn-write cell-right">

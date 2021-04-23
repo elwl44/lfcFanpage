@@ -32,6 +32,8 @@ public interface ArticleDao {
 	
 	void deleteArticleById(@Param("id") int id);
 	
+	void deleteArticlesByMemberId(int id);
+	
 	void deletePlayerById(@Param("id") int id);
 	
 	void deleteMatchById(@Param("id") int id);
@@ -55,4 +57,6 @@ public interface ArticleDao {
 	void writeMatch(Map<String, Object> param);
 	
 	List<League> getForPrintLeagues();
+
+	List<Article> getForPrintArticlesByid(int id);
 }

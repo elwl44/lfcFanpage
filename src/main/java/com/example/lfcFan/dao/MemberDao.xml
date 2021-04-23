@@ -78,4 +78,9 @@
 		</set>
 		WHERE id = #{id}
 	</update>
+	
+	<delete id="secessionById">
+		DELETE FROM member
+		WHERE id = #{id}
+	</delete>
 </mapper>

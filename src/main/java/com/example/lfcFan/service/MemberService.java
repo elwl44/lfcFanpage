@@ -6,11 +6,14 @@ import java.util.Map;
 import java.util.Random;
 import java.util.UUID;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.example.lfcFan.dao.MemberDao;
+import com.example.lfcFan.dto.Article;
 import com.example.lfcFan.dto.Member;
 import com.example.lfcFan.dto.ResultData;
 import com.example.lfcFan.util.Util;
@@ -40,7 +43,10 @@ public class MemberService {
 	
 	@Autowired
 	private GenFileService genFileService;
-
+	
+	@Autowired
+	private ArticleService articleService;
+	
 	public int join(Map<String, Object> param) {
 		memberDao.join(param);
 
@@ -190,5 +196,20 @@ public class MemberService {
 
 	public boolean isAdmin(Member actor) {
 		return actor.getAuthLevel() == 7;
+	}
+
+	public void secessionById(HttpSession session, int memberid, List<Article> articles) {
+		
+		genFileService.deleteGenFiles("profile", memberid);
+		for ( Article article : articles ) {
+			genFileService.deleteGenFiles("article", article.getId());
+		}
+		articleService.deleteArticlesByMemberId(memberid);
+		
+		session.removeAttribute("loginedMemberId");
+		session.removeAttribute("loginedMemberName");
+		session.removeAttribute("isAdmin");
+		
+		memberDao.secessionById(memberid);
 	}
 }

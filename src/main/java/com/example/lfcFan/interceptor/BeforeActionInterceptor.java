@@ -26,11 +26,13 @@ public class BeforeActionInterceptor implements HandlerInterceptor{
 		boolean isLogined = false;
 		int loginedMemberId = 0;
 		Member loginedMember = null;
-
+		boolean isAdmin = false;
+		
 		if (session.getAttribute("loginedMemberId") != null) {
 			isLogined = true;
 			loginedMemberId = (int) session.getAttribute("loginedMemberId");
 			loginedMember = memberService.getMemberById(loginedMemberId);
+			isAdmin = memberService.isAdmin(loginedMember);
 		}
 
 		request.setAttribute("isAjax", isAjax);
@@ -46,6 +48,7 @@ public class BeforeActionInterceptor implements HandlerInterceptor{
 
 		String encodedCurrentUri = Util.getUriEncoded(currentUri);
 
+		request.setAttribute("isAdmin", isAdmin);
 		request.setAttribute("currentUri", currentUri);
 		request.setAttribute("encodedCurrentUri", encodedCurrentUri);
 

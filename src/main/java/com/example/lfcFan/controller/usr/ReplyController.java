@@ -42,7 +42,7 @@ public class ReplyController {
 	@RequestMapping("/usr/reply/doDelete")
 	public String doDelete(HttpServletRequest req, Model model, int id, String redirectUrl) {
 		Member loginedMember = (Member) req.getAttribute("loginedMember");
-
+		boolean isAdmin = (boolean) req.getAttribute("isAdmin");
 		Reply reply = replyService.getForPrintReply(loginedMember, id);
 		
 		if ( redirectUrl == null || redirectUrl.length() == 0 ) {
@@ -55,7 +55,7 @@ public class ReplyController {
 			return "common/redirect";
 		}
 
-		if ((boolean) reply.getExtra().get("actorCanDelete") == false) {
+		if ((boolean) reply.getExtra().get("actorCanDelete") == false && !isAdmin) {
 			model.addAttribute("msg", "권한이 없습니다.");
 			model.addAttribute("historyBack", true);
 			return "common/redirect";

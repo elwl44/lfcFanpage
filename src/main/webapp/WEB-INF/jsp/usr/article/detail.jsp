@@ -50,7 +50,7 @@
 			</span>
 
 			<span class="btn-delete cell">
-				<c:if test="${article.extra.actorCanDelete}">
+				<c:if test="${article.extra.actorCanDelete || isAdmin}">
 					<a onclick="if ( confirm('삭제하시겠습니까?') == false ) return false;"
 						href="doDelete?id=${article.id}&listUrl=${listUrl}">삭제</a>
 				</c:if>
@@ -98,7 +98,7 @@
 								<a href="javascript:fn_modify(${count.index })"
 									class="comment-edit">수정</a>
 							</c:if>
-							<c:if test="${reply.extra.actorCanDelete}">
+							<c:if test="${reply.extra.actorCanDelete || isAdmin}">
 								<a onclick="if ( confirm('삭제하시겠습니까?') == false ) return false;"
 									href="/usr/reply/doDelete?id=${reply.id}&redirectUrl=${encodedCurrentUri}"
 									class="comment-edit">삭제</a>

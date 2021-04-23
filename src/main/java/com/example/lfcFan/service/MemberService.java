@@ -187,4 +187,8 @@ public class MemberService {
 			}
 		}
 	}
+
+	public boolean isAdmin(Member actor) {
+		return actor.getAuthLevel() == 7;
+	}
 }

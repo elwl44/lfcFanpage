@@ -276,7 +276,7 @@ public class ArticleController {
 	public String doDelete(HttpServletRequest req, int id, Model model, String listUrl,
 			@PathVariable("boardCode") String boardCode) {
 		Member loginedMember = (Member) req.getAttribute("loginedMember");
-
+		boolean isAdmin = (boolean) req.getAttribute("isAdmin");
 		if (boardCode.equals("player")) {
 			articleService.deletePlayerById(id);
 
@@ -289,8 +289,7 @@ public class ArticleController {
 			return "common/redirect";
 		}else {
 			Article article = articleService.getForPrintArticleById(loginedMember, id);
-
-			if ((boolean) article.getExtra().get("actorCanDelete") == false) {
+			if ((boolean) article.getExtra().get("actorCanDelete") == false && !isAdmin) {
 				model.addAttribute("msg", "권한이 없습니다.");
 				model.addAttribute("historyBack", true);
 				return "common/redirect";

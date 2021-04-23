@@ -14,7 +14,7 @@
 		</div>
 		<div class="writer-info">
 			<div class="writer-img cell">
-				<img class="img2 cell" src="/resource/img/nonimg.jpg" />
+				<img class="img2 cell" src="${article.extra__thumbImg }" />
 			</div>
 			<div class="writer-profile cell">
 				<div class="writer-nickname">

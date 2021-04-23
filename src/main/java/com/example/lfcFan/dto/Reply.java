@@ -20,4 +20,5 @@ public class Reply {
 	private String time;
 	
 	private Map<String, Object> extra;
+	private String extra__profileImg;
 }

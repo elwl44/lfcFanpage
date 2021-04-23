@@ -253,6 +253,16 @@ public class ArticleController {
 				article.setExtra__profileImg(genFile.getForPrintUrl());
 			}
 			
+			/*댓글작성자 프로필사진 불러오기*/
+			for (Reply file : replies) {
+				genFile = genFileService.getGenFile("profile", file.getMemberId(), "common", "attachment", 1);
+
+				if ( genFile != null ) {
+					file.setExtra__profileImg(genFile.getForPrintUrl());
+				}
+			}
+			
+			
 			model.addAttribute("board", board);
 			model.addAttribute("article", article);
 			model.addAttribute("replies", replies);

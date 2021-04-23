@@ -66,7 +66,12 @@
 			<c:forEach items="${replies}" var="reply" varStatus="count">
 				<div class="comment-area row">
 					<div class="comment-img cell">
-						<img class="img2 cell" src="/resource/img/nonimg.jpg" />
+						<c:if test="${reply.extra__profileImg != null}">
+							<img class="img2 cell" src="${reply.extra__profileImg }" />
+						</c:if>
+						<c:if test="${reply.extra__profileImg == null}">
+							<img class="img2 cell" src="/resource/img/nonimg.jpg" />
+						</c:if>
 					</div>
 					<div class="comment-info cell">
 						<div class="comment-user">

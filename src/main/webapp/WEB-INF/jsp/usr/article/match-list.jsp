@@ -101,11 +101,13 @@
 				</c:forEach>
 			</tbody>
 		</table>
-		<div class="btnArea row">
-			<span class="btn-write cell">
-				<a href="/usr/article-match/write">일정 추가</a>
-			</span>
-		</div>
+		<c:if test="${isAdmin }">
+			<div class="btnArea row">
+				<span class="btn-write cell">
+					<a href="/usr/article-match/write">일정 추가</a>
+				</span>
+			</div>
+		</c:if>
 	</section>
 </body>
 

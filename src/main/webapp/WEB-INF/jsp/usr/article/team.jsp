@@ -146,11 +146,13 @@
 			</ul>
 		</div>
 	</div>
-	<div class="btnArea row">
-		<span class="btn-write cell">
-			<a href="/usr/article-player/write">글쓰기</a>
-		</span>
-	</div>
+	<c:if test="${isAdmin }">
+		<div class="btnArea row">
+			<span class="btn-write cell">
+				<a href="/usr/article-player/write">글쓰기</a>
+			</span>
+		</div>
+	</c:if>
 </section>
 
 

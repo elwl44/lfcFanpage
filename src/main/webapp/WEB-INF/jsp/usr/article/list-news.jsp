@@ -45,12 +45,14 @@
 		</div>
 	</section>
 	<section class="section-boardNavigation">
-		<div class="btnArea row">
-			<span class="btn-write cell">
-				<a
-					href="/usr/article-${board.code}/write?listUrl=${encodedCurrentUri}">글쓰기</a>
-			</span>
-		</div>
+		<c:if test="${isAdmin }">
+			<div class="btnArea row">
+				<span class="btn-write cell">
+					<a
+						href="/usr/article-${board.code}/write?listUrl=${encodedCurrentUri}">글쓰기</a>
+				</span>
+			</div>
+		</c:if>
 		<div class="pagination">
 			<!-- 첫 페이지로 이동버튼이 노출될 필요가 있는지 여부 -->
 			<c:set var="goFirstBtnNeedToShow"

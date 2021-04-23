@@ -89,7 +89,7 @@
 						<td class="category">${article.league }</td>
 						<td class="description">${article.stadium }·${article.date }
 							${article.time }</td>
-						<c:if test="${loginedMember.id ==1}">
+						<c:if test="${isAdmin}">
 							<td>
 								<a href="/usr/article/modify-match?id=${article.id }">수정</a>
 							</td>

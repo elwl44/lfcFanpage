@@ -22,7 +22,7 @@
 				<td class="team-win">득점</td>
 				<td class="team-draw">실점</td>
 				<td class="team-lose">득실차</td>
-				<c:if test="${loginedMember.id ==1}">
+				<c:if test="${isAdmin}">
 					<td class="team-lose2">수정</td>
 				</c:if>
 			</thead>
@@ -39,7 +39,7 @@
 						<td>${League.gainGoal}</td>
 						<td>${League.loseGoal}</td>
 						<td>${League.goalGap}</td>
-						<c:if test="${loginedMember.id ==1}">
+						<c:if test="${isAdmin}">
 							<td>
 								<a href="/usr/article/modify-league?id=${League.id }" >수정</a>
 							</td>

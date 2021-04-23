@@ -22,6 +22,7 @@ public class Article {
 	
 	private Map<String, Object> extra;
 	private String extra__thumbImg;
+	private String extra__profileImg;
 	public Map<String, Object> getExtraNotNull() {
 		if ( extra == null ) {
 			extra = new HashMap<String, Object>();

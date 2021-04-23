@@ -14,7 +14,12 @@
 		</div>
 		<div class="writer-info">
 			<div class="writer-img cell">
-				<img class="img2 cell" src="${article.extra__thumbImg }" />
+				<c:if test="${article.extra__profileImg != null}">
+					<img class="img2 cell" src="${article.extra__profileImg }" />
+				</c:if>
+				<c:if test="${article.extra__profileImg == null}">
+					<img class="img2 cell" src="/resource/img/nonimg.jpg" />
+				</c:if>
 			</div>
 			<div class="writer-profile cell">
 				<div class="writer-nickname">

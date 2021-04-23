@@ -238,12 +238,21 @@ public class ArticleController {
 			articleService.addArticleReading(id);
 			Article article = articleService.getForPrintArticleById(loginedMember, id);
 			List<Reply> replies = replyService.getForPrintReplies(loginedMember, "article", id);
+			
+			/*글 이미지 불러오기*/
 			GenFile genFile = genFileService.getGenFile("article", article.getId(), "common", "attachment", 1);
-
+				
 			if (genFile != null) {
 				article.setExtra__thumbImg(genFile.getForPrintUrl());
 			}
 
+			/*글쓴이 프로필사진 불러오기*/
+			genFile = genFileService.getGenFile("profile", article.getMemberId(), "common", "attachment", 1);
+
+			if ( genFile != null ) {
+				article.setExtra__profileImg(genFile.getForPrintUrl());
+			}
+			
 			model.addAttribute("board", board);
 			model.addAttribute("article", article);
 			model.addAttribute("replies", replies);

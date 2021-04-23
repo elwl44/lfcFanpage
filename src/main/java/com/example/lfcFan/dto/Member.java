@@ -16,9 +16,9 @@ public class Member {
 	private String updateDate;
 	private String loginId;
 	private String loginPw;
+	private int authLevel;
 	private String name;
 	private String email;
-	
 	private Map<String, Object> extra;
 	public Map<String, Object> getExtraNotNull() {
 		if ( extra == null ) {

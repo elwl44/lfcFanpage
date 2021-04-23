@@ -29,12 +29,13 @@ title = '제목2',
 reading=0;
 
 # 게시물 테이블 생성
-CREATE TABLE `member` (
+CREATE TABLE `member2` (
     id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
     regDate DATETIME NOT NULL,
     updateDate DATETIME NOT NULL,
     loginId CHAR(20) NOT NULL,
     loginPw CHAR(100) NOT NULL,
+    authLevel SMALLINT(2) UNSIGNED DEFAULT 1 NOT NULL COMMENT '(1=일반,7=관리자)',
     `name` CHAR(100) NOT NULL,
     email CHAR(100) NOT NULL
 );
@@ -45,6 +46,7 @@ SET regDate = NOW(),
 updateDate = NOW(),
 loginId = 'elwl44',
 loginPw = '1234',
+authLevel = 7,
 `name` = '박범규',
 email='pbk11908@naver.com';
 

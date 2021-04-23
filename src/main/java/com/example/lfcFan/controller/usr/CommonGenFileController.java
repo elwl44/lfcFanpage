@@ -20,6 +20,7 @@ public class CommonGenFileController {
 	@RequestMapping("/common/genFile/doUpload")
 	@ResponseBody
 	public ResultData doUpload(@RequestParam Map<String, Object> param, MultipartRequest multipartRequest) {
+		System.out.println("in--------");
 		return genFileService.saveFiles(param, multipartRequest);
 	}
 }

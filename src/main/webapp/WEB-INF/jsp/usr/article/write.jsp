@@ -8,7 +8,7 @@
 	<script>
 		ArticleAdd__fileInputMaxCount = parseInt("${fileInputMaxCount}");
 	</script>
-	<script>
+<script>
 		ArticleAdd__submited = false;
 		function ArticleAdd__checkAndSubmit(form) {
 			if (ArticleAdd__submited) {

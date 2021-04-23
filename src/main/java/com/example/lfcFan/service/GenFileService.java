@@ -44,7 +44,7 @@ public class GenFileService {
 	public ResultData save(MultipartFile multipartFile) {
 		String fileInputName = multipartFile.getName();
 		String[] fileInputNameBits = fileInputName.split("__");
-
+		System.out.println("*************");
 		if (fileInputNameBits[0].equals("file") == false) {
 			return new ResultData("F-1", "파라미터 명이 올바르지 않습니다.");
 		}
@@ -117,6 +117,7 @@ public class GenFileService {
 	}
 
 	public ResultData saveFiles(Map<String, Object> param, MultipartRequest multipartRequest) {
+		System.out.println("*********************************");
 		Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
 
 		Map<String, ResultData> filesResultData = new HashMap<>();

@@ -14,7 +14,7 @@
             <h1 class="con">내정보</h1>
         </div>
         <div class="ctable even row">
-        <div class="profile-img" style="background-image: url(/bbs/wc1765118.jpg)"></div>
+        <div class="profile-img" style="background-image: url('${member.extra__thumbImg }')"></div>
         <span class="profile-txt">프로필</span>
             <table>
                 <tbody>

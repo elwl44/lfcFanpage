@@ -11,9 +11,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartRequest;
 
+import com.example.lfcFan.dto.GenFile;
 import com.example.lfcFan.dto.Member;
 import com.example.lfcFan.dto.ResultData;
+import com.example.lfcFan.service.GenFileService;
 import com.example.lfcFan.service.MemberService;
 import com.example.lfcFan.util.Util;
 
@@ -21,6 +24,9 @@ import com.example.lfcFan.util.Util;
 public class MemberController {
 	@Autowired
 	private MemberService memberService;
+	
+	@Autowired
+	private GenFileService genFileService;
 	
 	@RequestMapping("/usr/member/join")
 	public String showJoin() {
@@ -139,8 +145,17 @@ public class MemberController {
 			model.addAttribute("msg", checkValidCheckPasswordAuthCodeResultData.getMsg());
 			return "common/redirect";
 		}
-
+		
 		Member member = memberService.getMemberById(loginedMemberId);
+		/*썸네일 불러오기*/
+			GenFile genFile = genFileService.getGenFile("profile", member.getId(), "common", "attachment", 1);
+
+			if ( genFile != null ) {
+				member.setExtra__thumbImg(genFile.getForPrintUrl());
+			}
+		
+		
+		
 		model.addAttribute("member", member);
 		return "usr/member/info";
 	}
@@ -154,7 +169,7 @@ public class MemberController {
 	}
 
 	@RequestMapping("/usr/member/doModify")
-	public String doModify(Model model, HttpServletRequest req, @RequestParam Map<String, Object> param, String checkLoginPwAuthCode) {
+	public String doModify(Model model, HttpServletRequest req, @RequestParam Map<String, Object> param, String checkLoginPwAuthCode, MultipartRequest multipartRequest) {
 		if (checkLoginPwAuthCode == null || checkLoginPwAuthCode.length() == 0) {
 			model.addAttribute("historyBack", true);
 			model.addAttribute("msg", "비밀번호 체크 인증코드가 없습니다.");
@@ -171,7 +186,6 @@ public class MemberController {
 			model.addAttribute("msg", checkValidCheckPasswordAuthCodeResultData.getMsg());
 			return "common/redirect";
 		}
-		
 		param.put("id", loginedMemberId);
 
 		// 해킹방지

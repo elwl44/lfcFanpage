@@ -1,6 +1,7 @@
 package com.example.lfcFan.service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.UUID;
@@ -36,6 +37,9 @@ public class MemberService {
 	
 	@Autowired
 	private AttrService attrService;
+	
+	@Autowired
+	private GenFileService genFileService;
 
 	public int join(Map<String, Object> param) {
 		memberDao.join(param);
@@ -99,7 +103,9 @@ public class MemberService {
 	}
 
 	public void modify(Map<String, Object> param) {
-		memberDao.modify(param);
+		memberDao.modify(param);		
+		int id = Util.getAsInt(param.get("id"));
+		changeInputFileRelIds(param, id);	
 	}
 	
 	public Member getMemberByNameAndEmail(String name, String email) {
@@ -163,5 +169,19 @@ public class MemberService {
 
 	public String getAuthedEmail(int actorId) {
 		return attrService.getValue("member__" + actorId + "__extra__authedEmail");
+	}
+	
+	private void changeInputFileRelIds(Map<String, Object> param, int id) {
+		String genFileIdsStr = Util.ifEmpty((String)param.get("genFileIdsStr"), null);
+
+		if ( genFileIdsStr != null ) {
+			List<Integer> genFileIds = Util.getListDividedBy(genFileIdsStr, ",");
+
+			// 파일이 먼저 생성된 후에, 관련 데이터가 생성되는 경우에는, file의 relId가 일단 0으로 저장된다.
+			// 그것을 뒤늦게라도 이렇게 고처야 한다.
+			for (int genFileId : genFileIds) {
+				genFileService.changeRelId(genFileId, id);
+			}
+		}
 	}
 }

@@ -70,6 +70,24 @@ a {
     margin: 5px 0 0 0;
     width: 300px;
 }
+
+.del_picture {
+    display: flex;
+    font-size: 13px;
+    font-weight: 600;
+    align-items: center;
+    margin: 15px 0 0 -2px;
+    color: rgba(60,60,67,.3);
+}
+
+
+input.cb[type="checkbox"] + label {color: rgba(60,60,67,.3);}
+input.cb[type="checkbox"]:checked + label {color: #007AFF;}
+input.cb[type="checkbox"] { display: none; }
+input.cb[type="checkbox"] + label {cursor: pointer;align-self: center;display: flex;}
+input.cb[type="checkbox"] + label i { font-size: 22px; margin: 0 2px 0 0; }
+input.cb[type="checkbox"]:checked + label { color: #0A84FF; }
+
 .modify-name {
 	width: 10%;
 	height: 50px;

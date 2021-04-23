@@ -105,7 +105,10 @@ public class MemberService {
 	public void modify(Map<String, Object> param) {
 		memberDao.modify(param);		
 		int id = Util.getAsInt(param.get("id"));
-		changeInputFileRelIds(param, id);	
+		changeInputFileRelIds(param, id);
+		if(Util.getAsInt(param.get("del_picture"),0)==1) {
+			genFileService.deleteGenFiles("profile", id);
+		}
 	}
 	
 	public Member getMemberByNameAndEmail(String name, String email) {

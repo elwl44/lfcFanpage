@@ -5,6 +5,9 @@
 <%@include file="../part/head.jsp"%>
 <%@ page import="com.example.lfcFan.controller.usr.MemberController"%>
 <link rel="stylesheet" type="text/css" href="/resource/info-modify.css">
+<link
+	href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
+	rel="stylesheet">
 <head>
 
 </head>
@@ -102,6 +105,14 @@
 				<input type="file" name="file__profile__0__common__attachment__1"
 					class="picture" accept="image/gif, image/jpeg" maxlength="255"
 					onchange="readURL(this);">
+				<input type="checkbox" name="del_picture" id="del_picture" value="1"
+					class="cb">
+				<label for="del_picture" class="del_picture">
+					<i class="material-icons-round">check_box</i>
+					<span>프로필 사진 삭제</span>
+				</label>
+				<input type="checkbox" checked="" style="display: none" value="1"
+					name="open_picture" class="open_picture">
 			</div>
 			<div class="test">
 				<p class="modify-name cell">아이디:</p>

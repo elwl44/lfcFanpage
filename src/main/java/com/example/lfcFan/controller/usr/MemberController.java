@@ -191,7 +191,6 @@ public class MemberController {
 		// 해킹방지
 		param.remove("loginId");
 		param.remove("loginPw");
-
 		memberService.modify(param);
 
 		model.addAttribute("msg", String.format("수정되었습니다."));

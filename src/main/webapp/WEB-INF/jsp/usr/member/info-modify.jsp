@@ -15,6 +15,8 @@
 	<c:set var="fileInputMaxCount" value="1" />
 	<script>
 		ArticleAdd__fileInputMaxCount = parseInt("${fileInputMaxCount}");
+		const articleId = parseInt("${member.id}");
+		console.log(articleId);
 	</script>
 	<section class="section-join row">
 		<div class="join-title">
@@ -45,7 +47,7 @@
 
 				var maxSizeMb = 50;
 				var maxSize = maxSizeMb * 1024 * 1024;
-				const input = form["file__profile__0__common__attachment__1"];
+				const input = form["file__profile__"+articleId+"__common__attachment__1"];
 
 				if (input.value) {
 					if (input.files[0].size > maxSize) {
@@ -60,15 +62,25 @@
 					if (data && data.body && data.body.genFileIdsStr) {
 						form.genFileIdsStr.value = data.body.genFileIdsStr;
 					}
-
-					const input = form["file__profile__0__common__attachment__1"];
-					input.value = '';
+					
+					for ( let inputNo = 1; inputNo <= ArticleAdd__fileInputMaxCount; inputNo++ ) {
+						const input = form["file__profile__"+articleId+"__common__attachment__" + inputNo];
+						input.value = '';
+					}
+					
 					form.submit();
 				};
+				
 				const startUploadFiles = function(onSuccess) {
 					var needToUpload = false;
-
-					needToUpload = true;
+					for ( let inputNo = 1; inputNo <= ArticleAdd__fileInputMaxCount; inputNo++ ) {
+						const input = form["file__profile__"+articleId+"__common__attachment__" + inputNo];
+						if ( input.value.length > 0 ) {
+							needToUpload = true;
+							break;
+						}
+					}
+					
 					if (needToUpload == false) {
 						onSuccess();
 						return;
@@ -110,7 +122,7 @@
 					</c:when>
 				</c:choose>
 				<h3>프로필 사진 변경</h3>
-				<input type="file" name="file__profile__0__common__attachment__1"
+				<input type="file" name="file__profile__${member.id }__common__attachment__1"
 					class="picture" accept="image/gif, image/jpeg" maxlength="255"
 					onchange="readURL(this);">
 				<input type="checkbox" name="del_picture" id="del_picture" value="1"

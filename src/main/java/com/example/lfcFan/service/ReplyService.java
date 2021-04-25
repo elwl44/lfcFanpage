@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -82,6 +83,10 @@ public class ReplyService {
 
 	public void deleteReplyById(int id) {
 		replyDao.deleteReplyById(id);
+	}
+	
+	public void deleteReplysByMemberId(int memberId) {
+		replyDao.deleteReplysByMemberId(memberId);
 	}
 	
 	public void formatTimeString(List<Reply> replies){

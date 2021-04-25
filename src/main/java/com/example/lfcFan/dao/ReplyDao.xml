@@ -50,6 +50,11 @@
 		WHERE id = #{id}
 	</delete>
 
+	<delete id="deleteReplysByMemberId">
+		DELETE FROM reply
+		WHERE memberId = #{memberId}
+	</delete>
+
 	<update id="modify">
 		UPDATE reply
 		<set>

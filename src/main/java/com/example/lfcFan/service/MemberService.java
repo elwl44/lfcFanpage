@@ -47,6 +47,9 @@ public class MemberService {
 	@Autowired
 	private ArticleService articleService;
 	
+	@Autowired
+	private ReplyService replyeService;
+	
 	public int join(Map<String, Object> param) {
 		memberDao.join(param);
 
@@ -205,6 +208,7 @@ public class MemberService {
 			genFileService.deleteGenFiles("article", article.getId());
 		}
 		articleService.deleteArticlesByMemberId(memberid);
+		replyeService.deleteReplysByMemberId(memberid);
 		
 		session.removeAttribute("loginedMemberId");
 		session.removeAttribute("loginedMemberName");

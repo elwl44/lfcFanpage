@@ -363,6 +363,8 @@ public class MemberController {
 		}
 		List<Article> articles=articleService.getForPrintArticlesByid(memberid);
 		memberService.secessionById(session, memberid,articles);
+		
+		model.addAttribute("msg", "회원탈퇴가 완료되었습니다.");
 		model.addAttribute("replaceUri", String.format("/usr/article/home"));
 		return "common/redirect";
 	}

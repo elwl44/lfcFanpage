@@ -35,7 +35,7 @@
 		WHERE RE.relTypeCode = #{relTypeCode}
 		AND RE.relId = #{relId}
 		ORDER
-		BY RE.id DESC
+		BY RE.reorder asc
 	</select>
 
 	<select id="getReply" resultType="Reply">
@@ -66,6 +66,88 @@
 		WHERE id = #{id}
 	</update>
 
+	<insert id="insertBoard5Reply" parameterType="Reply">
+		<selectKey resultType="String" keyProperty="id"
+			order="BEFORE">
+			SELECT IFNULL(MAX(id),0)+1 FROM Reply
+		</selectKey>
+
+		INSERT INTO Reply(id, regDate, updateDate, body, memberId, relId,
+		relTypeCode)
+		VALUES (#{id}, NOW(), NOW(), #{body}, #{memberId},
+		#{relId}, #{relTypeCode} )
+	</insert>
+
+	<update id="updateBoard5Reply" parameterType="Reply">
+		UPDATE Reply
+		SET
+		REMEMO=#{rememo}
+		WHERE RENO=#{reno}
+	</update>
+
+
+	<select id="selectBoard6ReplyParent" resultType="Reply"
+		parameterType="String">
+		SELECT relId, REDEPTH+1 REDEPTH, REORDER
+		FROM Reply
+		WHERE
+		id=#{reparent}
+	</select>
+
+	<select id="selectBoard6ReplyMaxOrder" resultType="Integer"
+		parameterType="Reply">
+		SELECT IFNULL(MAX(REORDER),0)+1
+		FROM Reply
+		WHERE
+		relId=#{relId}
+	</select>
+	<update id="updateBoard6ReplyOrder" parameterType="Reply">
+		UPDATE Reply
+		SET REORDER = REORDER + 1
+		WHERE relId=#{relId} AND REORDER>#{reorder}
+	</update>
+
+	<insert id="insertBoard6Reply" parameterType="Reply">
+		<selectKey resultType="String" keyProperty="id"
+			order="BEFORE">
+			SELECT IFNULL(MAX(id),0)+1 FROM Reply
+		</selectKey>
+
+		INSERT INTO Reply(id, regDate, updateDate, body, memberId, relId,
+		relTypeCode, REPARENT, REDEPTH, REORDER)
+		VALUES (#{id}, NOW(), NOW(),
+		#{body}, #{memberId}, #{relId}, #{relTypeCode},#{reparent},
+		#{redepth}, #{reorder})
+	</insert>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	<resultMap type="Reply" id="reply">
 		<id property="id" column="id" />
 		<id property="regDate" column="regDate" />
@@ -74,7 +156,9 @@
 		<id property="relId" column="relId" />
 		<id property="body" column="body" />
 		<id property="memberId" column="memberId" />
-
+		<id property="reparent" column="reparent" />
+		<id property="redepth" column="redepth" />
+		<id property="reorder" column="reorder" />
 		<association property="extra" javaType="map">
 			<id property="writer" column="extra__writer" />
 		</association>

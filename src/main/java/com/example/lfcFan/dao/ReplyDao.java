@@ -21,4 +21,14 @@ public interface ReplyDao {
 	void modify(Map<String, Object> param);
 	
 	void deleteReplysByMemberId(@Param("memberId") int memberId);
+
+	Reply selectBoard6ReplyParent(String reparent);
+
+	void updateBoard6ReplyOrder(Reply replyInfo);
+
+	Integer selectBoard6ReplyMaxOrder(Reply reply);
+	
+	void insertBoard6Reply(Reply reply);
+
+	void updateBoard6Reply(Reply reply);
 }

@@ -21,12 +21,17 @@ public class ReplyController {
 	private ReplyService replyService;
 
 	@RequestMapping("/usr/reply/doWrite")
-	public String doWrite(HttpServletRequest req, @RequestParam Map<String, Object> param, Model model, String redirectUrl) {
+	public String doWrite(HttpServletRequest req, @RequestParam Map<String, Object> param, Model model, String redirectUrl, Reply reply) {
 		int loginedMemberId = (int) req.getAttribute("loginedMemberId");
-
+		//String reparent=Util.getAsStr(param.get("parent_id"), "0");
+		//reply.setReparent(reparent);
+		if(!param.get("parent_id").equals("")) {
+			reply.setReparent(param.get("parent_id")+"");
+		}
 		param.put("memberId", loginedMemberId);
-		int id = replyService.write(param);
-
+		reply.setMemberId(loginedMemberId);
+		int id = replyService.write(reply);
+		
 		String relTypeCode = (String)param.get("relTypeCode");
 		int relId = Util.getAsInt(param.get("relId"));
 		

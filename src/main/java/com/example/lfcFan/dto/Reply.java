@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Reply {
-	private int id;
+	private String id;
 	private String regDate;
 	private String updateDate;
 	private String relTypeCode;
@@ -18,6 +18,9 @@ public class Reply {
 	private int memberId;
 	private String body;
 	private String time;
+    private String reparent;
+    private String redepth;
+    private Integer reorder;
 	
 	private Map<String, Object> extra;
 	private String extra__profileImg;

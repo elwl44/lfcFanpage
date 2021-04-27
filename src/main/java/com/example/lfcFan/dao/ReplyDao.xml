@@ -88,8 +88,9 @@
 
 	<select id="selectBoard6ReplyParent" resultType="Reply"
 		parameterType="String">
-		SELECT relId, REDEPTH+1 REDEPTH, REORDER
-		FROM Reply
+		SELECT relId, REDEPTH+1 REDEPTH
+             , IFNULL((SELECT MAX(REORDER) FROM Reply WHERE REPARENT=TB.id), TB.REORDER) REORDER
+          FROM Reply TB
 		WHERE
 		id=#{reparent}
 	</select>

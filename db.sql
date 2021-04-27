@@ -142,7 +142,6 @@ UPDATE article SET boardId = 1 WHERE id <= 2;
 UPDATE article SET boardId = 2 WHERE id > 2;
 
 # 부가정보테이블 
-# 댓글 테이블 추가
 CREATE TABLE attr (
     id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
     regDate DATETIME NOT NULL,

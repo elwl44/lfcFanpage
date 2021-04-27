@@ -145,7 +145,7 @@
 								<span class="comment-date cell">${reply.time} </span>
 								<div class="button-comment cell">
 									<a href="javascript:;" onclick="click_reComment(${reply.id})"
-										class="btn">댓글</a>
+										class="btn">답글</a>
 								</div>
 							</div>
 
@@ -188,7 +188,8 @@
 					</div>
 				</c:if>
 				<c:if test="${reply.redepth>0 }">
-					<div class="comment-area row" style="padding-left: ${reply.redepth*30}px">
+					<div class="comment-area row"
+						style="padding-left: ${reply.redepth*30}px">
 						<div class="comment-img cell">
 							<c:if test="${reply.extra__profileImg != null}">
 								<img class="img2 cell" src="${reply.extra__profileImg }" />
@@ -201,12 +202,13 @@
 							<div class="comment-user">
 								<strong>${reply.extra.writer}</strong>
 							</div>
-							<c:forEach items="${replies}" var="preply" varStatus="count">
-								<c:if test="${reply.reparent == preply.id && reply.redepth>1}">
-									<div class="memo cell" id="memo${count.index}" style="margin-right:1%">
+							<c:forEach items="${replies}" var="preply" varStatus="i">
+								<div class="memo cell" id="memo${i.index}"
+									style="margin-right: 1%">
+									<c:if test="${reply.reparent == preply.id && reply.redepth>1}">
 										<strong>${preply.extra.writer}</strong>
-									</div>
-								</c:if>
+									</c:if>
+								</div>
 							</c:forEach>
 							<div class="memo cell" id="memo${count.index}">${reply.body}</div>
 							<div class="row">
@@ -226,7 +228,7 @@
 								<span class="comment-date cell">${reply.time} </span>
 								<div class="button-comment cell">
 									<a href="javascript:;" onclick="click_reComment(${reply.id})"
-										class="btn">댓글</a>
+										class="btn">답글</a>
 								</div>
 							</div>
 

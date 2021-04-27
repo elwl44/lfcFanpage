@@ -5,6 +5,12 @@
 <%@include file="../part/head.jsp"%>
 <link rel="stylesheet" href="/resource/style.css">
 <link rel="stylesheet" href="/resource/detail.css">
+<style>
+.selected {
+	color: #E31B23;
+}
+</style>
+
 <body>
 
 	<script>
@@ -109,7 +115,7 @@
 
 	<section class="section-comment">
 		<div class="comttl">
-			<h3>댓글 ${replies.size()}개</h3>
+			<h3>댓글 ${totalCount}개</h3>
 		</div>
 		<div class="comment-container">
 			<c:forEach items="${replies}" var="reply" varStatus="count">
@@ -271,6 +277,37 @@
 					</div>
 				</c:if>
 			</c:forEach>
+
+			<div class="pagination">
+				<!-- 첫 페이지로 이동버튼이 노출될 필요가 있는지 여부 -->
+				<c:set var="goFirstBtnNeedToShow"
+					value="${page > pageMenuArmSize + 1}" />
+				<!-- 마지막 페이지로 이동버튼이 노출될 필요가 있는지 여부 -->
+				<c:set var="goLastBtnNeedToShow" value="true" />
+				<c:if test="${0 == totalPage}">
+					<c:set var="goFirstBtnNeedToShow" value="false" />
+				</c:if>
+				<!-- 첫 페이지로 이동버튼이 노출될 필요가 있다면 노출 -->
+				<c:if test="${goFirstBtnNeedToShow}">
+					<a href="?id=${article.id}&listUrl=${listUrl}&page=1" class="prevEnd">첫 페이지</a>
+				</c:if>
+				<c:forEach var="i" begin="${pageMenuStart}" end="${pageMenuEnd}">
+					<c:set var="className" value="${i == page ? 'selected' : ''}" />
+					<a class="${className}" href="?id=${article.id}&listUrl=${listUrl}&page=${i}">${i}</a>
+
+					<!-- 방금 노출된 페이지 번호가 마지막 페이지의 번호였다면, 마지막으로 이동하는 버튼이 노출될 필요가 없다고 설정 -->
+					<c:if test="${i == totalPage}">
+						<c:set var="goLastBtnNeedToShow" value="false" />
+					</c:if>
+				</c:forEach>
+
+				<c:if test="${0 == totalPage}">
+					<c:set var="goLastBtnNeedToShow" value="false" />
+				</c:if>
+				<c:if test="${goLastBtnNeedToShow}">
+					<a href="?id=${article.id}&listUrl=${listUrl}&page=${totalPage}" class="nextEnd">끝 페이지</a>
+				</c:if>
+			</div>
 
 			<form action="/usr/reply/doWrite" method="POST" class="comment-write"
 				name="comment-write" id="comment-write">

@@ -304,3 +304,8 @@ a {
 	color: black;
 	font-size: 10px;
 }
+
+.pagination{
+	text-align: center;
+	margin-top: 1%;
+}

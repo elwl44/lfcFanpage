@@ -29,13 +29,16 @@
 		AS
 		extra__writer
 		FROM reply AS RE
-		INNER JOIN member AS M
+		INNER JOIN member
+		AS M
 		ON RE.memberId =
 		M.id
 		WHERE RE.relTypeCode = #{relTypeCode}
-		AND RE.relId = #{relId}
+		AND
+		RE.relId = #{relId}
 		ORDER
 		BY RE.reorder asc
+			LIMIT #{param.limitFrom}, #{param.limitTake}
 	</select>
 
 	<select id="getReply" resultType="Reply">
@@ -89,8 +92,9 @@
 	<select id="selectBoard6ReplyParent" resultType="Reply"
 		parameterType="String">
 		SELECT relId, REDEPTH+1 REDEPTH
-             , IFNULL((SELECT MAX(REORDER) FROM Reply WHERE REPARENT=TB.id), TB.REORDER) REORDER
-          FROM Reply TB
+		, IFNULL((SELECT MAX(REORDER) FROM Reply WHERE REPARENT=TB.id),
+		TB.REORDER) REORDER
+		FROM Reply TB
 		WHERE
 		id=#{reparent}
 	</select>
@@ -121,33 +125,11 @@
 		#{redepth}, #{reorder})
 	</insert>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	<select id="getArticleRelTotalCount" resultType="int">
+		SELECT COUNT(*)
+		FROM Reply
+		where relid=#{id}
+	</select>
 
 	<resultMap type="Reply" id="reply">
 		<id property="id" column="id" />

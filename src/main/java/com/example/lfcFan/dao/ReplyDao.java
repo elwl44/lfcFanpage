@@ -12,7 +12,7 @@ import com.example.lfcFan.dto.Reply;
 public interface ReplyDao {
 	void write(Map<String, Object> param);
 
-	List<Reply> getForPrintReplies( @Param("relTypeCode") String relTypeCode, @Param("relId") int id);
+	List<Reply> getForPrintReplies( @Param("relTypeCode") String relTypeCode, @Param("relId") int id, Map<String, Object> param);
 
 	Reply getReply(@Param("id") int id);
 
@@ -31,4 +31,6 @@ public interface ReplyDao {
 	void insertBoard6Reply(Reply reply);
 
 	void updateBoard6Reply(Reply reply);
+
+	int getArticleRelTotalCount(int id);
 }

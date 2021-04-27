@@ -26,7 +26,6 @@ public class ReplyService {
 		if (reply.getId() == null || "".equals(reply.getId())) {
             if (reply.getReparent() != null) {
                 Reply replyInfo = replyDao.selectBoard6ReplyParent(reply.getReparent());
-                System.out.println(replyInfo.getRedepth()+"********1");
                 reply.setRedepth(replyInfo.getRedepth());
                 reply.setReorder(replyInfo.getReorder() + 1);
                replyDao.updateBoard6ReplyOrder(replyInfo);
@@ -37,7 +36,6 @@ public class ReplyService {
                 reply.setReparent(reparent);
                 reply.setRedepth("0");
             }
-            System.out.println(reply+"*******************");
             replyDao.insertBoard6Reply(reply);
         } else {
         	replyDao.updateBoard6Reply(reply);
@@ -48,8 +46,27 @@ public class ReplyService {
 		return id;
 	}
 
-	public List<Reply> getForPrintReplies(Member actorMember, String relTypeCode, int relId) {
-		List<Reply> replies = replyDao.getForPrintReplies(relTypeCode, relId);
+	public List<Reply> getForPrintReplies(Member actorMember, String relTypeCode, int relId, Map<String, Object> param) {
+		/*댓글 페이징*/
+		int page = Util.getAsInt(param.get("page"), 1);
+
+		// 한 리스트에 나올 수 있는 게시물 게수
+		int itemsCountInAPage = Util.getAsInt(param.get("itemsCountInAPage"), 10);
+		
+		if ( itemsCountInAPage > 100 ) {
+			itemsCountInAPage = 100;
+		}
+		else if ( itemsCountInAPage < 1 ) {
+			itemsCountInAPage = 1;
+		}
+
+		int limitFrom = (page - 1) * itemsCountInAPage;
+		int limitTake = itemsCountInAPage;
+
+		param.put("limitFrom", limitFrom);
+		param.put("limitTake", limitTake);
+		
+		List<Reply> replies = replyDao.getForPrintReplies(relTypeCode, relId, param);
 		formatTimeString(replies);
 
 		for (Reply reply : replies) {
@@ -125,6 +142,10 @@ public class ReplyService {
 
 	public void modify(Map<String, Object> param) {
 		replyDao.modify(param);
+	}
+
+	public int getArticleRelTotalCount(int id) {
+		return replyDao.getArticleRelTotalCount(id);
 	}
 
 }

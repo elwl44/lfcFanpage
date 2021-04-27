@@ -204,7 +204,7 @@ public class ArticleController {
 	
 	@RequestMapping("/usr/article-{boardCode}/detail")
 	public String showDetail(HttpServletRequest req, Model model, int id, String listUrl,
-			@PathVariable("boardCode") String boardCode) {
+			@PathVariable("boardCode") String boardCode, @RequestParam Map<String, Object> param) {
 
 		Member loginedMember = (Member) req.getAttribute("loginedMember");
 
@@ -213,7 +213,6 @@ public class ArticleController {
 		if (listUrl == null && boardCode != null) {
 			listUrl = "/usr/article-" + boardCode + "/list";
 		}
-
 		if (boardCode.equals("player")) {
 			Player player = articleService.getForPrintPlayerById(id);
 			GenFile genFile = genFileService.getGenFile("player", player.getId(), "common", "attachment", 1);
@@ -237,7 +236,32 @@ public class ArticleController {
 		} else {
 			articleService.addArticleReading(id);
 			Article article = articleService.getForPrintArticleById(loginedMember, id);
-			List<Reply> replies = replyService.getForPrintReplies(loginedMember, "article", id);
+			
+			/*댓글페이징*/
+			int totalCount = replyService.getArticleRelTotalCount(id);
+			int itemsCountInAPage = 10;
+			int totalPage = (int) Math.ceil(totalCount / (double) itemsCountInAPage);
+
+			int pageMenuArmSize = 1;
+			int page = Util.getAsInt(param.get("page"), 1);
+			int pageMenuStart = page - pageMenuArmSize;
+			if (pageMenuStart < 1) {
+				pageMenuStart = 1;
+			}
+			int pageMenuEnd = page + pageMenuArmSize;
+			if (pageMenuEnd > totalPage) {
+				pageMenuEnd = totalPage;
+			}
+
+			param.put("itemsCountInAPage", itemsCountInAPage);
+			model.addAttribute("totalCount", totalCount);
+			model.addAttribute("totalPage", totalPage);
+			model.addAttribute("pageMenuArmSize", pageMenuArmSize);
+			model.addAttribute("pageMenuStart", pageMenuStart);
+			model.addAttribute("pageMenuEnd", pageMenuEnd);
+			model.addAttribute("page", page);
+			
+			List<Reply> replies = replyService.getForPrintReplies(loginedMember, "article", id, param);
 			
 			/*글 이미지 불러오기*/
 			GenFile genFile = genFileService.getGenFile("article", article.getId(), "common", "attachment", 1);
@@ -261,7 +285,6 @@ public class ArticleController {
 					file.setExtra__profileImg(genFile.getForPrintUrl());
 				}
 			}
-			
 			
 			model.addAttribute("board", board);
 			model.addAttribute("article", article);

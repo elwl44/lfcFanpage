@@ -89,7 +89,10 @@ CREATE TABLE reply (
     `body` TEXT NOT NULL,
     memberId INT(10) UNSIGNED NOT NULL,
     relId INT(10) UNSIGNED NOT NULL, # 관련 데이터 ID
-    relTypeCode CHAR(50) NOT NULL # 관련 데이터 타입
+    relTypeCode CHAR(50) NOT NULL, # 관련 데이터 타입
+    REPARENT INT(11),
+    REDEPTH INT,
+    REORDER INT
 );
 
 SELECT * FROM reply; 

@@ -18,6 +18,10 @@ function selectAll(selectAll)  {
 		 }
 	}
 function showPopup() { 
+	if ($('#c1').is(":checked") == false) {
+		alert('유저를 선택해주세요.');
+		return;
+	}
     var obj_length = document.getElementsByName("c1").length;
     var myForm = document.popForm;
     var arr = []; 
@@ -28,13 +32,12 @@ function showPopup() {
     newForm.attr("target","popForm"); 
     for (var i=0; i<obj_length; i++) {
         if (document.getElementsByName("c1")[i].checked == true) {
-            //newForm.append($('<input/>', {type: 'hidden', name: 'id'+i, value:document.getElementsByName("c1")[i].value })); 
             arr.push(document.getElementsByName("c1")[i].value);
         }
     }
     
 	newForm.append($('<input/>', {type: 'hidden', name: 'id', value:arr})); 
-	window.open("/usr/admin/banMember", "popForm", "width=460, height=485, scrollbars=no, toolbar=no, scrollbars=no, location=no, status=yes, menubar=no, resizable=no"); 
+	window.open("/usr/admin/banMember", "popForm", "width=356, height=485, scrollbars=no, toolbar=no, scrollbars=no, location=no, status=yes, menubar=no, resizable=no"); 
 	newForm.appendTo('body');
 	newForm.submit();
 	

@@ -54,6 +54,7 @@
 <body>
 	<section class="section-title">
 		<h1 class="con">회원 관리 페이지</h1>
+		<strong>${banmembers }</strong>
 		<span class="total">회원 수:${totalCount}</span>
 	</section>
 	<section class="section-notice-list row">

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.lfcFan.dao.AdminDao;
 import com.example.lfcFan.dao.ArticleDao;
+import com.example.lfcFan.dto.BanMember;
 import com.example.lfcFan.dto.Member;
 import com.example.lfcFan.util.Util;
 
@@ -21,6 +22,10 @@ public class AdminService {
 			param.put("id", id);
 			adminDao.addbanMemberById(param);
 		}
+	}
+
+	public List<BanMember> getForPrintBanMembers() {
+		return adminDao.getForPrintBanMembers();
 	}
 
 }

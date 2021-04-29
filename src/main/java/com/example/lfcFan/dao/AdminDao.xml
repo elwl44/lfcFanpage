@@ -11,7 +11,8 @@
 				`memberId` = #{id},
 			</if>
 			startDate = NOW(),
-			finishDate = DATE_ADD(NOW(),INTERVAL  #{duration} DAY),
+			finishDate = DATE_ADD(NOW(),INTERVAL #{duration}
+			DAY),
 			status = 1,
 			<if test="ban_memo != null">
 				`body` = #{ban_memo},
@@ -19,4 +20,9 @@
 		</set>
 	</insert>
 
+	<select id="getForPrintBanMembers" resultType="BanMember">
+		SELECT *
+		FROM
+		banMember
+	</select>
 </mapper>

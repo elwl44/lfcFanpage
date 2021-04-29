@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.lfcFan.dto.Article;
+import com.example.lfcFan.dto.BanMember;
 import com.example.lfcFan.dto.Member;
 import com.example.lfcFan.service.AdminService;
 import com.example.lfcFan.service.ArticleService;
@@ -24,13 +25,13 @@ import com.example.lfcFan.util.Util;
 public class AdminController {
 	@Autowired
 	private ArticleService articleService;
-	
+
 	@Autowired
 	private MemberService memberService;
-	
+
 	@Autowired
 	private AdminService adminService;
-	
+
 	@RequestMapping("/usr/admin/checkMember")
 	public String checkMember(HttpServletRequest req, Model model, @RequestParam Map<String, Object> param) {
 		boolean isAdmin = (boolean) req.getAttribute("isAdmin");
@@ -39,7 +40,7 @@ public class AdminController {
 			model.addAttribute("historyBack", true);
 			return "common/redirect";
 		}
-		
+
 		int totalCount = memberService.getTotalCount(param);
 		int itemsCountInAPage = 10;
 		int totalPage = (int) Math.ceil(totalCount / (double) itemsCountInAPage);
@@ -57,7 +58,7 @@ public class AdminController {
 		}
 
 		param.put("itemsCountInAPage", itemsCountInAPage);
-		
+
 		List<Member> members = memberService.getForPrintMembers(param);
 		articleService.getWrtieCountMembers(members);
 		model.addAttribute("totalCount", totalCount);
@@ -69,30 +70,36 @@ public class AdminController {
 		model.addAttribute("members", members);
 		return "usr/admin/checkMember";
 	}
-	
+
 	@RequestMapping("/usr/admin/banMember")
-	public String showBanMember(HttpServletRequest req, Model model, 
-			@RequestParam Map<String, Object> param,@RequestParam(value="id") List<String> _id) {
+	public String showBanMember(HttpServletRequest req, Model model, @RequestParam Map<String, Object> param,
+			@RequestParam(value = "id") List<String> _id) {
 		List<Member> members = new ArrayList<Member>();
-	
+		List<BanMember> banmembers = adminService.getForPrintBanMembers();
 		for (String id : _id) {
-			Member member=(memberService.getMemberById(Util.getAsInt(id,0)));
+			Member member = (memberService.getMemberById(Util.getAsInt(id, 0)));
 			members.add(member);
 		}
-		
+		for (Member member : members) {
+			for (BanMember banmember : banmembers) {
+				if (member.getId() == banmember.getMemberid() && banmember.getStatus() == 1) {
+					model.addAttribute("msg", String.format("이미 활동정지되었습니다."));
+					model.addAttribute("popup_close", String.format("close"));
+					model.addAttribute("historyBack", true);
+					return "common/redirect";
+				}
+			}
+		}
 		model.addAttribute("members", members);
 		return "usr/admin/banMember";
 	}
-	
+
 	@RequestMapping("/usr/admin/doBanMember")
 	public String doBanMember(HttpSession session, HttpServletRequest req, Model model, String listUrl,
-			@RequestParam Map<String, Object> param,@RequestParam(value="membersId") List<String> membersId) {
+			@RequestParam Map<String, Object> param, @RequestParam(value = "membersId") List<String> membersId) {
 
-		adminService.addbanMemberById(membersId,param);
-		
-		
-		
-		
+		adminService.addbanMemberById(membersId, param);
+
 		model.addAttribute("msg", "회원탈퇴가 완료되었습니다.");
 		model.addAttribute("popup_close", String.format("close"));
 		return "common/redirect";

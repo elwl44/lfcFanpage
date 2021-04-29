@@ -29,10 +29,12 @@ title = '제목2',
 reading=0;
 
 # 게시물 테이블 생성
-CREATE TABLE `member2` (
+CREATE TABLE `member` (
     id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
     regDate DATETIME NOT NULL,
     updateDate DATETIME NOT NULL,
+    lastLogin DATETIME,
+    visitCount int(10) NOT NULL UNSIGNED,
     loginId CHAR(20) NOT NULL,
     loginPw CHAR(100) NOT NULL,
     authLevel SMALLINT(2) UNSIGNED DEFAULT 1 NOT NULL COMMENT '(1=일반,7=관리자)',
@@ -253,3 +255,13 @@ CREATE TABLE matchschedule (
     stadium CHAR(30) NOT NULL
 );
 
+#유저 정지 테이블
+CREATE TABLE banMember (
+    id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    memberId INT(10) UNSIGNED NOT NULL,
+    startDate DATE NOT NULL,
+    updateDate DATE,
+    finishDate DATE NOT NULL,
+    `status` BOOLEAN NOT NULL,
+    BODY CHAR(30) NOT NULL
+);

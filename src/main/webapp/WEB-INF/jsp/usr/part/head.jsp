@@ -24,9 +24,6 @@
 	href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
 	integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc"
 	crossorigin="anonymous">
-	
-
-
 </head>
 
 <body>
@@ -37,6 +34,11 @@
 					<li class="cell">
 						<span>${loginedMember.loginId }님</span>
 					</li>
+					<c:if test="${isAdmin}">
+						<li class="cell">
+							<a href="../admin/checkMember">회원 관리</a>
+						</li>
+					</c:if>
 					<li class="cell">
 						<a href="../member/checkLoginPw">내정보</a>
 					</li>

@@ -14,6 +14,9 @@ public class Member {
 	private int id;
 	private String regDate;
 	private String updateDate;
+	private String lastLogin;
+	private int visitCount;
+	private int wrtieCount;
 	private String loginId;
 	private String loginPw;
 	private int authLevel;

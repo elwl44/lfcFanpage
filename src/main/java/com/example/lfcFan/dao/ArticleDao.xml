@@ -51,7 +51,7 @@
 		SELECT *
 		FROM
 		article
-		WHERE 
+		WHERE
 		<if test="id != null">
 			memberid = #{id}
 		</if>
@@ -339,7 +339,7 @@
 		WHERE id = #{id}
 	</update>
 
-	<update id="modifyMatch" >
+	<update id="modifyMatch">
 		UPDATE matchschedule
 		<set>
 			<if test="name != null">
@@ -372,6 +372,13 @@
 		FROM board
 		WHERE
 		code = #{boardCode}
+	</select>
+
+	<select id="getWrtieCountMembers" resultType="int">
+		SELECT COUNT(*)
+		FROM
+		article
+		where memberId = #{id}
 	</select>
 
 	<resultMap type="Article" id="article">

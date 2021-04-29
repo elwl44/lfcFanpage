@@ -117,7 +117,7 @@ public class MemberController {
 			model.addAttribute("historyBack", true);
 			return "common/redirect";
 		}
-		
+		memberService.setMemberLoginTime(member.getId());
 		session.setAttribute("loginedMemberId", member.getId());
 		session.setAttribute("loginedMemberName", member.getName());
 		model.addAttribute("replaceUri", String.format("/usr/article/home"));

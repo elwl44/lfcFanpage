@@ -59,4 +59,6 @@ public interface ArticleDao {
 	List<League> getForPrintLeagues();
 
 	List<Article> getForPrintArticlesByid(int id);
+
+	int getWrtieCountMembers(int id);
 }

@@ -78,10 +78,33 @@
 		</set>
 		WHERE id = #{id}
 	</update>
-	
+
 	<delete id="secessionById">
 		DELETE FROM member
 		WHERE id = #{id}
 	</delete>
-	
+
+	<select id="getTotalMemberCount" resultType="int">
+		SELECT COUNT(*)
+		FROM
+		Member
+	</select>
+
+	<select id="getForPrintMembers" resultType="Member">
+		SELECT *
+		from member
+		ORDER BY authLevel desc, regDate DESC
+		<if test="limitFrom != null and limitTake != null">
+			LIMIT #{limitFrom}, #{limitTake}
+		</if>
+	</select>
+
+	<update id="setMemberLoginTime">
+		UPDATE member
+		<set>
+			lastLogin = NOW(),
+			visitCount=visitCount+1
+		</set>
+		WHERE id = #{id}
+	</update>
 </mapper>

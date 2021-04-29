@@ -1,5 +1,6 @@
 package com.example.lfcFan.dao;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -24,5 +25,11 @@ public interface MemberDao {
 	void modifyPw(Map<String, Object> param);
 
 	void secessionById(@Param("id") int id);
+
+	int getTotalMemberCount(Map<String, Object> param);
+
+	List<Member> getForPrintMembers(Map<String, Object> param);
+
+	void setMemberLoginTime(int id);
 	
 }

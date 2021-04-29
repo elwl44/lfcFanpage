@@ -43,7 +43,6 @@ public class ArticleController {
 	public String showList(HttpServletRequest req, Model model, @RequestParam Map<String, Object> param,
 			@PathVariable("boardCode") String boardCode) {
 		Board board = articleService.getBoardByCode(boardCode);
-
 		if (board == null) {
 			model.addAttribute("msg", "존재하지 않는 게시판 입니다.");
 			model.addAttribute("historyBack", true);

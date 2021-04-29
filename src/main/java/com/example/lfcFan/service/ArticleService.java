@@ -234,4 +234,10 @@ public class ArticleService {
 		param.put("month", month);
 		articleDao.writeMatch(param);
 	}
+	
+	public void getWrtieCountMembers(List<Member> members) {
+		for (Member member : members) {
+			member.setWrtieCount(articleDao.getWrtieCountMembers(member.getId()));
+		}
+	}
 }

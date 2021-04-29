@@ -17,8 +17,14 @@ if ( historyBack ) {
 
 var replaceUri = '${replaceUri}';
 replaceUri = replaceUri.trim();
-
+console.log(replaceUri);
 if ( replaceUri ) {
 	location.replace(replaceUri);
+}
+
+var selfclose='${popup_close}'
+	selfclose = selfclose.trim();
+if ( selfclose ) {
+	self.close();
 }
 </script>

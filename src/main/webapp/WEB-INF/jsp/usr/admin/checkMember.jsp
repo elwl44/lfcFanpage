@@ -18,7 +18,7 @@ function selectAll(selectAll)  {
 		 }
 	}
 function showPopup() { 
-	if ($('#c1').is(":checked") == false) {
+	if ($('input[name=c1]:checked').length==0) {
 		alert('유저를 선택해주세요.');
 		return;
 	}

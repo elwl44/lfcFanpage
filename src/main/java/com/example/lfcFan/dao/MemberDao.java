@@ -31,5 +31,11 @@ public interface MemberDao {
 	List<Member> getForPrintMembers(Map<String, Object> param);
 
 	void setMemberLoginTime(int id);
+
+	void banDateCheck();
+
+	int getMemberBanCheck(int memberid);
+
+	String getMemberBanDate(int memberid);
 	
 }

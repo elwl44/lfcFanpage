@@ -243,4 +243,17 @@ public class MemberService {
 	public void setMemberLoginTime(int id) {
 		memberDao.setMemberLoginTime(id);
 	}
+
+	public void banDateCheck() {
+		memberDao.banDateCheck();
+	}
+
+	public int getMemberBanCheck(int memberid) {
+		return memberDao.getMemberBanCheck(memberid);
+	}
+
+	public void getMemberBanDate(int memberid, Member member) {
+		String banDate=memberDao.getMemberBanDate(memberid);
+		member.setBanDate(banDate);
+	}
 }

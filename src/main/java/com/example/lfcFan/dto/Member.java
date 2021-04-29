@@ -31,4 +31,5 @@ public class Member {
 		return extra;
 	}
 	private String extra__thumbImg;
+	private String banDate;
 }

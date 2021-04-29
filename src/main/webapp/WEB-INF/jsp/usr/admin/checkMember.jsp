@@ -10,38 +10,46 @@
 }
 </style>
 <script>
-function selectAll(selectAll)  {
-	 if($('#check_all').prop('checked')){
-		  $('input[name=c1]').prop('checked',true);
-		 }else{
-		  $('input[name=c1]').prop('checked',false);
-		 }
+	function selectAll(selectAll) {
+		if ($('#check_all').prop('checked')) {
+			$('input[name=c1]').prop('checked', true);
+		} else {
+			$('input[name=c1]').prop('checked', false);
+		}
 	}
-function showPopup() { 
-	if ($('input[name=c1]:checked').length==0) {
-		alert('유저를 선택해주세요.');
-		return;
+	function showPopup() {
+		if ($('input[name=c1]:checked').length == 0) {
+			alert('유저를 선택해주세요.');
+			return;
+		}
+		var obj_length = document.getElementsByName("c1").length;
+		var myForm = document.popForm;
+		var arr = [];
+		var newForm = $('<form></form>');
+		newForm.attr("name", "newForm");
+		newForm.attr("method", "post");
+		newForm.attr("action", "/usr/admin/banMember");
+		newForm.attr("target", "popForm");
+		for (var i = 0; i < obj_length; i++) {
+			if (document.getElementsByName("c1")[i].checked == true) {
+				arr.push(document.getElementsByName("c1")[i].value);
+			}
+		}
+
+		newForm.append($('<input/>', {
+			type : 'hidden',
+			name : 'id',
+			value : arr
+		}));
+		window
+				.open(
+						"/usr/admin/banMember",
+						"popForm",
+						"width=460, height=485, scrollbars=no, toolbar=no, scrollbars=no, location=no, status=yes, menubar=no, resizable=no");
+		newForm.appendTo('body');
+		newForm.submit();
+
 	}
-    var obj_length = document.getElementsByName("c1").length;
-    var myForm = document.popForm;
-    var arr = []; 
-    var newForm = $('<form></form>'); 
-    newForm.attr("name","newForm"); 
-    newForm.attr("method","post"); 
-    newForm.attr("action","/usr/admin/banMember"); 
-    newForm.attr("target","popForm"); 
-    for (var i=0; i<obj_length; i++) {
-        if (document.getElementsByName("c1")[i].checked == true) {
-            arr.push(document.getElementsByName("c1")[i].value);
-        }
-    }
-    
-	newForm.append($('<input/>', {type: 'hidden', name: 'id', value:arr})); 
-	window.open("/usr/admin/banMember", "popForm", "width=356, height=485, scrollbars=no, toolbar=no, scrollbars=no, location=no, status=yes, menubar=no, resizable=no"); 
-	newForm.appendTo('body');
-	newForm.submit();
-	
-}
 </script>
 <body>
 	<section class="section-title">
@@ -53,7 +61,8 @@ function showPopup() {
 			<div class="notice-list-box-head">
 				<div class="cell">
 					<td class="tc">
-						<input type="checkbox" name="check_all" id="check_all" onclick='selectAll(this)'>
+						<input type="checkbox" name="check_all" id="check_all"
+							onclick='selectAll(this)'>
 					</td>
 				</div>
 				<div class="cell">
@@ -135,7 +144,8 @@ function showPopup() {
 						class="check _checkAll" onclick='selectAll(this)'>
 					<span>선택 멤버를&nbsp;</span>
 					<span class="btn-write">
-						<a class="btn_type _forceWithdrawal" onclick="showPopup()">활동 정지</a>
+						<a class="btn_type _forceWithdrawal" onclick="showPopup()">활동
+							정지</a>
 					</span>
 				</div>
 			</div>

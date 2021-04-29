@@ -20,6 +20,7 @@
 			<if test="email != null">
 				`email` = #{email},
 			</if>
+			visitCount=0
 		</set>
 	</insert>
 
@@ -107,4 +108,28 @@
 		</set>
 		WHERE id = #{id}
 	</update>
+
+	<update id="banDateCheck">
+		UPDATE banMember
+		<set>
+			status = 0,
+			updateDate=NOW(),
+		</set>
+		WHERE finishDate <![CDATA[<=]]>
+		NOW()
+	</update>
+
+	<select id="getMemberBanCheck" resultType="int">
+		SELECT IFNULL(SUM(STATUS), 0)
+		FROM banMember
+		WHERE memberId =
+		#{memberid}
+		and finishDate <![CDATA[>=]]>NOW()
+	</select>
+
+	<select id="getMemberBanDate" resultType="string">
+		SELECT finishDate FROM
+		banMember WHERE memberId=3 
+		AND finishDate <![CDATA[>=]]> NOW();
+	</select>
 </mapper>

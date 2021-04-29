@@ -91,7 +91,7 @@ public class MemberController {
 	@RequestMapping("/usr/member/doLogin")
 	public String doLogin(String loginId, String loginPw, HttpSession session, Model model) {
 		if (loginId.length() == 0) {
-			model.addAttribute("msg", String.format("로그인 아이디를 입력해주세요2."));
+			model.addAttribute("msg", String.format("로그인 아이디를 입력해주세요."));
 			model.addAttribute("historyBack", true);
 			return "common/redirect";
 		}
@@ -114,6 +114,13 @@ public class MemberController {
 
 		if (authedEmail.equals(member.getEmail()) == false) {
 			model.addAttribute("msg", String.format("이메일 인증 후 시도해주세요."));
+			model.addAttribute("historyBack", true);
+			return "common/redirect";
+		}
+		memberService.banDateCheck();
+		if(memberService.getMemberBanCheck(member.getId())==1) {
+			memberService.getMemberBanDate(member.getId(),member);
+			model.addAttribute("msg", String.format("%s일 까지 활동 정지된 유저입니다.",member.getBanDate()));
 			model.addAttribute("historyBack", true);
 			return "common/redirect";
 		}

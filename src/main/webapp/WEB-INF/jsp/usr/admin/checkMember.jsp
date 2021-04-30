@@ -10,13 +10,12 @@
 }
 </style>
 <script>
-	function selectAll(selectAll) {
-		if ($('#check_all').prop('checked')) {
-			$('input[name=c1]').prop('checked', true);
-		} else {
-			$('input[name=c1]').prop('checked', false);
-		}
-	}
+	$(document).ready(function() {
+		$('.check-all').click(function() {
+			$('._checkMember').prop('checked', this.checked);
+			$('.check-all').prop('checked', this.checked);
+		});
+	});
 	function showPopup() {
 		if ($('input[name=c1]:checked').length == 0) {
 			alert('유저를 선택해주세요.');
@@ -63,7 +62,7 @@
 				<div class="cell">
 					<td class="tc">
 						<input type="checkbox" name="check_all" id="check_all"
-							onclick='selectAll(this)'>
+							class="check-all">
 					</td>
 				</div>
 				<div class="cell">
@@ -141,8 +140,8 @@
 			</div>
 			<div class="board_action">
 				<div class="action_in">
-					<input type="checkbox" name="check_all" id="check_all" title="선택"
-						class="check _checkAll" onclick='selectAll(this)'>
+					<input type="checkbox" name="check_all" id="check_all"
+						class="check-all">
 					<span>선택 멤버를&nbsp;</span>
 					<span class="btn-write">
 						<a class="btn_type _forceWithdrawal" onclick="showPopup()">활동
@@ -216,5 +215,4 @@
 		</form>
 	</section>
 </body>
-
 <%@include file="../part/footer.jsp"%>

@@ -83,7 +83,7 @@ public class AdminController {
 		for (Member member : members) {
 			for (BanMember banmember : banmembers) {
 				if (member.getId() == banmember.getMemberid() && banmember.getStatus() == 1) {
-					model.addAttribute("msg", String.format("이미 활동정지되었습니다."));
+					model.addAttribute("msg", String.format("%s(은)는 이미 활동정지되었습니다.",member.getLoginId()));
 					model.addAttribute("popup_close", String.format("close"));
 					model.addAttribute("historyBack", true);
 					return "common/redirect";

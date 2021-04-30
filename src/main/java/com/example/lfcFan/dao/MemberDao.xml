@@ -191,18 +191,16 @@
 
 	<select id="getForPrintKickBanMembers" resultMap="banmember">
 		SELECT * FROM banMember
+		where status=1
 		<if test="searchKeyword != null">
-			<if test="search_target == 'id'">
-				and loginId LIKE CONCAT('%', #{searchKeyword}, '%')
-			</if>
-			<if test="search_target == 'name'">
-				AND name LIKE CONCAT('%', #{searchKeyword}, '%')
+			<if test="search_target == 'email'">
+				and memberemail LIKE CONCAT('%', #{searchKeyword}, '%')
 			</if>
 			<if test="search_target == 'staff'">
 				AND staff LIKE CONCAT('%', #{searchKeyword}, '%')
 			</if>
 		</if>
-		where status=1
+		
 		<if test="type != null">
 			and TYPE = "kick"
 		</if>

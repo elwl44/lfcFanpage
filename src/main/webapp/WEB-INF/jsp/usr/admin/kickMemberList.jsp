@@ -201,10 +201,8 @@
 	<section class="section-search">
 		<form>
 			<select name="search_target" class="select-bar cell">
-				<option value="id"
-					<c:if test="${param.search_target == 'id'}">selected="selected"</c:if>>아이디</option>
-				<option value="name"
-					<c:if test="${param.search_target == 'name'}">selected="selected"</c:if>>이름</option>
+				<option value="email"
+					<c:if test="${param.search_target == 'email'}">selected="selected"</c:if>>이메일</option>
 				<option value="staff"
 					<c:if test="${param.search_target == 'staff'}">selected="selected"</c:if>>처리자</option>
 			</select>

@@ -15,5 +15,7 @@ public interface AdminDao {
 	List<BanMember> getForPrintBanMembers();
 
 	void stopbanMemberById(Map<String, Object> param);
+
+	void addkickMemberById(Map<String, Object> param);
 	
 }

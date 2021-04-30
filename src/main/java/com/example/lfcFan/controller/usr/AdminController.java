@@ -149,23 +149,31 @@ public class AdminController {
 	public String showKickMember(HttpServletRequest req, Model model, @RequestParam Map<String, Object> param,
 			@RequestParam(value = "id") List<String> _id) {
 		List<Member> members = new ArrayList<Member>();
-		List<BanMember> banmembers = adminService.getForPrintBanMembers();
 		for (String id : _id) {
 			Member member = (memberService.getMemberById(Util.getAsInt(id, 0)));
 			members.add(member);
-		}
-		for (Member member : members) {
-			for (BanMember banmember : banmembers) {
-				if (member.getId() == banmember.getMemberid() && banmember.getStatus() == 1) {
-					model.addAttribute("msg", String.format("%s(은)는 이미 활동정지되었습니다.",member.getLoginId()));
-					model.addAttribute("popup_close", String.format("close"));
-					model.addAttribute("historyBack", true);
-					return "common/redirect";
-				}
-			}
 		}
 		model.addAttribute("members", members);
 		return "usr/admin/kickMember";
 	}
 
+	@RequestMapping("/usr/admin/doKickMember")
+	public String doKickMember(HttpSession session, HttpServletRequest req, Model model, String listUrl,
+			@RequestParam Map<String, Object> param, @RequestParam(value = "membersId") List<String> membersId) {
+		Member loginedMember = (Member) req.getAttribute("loginedMember");
+		param.put("staff", loginedMember.getLoginId());
+		
+		adminService.addkickMemberById(membersId, param);
+		
+		for (String id : membersId) {
+			List<Article> articles=articleService.getForPrintArticlesByid(Util.getAsInt(id));
+			memberService.kickById(session, Util.getAsInt(id),articles);
+		}
+
+		
+		model.addAttribute("msg", "강제탈퇴 처리되었습니다.");
+		model.addAttribute("popup_close", String.format("close"));
+		model.addAttribute("replaceUri", String.format("/usr/admin/checkMember"));
+		return "common/redirect";
+	}
 }

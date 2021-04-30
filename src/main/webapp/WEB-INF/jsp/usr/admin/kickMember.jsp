@@ -13,7 +13,7 @@
 		}
 		form.ban_memo.value = form.ban_memo.value.trim();
 		if (form.ban_memo.value.length == 0) {
-			alert('정지 사유를 입력해주세요.');
+			alert('강제 탈퇴 사유를 입력해주세요.');
 			form.ban_memo.focus();
 			return;
 		}
@@ -33,7 +33,7 @@
 	<div id="pop_wrap" class="pop_stop">
 		<div id="pop_container">
 			<div class="pop_content">
-				<form name="frm" action="doBanMember" method="post" id="frm"
+				<form name="frm" action="doKickMember" method="post" id="frm"
 					onsubmit="joinFormSubmit(this); return false;">
 					<dl class="lst_type">
 						<dt>
@@ -61,24 +61,30 @@
 								</div>
 							</div>
 						</dd>
-						<dt>활동 정지 사유</dt>
+						<div class="j_chk">
+							<input type="checkbox" name="notJoin" id="rejectchk"
+								class="check" value="1">
+							<label for="rejectchk">사용자가 재가입 불가하도록 합니다.</label>
+						</div>
+						<dt>강제 탈퇴 사유</dt>
 						<div class="ban_memo">
 							<textarea class="ban_memo" maxlength="2000"
 								placeholder="내용을 입력해주세요." name="ban_memo" style="resize: none"></textarea>
 						</div>
 						<dd class="hr"></dd>
 
-					<p class="dsc" style="padding-bottom: 17px">대상 멤버를 활동 정지
-						하시겠습니까?</p>
-					<div id="pop_footer">
+						<p class="dsc" style="padding-bottom: 17px">대상 멤버를 강제 탈퇴
+							하시겠습니까?</p>
+						<div id="pop_footer">
 
-						<span class="btn-write">
-							<input class="check-btn" type="submit" value="활동정지" id="check">
-						</span>
-						<span class="btn-write">
-							<input class="check-btn" type="button" value="취소" id="check" onClick="self.close();">
-						</span>
-					</div>
+							<span class="btn-write">
+								<input class="check-btn" type="submit" value="강제 탈퇴" id="check">
+							</span>
+							<span class="btn-write">
+								<input class="check-btn" type="button" value="취소" id="check"
+									onClick="self.close();">
+							</span>
+						</div>
 				</form>
 			</div>
 		</div>

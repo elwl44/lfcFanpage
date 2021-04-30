@@ -25,6 +25,32 @@
 		</set>
 	</insert>
 
+	<insert id="addkickMemberById" useGeneratedKeys="true"
+		keyProperty="id">
+		INSERT INTO banMember
+		<set>
+			<if test="id != null">
+				`memberId` = #{id},
+			</if>
+			startDate = NOW(),
+			finishDate = DATE_ADD(NOW(),INTERVAL 1000 year),
+			status = 1,
+			<if test="ban_memo != null">
+				`body` = #{ban_memo},
+			</if>
+			<if test="staff != null">
+				`staff` = #{staff},
+			</if>
+			type="kick",
+			<if test="notJoin != null">
+				`notJoin` = #{notJoin}
+			</if>
+			<if test="notJoin == null">
+				`notJoin` = 0
+			</if>
+		</set>
+	</insert>
+
 	<select id="getForPrintBanMembers" resultType="BanMember">
 		SELECT *
 		FROM

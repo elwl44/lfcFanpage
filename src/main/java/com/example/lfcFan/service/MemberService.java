@@ -281,4 +281,15 @@ public class MemberService {
 	public int getTotalBanMemberCount(Map<String, Object> param) {
 		return memberDao.getTotalBanMemberCount(param);
 	}
+	
+	public void kickById(HttpSession session, int memberid, List<Article> articles) {
+		genFileService.deleteGenFiles("profile", memberid);
+		for (Article article : articles) {
+			genFileService.deleteGenFiles("article", article.getId());
+		}
+		articleService.deleteArticlesByMemberId(memberid);
+		replyeService.deleteReplysByMemberId(memberid);
+
+		memberDao.secessionById(memberid);
+	}
 }

@@ -35,4 +35,10 @@ public class AdminService {
 		}
 	}
 
+	public void addkickMemberById(List<String> membersId, Map<String, Object> param) {
+		for (String id : membersId) {
+			param.put("id", id);
+			adminDao.addkickMemberById(param);
+		}
+	}
 }

@@ -17,11 +17,19 @@
 		});
 	});
 	function showPopup() {
+		var obj_length = document.getElementsByName("c1").length;
 		if ($('input[name=c1]:checked').length == 0) {
 			alert('유저를 선택해주세요.');
 			return;
 		}
-		var obj_length = document.getElementsByName("c1").length;
+		for (var i = 0; i < obj_length; i++) {
+			if (document.getElementsByName("c1")[i].checked == true) {
+				if(document.getElementsByName("authLevel")[i].value>=7){
+					alert('관리자는 활동정지 할 수 없습니다. 스탭권한 해지 후 가능합니다.');
+					return;
+				}
+			}
+		}
 		var myForm = document.popForm;
 		var arr = [];
 		var newForm = $('<form></form>');
@@ -50,11 +58,20 @@
 
 	}
 	function showkickPopup() {
+		var obj_length = document.getElementsByName("c1").length;
 		if ($('input[name=c1]:checked').length == 0) {
 			alert('유저를 선택해주세요.');
 			return;
 		}
-		var obj_length = document.getElementsByName("c1").length;
+		for (var i = 0; i < obj_length; i++) {
+			if (document.getElementsByName("c1")[i].checked == true) {
+				if(document.getElementsByName("authLevel")[i].value>=7){
+					alert('관리자는 강제탈퇴 할 수 없습니다. 스탭권한 해지 후 가능합니다.');
+					return;
+				}
+			}
+		}
+		
 		var myForm = document.popForm;
 		var arr = [];
 		var newForm = $('<form></form>');
@@ -142,6 +159,8 @@
 								<input type="checkbox" name="c1" id="c1" title="선택"
 									class="check _checkMember" value="${member.id }" manager="true"
 									staff="false">
+								<input type="hidden" name="authLevel" id="authLevel" title="선택"
+									class="check _checkMember" value="${member.authLevel }">
 							</td>
 						</div>
 						<div class="cell">

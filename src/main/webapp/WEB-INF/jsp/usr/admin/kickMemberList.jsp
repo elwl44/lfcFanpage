@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@include file="../part/head.jsp"%>
 <link rel="stylesheet" href="/resource/style.css">
-<link rel="stylesheet" href="/resource/checkMember.css">
+<link rel="stylesheet" href="/resource/kickMemberList.css">
 <style>
 .selected {
 	color: #E31B23;
@@ -16,88 +16,42 @@
 			$('.check-all').prop('checked', this.checked);
 		});
 	});
-	function showPopup() {
+	function removeCheck() {
 		if ($('input[name=c1]:checked').length == 0) {
 			alert('유저를 선택해주세요.');
 			return;
 		}
-		var obj_length = document.getElementsByName("c1").length;
-		var myForm = document.popForm;
-		var arr = [];
-		var newForm = $('<form></form>');
-		newForm.attr("name", "newForm");
-		newForm.attr("method", "post");
-		newForm.attr("action", "/usr/admin/banMember");
-		newForm.attr("target", "popForm");
-		for (var i = 0; i < obj_length; i++) {
-			if (document.getElementsByName("c1")[i].checked == true) {
-				arr.push(document.getElementsByName("c1")[i].value);
+		if (confirm("활동이 가능하도록 처리하시겠습니까?") == true) { //확인
+			var obj_length = document.getElementsByName("userId").length;
+			var arr = [];
+			for (var i = 0; i < obj_length; i++) {
+				if (document.getElementsByName("c1")[i].checked == true) {
+					arr.push(document.getElementsByName("userId")[i].value);
+				}
 			}
+			document.getElementById('membersId').value = arr;
+			document.doStopBan.submit();
+		} else { //취소
+			return false;
+
 		}
-
-		newForm.append($('<input/>', {
-			type : 'hidden',
-			name : 'id',
-			value : arr
-		}));
-		window
-				.open(
-						"/usr/admin/banMember",
-						"popForm",
-						"width=460, height=485, scrollbars=no, toolbar=no, scrollbars=no, location=no, status=yes, menubar=no, resizable=no");
-		newForm.appendTo('body');
-		newForm.submit();
-
-	}
-	function showkickPopup() {
-		if ($('input[name=c1]:checked').length == 0) {
-			alert('유저를 선택해주세요.');
-			return;
-		}
-		var obj_length = document.getElementsByName("c1").length;
-		var myForm = document.popForm;
-		var arr = [];
-		var newForm = $('<form></form>');
-		newForm.attr("name", "newForm");
-		newForm.attr("method", "post");
-		newForm.attr("action", "/usr/admin/kickMember");
-		newForm.attr("target", "popForm");
-		for (var i = 0; i < obj_length; i++) {
-			if (document.getElementsByName("c1")[i].checked == true) {
-				arr.push(document.getElementsByName("c1")[i].value);
-			}
-		}
-
-		newForm.append($('<input/>', {
-			type : 'hidden',
-			name : 'id',
-			value : arr
-		}));
-		window
-				.open(
-						"/usr/admin/kickMember",
-						"popForm",
-						"width=460, height=405, scrollbars=no, toolbar=no, scrollbars=no, location=no, status=yes, menubar=no, resizable=no");
-		newForm.appendTo('body');
-		newForm.submit();
-
 	}
 </script>
 <body>
 	<section class="section-title">
-		<h1 class="con">회원 관리 페이지</h1>
+		<h1 class="con">강제탈퇴 멤버 관리</h1>
 		<ul class="season_list">
-			<li class="cell selected" id="list_month8">
+			<li class="cell" id="list_month8">
 				<a href="/usr/admin/checkMember">전체멤버 관리</a>
 			</li>
 			<li class="" id="list_month9">
 				<a href="/usr/admin/banMemberlist">활동정지 멤버 관리</a>
 			</li>
-			<li class="" id="list_month9">
+			<li class="selected" id="list_month9">
 				<a href="/usr/admin/kickMemberlist">강제탈퇴 멤버 관리</a>
 			</li>
 		</ul>
-		<span class="total">회원 수:${totalCount}</span>
+		<span class="total">활동정지 멤버:${totalCount}</span>
 	</section>
 	<section class="section-notice-list row">
 		<div class="notice-list-box">
@@ -109,33 +63,25 @@
 					</td>
 				</div>
 				<div class="cell">
-					<span>등급</span>
-				</div>
-				<div class="cell">
-					<span>아이디</span>
-				</div>
-
-				<div class="cell">
-					<span>이름</span>
-				</div>
-				<div class="cell">
 					<span>이메일</span>
 				</div>
 				<div class="cell">
-					<span>가입일</span>
+					<span>사유</span>
 				</div>
 				<div class="cell">
-					<span>최종방문일</span>
+					<span>처리일</span>
 				</div>
 				<div class="cell">
-					<span>방문수</span>
+					<span>처리자</span>
 				</div>
 				<div class="cell">
-					<span>개시글 수</span>
+					<span>가입불가 여부</span>
 				</div>
 			</div>
 			<div class="notice-list-box-body">
-				<c:forEach items="${members}" var="member">
+				<c:forEach items="${banmembers}" var="member">
+					<input type="hidden" name="userId" id="userId"
+						value="${member.memberid}" />
 					<div class="notice-list-box-row">
 						<div class="cell">
 							<td class="tc">
@@ -145,53 +91,42 @@
 							</td>
 						</div>
 						<div class="cell">
-							<c:if test="${member.authLevel==1 }">
-								<a href="${detailUrl}">회원</a>
+							<a href="#">${member.memberEmail}</a>
+						</div>
+						<div class="cell">
+							<a href="#">${member.body}</a>
+						</div>
+						<div class="cell">
+							<a href="#">${member.startDate}</a>
+						</div>
+						<div class="cell">
+							<a href="#">${member.staff}</a>
+						</div>
+						<div class="cell">
+							<c:if test="${member.notJoin==0 }">
+								<a href="#">가입가능</a>
 							</c:if>
-							<c:if test="${member.authLevel==7 }">
-								<a href="${detailUrl}">관리자</a>
+							<c:if test="${member.notJoin==1 }">
+								<a href="#">가입불가능</a>
 							</c:if>
-						</div>
-						<div class="cell">
-							<a href="#">${member.loginId}</a>
-						</div>
-						<div class="cell">
-							<span>${member.name}</span>
-						</div>
-						<div class="cell">
-							<span>${member.email}</span>
-						</div>
-						<div class="cell">
-							<span>${member.regDate}</span>
-						</div>
-						<div class="cell">
-							<c:if test="${member.lastLogin!=null }">
-								<span>${member.lastLogin}</span>
-							</c:if>
-							<c:if test="${member.lastLogin==null }">
-								<span>접속 기록없음</span>
-							</c:if>
-						</div>
-						<div class="cell">
-							<span>${member.visitCount }</span>
-						</div>
-						<div class="cell">
-							<span>${member.wrtieCount }</span>
 						</div>
 					</div>
 				</c:forEach>
 			</div>
 			<div class="board_action">
 				<div class="action_in">
-					<input type="checkbox" name="check_all" id="check_all"
-						class="check-all">
-					<span>선택 멤버를&nbsp;</span>
-					<span class="btn-write">
-						<a class="btn_type _forceWithdrawal" onclick="showPopup()">활동
-							정지</a>
-						<a class="btn_type _forceWithdrawal" onclick="showkickPopup()">강제
-							탈퇴</a>
-					</span>
+					<form action="doStopBan" method="post" name="doStopBan">
+						<input type="hidden" name="membersId" id="membersId"
+							class="membersId" />
+						<input type="checkbox" name="check_all" id="check_all"
+							class="check-all">
+						<span>선택 멤버를&nbsp;</span>
+						<span class="btn-write">
+							<a class="btn_type _forceWithdrawal" onclick="removeCheck()">가입불가
+								해제</a>
+							<a class="btn_type _forceWithdrawal" onclick="">가입불가</a>
+						</span>
+					</form>
 				</div>
 			</div>
 		</div>
@@ -242,14 +177,11 @@
 		<form>
 			<select name="search_target" class="select-bar cell">
 				<option value="id"
-					<c:if test="${param.search_target == 'id'}">selected="selected"</c:if>>아이디
-				</option>
+					<c:if test="${param.search_target == 'id'}">selected="selected"</c:if>>아이디</option>
 				<option value="name"
-					<c:if test="${param.search_target == 'name'}">selected="selected"</c:if>>이름
-				</option>
-				<option value="email"
-					<c:if test="${param.search_target == 'email'}">selected="selected"</c:if>>이메일
-				</option>
+					<c:if test="${param.search_target == 'name'}">selected="selected"</c:if>>이름</option>
+				<option value="staff"
+					<c:if test="${param.search_target == 'staff'}">selected="selected"</c:if>>처리자</option>
 			</select>
 			<input type="text" name="searchKeyword"
 				value="${param.searchKeyword }" class="iText cell" title="검색">

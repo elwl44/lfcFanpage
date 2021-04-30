@@ -47,6 +47,9 @@
 			<li class="selected" id="list_month9">
 				<a href="/usr/admin/banMemberlist">활동정지 멤버 관리</a>
 			</li>
+			<li class="" id="list_month9">
+				<a href="/usr/admin/kickMemberlist">강제탈퇴 멤버 관리</a>
+			</li>
 		</ul>
 		<span class="total">활동정지 멤버:${totalCount}</span>
 	</section>

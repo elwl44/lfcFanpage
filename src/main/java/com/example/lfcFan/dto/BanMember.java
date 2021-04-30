@@ -13,12 +13,15 @@ import lombok.NoArgsConstructor;
 public class BanMember {
 	int id;
 	int memberid;
+	String memberEmail;
 	String startDate;
 	String updateDate;
 	String finishDate;
 	int status;
 	String body;
 	String staff;
+	String type;
+	int notJoin;
 	private Map<String, Object> extra;
 	public Map<String, Object> getExtraNotNull() {
 		if ( extra == null ) {

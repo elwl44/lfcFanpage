@@ -101,9 +101,7 @@ public class MemberService {
 	public int isJoinAvailableEmail(String email) {
 		Member member = memberDao.getMemberByEmail(email);
 		int kickcheck = adminDao.getKickCheckByEmail(email);
-		System.out.println(kickcheck+"******************************");
 		if (member == null && kickcheck ==0) {
-			System.out.println("가입가능");
 			return 1;//가입가능
 		}
 		else if(kickcheck ==1) {//사용 정지당한 이메일 처리
@@ -305,5 +303,25 @@ public class MemberService {
 
 	public String getEmailById(String id) {
 		return memberDao.getEmailById(id);
+	}
+
+	public List<BanMember> getForPrintKickBanMembers(Map<String, Object> param) {
+		int page = Util.getAsInt(param.get("page"), 1);
+
+		// 한 리스트에 나올 수 있는 게시물 게수
+		int itemsCountInAPage = Util.getAsInt(param.get("itemsCountInAPage"), 10);
+
+		if (itemsCountInAPage > 100) {
+			itemsCountInAPage = 100;
+		} else if (itemsCountInAPage < 1) {
+			itemsCountInAPage = 1;
+		}
+
+		int limitFrom = (page - 1) * itemsCountInAPage;
+		int limitTake = itemsCountInAPage;
+
+		param.put("limitFrom", limitFrom);
+		param.put("limitTake", limitTake);
+		return memberDao.getForPrintKickBanMembers(param);
 	}
 }

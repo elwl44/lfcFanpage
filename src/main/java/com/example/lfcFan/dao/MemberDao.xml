@@ -35,13 +35,13 @@
 		FROM member
 		WHERE email = #{email}
 	</select>
-	
+
 	<select id="getEmailById" resultType="String">
 		SELECT email
 		FROM member
 		WHERE id = #{id}
 	</select>
-	
+
 	<select id="getMemberByNameAndEmail" resultType="Member">
 		SELECT *
 		FROM
@@ -102,6 +102,9 @@
 		FROM
 		banMember
 		where status=1
+		<if test="type != null">
+			and TYPE = #{type}
+		</if>
 	</select>
 
 	<select id="getForPrintMembers" resultType="Member">
@@ -155,7 +158,8 @@
 	<select id="getMemberBanDate" resultType="string">
 		SELECT finishDate FROM
 		banMember WHERE memberId=#{memberid}
-		AND finishDate <![CDATA[>=]]>
+		AND
+		finishDate <![CDATA[>=]]>
 		NOW()
 	</select>
 
@@ -185,16 +189,40 @@
 		</if>
 	</select>
 
+	<select id="getForPrintKickBanMembers" resultMap="banmember">
+		SELECT * FROM banMember
+		<if test="searchKeyword != null">
+			<if test="search_target == 'id'">
+				and loginId LIKE CONCAT('%', #{searchKeyword}, '%')
+			</if>
+			<if test="search_target == 'name'">
+				AND name LIKE CONCAT('%', #{searchKeyword}, '%')
+			</if>
+			<if test="search_target == 'staff'">
+				AND staff LIKE CONCAT('%', #{searchKeyword}, '%')
+			</if>
+		</if>
+		where status=1
+		<if test="type != null">
+			and TYPE = "kick"
+		</if>
+		<if test="limitFrom != null and limitTake != null">
+			LIMIT #{limitFrom}, #{limitTake}
+		</if>
+	</select>
 
 	<resultMap type="BanMember" id="banmember">
 		<id property="id" column="id" />
 		<id property="memberid" column="memberId" />
+		<id property="memberEmail" column="memberemail" />
 		<id property="startDate" column="startDate" />
 		<id property="updateDate" column="updateDate" />
 		<id property="finishDate" column="finishDate" />
 		<id property="status" column="status" />
 		<id property="body" column="body" />
 		<id property="staff" column="staff" />
+		<id property="type" column="type" />
+		<id property="notJoin" column="notJoin" />
 		<association property="extra" javaType="map">
 			<id property="nickname" column="extra__writer" />
 			<id property="name" column="extra__name" />

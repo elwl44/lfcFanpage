@@ -72,6 +72,7 @@ public class AdminController {
 	}
 	@RequestMapping("/usr/admin/banMemberlist")
 	public String showBanMemberList(HttpServletRequest req, Model model, @RequestParam Map<String, Object> param) {		
+		param.put("type", "ban");
 		int totalCount = memberService.getTotalBanMemberCount(param);
 		int itemsCountInAPage = 10;
 		int totalPage = (int) Math.ceil(totalCount / (double) itemsCountInAPage);
@@ -100,6 +101,36 @@ public class AdminController {
 		return "usr/admin/banMemberList";
 	}
 	
+	@RequestMapping("/usr/admin/kickMemberlist")
+	public String showKickMemberList(HttpServletRequest req, Model model, @RequestParam Map<String, Object> param) {
+		param.put("type", "kick");
+		int totalCount = memberService.getTotalBanMemberCount(param);
+		int itemsCountInAPage = 10;
+		int totalPage = (int) Math.ceil(totalCount / (double) itemsCountInAPage);
+
+		int pageMenuArmSize = 5;
+		int page = Util.getAsInt(param.get("page"), 1);
+
+		int pageMenuStart = page - pageMenuArmSize;
+		if (pageMenuStart < 1) {
+			pageMenuStart = 1;
+		}
+		int pageMenuEnd = page + pageMenuArmSize;
+		if (pageMenuEnd > totalPage) {
+			pageMenuEnd = totalPage;
+		}
+		
+		param.put("itemsCountInAPage", itemsCountInAPage);
+		List<BanMember> banmembers = memberService.getForPrintKickBanMembers(param);
+		model.addAttribute("totalCount", totalCount);
+		model.addAttribute("totalPage", totalPage);
+		model.addAttribute("pageMenuArmSize", pageMenuArmSize);
+		model.addAttribute("pageMenuStart", pageMenuStart);
+		model.addAttribute("pageMenuEnd", pageMenuEnd);
+		model.addAttribute("page", page);
+		model.addAttribute("banmembers", banmembers);
+		return "usr/admin/kickMemberList";
+	}
 
 	@RequestMapping("/usr/admin/banMember")
 	public String showBanMember(HttpServletRequest req, Model model, @RequestParam Map<String, Object> param,

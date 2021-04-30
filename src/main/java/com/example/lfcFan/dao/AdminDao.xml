@@ -20,6 +20,8 @@
 			<if test="staff != null">
 				`staff` = #{staff},
 			</if>
+			type="ban",
+			notJoin=0
 		</set>
 	</insert>
 

@@ -144,4 +144,28 @@ public class AdminController {
 		model.addAttribute("replaceUri", String.format("/usr/admin/banMemberlist"));
 		return "common/redirect";
 	}
+	
+	@RequestMapping("/usr/admin/kickMember")
+	public String showKickMember(HttpServletRequest req, Model model, @RequestParam Map<String, Object> param,
+			@RequestParam(value = "id") List<String> _id) {
+		List<Member> members = new ArrayList<Member>();
+		List<BanMember> banmembers = adminService.getForPrintBanMembers();
+		for (String id : _id) {
+			Member member = (memberService.getMemberById(Util.getAsInt(id, 0)));
+			members.add(member);
+		}
+		for (Member member : members) {
+			for (BanMember banmember : banmembers) {
+				if (member.getId() == banmember.getMemberid() && banmember.getStatus() == 1) {
+					model.addAttribute("msg", String.format("%s(은)는 이미 활동정지되었습니다.",member.getLoginId()));
+					model.addAttribute("popup_close", String.format("close"));
+					model.addAttribute("historyBack", true);
+					return "common/redirect";
+				}
+			}
+		}
+		model.addAttribute("members", members);
+		return "usr/admin/kickMember";
+	}
+
 }

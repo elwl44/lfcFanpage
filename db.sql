@@ -255,7 +255,6 @@ CREATE TABLE matchschedule (
     stadium CHAR(30) NOT NULL
 );
 
-#유저 정지 테이블
 CREATE TABLE banMember (
     id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
     memberId INT(10) UNSIGNED NOT NULL,
@@ -263,5 +262,8 @@ CREATE TABLE banMember (
     updateDate DATE,
     finishDate DATE NOT NULL,
     `status` BOOLEAN NOT NULL,
-    BODY CHAR(30) NOT NULL
+    BODY CHAR(30) NOT NULL,
+    staff CHAR(30) NOT NULL,
+    TYPE CHAR(20) NOT NULL,
+    notJoin BOOLEAN NOT NULL
 );

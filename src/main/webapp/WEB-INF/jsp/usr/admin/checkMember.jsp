@@ -40,11 +40,40 @@
 			name : 'id',
 			value : arr
 		}));
-		window
-				.open(
-						"/usr/admin/banMember",
+		window.open("/usr/admin/banMember",
 						"popForm",
 						"width=460, height=485, scrollbars=no, toolbar=no, scrollbars=no, location=no, status=yes, menubar=no, resizable=no");
+		newForm.appendTo('body');
+		newForm.submit();
+
+	}
+	function showkickPopup() {
+		if ($('input[name=c1]:checked').length == 0) {
+			alert('유저를 선택해주세요.');
+			return;
+		}
+		var obj_length = document.getElementsByName("c1").length;
+		var myForm = document.popForm;
+		var arr = [];
+		var newForm = $('<form></form>');
+		newForm.attr("name", "newForm");
+		newForm.attr("method", "post");
+		newForm.attr("action", "/usr/admin/kickMember");
+		newForm.attr("target", "popForm");
+		for (var i = 0; i < obj_length; i++) {
+			if (document.getElementsByName("c1")[i].checked == true) {
+				arr.push(document.getElementsByName("c1")[i].value);
+			}
+		}
+
+		newForm.append($('<input/>', {
+			type : 'hidden',
+			name : 'id',
+			value : arr
+		}));
+		window.open("/usr/admin/kickMember",
+						"popForm",
+						"width=460, height=405, scrollbars=no, toolbar=no, scrollbars=no, location=no, status=yes, menubar=no, resizable=no");
 		newForm.appendTo('body');
 		newForm.submit();
 
@@ -151,8 +180,8 @@
 						class="check-all">
 					<span>선택 멤버를&nbsp;</span>
 					<span class="btn-write">
-						<a class="btn_type _forceWithdrawal" onclick="showPopup()">활동
-							정지</a>
+						<a class="btn_type _forceWithdrawal" onclick="showPopup()">활동 정지</a>
+						<a class="btn_type _forceWithdrawal" onclick="showkickPopup()">강제 탈퇴</a>
 					</span>
 				</div>
 			</div>

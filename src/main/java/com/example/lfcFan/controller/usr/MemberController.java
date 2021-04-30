@@ -75,10 +75,10 @@ public class MemberController {
 	}
 	@RequestMapping("/usr/member/emailCheck")
 	@ResponseBody
-	public boolean emailCheck(@RequestParam Map<String, Object> param) {
+	public int emailCheck(@RequestParam Map<String, Object> param) {
 		String email = Util.getAsStr(param.get("email"), "");
 
-		boolean isJoinAvailableLoginId = memberService.isJoinAvailableEmail(email);
+		int isJoinAvailableLoginId = memberService.isJoinAvailableEmail(email);
 		
 		return isJoinAvailableLoginId;
 	}

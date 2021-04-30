@@ -63,6 +63,15 @@
 		banMember
 	</select>
 
+	<select id="getKickCheckByEmail" resultType="int">
+		SELECT COUNT(*)
+		FROM banMember
+		WHERE TYPE= "kick" AND notJoin=1 AND
+		<if test="email != null">
+			`memberEmail` = #{email}
+		</if>
+	</select>
+
 	<update id="stopbanMemberById">
 		UPDATE banMember
 		<set>

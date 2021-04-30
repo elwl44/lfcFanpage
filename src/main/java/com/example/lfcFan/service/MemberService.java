@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import com.example.lfcFan.dao.AdminDao;
 import com.example.lfcFan.dao.MemberDao;
 import com.example.lfcFan.dto.Article;
 import com.example.lfcFan.dto.BanMember;
@@ -50,6 +51,9 @@ public class MemberService {
 
 	@Autowired
 	private ReplyService replyeService;
+	
+	@Autowired
+	private AdminDao adminDao;
 
 	public int join(Map<String, Object> param) {
 		memberDao.join(param);
@@ -94,14 +98,20 @@ public class MemberService {
 		return false;
 	}
 
-	public boolean isJoinAvailableEmail(String email) {
+	public int isJoinAvailableEmail(String email) {
 		Member member = memberDao.getMemberByEmail(email);
-
-		if (member == null) {
-			return true;
+		int kickcheck = adminDao.getKickCheckByEmail(email);
+		System.out.println(kickcheck+"******************************");
+		if (member == null && kickcheck ==0) {
+			System.out.println("가입가능");
+			return 1;//가입가능
 		}
+		else if(kickcheck ==1) {//사용 정지당한 이메일 처리
+			return 2;
+		}
+		
 
-		return false;
+		return 0;//중복아이디
 	}
 
 	public Member getMemberByLoginId(String loginId) {

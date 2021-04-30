@@ -126,10 +126,10 @@
 					dataType : "json",
 					data : { "email" : email},
 					success : function(data) {
-						if(data == false) {
+						if(data == 0) {
 							alert("중복된 이메일 입니다.");
 							$("#email").focus();
-						} else if(data == true) {
+						} else if(data == 1) {
 							var message = "사용가능한 이메일 입니다. 사용하시겠습니까?";
 							result = window.confirm(message);
 							if(result){		//수락버튼
@@ -141,6 +141,9 @@
 						    	$("#email").focus();
 						    	return;
 						    }
+						}else if(data == 2) {
+							alert("사용 정지당한 이메일 입니다.");
+							$("#email").focus();
 						}
 					}
 				})

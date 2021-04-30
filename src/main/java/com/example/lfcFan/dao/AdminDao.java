@@ -17,5 +17,7 @@ public interface AdminDao {
 	void stopbanMemberById(Map<String, Object> param);
 
 	void addkickMemberById(Map<String, Object> param);
+
+	int getKickCheckByEmail(String email);
 	
 }

@@ -28,4 +28,11 @@ public class AdminService {
 		return adminDao.getForPrintBanMembers();
 	}
 
+	public void stopbanMemberById(List<String> membersId, Map<String, Object> param) {
+		for (String id : membersId) {
+			param.put("id", id);
+			adminDao.stopbanMemberById(param);
+		}
+	}
+
 }

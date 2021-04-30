@@ -17,6 +17,9 @@
 			<if test="ban_memo != null">
 				`body` = #{ban_memo},
 			</if>
+			<if test="staff != null">
+				`staff` = #{staff},
+			</if>
 		</set>
 	</insert>
 
@@ -25,4 +28,18 @@
 		FROM
 		banMember
 	</select>
+
+	<update id="stopbanMemberById">
+		UPDATE banMember
+		<set>
+			status = 0,
+			updateDate=NOW(),
+		</set>
+		WHERE finishDate <![CDATA[>=]]>
+		NOW()
+		and
+		<if test="id != null">
+			`memberId` = #{id}
+		</if>
+	</update>
 </mapper>

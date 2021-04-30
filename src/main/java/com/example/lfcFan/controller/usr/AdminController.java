@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -70,6 +71,40 @@ public class AdminController {
 		model.addAttribute("members", members);
 		return "usr/admin/checkMember";
 	}
+	@RequestMapping("/usr/admin/banMemberlist")
+	public String showBanMemberList(HttpServletRequest req, Model model, @RequestParam Map<String, Object> param) {
+		List<BanMember> banmembers = memberService.getForPrintBanMembers();
+		
+		int totalCount = memberService.getTotalBanMemberCount(param);
+		int itemsCountInAPage = 10;
+		int totalPage = (int) Math.ceil(totalCount / (double) itemsCountInAPage);
+
+		int pageMenuArmSize = 5;
+		int page = Util.getAsInt(param.get("page"), 1);
+
+		int pageMenuStart = page - pageMenuArmSize;
+		if (pageMenuStart < 1) {
+			pageMenuStart = 1;
+		}
+		int pageMenuEnd = page + pageMenuArmSize;
+		if (pageMenuEnd > totalPage) {
+			pageMenuEnd = totalPage;
+		}
+
+		param.put("itemsCountInAPage", itemsCountInAPage);
+
+		List<Member> members = memberService.getForPrintMembers(param);
+		articleService.getWrtieCountMembers(members);
+		model.addAttribute("totalCount", totalCount);
+		model.addAttribute("totalPage", totalPage);
+		model.addAttribute("pageMenuArmSize", pageMenuArmSize);
+		model.addAttribute("pageMenuStart", pageMenuStart);
+		model.addAttribute("pageMenuEnd", pageMenuEnd);
+		model.addAttribute("page", page);
+		model.addAttribute("banmembers", banmembers);
+		return "usr/admin/banMemberList";
+	}
+	
 
 	@RequestMapping("/usr/admin/banMember")
 	public String showBanMember(HttpServletRequest req, Model model, @RequestParam Map<String, Object> param,
@@ -97,11 +132,21 @@ public class AdminController {
 	@RequestMapping("/usr/admin/doBanMember")
 	public String doBanMember(HttpSession session, HttpServletRequest req, Model model, String listUrl,
 			@RequestParam Map<String, Object> param, @RequestParam(value = "membersId") List<String> membersId) {
-
+		Member loginedMember = (Member) req.getAttribute("loginedMember");
+		param.put("staff", loginedMember.getLoginId());
 		adminService.addbanMemberById(membersId, param);
-
-		model.addAttribute("msg", "회원탈퇴가 완료되었습니다.");
+		
+		model.addAttribute("msg", "활동정지 처리되었습니다.");
 		model.addAttribute("popup_close", String.format("close"));
+		return "common/redirect";
+	}
+	
+	@RequestMapping("/usr/admin/doStopBan")
+	public String doStopBan(HttpSession session, HttpServletRequest req, Model model, String listUrl,
+			@RequestParam Map<String, Object> param, @RequestParam(value = "membersId") List<String> membersId) {
+		adminService.stopbanMemberById(membersId, param);
+		model.addAttribute("msg", "활동이 가능한 멤버로 변경하였습니다.");
+		model.addAttribute("replaceUri", String.format("/usr/admin/banMemberlist"));
 		return "common/redirect";
 	}
 }

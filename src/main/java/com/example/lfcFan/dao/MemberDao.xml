@@ -91,6 +91,13 @@
 		Member
 	</select>
 
+	<select id="getTotalBanMemberCount" resultType="int">
+		SELECT COUNT(*)
+		FROM
+		banMember
+		where status=1
+	</select>
+
 	<select id="getForPrintMembers" resultType="Member">
 		SELECT *
 		from member
@@ -129,7 +136,35 @@
 
 	<select id="getMemberBanDate" resultType="string">
 		SELECT finishDate FROM
-		banMember WHERE memberId=3 
-		AND finishDate <![CDATA[>=]]> NOW();
+		banMember WHERE memberId=3
+		AND finishDate <![CDATA[>=]]>
+		NOW()
 	</select>
+
+	<select id="getForPrintBanMembers" resultMap="banmember">
+		SELECT B.*,
+		M.loginId AS extra__writer,
+		M.name AS extra__name
+		FROM banmember AS B
+		INNER JOIN
+		MEMBER AS M
+		ON B.memberId = M.id
+		where status=1
+	</select>
+
+
+	<resultMap type="BanMember" id="banmember">
+		<id property="id" column="id" />
+		<id property="memberid" column="memberId" />
+		<id property="startDate" column="startDate" />
+		<id property="updateDate" column="updateDate" />
+		<id property="finishDate" column="finishDate" />
+		<id property="status" column="status" />
+		<id property="body" column="body" />
+		<id property="staff" column="staff" />
+		<association property="extra" javaType="map">
+			<id property="nickname" column="extra__writer" />
+			<id property="name" column="extra__name" />
+		</association>
+	</resultMap>
 </mapper>

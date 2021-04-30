@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import com.example.lfcFan.dto.BanMember;
 import com.example.lfcFan.dto.Member;
 
 @Mapper
@@ -37,5 +38,9 @@ public interface MemberDao {
 	int getMemberBanCheck(int memberid);
 
 	String getMemberBanDate(int memberid);
+
+	List<BanMember> getForPrintBanMembers();
+
+	int getTotalBanMemberCount(Map<String, Object> param);
 	
 }

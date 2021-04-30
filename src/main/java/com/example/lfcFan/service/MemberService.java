@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.lfcFan.dao.MemberDao;
 import com.example.lfcFan.dto.Article;
+import com.example.lfcFan.dto.BanMember;
 import com.example.lfcFan.dto.Member;
 import com.example.lfcFan.dto.ResultData;
 import com.example.lfcFan.util.Util;
@@ -255,5 +256,13 @@ public class MemberService {
 	public void getMemberBanDate(int memberid, Member member) {
 		String banDate=memberDao.getMemberBanDate(memberid);
 		member.setBanDate(banDate);
+	}
+
+	public List<BanMember> getForPrintBanMembers() {
+		return memberDao.getForPrintBanMembers();
+	}
+
+	public int getTotalBanMemberCount(Map<String, Object> param) {
+		return memberDao.getTotalBanMemberCount(param);
 	}
 }

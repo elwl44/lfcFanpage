@@ -101,6 +101,18 @@
 	<select id="getForPrintMembers" resultType="Member">
 		SELECT *
 		from member
+		WHERE 1
+		<if test="searchKeyword != null">
+			<if test="search_target == 'id'">
+				and loginId LIKE CONCAT('%', #{searchKeyword}, '%')
+			</if>
+			<if test="search_target == 'name'">
+				AND name LIKE CONCAT('%', #{searchKeyword}, '%')
+			</if>
+			<if test="search_target == 'email'">
+				AND email LIKE CONCAT('%', #{searchKeyword}, '%')
+			</if>
+		</if>
 		ORDER BY authLevel desc, regDate DESC
 		<if test="limitFrom != null and limitTake != null">
 			LIMIT #{limitFrom}, #{limitTake}

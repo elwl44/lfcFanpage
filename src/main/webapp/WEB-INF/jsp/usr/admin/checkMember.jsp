@@ -203,16 +203,15 @@
 	<section class="section-search">
 		<form>
 			<select name="search_target" class="select-bar cell">
-				<option value="title"
-					<c:if test="${search_target == 'title'}">selected="selected"</c:if>>제목</option>
-				<option value="body"
-					<c:if test="${search_target == 'body'}">selected="selected"</c:if>>내용</option>
-				<option value="title_content"
-					<c:if test="${search_target == 'title_content'}">selected="selected"</c:if>>제목+내용</option>
+				<option value="id"
+					<c:if test="${param.search_target == 'id'}">selected="selected"</c:if>>아이디
+				</option>
 				<option value="name"
-					<c:if test="${search_target == 'name'}">selected="selected"</c:if>>이름</option>
-				<option value="loginId"
-					<c:if test="${search_target == 'loginId'}">selected="selected"</c:if>>아이디</option>
+					<c:if test="${param.search_target == 'name'}">selected="selected"</c:if>>이름
+				</option>
+				<option value="email"
+					<c:if test="${param.search_target == 'email'}">selected="selected"</c:if>>이메일
+				</option>
 			</select>
 			<input type="text" name="searchKeyword"
 				value="${param.searchKeyword }" class="iText cell" title="검색">

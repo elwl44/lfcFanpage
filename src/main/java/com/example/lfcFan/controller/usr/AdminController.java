@@ -59,7 +59,6 @@ public class AdminController {
 		}
 
 		param.put("itemsCountInAPage", itemsCountInAPage);
-
 		List<Member> members = memberService.getForPrintMembers(param);
 		articleService.getWrtieCountMembers(members);
 		model.addAttribute("totalCount", totalCount);

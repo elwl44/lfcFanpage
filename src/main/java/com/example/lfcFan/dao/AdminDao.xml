@@ -85,4 +85,20 @@
 			`memberId` = #{id}
 		</if>
 	</update>
+
+	<update id="ableJoinById">
+		UPDATE banMember
+		<set>
+			status = 0,
+			updateDate=NOW(),
+			notJoin=0
+		</set>
+		WHERE 
+		<if test="id != null">
+			`memberId` = #{id}
+		</if>
+		and status=1
+		and type="kick"
+		and notJoin=1
+	</update>
 </mapper>

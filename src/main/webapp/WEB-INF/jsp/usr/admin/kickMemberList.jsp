@@ -30,7 +30,7 @@
 				}
 			}
 			document.getElementById('membersId').value = arr;
-			document.doStopBan.submit();
+			document.doAbleJoin.submit();
 		} else { //취소
 			return false;
 
@@ -115,7 +115,7 @@
 			</div>
 			<div class="board_action">
 				<div class="action_in">
-					<form action="doStopBan" method="post" name="doStopBan">
+					<form action="doAbleJoin" method="post" name="doAbleJoin">
 						<input type="hidden" name="membersId" id="membersId"
 							class="membersId" />
 						<input type="checkbox" name="check_all" id="check_all"

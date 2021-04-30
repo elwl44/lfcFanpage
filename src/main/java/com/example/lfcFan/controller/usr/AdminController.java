@@ -208,4 +208,13 @@ public class AdminController {
 		model.addAttribute("replaceUri", String.format("/usr/admin/checkMember"));
 		return "common/redirect";
 	}
+	
+	@RequestMapping("/usr/admin/doAbleJoin")
+	public String doAbleJoin(HttpSession session, HttpServletRequest req, Model model, String listUrl,
+			@RequestParam Map<String, Object> param, @RequestParam(value = "membersId") List<String> membersId) {
+		adminService.ableJoinById(membersId, param);
+		model.addAttribute("msg", "가입 가능한 이메일로 설정하였습니다.");
+		model.addAttribute("replaceUri", String.format("/usr/admin/kickMemberlist"));
+		return "common/redirect";
+	}
 }

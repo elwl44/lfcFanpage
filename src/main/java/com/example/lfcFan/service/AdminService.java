@@ -48,4 +48,12 @@ public class AdminService {
 			adminDao.addkickMemberById(param);
 		}
 	}
+	
+	public void ableJoinById(List<String> membersId, Map<String, Object> param) {
+		for (String id : membersId) {
+			param.put("id", id);
+			adminDao.ableJoinById(param);
+		}
+	}
+
 }

@@ -19,5 +19,7 @@ public interface AdminDao {
 	void addkickMemberById(Map<String, Object> param);
 
 	int getKickCheckByEmail(String email);
+
+	void ableJoinById(Map<String, Object> param);
 	
 }

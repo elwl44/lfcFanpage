@@ -17,9 +17,14 @@ public class AdminService {
 	@Autowired
 	private AdminDao adminDao;
 	
+	@Autowired
+	private MemberService memberService;
+	
 	public void addbanMemberById(List<String> _members, Map<String, Object> param) {
 		for (String id : _members) {
 			param.put("id", id);
+			String email=memberService.getEmailById(id);
+			param.put("email", email);
 			adminDao.addbanMemberById(param);
 		}
 	}
@@ -38,6 +43,8 @@ public class AdminService {
 	public void addkickMemberById(List<String> membersId, Map<String, Object> param) {
 		for (String id : membersId) {
 			param.put("id", id);
+			String email=memberService.getEmailById(id);
+			param.put("email", email);
 			adminDao.addkickMemberById(param);
 		}
 	}

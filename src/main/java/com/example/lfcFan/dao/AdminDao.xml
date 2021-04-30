@@ -10,6 +10,9 @@
 			<if test="id != null">
 				`memberId` = #{id},
 			</if>
+			<if test="email != null">
+				`memberemail` = #{email},
+			</if>
 			startDate = NOW(),
 			finishDate = DATE_ADD(NOW(),INTERVAL #{duration}
 			DAY),
@@ -31,6 +34,9 @@
 		<set>
 			<if test="id != null">
 				`memberId` = #{id},
+			</if>
+			<if test="email != null">
+				`memberemail` = #{email},
 			</if>
 			startDate = NOW(),
 			finishDate = DATE_ADD(NOW(),INTERVAL 1000 year),

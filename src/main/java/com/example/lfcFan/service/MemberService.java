@@ -292,4 +292,8 @@ public class MemberService {
 
 		memberDao.secessionById(memberid);
 	}
+
+	public String getEmailById(String id) {
+		return memberDao.getEmailById(id);
+	}
 }

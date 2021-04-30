@@ -129,6 +129,7 @@ public class AdminController {
 			@RequestParam Map<String, Object> param, @RequestParam(value = "membersId") List<String> membersId) {
 		Member loginedMember = (Member) req.getAttribute("loginedMember");
 		param.put("staff", loginedMember.getLoginId());
+		
 		adminService.addbanMemberById(membersId, param);
 		
 		model.addAttribute("msg", "활동정지 처리되었습니다.");

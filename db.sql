@@ -258,6 +258,7 @@ CREATE TABLE matchschedule (
 CREATE TABLE banMember (
     id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
     memberId INT(10) UNSIGNED NOT NULL,
+    memberEmail char(30) NOT NULL,
     startDate DATE NOT NULL,
     updateDate DATE,
     finishDate DATE NOT NULL,

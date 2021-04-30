@@ -42,5 +42,7 @@ public interface MemberDao {
 	List<BanMember> getForPrintBanMembers(Map<String, Object> param);
 
 	int getTotalBanMemberCount(Map<String, Object> param);
+
+	String getEmailById(String id);
 	
 }

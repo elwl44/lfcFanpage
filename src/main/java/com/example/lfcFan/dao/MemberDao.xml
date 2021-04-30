@@ -35,7 +35,13 @@
 		FROM member
 		WHERE email = #{email}
 	</select>
-
+	
+	<select id="getEmailById" resultType="String">
+		SELECT email
+		FROM member
+		WHERE id = #{id}
+	</select>
+	
 	<select id="getMemberByNameAndEmail" resultType="Member">
 		SELECT *
 		FROM
@@ -148,7 +154,7 @@
 
 	<select id="getMemberBanDate" resultType="string">
 		SELECT finishDate FROM
-		banMember WHERE memberId=3
+		banMember WHERE memberId=#{memberid}
 		AND finishDate <![CDATA[>=]]>
 		NOW()
 	</select>

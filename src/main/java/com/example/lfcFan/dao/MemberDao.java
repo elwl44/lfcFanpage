@@ -39,7 +39,7 @@ public interface MemberDao {
 
 	String getMemberBanDate(int memberid);
 
-	List<BanMember> getForPrintBanMembers();
+	List<BanMember> getForPrintBanMembers(Map<String, Object> param);
 
 	int getTotalBanMemberCount(Map<String, Object> param);
 	

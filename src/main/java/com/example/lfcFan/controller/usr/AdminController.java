@@ -72,9 +72,7 @@ public class AdminController {
 		return "usr/admin/checkMember";
 	}
 	@RequestMapping("/usr/admin/banMemberlist")
-	public String showBanMemberList(HttpServletRequest req, Model model, @RequestParam Map<String, Object> param) {
-		List<BanMember> banmembers = memberService.getForPrintBanMembers();
-		
+	public String showBanMemberList(HttpServletRequest req, Model model, @RequestParam Map<String, Object> param) {		
 		int totalCount = memberService.getTotalBanMemberCount(param);
 		int itemsCountInAPage = 10;
 		int totalPage = (int) Math.ceil(totalCount / (double) itemsCountInAPage);
@@ -90,11 +88,9 @@ public class AdminController {
 		if (pageMenuEnd > totalPage) {
 			pageMenuEnd = totalPage;
 		}
-
+		
 		param.put("itemsCountInAPage", itemsCountInAPage);
-
-		List<Member> members = memberService.getForPrintMembers(param);
-		articleService.getWrtieCountMembers(members);
+		List<BanMember> banmembers = memberService.getForPrintBanMembers(param);
 		model.addAttribute("totalCount", totalCount);
 		model.addAttribute("totalPage", totalPage);
 		model.addAttribute("pageMenuArmSize", pageMenuArmSize);

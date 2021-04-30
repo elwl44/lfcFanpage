@@ -145,11 +145,15 @@
 		SELECT B.*,
 		M.loginId AS extra__writer,
 		M.name AS extra__name
-		FROM banmember AS B
+		FROM
+		banmember AS B
 		INNER JOIN
 		MEMBER AS M
 		ON B.memberId = M.id
 		where status=1
+		<if test="limitFrom != null and limitTake != null">
+			LIMIT #{limitFrom}, #{limitTake}
+		</if>
 	</select>
 
 

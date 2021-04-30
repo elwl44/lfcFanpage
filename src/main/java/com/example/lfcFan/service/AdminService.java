@@ -56,4 +56,11 @@ public class AdminService {
 		}
 	}
 
+	public void doUnAbleJoin(List<String> memberId, Map<String, Object> param) {
+		for (String id : memberId) {
+			param.put("id", id);
+			adminDao.doUnAbleJoin(param);
+		}
+	}
+
 }

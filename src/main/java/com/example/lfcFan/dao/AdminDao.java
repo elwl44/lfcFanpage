@@ -21,5 +21,7 @@ public interface AdminDao {
 	int getKickCheckByEmail(String email);
 
 	void ableJoinById(Map<String, Object> param);
+
+	void doUnAbleJoin(Map<String, Object> param);
 	
 }

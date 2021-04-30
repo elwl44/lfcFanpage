@@ -93,12 +93,28 @@
 			updateDate=NOW(),
 			notJoin=0
 		</set>
-		WHERE 
+		WHERE
 		<if test="id != null">
 			`memberId` = #{id}
 		</if>
 		and status=1
 		and type="kick"
 		and notJoin=1
+	</update>
+
+	<update id="doUnAbleJoin">
+		UPDATE banMember
+		<set>
+			status = 1,
+			updateDate=NOW(),
+			notJoin=1
+		</set>
+		WHERE
+		<if test="id != null">
+			`memberId` = #{id}
+		</if>
+		and status=1
+		and type="kick"
+		and notJoin=0
 	</update>
 </mapper>

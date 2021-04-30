@@ -16,6 +16,26 @@
 			$('.check-all').prop('checked', this.checked);
 		});
 	});
+	function unAbleJoinClick() {
+		if ($('input[name=c1]:checked').length == 0) {
+			alert('유저를 선택해주세요.');
+			return;
+		}
+		if (confirm("활동이 불가능하도록 처리하시겠습니까?") == true) { //확인
+			var obj_length = document.getElementsByName("userId").length;
+			var arr = [];
+			for (var i = 0; i < obj_length; i++) {
+				if (document.getElementsByName("c1")[i].checked == true) {
+					arr.push(document.getElementsByName("userId")[i].value);
+				}
+			}
+			document.getElementById('memberId').value = arr;
+			document.doUnAbleJoin.submit();
+		} else { //취소
+			return false;
+
+		}
+	}
 	function removeCheck() {
 		if ($('input[name=c1]:checked').length == 0) {
 			alert('유저를 선택해주세요.');
@@ -124,8 +144,13 @@
 						<span class="btn-write">
 							<a class="btn_type _forceWithdrawal" onclick="removeCheck()">가입불가
 								해제</a>
-							<a class="btn_type _forceWithdrawal" onclick="">가입불가</a>
+							<a class="btn_type unAbleJoin" name="unAbleJoin" id="unAbleJoin"
+								onclick="unAbleJoinClick()">가입불가</a>
 						</span>
+					</form>
+					<form action="doUnAbleJoin" method="post" name="doUnAbleJoin">
+						<input type="hidden" name="memberId" id="memberId"
+							class="memberId" />
 					</form>
 				</div>
 			</div>

@@ -201,7 +201,6 @@ public class AdminController {
 			List<Article> articles=articleService.getForPrintArticlesByid(Util.getAsInt(id));
 			memberService.kickById(session, Util.getAsInt(id),articles);
 		}
-
 		
 		model.addAttribute("msg", "강제탈퇴 처리되었습니다.");
 		model.addAttribute("popup_close", String.format("close"));
@@ -214,6 +213,15 @@ public class AdminController {
 			@RequestParam Map<String, Object> param, @RequestParam(value = "membersId") List<String> membersId) {
 		adminService.ableJoinById(membersId, param);
 		model.addAttribute("msg", "가입 가능한 이메일로 설정하였습니다.");
+		model.addAttribute("replaceUri", String.format("/usr/admin/kickMemberlist"));
+		return "common/redirect";
+	}
+	
+	@RequestMapping("/usr/admin/doUnAbleJoin")
+	public String doUnAbleJoin(HttpSession session, HttpServletRequest req, Model model, String listUrl,
+			@RequestParam Map<String, Object> param, @RequestParam(value = "memberId") List<String> memberId) {
+		adminService.doUnAbleJoin(memberId, param);
+		model.addAttribute("msg", "가입 불가능한 이메일로 설정하였습니다.");
 		model.addAttribute("replaceUri", String.format("/usr/admin/kickMemberlist"));
 		return "common/redirect";
 	}

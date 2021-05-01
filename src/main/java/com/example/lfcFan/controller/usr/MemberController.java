@@ -323,7 +323,6 @@ public class MemberController {
 
 		//redirectUri = Util.getNewUri(redirectUri, "checkPasswordAuthCode", authCode);
 		redirectUrl = Util.getNewUri(redirectUrl, "checkLoginPwAuthCode", authCode);
-		System.out.println(redirectUrl);
 		model.addAttribute("replaceUri", redirectUrl);
 
 		return "common/redirect";

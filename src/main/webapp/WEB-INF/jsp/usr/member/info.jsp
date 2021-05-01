@@ -11,7 +11,7 @@
 <body>
 	<section class="section-info row">
 		<div class="info-title">
-			<h1 class="con">내정보${isAdmin }</h1>
+			<h1 class="con">내정보</h1>
 		</div>
 		<div class="ctable even row">
 			<div class="profile-img">

@@ -183,8 +183,8 @@
 			</td>
 		</tr>
 	</section>
-
 	<section class="section-notice-list2 row">
+		<span class="total">전체 스탭:${totalCount}</span>
 		<div class="notice-list-box">
 			<div class="notice-list-box-head">
 				<div class="cell">
@@ -235,7 +235,8 @@
 						</div>
 						<div class="cell">
 							<span class="btn-write">
-								<a class="btn_type _forceWithdrawal" onclick="removeStaff(${member.id})">해제</a>
+								<a class="btn_type _forceWithdrawal"
+									onclick="removeStaff(${member.id})">해제</a>
 							</span>
 						</div>
 					</div>

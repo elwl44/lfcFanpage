@@ -141,8 +141,8 @@ public class AdminController {
 
 	@RequestMapping("/usr/admin/staffMemberlist")
 	public String showStaffkMemberList(HttpServletRequest req, Model model, @RequestParam Map<String, Object> param) {
-		param.put("type", "kick");
-		int totalCount = memberService.getTotalBanMemberCount(param);
+		int loginedMemberId = (int) req.getAttribute("loginedMemberId");
+		int totalCount = memberService.getTotalStaffMemberCount(param);
 		int itemsCountInAPage = 10;
 		int totalPage = (int) Math.ceil(totalCount / (double) itemsCountInAPage);
 
@@ -164,7 +164,9 @@ public class AdminController {
 			loginedMember.setExtra__thumbImg(genFile.getForPrintUrl());
 		}
 		param.put("itemsCountInAPage", itemsCountInAPage);
-		// List<BanMember> banmembers = memberService.getForPrintKickBanMembers(param);
+		List<Member> staffmembers = memberService.getForPrintStaffMembers(param);
+		articleService.getWrtieCountMembers(staffmembers);
+		model.addAttribute("loginedMemberId", loginedMemberId);
 		model.addAttribute("totalCount", totalCount);
 		model.addAttribute("totalPage", totalPage);
 		model.addAttribute("pageMenuArmSize", pageMenuArmSize);
@@ -172,7 +174,7 @@ public class AdminController {
 		model.addAttribute("pageMenuEnd", pageMenuEnd);
 		model.addAttribute("page", page);
 		model.addAttribute("members", loginedMember);
-		// model.addAttribute("banmembers", banmembers);
+		 model.addAttribute("staffmembers", staffmembers);
 		return "usr/admin/staffMemberList";
 	}
 
@@ -302,4 +304,13 @@ public class AdminController {
 		return true;
 	}
 	
+	@RequestMapping("/usr/admin/removeStaff")
+	@ResponseBody
+	public boolean removeStaff(@RequestParam Map<String, Object> param, HttpServletRequest req) {
+		int memberid = Util.getAsInt(param.get("member_id"),0);
+		Member member = memberService.getMemberById(memberid);
+		memberService.removeStaff(member.getId());
+		
+		return true;
+	}
 }

@@ -33,9 +33,11 @@
 						$(".save_txt").css("display", "flex");
 						$(".btn-save").css("display", "block");
 						$("#memberInfoList").show();
-						$('#user_data').text(data.loginId + "(" + data.name + ")");
-						$(".profile-img").css("background-image","url('" + data.extra__thumbImg + "')");
-						document.getElementById('membersId').value=data.id;
+						$('#user_data').text(
+								data.loginId + "(" + data.name + ")");
+						$(".profile-img").css("background-image",
+								"url('" + data.extra__thumbImg + "')");
+						document.getElementById('membersId').value = data.id;
 						if (data.extra__thumbImg == null) {
 							$(".profile-img").css("background-image",
 									"url('/resource/img/none-profile.jpg')");
@@ -62,27 +64,64 @@
 			alert('유저를 선택해주세요.');
 			return;
 		}
-		var member_id=document.getElementById('membersId').value;
-		$.ajax({
-			url : "${root}appointStaff",
-			type : "post",
-			dataType : "json",
-			data : {
-				"member_id" : member_id
-			},
-			success : function(data) {
-				if (data == true) {
-					alert("성공적으로 반영 되었습니다.");
+		var member_id = document.getElementById('membersId').value;
+		if (confirm("해당 유저를 관리자로 설정 하시겠습니까?") == true) { //확인
+			$.ajax({
+				url : "${root}appointStaff",
+				type : "post",
+				dataType : "json",
+				data : {
+					"member_id" : member_id
+				},
+				success : function(data) {
+					if (data == true) {
+						alert("성공적으로 반영 되었습니다.");
+						location.reload();
+					} else {
+						alert("이미 관리자 권한을 가지고 있습니다.");
+					}
+				},
+				error : function(request, status, error) { // 오류가 발생했을 때 호출된다. 
+					console.log("code:" + request.status + "\n" + "message:"
+							+ request.responseText + "\n" + "error:" + error);
 				}
-				else{
-					alert("이미 관리자 권한을 가지고 있습니다.");
+			})
+		} else {
+			return false;
+		}
+	}
+	
+	function removeStaff(id) {
+		var member_id = id;
+		var loginedMemberId= ${loginedMemberId};
+		if(id==loginedMemberId){
+			alert('자기 자신은 선택할수 없습니다.');
+			return;
+		}
+		if (confirm("관리자 권한을 삭제하시겠습니까?") == true) { //확인
+			$.ajax({
+				url : "${root}removeStaff",
+				type : "post",
+				dataType : "json",
+				data : {
+					"member_id" : member_id
+				},
+				success : function(data) {
+					if (data == true) {
+						alert("성공적으로 반영 되었습니다.");
+						location.reload();
+					} else {
+						alert("이미 관리자 권한을 가지고 있습니다.");
+					}
+				},
+				error : function(request, status, error) { // 오류가 발생했을 때 호출된다. 
+					console.log("code:" + request.status + "\n" + "message:"
+							+ request.responseText + "\n" + "error:" + error);
 				}
-			},
-			error : function(request, status, error) { // 오류가 발생했을 때 호출된다. 
-				console.log("code:" + request.status + "\n" + "message:"
-						+ request.responseText + "\n" + "error:" + error);
-			}
-		})
+			})
+		} else {
+			return false;
+		}
 	}
 </script>
 <body>
@@ -129,7 +168,7 @@
 										class="user_check  cell">
 									<p id="profile-img" class="profile-img cell"
 										style="width: 20px; height: 20px" class="profile-img"></p>
-									<label for="r1" id="user_data" class="user_data cell">astra클랜홍보2(pbk1908)</label>									
+									<label for="r1" id="user_data" class="user_data cell">astra클랜홍보2(pbk1908)</label>
 								</div>
 							</li>
 						</ul>
@@ -145,87 +184,64 @@
 		</tr>
 	</section>
 
-	<section class="section-notice-list row">
+	<section class="section-notice-list2 row">
 		<div class="notice-list-box">
 			<div class="notice-list-box-head">
 				<div class="cell">
-					<td class="tc">
-						<input type="checkbox" name="check_all" id="check_all"
-							class="check-all">
-					</td>
+					<span>아이디</span>
+				</div>
+				<div class="cell">
+					<span>이름</span>
 				</div>
 				<div class="cell">
 					<span>이메일</span>
 				</div>
 				<div class="cell">
-					<span>사유</span>
+					<span>최종방문일</span>
 				</div>
 				<div class="cell">
-					<span>처리일</span>
+					<span>방문수</span>
 				</div>
 				<div class="cell">
-					<span>처리자</span>
+					<span>개시글</span>
 				</div>
 				<div class="cell">
-					<span>가입불가 여부</span>
+					<span>스탭삭제</span>
 				</div>
 			</div>
 			<div class="notice-list-box-body">
-				<c:forEach items="${banmembers}" var="member">
-					<input type="hidden" name="userId" id="userId"
-						value="${member.memberid}" />
+				<input type="hidden" name="membersId" id="membersId"
+					class="membersId" />
+				<c:forEach items="${staffmembers}" var="member">
+					<input type="hidden" name="userId" id="userId" value="${member.id}" />
 					<div class="notice-list-box-row">
 						<div class="cell">
-							<td class="tc">
-								<input type="checkbox" name="c1" id="c1" title="선택"
-									class="check _checkMember" value="${member.id }" manager="true"
-									staff="false">
-							</td>
+							<span>${member.loginId }</span>
 						</div>
 						<div class="cell">
-							<a href="#">${member.memberEmail}</a>
+							<span>${member.name }</span>
 						</div>
 						<div class="cell">
-							<a href="#">${member.body}</a>
+							<span>${member.email }</span>
 						</div>
 						<div class="cell">
-							<a href="#">${member.startDate}</a>
+							<span>${member.lastLogin }</span>
 						</div>
 						<div class="cell">
-							<a href="#">${member.staff}</a>
+							<span>${member.visitCount }</span>
 						</div>
 						<div class="cell">
-							<c:if test="${member.notJoin==0 }">
-								<a href="#">가입가능</a>
-							</c:if>
-							<c:if test="${member.notJoin==1 }">
-								<a href="#">가입불가능</a>
-							</c:if>
+							<span>${member.wrtieCount }</span>
+						</div>
+						<div class="cell">
+							<span class="btn-write">
+								<a class="btn_type _forceWithdrawal" onclick="removeStaff(${member.id})">해제</a>
+							</span>
 						</div>
 					</div>
 				</c:forEach>
 			</div>
-			<div class="board_action">
-				<div class="action_in">
-					<form action="doAbleJoin" method="post" name="doAbleJoin">
-						<input type="hidden" name="membersId" id="membersId"
-							class="membersId" />
-						<input type="checkbox" name="check_all" id="check_all"
-							class="check-all">
-						<span>선택 멤버를&nbsp;</span>
-						<span class="btn-write">
-							<a class="btn_type _forceWithdrawal" onclick="removeCheck()">가입불가
-								해제</a>
-							<a class="btn_type unAbleJoin" name="unAbleJoin" id="unAbleJoin"
-								onclick="unAbleJoinClick()">가입불가</a>
-						</span>
-					</form>
-					<form action="doUnAbleJoin" method="post" name="doUnAbleJoin">
-						<input type="hidden" name="memberId" id="memberId"
-							class="memberId" />
-					</form>
-				</div>
-			</div>
+
 		</div>
 	</section>
 	<section class="section-boardNavigation">
@@ -269,21 +285,6 @@
 			</c:if>
 
 		</div>
-	</section>
-	<section class="section-search">
-		<form>
-			<select name="search_target" class="select-bar cell">
-				<option value="email"
-					<c:if test="${param.search_target == 'email'}">selected="selected"</c:if>>이메일</option>
-				<option value="staff"
-					<c:if test="${param.search_target == 'staff'}">selected="selected"</c:if>>처리자</option>
-			</select>
-			<input type="text" name="searchKeyword"
-				value="${param.searchKeyword }" class="iText cell" title="검색">
-			<span class="search cell">
-				<input class="search-btn" type="submit" value="검색">
-			</span>
-		</form>
 	</section>
 </body>
 <%@include file="../part/footer.jsp"%>

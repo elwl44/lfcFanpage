@@ -208,7 +208,7 @@
 			LIMIT #{limitFrom}, #{limitTake}
 		</if>
 	</select>
-	
+
 
 	<update id="appointStaff">
 		UPDATE member
@@ -217,6 +217,28 @@
 		</set>
 		WHERE id = #{id}
 	</update>
+	
+	<update id="removeStaff">
+		UPDATE member
+		<set>
+			authLevel=1
+		</set>
+		WHERE id = #{id}
+	</update>
+	
+
+	<select id="getTotalStaffMemberCount" resultType="int">
+		SELECT COUNT(*)
+		FROM
+		member
+		where authLevel=7
+	</select>
+
+	<select id="getForPrintStaffMembers" resultType="member">
+		SELECT * FROM
+		member
+		where authLevel=7
+	</select>
 
 	<resultMap type="BanMember" id="banmember">
 		<id property="id" column="id" />

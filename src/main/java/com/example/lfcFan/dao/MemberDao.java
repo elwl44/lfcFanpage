@@ -49,4 +49,10 @@ public interface MemberDao {
 
 	void appointStaff(int id);
 	
+	void removeStaff(int id);
+
+	int getTotalStaffMemberCount(Map<String, Object> param);
+
+	List<Member> getForPrintStaffMembers(Map<String, Object> param);
+
 }

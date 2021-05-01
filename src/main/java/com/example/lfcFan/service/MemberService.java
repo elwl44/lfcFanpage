@@ -328,4 +328,32 @@ public class MemberService {
 	public void appointStaff(int id) {
 		memberDao.appointStaff(id);
 	}
+
+	public int getTotalStaffMemberCount(Map<String, Object> param) {
+		return memberDao.getTotalStaffMemberCount(param);
+	}
+
+	public List<Member> getForPrintStaffMembers(Map<String, Object> param) {
+		int page = Util.getAsInt(param.get("page"), 1);
+
+		// 한 리스트에 나올 수 있는 게시물 게수
+		int itemsCountInAPage = Util.getAsInt(param.get("itemsCountInAPage"), 10);
+
+		if (itemsCountInAPage > 100) {
+			itemsCountInAPage = 100;
+		} else if (itemsCountInAPage < 1) {
+			itemsCountInAPage = 1;
+		}
+
+		int limitFrom = (page - 1) * itemsCountInAPage;
+		int limitTake = itemsCountInAPage;
+
+		param.put("limitFrom", limitFrom);
+		param.put("limitTake", limitTake);
+		return memberDao.getForPrintStaffMembers(param);
+	}
+
+	public void removeStaff(int id) {
+		memberDao.removeStaff(id);
+	}
 }

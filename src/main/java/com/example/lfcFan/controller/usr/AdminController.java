@@ -257,7 +257,16 @@ public class AdminController {
 	@RequestMapping("/usr/admin/doAbleJoin")
 	public String doAbleJoin(HttpSession session, HttpServletRequest req, Model model, String listUrl,
 			@RequestParam Map<String, Object> param, @RequestParam(value = "membersId") List<String> membersId) {
+		for (String id : membersId) {
+			BanMember member = (memberService.getKickMemberById(Util.getAsInt(id, 0)));
+			if(member.getNotJoin()==0) {
+				model.addAttribute("msg", String.format("%s는 이미 가입할수 있는 메일입니다",member.getMemberEmail()));
+				model.addAttribute("historyBack", true);
+				return "common/redirect";
+			}
+		}
 		adminService.ableJoinById(membersId, param);
+
 		model.addAttribute("msg", "가입 가능한 이메일로 설정하였습니다.");
 		model.addAttribute("replaceUri", String.format("/usr/admin/kickMemberlist"));
 		return "common/redirect";

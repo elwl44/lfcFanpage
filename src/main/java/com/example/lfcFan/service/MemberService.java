@@ -356,4 +356,8 @@ public class MemberService {
 	public void removeStaff(int id) {
 		memberDao.removeStaff(id);
 	}
+
+	public BanMember getKickMemberById(int id) {
+		return memberDao.getKickMemberById(id);
+	}
 }

@@ -58,6 +58,14 @@
 		id = #{id}
 	</select>
 
+	<select id="getKickMemberById" resultType="BanMember">
+		SELECT *
+		FROM banMember
+		WHERE
+		memberId = #{id}
+		and type="kick"
+	</select>
+
 	<update id="modify">
 		UPDATE member
 		<set>

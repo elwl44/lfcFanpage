@@ -41,6 +41,7 @@
 			alert('유저를 선택해주세요.');
 			return;
 		}
+		
 		if (confirm("활동이 가능하도록 처리하시겠습니까?") == true) { //확인
 			var obj_length = document.getElementsByName("userId").length;
 			var arr = [];
@@ -74,7 +75,7 @@
 				<a href="/usr/admin/staffMemberlist">스탭 관리</a>
 			</li>
 		</ul>
-		<span class="total">활동정지 멤버:${totalCount}</span>
+		<span class="total">강제탈퇴 멤버:${totalCount}</span>
 	</section>
 	<section class="section-notice-list row">
 		<div class="notice-list-box">

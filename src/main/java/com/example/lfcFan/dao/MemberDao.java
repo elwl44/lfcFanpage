@@ -55,4 +55,6 @@ public interface MemberDao {
 
 	List<Member> getForPrintStaffMembers(Map<String, Object> param);
 
+	BanMember getKickMemberById(int id);
+
 }

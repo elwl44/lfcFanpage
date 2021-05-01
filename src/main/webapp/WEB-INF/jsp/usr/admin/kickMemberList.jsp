@@ -102,6 +102,18 @@
 				</div>
 			</div>
 			<div class="notice-list-box-body">
+				<c:if test="${totalCount==0 }">
+					<div class="notice-list-box-row-null"
+						style="height: 100px; display: flex">
+						<tbody>
+							<tr class="line_b none">
+								<td colspan="7">
+									<p>등록된 강제탈퇴 멤버가 없습니다..</p>
+								</td>
+							</tr>
+						</tbody>
+					</div>
+				</c:if>
 				<c:forEach items="${banmembers}" var="member">
 					<input type="hidden" name="userId" id="userId"
 						value="${member.memberid}" />

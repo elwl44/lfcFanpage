@@ -75,6 +75,12 @@ a {
 	color: rgba(60, 60, 67, .3);
 }
 
+.notice-list-box-row-null{
+	height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 
 .total {

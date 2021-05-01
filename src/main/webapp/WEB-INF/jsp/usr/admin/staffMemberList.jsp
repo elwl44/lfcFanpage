@@ -3,63 +3,91 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@include file="../part/head.jsp"%>
 <link rel="stylesheet" href="/resource/style.css">
-<link rel="stylesheet" href="/resource/kickMemberList.css">
+<link rel="stylesheet" href="/resource/staffMemberList.css">
 <style>
 .selected {
 	color: #E31B23;
 }
 </style>
 <script>
-	$(document).ready(function() {
-		$('.check-all').click(function() {
-			$('._checkMember').prop('checked', this.checked);
-			$('.check-all').prop('checked', this.checked);
-		});
-	});
-	function unAbleJoinClick() {
-		if ($('input[name=c1]:checked').length == 0) {
-			alert('유저를 선택해주세요.');
+	function fn_idCheck(form) {
+		var search_value = $('#mem_srch').val();
+		var obj_length = $('#mem_srch').val().trim().length;
+		if (obj_length == 0) {
+			alert('검색 아이디를 입력하세요.');
 			return;
 		}
-		if (confirm("활동이 불가능하도록 처리하시겠습니까?") == true) { //확인
-			var obj_length = document.getElementsByName("userId").length;
-			var arr = [];
-			for (var i = 0; i < obj_length; i++) {
-				if (document.getElementsByName("c1")[i].checked == true) {
-					arr.push(document.getElementsByName("userId")[i].value);
-				}
-			}
-			document.getElementById('memberId').value = arr;
-			document.doUnAbleJoin.submit();
-		} else { //취소
-			return false;
 
-		}
+		$.ajax({
+			url : "${root}searchMember",
+			type : "post",
+			dataType : "json",
+			data : {
+				"search_id" : search_value
+			},
+			success : function(data) {
+				if (data != null) {
+					if (data.name != null) {
+						$(".profile-img").css("display", "block");
+						$(".user_check").css("display", "block");
+						$(".save_txt").css("display", "flex");
+						$(".btn-save").css("display", "block");
+						$("#memberInfoList").show();
+						$('#user_data').text(data.loginId + "(" + data.name + ")");
+						$(".profile-img").css("background-image","url('" + data.extra__thumbImg + "')");
+						document.getElementById('membersId').value=data.id;
+						if (data.extra__thumbImg == null) {
+							$(".profile-img").css("background-image",
+									"url('/resource/img/none-profile.jpg')");
+						}
+					} else {
+						$("#memberInfoList").show();
+						$('#user_data').text(data.loginId + "님은 카페 멤버가 아닙니다.");
+						$(".profile-img").css("display", "none");
+						$(".user_check").css("display", "none");
+						$(".save_txt").css("display", "none");
+						$(".btn-save").css("display", "none");
+					}
+				}
+			},
+			error : function(request, status, error) { // 오류가 발생했을 때 호출된다. 
+				console.log("code:" + request.status + "\n" + "message:"
+						+ request.responseText + "\n" + "error:" + error);
+
+			}
+		})
 	}
-	function removeCheck() {
-		if ($('input[name=c1]:checked').length == 0) {
+	function save_click(form) {
+		if ($('input[name=user_check]:checked').length == 0) {
 			alert('유저를 선택해주세요.');
 			return;
 		}
-		if (confirm("활동이 가능하도록 처리하시겠습니까?") == true) { //확인
-			var obj_length = document.getElementsByName("userId").length;
-			var arr = [];
-			for (var i = 0; i < obj_length; i++) {
-				if (document.getElementsByName("c1")[i].checked == true) {
-					arr.push(document.getElementsByName("userId")[i].value);
+		var member_id=document.getElementById('membersId').value;
+		$.ajax({
+			url : "${root}appointStaff",
+			type : "post",
+			dataType : "json",
+			data : {
+				"member_id" : member_id
+			},
+			success : function(data) {
+				if (data == true) {
+					alert("성공적으로 반영 되었습니다.");
 				}
+				else{
+					alert("이미 관리자 권한을 가지고 있습니다.");
+				}
+			},
+			error : function(request, status, error) { // 오류가 발생했을 때 호출된다. 
+				console.log("code:" + request.status + "\n" + "message:"
+						+ request.responseText + "\n" + "error:" + error);
 			}
-			document.getElementById('membersId').value = arr;
-			document.doAbleJoin.submit();
-		} else { //취소
-			return false;
-
-		}
+		})
 	}
 </script>
 <body>
 	<section class="section-title">
-		<h1 class="con">강제탈퇴 멤버 관리</h1>
+		<h1 class="con">스탭 관리</h1>
 		<ul class="season_list">
 			<li class="cell" id="list_month8">
 				<a href="/usr/admin/checkMember">전체멤버 관리</a>
@@ -67,15 +95,56 @@
 			<li class="" id="list_month9">
 				<a href="/usr/admin/banMemberlist">활동정지 멤버 관리</a>
 			</li>
-			<li class="selected" id="list_month9">
+			<li class="" id="list_month9">
 				<a href="/usr/admin/kickMemberlist">강제탈퇴 멤버 관리</a>
 			</li>
-			<li class="" id="list_month9">
+			<li class="selected" id="list_month9">
 				<a href="/usr/admin/staffMemberlist">스탭 관리</a>
 			</li>
 		</ul>
-		<span class="total">활동정지 멤버:${totalCount}</span>
 	</section>
+	<section class="section-notice-list row">
+		<tr class="last">
+			<th>
+				<strong>스탭 추가</strong>
+			</th>
+			<td>
+				<div class="group_input_frm">
+					<div class="srch_in">
+						<select id="searchType" style="width: 86px; height: 19px">
+							<option value="id">아이디</option>
+						</select>
+						<input type="text" id="mem_srch" class="mem_srch"
+							style="width: 248px; padding-left: 7px">
+						<span class="btn-search">
+							<a class="btn_type _forceWithdrawal" onclick="fn_idCheck()">검색</a>
+						</span>
+					</div>
+					<div id="memberInfoList" name="memberInfoList"
+						class="memberInfoList" style="display: none;">
+						<ul id="search_result" class="mem_choice row">
+							<li id="memberInfo" name="memberInfo">
+								<div class="info">
+									<input type="radio" id="user_check" name="user_check"
+										class="user_check  cell">
+									<p id="profile-img" class="profile-img cell"
+										style="width: 20px; height: 20px" class="profile-img"></p>
+									<label for="r1" id="user_data" class="user_data cell">astra클랜홍보2(pbk1908)</label>									
+								</div>
+							</li>
+						</ul>
+						<ul id="save_txt" class="save_txt row">
+							<li>선택한 멤버를 스탭으로 선정하시려면 '임명'을 눌러주세요.</li>
+						</ul>
+						<span class="btn-save row">
+							<a class="btn_type _forceWithdrawal" onclick="save_click()">임명</a>
+						</span>
+					</div>
+				</div>
+			</td>
+		</tr>
+	</section>
+
 	<section class="section-notice-list row">
 		<div class="notice-list-box">
 			<div class="notice-list-box-head">

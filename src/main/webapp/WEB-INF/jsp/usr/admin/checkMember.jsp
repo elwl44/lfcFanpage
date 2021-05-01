@@ -24,7 +24,7 @@
 		}
 		for (var i = 0; i < obj_length; i++) {
 			if (document.getElementsByName("c1")[i].checked == true) {
-				if(document.getElementsByName("authLevel")[i].value>=7){
+				if (document.getElementsByName("authLevel")[i].value >= 7) {
 					alert('관리자는 활동정지 할 수 없습니다. 스탭권한 해지 후 가능합니다.');
 					return;
 				}
@@ -65,13 +65,13 @@
 		}
 		for (var i = 0; i < obj_length; i++) {
 			if (document.getElementsByName("c1")[i].checked == true) {
-				if(document.getElementsByName("authLevel")[i].value>=7){
+				if (document.getElementsByName("authLevel")[i].value >= 7) {
 					alert('관리자는 강제탈퇴 할 수 없습니다. 스탭권한 해지 후 가능합니다.');
 					return;
 				}
 			}
 		}
-		
+
 		var myForm = document.popForm;
 		var arr = [];
 		var newForm = $('<form></form>');
@@ -112,6 +112,9 @@
 			</li>
 			<li class="" id="list_month9">
 				<a href="/usr/admin/kickMemberlist">강제탈퇴 멤버 관리</a>
+			</li>
+			<li class="" id="list_month9">
+				<a href="/usr/admin/staffMemberlist">스탭 관리</a>
 			</li>
 		</ul>
 		<span class="total">회원 수:${totalCount}</span>

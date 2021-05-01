@@ -200,7 +200,7 @@
 				AND staff LIKE CONCAT('%', #{searchKeyword}, '%')
 			</if>
 		</if>
-		
+
 		<if test="type != null">
 			and TYPE = "kick"
 		</if>
@@ -208,6 +208,15 @@
 			LIMIT #{limitFrom}, #{limitTake}
 		</if>
 	</select>
+	
+
+	<update id="appointStaff">
+		UPDATE member
+		<set>
+			authLevel=7
+		</set>
+		WHERE id = #{id}
+	</update>
 
 	<resultMap type="BanMember" id="banmember">
 		<id property="id" column="id" />

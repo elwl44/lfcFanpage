@@ -324,4 +324,8 @@ public class MemberService {
 		param.put("limitTake", limitTake);
 		return memberDao.getForPrintKickBanMembers(param);
 	}
+
+	public void appointStaff(int id) {
+		memberDao.appointStaff(id);
+	}
 }

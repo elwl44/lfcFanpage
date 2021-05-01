@@ -46,5 +46,7 @@ public interface MemberDao {
 	String getEmailById(String id);
 
 	List<BanMember> getForPrintKickBanMembers(Map<String, Object> param);
+
+	void appointStaff(int id);
 	
 }

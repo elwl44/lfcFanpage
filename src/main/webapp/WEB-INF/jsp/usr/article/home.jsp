@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@include file="../part/head.jsp"%>
+<link href="styles.css" rel="stylesheet" media="screen and (max-width: 1400px)">
 
 <body>
 

@@ -25,80 +25,83 @@
 	integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc"
 	crossorigin="anonymous">
 </head>
-
 <body>
-	<div class="site-header">
-		<div class="head1 row">
-			<ul class="row cell-right">
-				<c:if test="${sessionScope.loginedMemberId > 0}">
-					<li class="cell">
-						<span>${loginedMember.loginId }님</span>
-					</li>
-					<c:if test="${isAdmin}">
-						<li class="cell">
-							<a href="../admin/checkMember">회원 관리</a>
-						</li>
-					</c:if>
-					<li class="cell">
-						<a href="../member/checkLoginPw">내정보</a>
-					</li>
-					<li class="cell">
-						<a href="../member/doLogout">로그아웃</a>
-					</li>
-				</c:if>
-				<c:if test="${not (sessionScope.loginedMemberId > 0)}">
-					<li class="cell">
-						<a href="../member/login">로그인</a>
-					</li>
-					<li class="cell">
-						<a href="../member/join">회원가입</a>
-					</li>
-					<li class="cell">
-						<a href="../member/findLoginId">아이디 찾기</a>
-					</li>
-					<li class="cell">
-						<a href="../member/findLoginPw">비밀번호 찾기</a>
-					</li>
-				</c:if>
-
-			</ul>
-		</div>
-		<div class="head-info">
-			<div class="head-info-left cell">
-				<div class="logo-top">
-					<div class="logo-box">
-						<img src="/resource/img/logo.png" />
-					</div>
+	<div class="wrapper">
+		<header id="site-header" class="site-header" role="banner">
+			<div class="site-header-inner">
+				<div class="masthead">
+					<ul class="account-links logged-out-only">
+						<c:if test="${sessionScope.loginedMemberId > 0}">
+							<li class="subnav">
+								<span>${loginedMember.loginId }님</span>
+							</li>
+							<li class="subnav">
+								<a href="../admin/checkMember">회원 관리</a>
+							</li>
+							<li class="subnav">
+								<a href="../member/checkLoginPw">내정보</a>
+							</li>
+							<li class="subnav">
+								<a href="../member/doLogout">로그아웃</a>
+							</li>
+						</c:if>
+						<c:if test="${not (sessionScope.loginedMemberId > 0)}">
+							<li class="subnav">
+								<a href="../member/login">로그인</a>
+							</li>
+							<li class="subnav">
+								<a href="../member/join">회원가입</a>
+							</li>
+							<li class="subnav">
+								<a href="../member/findLoginId">아이디 찾기</a>
+							</li>
+							<li class="subnav">
+								<a href="../member/findLoginPw">비밀번호 찾기</a>
+							</li>
+						</c:if>
+					</ul>
 				</div>
-				<div class="logo-down"></div>
-			</div>
-
-			<div class="head-info-right cell">
-				<div class="team-info row">
-					<div class="team-info-img1 cell">
-						<img class="img1 cell"
-							src="/resource/img/logo-pl-champs-desk-3@2x.png" />
-					</div>
-					<div class="team-info-img2 cell-right">
-						<img class="img2 cell"
-							src="/resource/img/sponsor-header-xlarge-2.png" />
-					</div>
+				<div class="logo">
+					<a class="logo-large" title="Home" href="/">
+						<img
+							src="https://d3j2s6hdd6a7rg.cloudfront.net/v2/JE-617/lfc/images/logo.png"
+							alt="Liverpool FC">
+					</a>
+					<a class="logo-medium" title="Home" href="/">
+						<img
+							src="https://d3j2s6hdd6a7rg.cloudfront.net/v2/JE-617/lfc/images/logo.png"
+							alt="Liverpool FC">
+					</a>
+					<a class="logo-small" title="Home" href="/">
+						<img
+							src="https://d3j2s6hdd6a7rg.cloudfront.net/v2/JE-617/lfc/images/lfc-pl-logos-full@2x.png"
+							alt="Liverpool FC">
+					</a>
 				</div>
-				<div class="menu">
-					<ul class="top_menu row">
-						<li class="cell">
+				<div class="crest-side">
+					<img
+						src="https://d3j2s6hdd6a7rg.cloudfront.net/v2/JE-617/lfc/images/logo-pl-champs-desk-3@2x.png"
+						alt="Premier League Champions 2019/20 logo">
+				</div>
+				<a href="//www.sc.com/en/" class="sponsor" target="main-sponsor">
+					Main Club Sponsor: Standard Chartered </a>
+				<div class="search"></div>
+
+				<nav class="main-menu">
+					<ul>
+						<li class="active-news hasDropMenu">
 							<a href="/usr/article/home">HOME</a>
 						</li>
-						<li class="cell">
+						<li class=" ">
 							<a href="/usr/article-notice/list">공지</a>
 						</li>
-						<li class="cell">
+						<li class="hasDropMenu">
 							<a href="/usr/article/team">TEAM</a>
 						</li>
-						<li class="cell">
+						<li class="hasDropMenu">
 							<a href="/usr/article-news/list">NEWS</a>
 						</li>
-						<li class="cell">
+						<li class="hasDropMenu">
 							<a href="/usr/article-soccer/list">커뮤니티</a>
 							<ul>
 								<li>
@@ -109,17 +112,16 @@
 								</li>
 							</ul>
 						</li>
-						<li class="cell">
+						<li class="bp-medium-more-min-large-primary  hasDropMenu">
 							<a href="/usr/article/leaguetable">LEAGUE TABLE</a>
 						</li>
-						<li class="cell">
+						<li class="bp-medium-more-min-large-primary  hasDropMenu">
 							<a href="/usr/article/match">Match</a>
 						</li>
 					</ul>
-				</div>
+				</nav>
 			</div>
-		</div>
+		</header>
 	</div>
 </body>
-
 </html>

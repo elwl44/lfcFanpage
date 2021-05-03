@@ -37,9 +37,9 @@ server:
 custom:
   genFileDirPath: C:/work/lfcFan-img
   siteName: LiverpoolFanPage
-  siteUrl: http://localhost:8095
-  siteMainUri: http://localhost:8095/usr/article/home
-  siteLoginUri: http://localhost:8095/usr/member/login
+  siteUrl: http://localhost:8085
+  siteMainUri: http://localhost:8085/usr/article/home
+  siteLoginUri: http://localhost:8085/usr/member/login
   emailFrom: no-reply@localhost
   emailFromName: LiverpoolFanPage
   logging:
@@ -51,4 +51,4 @@ custom:
 spring:
   profiles: local
 server:
-  port: 8095
+  port: 8085

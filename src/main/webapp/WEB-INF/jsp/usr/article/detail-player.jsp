@@ -58,6 +58,7 @@
 				</div>
 			</div>
 		</div>
+		
 		<c:if test="${isAdmin }">
 			<div class="detail-edit row">
 				<span class="btn-modify cell">

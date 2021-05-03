@@ -192,10 +192,6 @@ img {
 }
 
 @media screen and (min-width: 1000px){
-	.site-header-inner {
-	    padding-bottom: 21px;
-	}
-	
 	.site-header-inner .account-links {
 	    display: block;
 	    height: 42px;
@@ -532,6 +528,35 @@ img {
 .date {
     margin-left: 5%;
     font-size: 11px;
+}
+
+@media screen and (min-width: 700px){
+	.section-schedule{
+		max-width: 700px;
+	}
+}
+
+@media screen and (min-width: 1000px){
+	.section-schedule{
+		max-width: 1000px;
+	}
+}
+
+@media screen and (min-width: 1400px){
+	.section-schedule{
+		max-width: 1400px;
+	}
+}
+
+@media screen and (max-width: 700px){
+	.match{
+		width: 12%;
+	}
+}
+@media screen and (max-width: 680px){
+	.match{
+		width: 10%;
+	}
 }
 
 /*뉴스*/

@@ -763,6 +763,125 @@ img {
     height: 90%;
     width: 100%;
 }
+.hidden-board{
+	display: none;
+}
+
+@media screen and (max-width: 1400px){
+	.section-board {
+	    max-width: 950px;
+	    margin: 0 auto;
+	    margin-top: 1%;
+	    display: flex;
+	}
+	.board-mid2{
+		display: none;
+	}
+	.board-right{
+		display: none;
+	}
+	.hidden-board{
+		display: block;
+	}
+	.article {
+    position: relative;
+    width: 49.8%;
+    height: 100%;
+    margin-left: 0.1%;
+	}
+}
+
+@media screen and (max-width: 1400px){
+	.section-board {
+	    max-width: 1000px;
+	    margin: 0 auto;
+	    margin-top: 1%;
+	    display: flex;
+	}
+	.board-mid2{
+		display: none;
+	}
+	.board-right{
+		display: none;
+	}
+	.hidden-board{
+		display: block;
+	}
+	.article {
+    position: relative;
+    width: 49.8%;
+    height: 100%;
+    margin-left: 0.1%;
+	}
+	.board-name {
+    height: 10%;
+    margin-left: 1%;
+    font-weight: bold;
+	}
+}
+
+@media screen and (max-width: 1000px){
+	.section-board {
+	    max-width: 700px;
+	    margin: 0 auto;
+	    margin-top: 1%;
+	    display: flex;
+	}
+	.board-mid2{
+		display: none;
+	}
+	.board-right{
+		display: none;
+	}
+	.hidden-board{
+		display: block;
+	}
+	.article {
+    position: relative;
+    width: 49.8%;
+    height: 100%;
+    margin-left: 0.1%;
+	}
+	.board-name {
+    height: 10%;
+    margin-left: 1%;
+    font-weight: bold;
+	}
+}
+
+@media screen and (max-width: 700px){
+	.section-board {
+	    max-width: 650px;
+	    margin: 0 auto;
+	    margin-top: 1%;
+	    display: flex;
+	}
+	.board-mid2{
+		display: none;
+	}
+	.board-right{
+		display: none;
+	}
+	.hidden-board{
+		display: block;
+	}
+	.article {
+    position: relative;
+    width: 49.8%;
+    height: 100%;
+    margin-left: 0.1%;
+	}
+	.board-name {
+    height: 10%;
+    margin-left: 1%;
+    font-weight: bold;
+	}
+}
+
+
+
+
+
 
 /*리그 순위표*/
 .table {

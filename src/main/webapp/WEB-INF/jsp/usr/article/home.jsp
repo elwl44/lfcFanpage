@@ -143,6 +143,65 @@
 		</div>
 	</section>
 	<!--게시판 끝-->
+	<!-- 모바일 게시판 -->
+	<section class="section-board hidden-board">
+		<div class="board-hidden-mid2 article cell">
+			<div class="board-name">
+				<a href="/usr/article-free/list" class="board-name-title">자유 게시판</a>
+				<a href="/usr/article-free/list" class="cell-right more">더보기></a>
+			</div>
+
+			<c:forEach items="${freeArticles}" var="article">
+				<c:set var="detailUrl"
+					value="/usr/article-free/detail?id=${article.id}&listUrl=/usr/article-free/list" />
+				<div class="board-free1 board">
+					<div class="board-title">
+						<a href="${detailUrl }">${article.title}</a>
+					</div>
+					<div class="board-id cell">${article.extra.writer}
+						<span>·</span>
+					</div>
+					<div class="board-date cell">${article.extra.time }</div>
+				</div>
+			</c:forEach>
+
+		</div>
+		<div class="board-right2 article cell">
+			<div class="board-name-t">
+				<a href="/usr/article/leaguetable" class="board-name-title">순위표</a>
+				<a href="/usr/article/leaguetable" class="cell-right more">더보기&gt;</a>
+			</div>
+			<div class="league-table">
+				<table class="table">
+					<thead>
+						<td class="team-lanking">순위</td>
+						<td class="team-name">팀명</td>
+						<td class="team-game">경기</td>
+						<td class="team-point">승점</td>
+						<td class="team-win">승</td>
+						<td class="team-draw">무</td>
+						<td class="team-lose">패</td>
+					</thead>
+					<tbody class="table-set">
+						<c:forEach items="${leaguetables}" var="League" varStatus="count">
+							<tr class="top">
+								<td>${count.index+1}</td>
+								<td class="team-name">${League.name}</td>
+								<td>${League.game}</td>
+								<td>${League.point}</td>
+								<td>${League.win}</td>
+								<td>${League.draw}</td>
+								<td>${League.lose}</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</section>
+	<!--모바일게시판 끝  -->
+	
+	<!--타이틀  -->
 	<div class="player-title row">
 		<div class="group-1 cell"><a href="/usr/article/team">1군 선수단</a></div>
 		<div class="coach cell">Head Coach</div>

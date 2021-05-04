@@ -93,7 +93,7 @@
 							<a href="/usr/article/home">HOME</a>
 						</li>
 						<li class=" ">
-							<a href="/usr/article-notice/list">공지</a>
+							<a href="/usr/article-notice/list">공지사항</a>
 						</li>
 						<li class="hasDropMenu">
 							<a href="/usr/article/team">TEAM</a>

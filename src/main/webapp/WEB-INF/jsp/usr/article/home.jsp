@@ -30,9 +30,8 @@
 
 	<!--뉴스 시작-->
 	<section class="news-slider">
-		<c:forEach items="${newsArticles}" var="article">
-			<li 
-				class="section-news">
+		<c:forEach items="${newsArticles}" var="article" varStatus="count">
+			<li class="section-news section-news${count.index }">
 				<c:set var="detailUrl"
 					value="/usr/article-news/detail?id=${article.id}&listUrl=/usr/article-news/list" />
 				<a href=${detailUrl }>

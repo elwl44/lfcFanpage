@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@include file="../part/head.jsp"%>
-<link href="styles.css" rel="stylesheet" media="screen and (max-width: 1400px)">
 
 <body>
 
@@ -213,7 +212,7 @@
 		<div class="player-outside cell">
 			<div class="player-bundle cell">
 				<c:forEach items="${players}" var="player">
-					<a href="/usr/article-player/detail?id=${player.id}&listUrl=/usr/article/team">
+					<a href="/usr/article-player/detail?id=${player.id}&listUrl=/usr/article/team" style="display: flex">
 						<div class="player cell">
 							<img src="${player.extra__thumbImg }" />
 							<div class="player-info">
@@ -236,7 +235,6 @@
 			</div>
 		</div>
 	</section>
-
 
 </body>
 

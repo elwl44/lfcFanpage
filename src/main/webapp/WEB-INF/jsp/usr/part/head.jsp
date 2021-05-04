@@ -123,5 +123,35 @@
 			</div>
 		</header>
 	</div>
+	<nav class="mobile-main-menu">
+		<ul>
+			<li class=" ">
+				<a href="/usr/article-notice/list">공지사항</a>
+			</li>
+			<li class="hasDropMenu">
+				<a href="/usr/article/team">TEAM</a>
+			</li>
+			<li class="hasDropMenu">
+				<a href="/usr/article-news/list">NEWS</a>
+			</li>
+			<li class="hasDropMenu">
+				<a href="/usr/article-soccer/list">커뮤니티</a>
+				<ul>
+					<li>
+						<a href="/usr/article-soccer/list">축구게시판</a>
+					</li>
+					<li>
+						<a href="/usr/article-free/list">자유게시판</a>
+					</li>
+				</ul>
+			</li>
+			<li class="bp-medium-more-min-large-primary  hasDropMenu">
+				<a href="/usr/article/leaguetable">LEAGUE TABLE</a>
+			</li>
+			<li class="bp-medium-more-min-large-primary  hasDropMenu">
+				<a href="/usr/article/match">Match</a>
+			</li>
+		</ul>
+	</nav>
 </body>
 </html>

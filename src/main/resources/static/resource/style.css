@@ -815,13 +815,11 @@ img {
 }
 
 .article {
-	flex: 1 0 33%;
 	overflow: hidden;
 	border-left: solid 1px #ccc;
 }
 
 .article:first-child {
-	flex: 1 0 33%;
 	overflow: hidden;
 	border-left: none;
 }
@@ -835,94 +833,23 @@ img {
 	display: none;
 }
 
-@media screen and (max-width: 1400px) {
-	.section-board {
-		max-width: 950px;
-		margin: 0 auto;
-		margin-top: 1%;
-		display: flex;
-	}
-	.board-mid2 {
-		display: none;
-	}
-	.board-right {
-		display: none;
-	}
-	.hidden-board {
-		display: block;
-	}
-	.article {
-		position: relative;
-		width: 49.8%;
-		height: 100%;
-		margin-left: 0.1%;
-	}
-}
-
-@media screen and (max-width: 1400px) {
-	.section-board {
-		max-width: 1000px;
-		margin: 0 auto;
-		margin-top: 1%;
-		display: flex;
-	}
-	.board-mid2 {
-		display: none;
-	}
-	.board-right {
-		display: none;
-	}
-	.hidden-board {
-		display: block;
-	}
-	.article {
-		position: relative;
-		width: 49.8%;
-		height: 100%;
-		margin-left: 0.1%;
-	}
-	.board-name {
-		height: 10%;
-		margin-left: 1%;
-		font-weight: bold;
-	}
-}
-
-@media screen and (max-width: 1000px) {
-	.section-board {
-		max-width: 700px;
-		margin: 0 auto;
-		margin-top: 1%;
-		display: flex;
-	}
-	.board-mid2 {
-		display: none;
-	}
-	.board-right {
-		display: none;
-	}
-	.hidden-board {
-		display: block;
-	}
-	.article {
-		position: relative;
-		width: 49.8%;
-		height: 100%;
-		margin-left: 0.1%;
-	}
-	.board-name {
-		height: 10%;
-		margin-left: 1%;
-		font-weight: bold;
-	}
-}
-
 @media screen and (max-width: 700px) {
 	.section-board {
-		max-width: 650px;
+		width: 100%;
 		margin: 0 auto;
 		margin-top: 1%;
 		display: flex;
+	    min-width: 650px;
+	}
+	.article {
+		position: relative;
+		height: 100%;
+		margin-left: 0.1%;
+	}
+	.board-name {
+		height: 10%;
+		margin-left: 1%;
+		font-weight: bold;
 	}
 	.board-mid2 {
 		display: none;
@@ -934,8 +861,22 @@ img {
 		display: block;
 	}
 	.article {
-		position: relative;
+		flex: 1 0 33%;
+		overflow: hidden;
 		width: 49.8%;
+		border-left: solid 1px #ccc;
+	}
+}
+
+@media screen and (min-width: 700px) {
+	.section-board {
+		width: 100%;
+		margin: 0 auto;
+		margin-top: 1%;
+		display: flex;
+	}
+	.article {
+		position: relative;
 		height: 100%;
 		margin-left: 0.1%;
 	}
@@ -944,7 +885,77 @@ img {
 		margin-left: 1%;
 		font-weight: bold;
 	}
+	.hidden-board {
+		display: none;
+	}
+	.table {
+	    color: black;
+	    width: 98%;
+	    height: 100%;
+	    margin-left: 2%;
+	    display: inline-block;
+	    overflow: auto;
+	}
 }
+
+@media screen and (min-width: 1000px) {
+	.section-board {
+		width: 100%;
+		margin: 0 auto;
+		margin-top: 1%;
+		display: flex;
+	}
+	.article {
+		position: relative;
+		height: 100%;
+		margin-left: 0.1%;
+	}
+	.board-name {
+		height: 10%;
+		margin-left: 1%;
+		font-weight: bold;
+	}
+	.hidden-board {
+		display: none;
+	}
+	.table {
+	    color: black;
+	    width: 98%;
+	    height: 100%;
+	    margin-left: 2%;
+	    display: inline-block;
+	    overflow: auto;
+	}
+}
+
+@media screen and (min-width: 1400px) {
+	.section-board {
+		width: 100%;
+		margin: 0 auto;
+		margin-top: 1%;
+		display: flex;
+	}
+	.article {
+		position: relative;
+		height: 100%;
+		margin-left: 0.1%;
+	}
+	.board-name {
+		height: 10%;
+		margin-left: 1%;
+		font-weight: bold;
+	}
+	.hidden-board {
+		display: none;
+	}
+	.table {
+	    color: black;
+	    width: 98%;
+	    height: 100%;
+	    margin-left: 2%;
+	}
+}
+
 
 /*리그 순위표*/
 .table {
@@ -956,17 +967,11 @@ img {
 
 .table td {
 	border: 1px solid black;
-	text-align: center;
-	overflow: hidden;
-	white-space: nowrap;
-	text-overflow: ellipsis;
 }
 
 .table td:nth-child(2) {
 	text-align: left;
-	overflow: hidden;
 	white-space: nowrap;
-	text-overflow: ellipsis;
 }
 
 .team-lanking {
@@ -1091,10 +1096,10 @@ thead {
 /*반응형*/
 @media screen and (max-width: 1400px) {
 	.player-title {
-		max-width: 1000px;
+		width: 100%;
 	}
 	.section-player {
-		max-width: 1000px;
+		width: 100%;
 	}
 	.head-coach {
 		display: none;
@@ -1125,10 +1130,10 @@ thead {
 
 @media screen and (max-width: 1000px) {
 	.player-title {
-		max-width: 700px;
+		width: 100%;
 	}
 	.section-player {
-		max-width: 700px;
+		width: 100%;
 	}
 	.head-coach {
 		display: none;
@@ -1159,10 +1164,12 @@ thead {
 
 @media screen and (max-width: 700px) {
 	.player-title {
-		max-width: 650px;
+		width: 100%;
+		min-width: 650px;
 	}
 	.section-player {
-		max-width: 650px;
+		width: 100%;
+		min-width: 650px;
 	}
 	.head-coach {
 		display: none;

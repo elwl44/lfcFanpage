@@ -34,7 +34,7 @@ a {
 	margin: 0 auto;
 	max-width: 1400px;
 	background-color: #fff;
-    min-width: 550px;
+    min-width: 650px;
 }
 
 .site-header-inner .crest-side {
@@ -362,7 +362,7 @@ img {
 		clear: both;
 		background-color: #e31b23;
 		margin-bottom: 13px;
-		min-width: 550px;
+		min-width: 650px;
 		height: 75px;
 	}
 	.mobile-main-menu>ul>li {
@@ -547,7 +547,7 @@ img {
 	position: relative;
 	top: 25%;
 	left: 5%;
-	width: 75%;
+	width: 100%;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	display: -webkit-box;
@@ -588,28 +588,34 @@ img {
 
 @media screen and (min-width: 700px) {
 	.section-schedule {
-		max-width: 700px;
+		width: 100%;
 		height: 100%;
+	    display: flex;
+   		justify-content: space-evenly;
 	}
 }
 
 @media screen and (min-width: 1000px) {
 	.section-schedule {
-		max-width: 1000px;
+		width: 100%;
 		height: 100%;
+	    display: flex;
+   		justify-content: space-evenly;
 	}
 }
 
 @media screen and (min-width: 1400px) {
 	.section-schedule {
-		max-width: 1400px;
+		width: 100%;
 		height: 100%;
+    	display: flex;
+   		justify-content: space-evenly;
 	}
 }
 
 @media screen and (max-width: 700px) {
 	.section-schedule{
-		max-width: 700px;
+		width: 100%;
 	}
 	.match {
 		padding-top: 2%;
@@ -618,7 +624,7 @@ img {
 
 @media screen and (max-width: 680px) {
 	.section-schedule{
-		max-width: 650px;
+		min-width: 650px;
 	}
 }
 
@@ -694,25 +700,26 @@ img {
 		display: none;
 	}
 	.news-slider {
-		max-width: 640px;
+		width: 100%;
+		min-width: 650px;
 	}
 }
 
 @media screen and (min-width: 700px) {
 	.news-slider {
-		max-width: 700px;
+		width: 100%;
 	}
 }
 
 @media screen and (min-width: 1000px) {
 	.news-slider {
-		max-width: 1000px;
+		width: 100%;
 	}
 }
 
 @media screen and (min-width: 1400px) {
 	.news-slider {
-		max-width: 1400px;
+		width: 100%;
 	}
 }
 
@@ -1546,15 +1553,15 @@ span.slick-divider.right.slick-arrow {
 @media screen and (max-width: 700px) {
 	.section-style {
 		width: 100%;
-		min-width: 550px;
+		min-width: 650px;
 	}
 	.section-sponser {
 		width: 100%;
-		min-width: 550px;
+		min-width: 650px;
 	}
 	.section-footer {
 		width: 100%;
-		min-width: 550px;
+		min-width: 650px;
 	}
 	.sponser-top-img {
 		padding-left: 0;

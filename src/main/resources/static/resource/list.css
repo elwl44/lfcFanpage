@@ -185,49 +185,49 @@ a {
 /*반응형*/
 @media screen and (max-width: 1400px) {
 	.section-title {
-		max-width: 1000px;
+		width: 100%;
 	}
 	.section-notice-list {
-		max-width: 1000px;
+		width: 100%;
 	}
 	.section-boardNavigation {
-		max-width: 1000px;
+		width: 100%;
 	}
 	.section-search {
-		max-width: 1000px;
+		width: 100%;
 	}
 }
 
 @media screen and (max-width: 1000px) {
 	.section-title {
-		max-width: 700px;
+		width: 100%;
 	}
 	.section-notice-list {
-		max-width: 700px;
+		width: 100%;
 	}
 	.section-boardNavigation {
-		max-width: 700px;
+		width: 100%;
 	}
 	.section-search {
-		max-width: 700px;
+		width: 100%;
 	}
 }
 
 @media screen and (max-width: 700px) {
 	.section-title {
-		max-width: 650px;
+		width: 100%;
 		min-width: 550px;
 	}
 	.section-notice-list {
-		max-width: 650px;
+		width: 100%;
 		min-width: 550px;
 	}
 	.section-boardNavigation {
-		max-width: 650px;
+		width: 100%;
 		min-width: 550px;
 	}
 	.section-search {
-		max-width: 650px;
+		width: 100%;
 		min-width: 550px;
 	}
 }

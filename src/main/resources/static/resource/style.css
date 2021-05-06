@@ -1307,7 +1307,7 @@ span.slick-divider.right.slick-arrow {
 .section-style {
 	max-width: 1400px;
 	height: 100%;
-	width: 1440px;
+	width: 100%;
 	margin: 0 auto;
 }
 
@@ -1321,7 +1321,7 @@ span.slick-divider.right.slick-arrow {
 .section-sponser {
 	max-width: 1400px;
 	height: 460px;
-	width: 1440px;
+	width: 100%;
 	margin: 0 auto;
 	background: #ebebeb;
 	margin-top: 2%;
@@ -1407,7 +1407,7 @@ span.slick-divider.right.slick-arrow {
 .section-footer {
 	max-width: 1400px;
 	height: 240px;
-	width: 1440px;
+	width: 100%;
 	margin: 0 auto;
 	background-color: #E31B23;
 }

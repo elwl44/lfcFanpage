@@ -31,6 +31,7 @@ a {
 
 .section-join {
 	max-width: 1400px;
+	width: 100%;
 	margin: 0 auto;
 }
 
@@ -153,4 +154,46 @@ a {
     border: none;
     border-radius: 4px;
     cursor: pointer;
+}
+
+
+/*반응형*/
+@media screen and (max-width: 1400px) {
+	.section-join {
+		width: 100%;
+	}
+	.team-player-list-item {
+	    width: 33.33333%;
+	    background-color: #f7f7f7;
+	    float: left;
+	    margin-bottom: 8px;
+	    min-width: 415px;
+	}
+}
+
+@media screen and (max-width: 1000px) {
+	.section-join {
+		width: 100%;
+	}
+	.team-player-list-item {
+	    width: 50%;
+	    background-color: #f7f7f7;
+	    float: left;
+	    margin-bottom: 8px;
+	    min-width: 415px;
+	}
+}
+
+@media screen and (max-width: 700px) {
+	.section-join {
+		width: 100%;
+		min-width: 650px;
+	}
+	.team-player-list-item {
+	    width: 33.33333%;
+	    background-color: #f7f7f7;
+	    float: left;
+	    margin-bottom: 8px;
+	    min-width: 415px;
+	}
 }

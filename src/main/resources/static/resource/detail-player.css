@@ -67,8 +67,7 @@ a {
     background-size: cover;
     color: #FFF;
     text-shadow: 0 2px 3px #000;
-    max-height: 650px;
-    height: 650px;
+	display: flex;
 }
 .player-profile-image .top .number {
     font-size: 5.1em;
@@ -170,40 +169,23 @@ a {
 	    float: right;
 	    text-align: right;
 	}
+}
 
+@media screen and (max-width: 1100px) {
+	.section-detail {
+		width: 100%;
+	}
+	.player-profile-image {
+	    font-size: 1em;
+	}
 }
 
 @media screen and (max-width: 1000px) {
 	.section-detail {
 		width: 100%;
 	}
-	.player-profile-image .top {
-	    position: absolute;
-	    top: 7.5%;
-	    left: 4%;
-	}
-	.player-profile-image .top .number {
-	    font-size: 4.1em;
-	    font-weight: bold;
-	}
-	.player-profile-image .right {
-	    position: absolute;
-	    top: 23%;
-	    right: 4%;
-	    text-align: right;
-	    font-size: 1.8em;
-	    line-height: .9em;
-	}
 	.player-profile-image {
 	    font-size: .9em;
-	}
-	.player-profile-image .left {
-	    position: absolute;
-	    top: 29%;
-	    left: 4%;
-	    text-align: left;
-	    font-size: 4em;
-	    line-height: 1em;
 	}
 }
 
@@ -215,14 +197,6 @@ a {
 @media screen and (max-width: 799px){
 	.player-profile-image {
 	    font-size: .7em;
-	}
-	.player-profile-image .left {
-	    position: absolute;
-	    top: 26%;
-	    left: 4%;
-	    text-align: left;
-	    font-size: 4em;
-	    line-height: 1em;
 	}
 }
 @media screen and (max-width: 700px) {

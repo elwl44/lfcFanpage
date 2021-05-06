@@ -35,6 +35,7 @@ a {
 	margin-top: 1%;
 	font-size: 1.5em;
 }
+
 .season_list {
 	width: 100%;
 	display: flex;
@@ -58,7 +59,6 @@ a {
 	border-radius: 100px;
 }
 
-
 .season_list li a {
 	display: block;
 	text-align: center;
@@ -75,13 +75,12 @@ a {
 	color: rgba(60, 60, 67, .3);
 }
 
-.notice-list-box-row-null{
+.notice-list-box-row-null {
 	height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
-
 
 .total {
 	display: flex;
@@ -110,27 +109,37 @@ a {
 
 .notice-list-box-head>div:nth-child(2) {
 	width: 100px;
+	white-space: nowrap;
 }
 
 .notice-list-box-head>div:nth-child(3) {
 	width: 250px;
+	white-space: nowrap;
 }
 
 .notice-list-box-head>div:nth-child(4) {
-	flex: 1 0 0 ;
+	flex: 1 0 0;
+	max-width: 318px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
 }
 
 .notice-list-box-head>div:nth-child(5) {
-	width: 200px;
+	width: 100px;
+	white-space: nowrap;
 }
 
 .notice-list-box-head>div:nth-child(6) {
-	width: 200px;
+	width: 100px;
+	white-space: nowrap;
 }
 
 .notice-list-box-head>div:nth-child(7) {
-	width: 250px;
+	flex: 1 0 0;
+	white-space: nowrap;
 }
+
 .notice-list-box-head {
 	display: flex;
 }
@@ -147,9 +156,11 @@ a {
 	padding-bottom: 5px;
 	border-bottom: solid 1px #dadada;
 }
+
 .notice-list-box-row>div:nth-child(1) {
 	width: 50px;
 }
+
 .notice-list-box-row>div:nth-child(2) {
 	width: 100px;
 }
@@ -159,24 +170,27 @@ a {
 }
 
 .notice-list-box-row>div:nth-child(4) {
-	flex: 1 0 0 ;
+	flex: 1 0 0;
+	max-width: 318px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
 }
 
 .notice-list-box-row>div:nth-child(5) {
-	width: 200px;
+	width: 100px;
 }
 
 .notice-list-box-row>div:nth-child(6) {
-	width: 200px;
+	width: 100px;
 }
 
 .notice-list-box-row>div:nth-child(7) {
-	width: 250px;
+	flex: 1 0 0;
 }
 
-
-.board_action{
-	margin-top: 1%;
+.board_action {
+	margin-top: 3%;
 }
 
 /*페이징*/
@@ -242,4 +256,69 @@ a {
 .search-btn {
 	height: 25px;
 	width: 50px;
+}
+
+/*반응형*/
+@media screen and (max-width: 1400px) {
+	.section-title {
+		width: 100%;
+	}
+	.section-notice-list {
+		width: 100%;
+	}
+}
+
+@media screen and (max-width: 1000px) {
+	.section-title {
+		width: 100%;
+	}
+	.section-notice-list {
+		width: 100%;
+	}
+}
+
+@media screen and (max-width: 700px) {
+	.section-title {
+		width: 100%;
+		min-width: 650px;
+	}
+	.section-boardNavigation {
+		width: 100%;
+		min-width: 650px;
+	}
+	.section-notice-list {
+		width: 100%;
+		min-width: 650px;
+	}
+	.section-search {
+		width: 100%;
+		min-width: 650px;
+	}
+	.notice-list-box-head>div:nth-child(1) {
+		width: 25.34px;
+		min-width: 25.34px;
+	}
+	.notice-list-box-row>div:nth-child(1) {
+		width: 25.34px;
+		min-width: 25.34px;
+	}
+	.notice-list-box-head>div:nth-child(2) {
+		width: 60px;
+		min-width: 60px;
+	}
+	.notice-list-box-row>div:nth-child(2) {
+		width: 60px;
+		min-width: 60px;
+	}
+	.notice-list-box-head>div:nth-child(3) {
+		width: 59px;
+		min-width: 59px;
+	}
+	.notice-list-box-row>div:nth-child(3) {
+		width: 59px;
+		min-width: 59px;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+	}
 }

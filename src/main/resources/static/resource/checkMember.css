@@ -300,6 +300,20 @@ a {
 		width: 100%;
 		min-width: 650px;
 	}
+	.section-boardNavigation {
+		width: 100%;
+		min-width: 650px;
+	}
+	.section-boardNavigation {
+		max-width: 1400px;
+		height: 100px;
+		margin: 0 auto;
+		margin-top: 4%;
+	}
+	.section-search {
+		width: 100%;
+		min-width: 650px;
+	}
 	.section-notice-list {
 		width: 100%;
 		min-width: 650px;

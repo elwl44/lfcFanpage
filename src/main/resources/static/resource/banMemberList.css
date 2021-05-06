@@ -179,14 +179,23 @@ a {
 
 .notice-list-box-row>div:nth-child(5) {
 	width: 100px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
 }
 
 .notice-list-box-row>div:nth-child(6) {
 	width: 100px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
 }
 
 .notice-list-box-row>div:nth-child(7) {
 	flex: 1 0 0;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
 }
 
 .board_action {
@@ -309,6 +318,9 @@ a {
 	.notice-list-box-row>div:nth-child(2) {
 		width: 60px;
 		min-width: 60px;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
 	}
 	.notice-list-box-head>div:nth-child(3) {
 		width: 59px;
@@ -317,6 +329,11 @@ a {
 	.notice-list-box-row>div:nth-child(3) {
 		width: 59px;
 		min-width: 59px;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+	}
+	.notice-list-box-row>div:nth-child(7) {
 		overflow: hidden;
 		white-space: nowrap;
 		text-overflow: ellipsis;

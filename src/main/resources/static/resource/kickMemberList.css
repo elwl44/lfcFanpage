@@ -35,6 +35,7 @@ a {
 	margin-top: 1%;
 	font-size: 1.5em;
 }
+
 .season_list {
 	width: 100%;
 	display: flex;
@@ -58,7 +59,6 @@ a {
 	border-radius: 100px;
 }
 
-
 .season_list li a {
 	display: block;
 	text-align: center;
@@ -75,13 +75,12 @@ a {
 	color: rgba(60, 60, 67, .3);
 }
 
-.notice-list-box-row-null{
+.notice-list-box-row-null {
 	height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
-
 
 .total {
 	display: flex;
@@ -91,10 +90,10 @@ a {
 
 .section-notice-list {
 	max-width: 1400px;
-	width: 99%;
-	height: 100%;
+	width: 99%; height : 100%;
 	margin: 0 auto;
 	margin-top: 1%;
+	height: 100%;
 }
 
 .notice-list-box-head {
@@ -116,7 +115,7 @@ a {
 }
 
 .notice-list-box-head>div:nth-child(3) {
-	flex: 1 0 0 ;
+	flex: 1 0 0;
 	min-width: 100px;
 	overflow: hidden;
 	white-space: nowrap;
@@ -154,9 +153,11 @@ a {
 	padding-bottom: 5px;
 	border-bottom: solid 1px #dadada;
 }
+
 .notice-list-box-row>div:nth-child(1) {
 	width: 50px;
 }
+
 .notice-list-box-row>div:nth-child(2) {
 	width: 250px;
 	max-width: 318px;
@@ -166,7 +167,7 @@ a {
 }
 
 .notice-list-box-row>div:nth-child(3) {
-	flex: 1 0 0 ;
+	flex: 1 0 0;
 	min-width: 100px;
 	overflow: hidden;
 	white-space: nowrap;
@@ -175,17 +176,23 @@ a {
 
 .notice-list-box-row>div:nth-child(4) {
 	width: 120px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
 }
 
 .notice-list-box-row>div:nth-child(5) {
 	width: 200px;
+	overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .notice-list-box-row>div:nth-child(6) {
 	width: 100px;
 }
 
-.board_action{
+.board_action {
 	margin-top: 3%;
 }
 

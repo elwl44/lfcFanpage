@@ -102,7 +102,7 @@ a {
 }
 
 .detail-img img {
-	width: 900px !important;
+	width: 100%;
 	height: auto !important;
 	max-width: 900px !important;
 	margin-bottom: 5px;
@@ -308,4 +308,45 @@ a {
 .pagination{
 	text-align: center;
 	margin-top: 1%;
+}
+
+/*반응형*/
+@media screen and (max-width: 1400px) {
+	.section-detail {
+		width: 100%;
+	}
+	.detail-img img {
+		width: 100%;
+	    height: auto !important;
+	    margin-bottom: 5px;
+	    margin-top: 30px;
+	}
+}
+
+@media screen and (max-width: 1000px) {
+	.section-detail {
+		width: 100%;
+	}
+	.detail-img img {
+		width: 100%;
+	    height: auto !important;
+	    margin-bottom: 5px;
+	    margin-top: 30px;
+	}
+}
+
+@media screen and (max-width: 700px) {
+	.section-detail {
+		width: 100%;
+		min-width: 650px;
+	}
+	.detail-img img {
+		width: 100%;
+	    height: auto !important;
+	    margin-bottom: 5px;
+	    margin-top: 30px;
+	}
+	.section-comment{
+		min-width: 650px;
+	}
 }

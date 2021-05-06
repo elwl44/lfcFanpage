@@ -160,3 +160,77 @@ a {
 	padding-top:1%;
     margin-bottom: 0.5%;
 }
+
+
+/*반응형*/
+@media screen and (max-width: 1400px) {
+	.bot {
+		right: 4%;
+	    top: 3%;
+	    float: right;
+	    text-align: right;
+	}
+
+}
+
+@media screen and (max-width: 1000px) {
+	.section-detail {
+		width: 100%;
+	}
+	.player-profile-image .top {
+	    position: absolute;
+	    top: 5.5%;
+	    left: 4%;
+	}
+	.player-profile-image .top .number {
+	    font-size: 4.1em;
+	    font-weight: bold;
+	}
+	.player-profile-image .right {
+	    position: absolute;
+	    top: 23%;
+	    right: 4%;
+	    text-align: right;
+	    font-size: 1.8em;
+	    line-height: .9em;
+	}
+	.player-profile-image {
+	    font-size: .9em;
+	}
+	.player-profile-image .left {
+	    position: absolute;
+	    top: 29%;
+	    left: 4%;
+	    text-align: left;
+	    font-size: 4em;
+	    line-height: 1em;
+	}
+}
+
+@media screen and (max-width: 899px){
+	.player-profile-image {
+	    font-size: .8em;
+	}
+}
+@media screen and (max-width: 799px){
+	.player-profile-image {
+	    font-size: .7em;
+	}
+	.player-profile-image .left {
+	    position: absolute;
+	    top: 26%;
+	    left: 4%;
+	    text-align: left;
+	    font-size: 4em;
+	    line-height: 1em;
+	}
+}
+@media screen and (max-width: 700px) {
+	.section-detail {
+		width: 100%;
+		min-width: 650px;
+	}
+	.player-profile-image {
+	    font-size: .6em;
+	}
+}

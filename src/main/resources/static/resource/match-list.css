@@ -125,6 +125,18 @@ a {
 	vertical-align: middle;
 }
 
+#match_list_section table td:nth-child(7){/*수정*/
+	padding: 15px 0;
+	vertical-align: middle;
+    white-space: nowrap;
+}
+
+#match_list_section table td:last-child {/*삭제*/
+	padding: 15px 0;
+	vertical-align: middle;
+    white-space: nowrap;
+}
+
 #match_list_section table td.category {
     font-size: 13px;
 }
@@ -164,4 +176,25 @@ a {
     border: none;
     border-radius: 4px;
     cursor: pointer;
+}
+
+/*반응형*/
+@media screen and (max-width: 1400px) {
+
+}
+
+@media screen and (max-width: 1000px) {
+
+}
+
+@media screen and (max-width: 700px) {
+	.section-title{
+		min-width: 650px;
+	}
+	.section-notice-list{
+		min-width: 650px;
+	}
+	#match_list_section{
+		min-width: 650px;
+	}
 }

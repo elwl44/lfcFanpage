@@ -137,11 +137,17 @@
 
 			<div>
 				<c:forEach begin="1" end="${fileInputMaxCount}" var="inputNo">
-					<div class="detail-img row input-file-wrap" >
+					<div class="no row">
 						<c:set var="fileNo" value="${String.valueOf(inputNo)}" />
 						<c:set var="file"	value="${article.extra.file__common__attachment[fileNo]}" />
 						<c:if test="${file != null && file.fileExtTypeCode == 'img'}">
 							<span class="row">첨부파일${inputNo} </span>
+						</c:if>
+					</div>
+					<div class="detail-img row input-file-wrap" >
+						<c:set var="fileNo" value="${String.valueOf(inputNo)}" />
+						<c:set var="file"	value="${article.extra.file__common__attachment[fileNo]}" />
+						<c:if test="${file != null && file.fileExtTypeCode == 'img'}">
 							<a class="inline-block cell" href="${file.forPrintUrl}" target="_blank" title="자세히 보기">
 	                            <img class="max-w-sm" src="${file.forPrintUrl}">
 	                         </a>
@@ -149,7 +155,7 @@
 							<label class="check-box cell">
 								<input onclick="$(this).closest('.input-file-wrap').find(' > input[type=file]').val('')" type="checkbox" name="deleteFile__article__${article.id}__common__attachment__${fileNo}" value="Y" />
 							</label>
-							<span class="cell">삭제</span>
+							<span class="cell img-del">삭제</span>
 						</c:if>
 					</div>
 				</c:forEach>

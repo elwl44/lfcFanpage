@@ -102,6 +102,9 @@ a {
 
 .notice-list-box-row > div:nth-child(2) {
     flex: 1 0 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .notice-list-box-row > div:nth-child(3) {

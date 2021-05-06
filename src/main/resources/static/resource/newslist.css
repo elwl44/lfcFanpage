@@ -171,3 +171,18 @@ a {
 	height: 25px;
 	width: 50px;
 }
+
+/*반응형*/
+@media screen and (max-width: 1400px) {
+
+}
+
+@media screen and (max-width: 1000px) {
+
+}
+
+@media screen and (max-width: 700px) {
+	.section-title{
+		min-width: 650px;
+	}
+}

@@ -412,20 +412,6 @@ img {
 		background-color: #b8161f;
 	}
 }
-@media screen and (max-width: 650px) {
-	.mobile-main-menu>ul>li a{
-		display: flex;
-	    color: #fff;
-	    text-transform: uppercase;
-	    text-decoration: none;
-	    height: 100%;
-	    padding-left: 20px;
-	    padding-left: .6666666667rem;
-	    padding-right: 20px;
-	    padding-right: .66666666667rem;
-	    align-items: center;
-	}
-}
 @media screen and (min-width: 1400px) {
 	.site-header-inner .logo {
 		left: 30px;

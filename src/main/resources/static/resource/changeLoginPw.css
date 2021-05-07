@@ -55,6 +55,7 @@ a {
 }
 
 .change-name{
+	min-width: 145px;
     width: 10%;
     height: 50px;
     justify-content: center;
@@ -62,6 +63,7 @@ a {
     flex-direction: column;
 }
 .join-data {
+	min-width: 234px;
     font-size: 20px;
     background-color: #fff;
     width: 30%;
@@ -102,4 +104,25 @@ a {
     width: 180px;
     cursor: pointer;
     margin-left: 5%;
+}
+
+
+/*반응형*/
+@media screen and (max-width: 1400px) {
+	.section-join {
+		width: 100%;
+	}
+}
+
+@media screen and (max-width: 1000px) {
+	.section-join {
+		width: 100%;
+	}
+}
+
+@media screen and (max-width: 700px) {
+	.section-join {
+		width: 100%;
+		min-width: 650px;
+	}
 }

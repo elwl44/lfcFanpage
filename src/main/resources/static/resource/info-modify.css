@@ -89,6 +89,7 @@ input.cb[type="checkbox"] + label i { font-size: 22px; margin: 0 2px 0 0; }
 input.cb[type="checkbox"]:checked + label { color: #0A84FF; }
 
 .modify-name {
+	min-width: 92px;
 	width: 10%;
 	height: 50px;
 	justify-content: center;
@@ -99,6 +100,7 @@ input.cb[type="checkbox"]:checked + label { color: #0A84FF; }
 .login-data {
 	font-size: 20px;
 	background-color: #E2E2E2;
+	min-width: 278px;
 	width: 30%;
 	color: #000;
 	height: 50px;
@@ -111,6 +113,7 @@ input.cb[type="checkbox"]:checked + label { color: #0A84FF; }
 .modify-data {
 	font-size: 20px;
 	background-color: #fff;
+	min-width: 278px;
 	width: 30%;
 	color: #000;
 	height: 50px;
@@ -156,4 +159,25 @@ input.cb[type="checkbox"]:checked + label { color: #0A84FF; }
 	width: 180px;
 	cursor: pointer;
 	margin-left: 5%;
+}
+
+
+/*반응형*/
+@media screen and (max-width: 1400px) {
+	.section-join {
+		width: 100%;
+	}
+}
+
+@media screen and (max-width: 1000px) {
+	.section-join {
+		width: 100%;
+	}
+}
+
+@media screen and (max-width: 700px) {
+	.section-join {
+		width: 100%;
+		min-width: 650px;
+	}
 }

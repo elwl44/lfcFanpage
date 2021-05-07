@@ -35,6 +35,11 @@
 				</div>
 			</div>
 			<div class="notice-list-box-body">
+				<c:if test="${totalCount==0 }">
+					<div class="notice-list-box-row-null" style="height: 100px; display:flex">
+						<p>등록된 글이 없습니다.</p>
+					</div>
+				</c:if>
 				<c:forEach items="${articles}" var="article">
 					<c:set var="detailUrl"
 						value="/usr/article-${board.code}/detail?id=${article.id}&listUrl=${encodedCurrentUri}" />

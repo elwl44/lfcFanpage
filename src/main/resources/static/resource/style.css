@@ -412,6 +412,23 @@ img {
 		background-color: #b8161f;
 	}
 }
+
+@media screen and (min-width: 940px) {
+	.site-header-inner .main-menu>ul>li a {
+		display: flex;
+		color: #fff;
+		height: 41px;
+		text-transform: uppercase;
+		text-decoration: none;
+		height: auto;
+		padding-top: 27px;
+		padding-left: 20px;
+		padding-left: 1.6666666667rem;
+		padding-right: 20px;
+		padding-right: 1.6666666667rem;
+	}
+}
+
 @media screen and (min-width: 1400px) {
 	.site-header-inner .logo {
 		left: 30px;
@@ -440,11 +457,11 @@ img {
 	.site-header-inner .main-menu {
 		padding-left: 155px;
 	}
-	.site-header-inner .main-menu>ul>li>a {
+	.site-header-inner .main-menu>ul>li a {
 		padding-left: 20px;
-		padding-left: 3.6666666667rem;
+		padding-left: 3.0666666667rem;
 		padding-right: 20px;
-		padding-right: 3.6666666667rem;
+		padding-right: 3.0666666667rem;
 		padding-bottom: 23px;
 	}
 }
@@ -455,21 +472,6 @@ img {
 	}
 }
 
-@media screen and (min-width: 940px) {
-	.site-header-inner .main-menu>ul>li a {
-		display: flex;
-		color: #fff;
-		height: 41px;
-		text-transform: uppercase;
-		text-decoration: none;
-		height: auto;
-		padding-top: 27px;
-		padding-left: 20px;
-		padding-left: 1.6666666667rem;
-		padding-right: 20px;
-		padding-right: 1.6666666667rem;
-	}
-}
 
 /*스케줄*/
 .section-schedule {
@@ -533,7 +535,7 @@ img {
 	position: relative;
 	top: 25%;
 	left: 5%;
-	width: 100%;
+	width: 73%;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	display: -webkit-box;
@@ -953,6 +955,7 @@ img {
 
 .table td {
 	border: 1px solid black;
+	white-space: nowrap;
 }
 
 .table td:nth-child(2) {

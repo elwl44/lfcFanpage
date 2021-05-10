@@ -148,4 +148,8 @@ public class ReplyService {
 		return replyDao.getArticleRelTotalCount(id);
 	}
 
+	public void deleteReplyByArticleId(int id) {
+		replyDao.deleteReplyByArticleId(id);	
+	}
+
 }

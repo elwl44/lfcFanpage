@@ -38,7 +38,7 @@
 		RE.relId = #{relId}
 		ORDER
 		BY RE.reorder asc
-			LIMIT #{param.limitFrom}, #{param.limitTake}
+		LIMIT #{param.limitFrom}, #{param.limitTake}
 	</select>
 
 	<select id="getReply" resultType="Reply">
@@ -51,6 +51,11 @@
 	<delete id="deleteReplyById">
 		DELETE FROM reply
 		WHERE id = #{id}
+	</delete>
+
+	<delete id="deleteReplyByArticleId">
+		DELETE FROM reply
+		WHERE relId = #{id}
 	</delete>
 
 	<delete id="deleteReplysByMemberId">
@@ -92,9 +97,11 @@
 	<select id="selectBoard6ReplyParent" resultType="Reply"
 		parameterType="String">
 		SELECT relId, REDEPTH+1 REDEPTH
-		, IFNULL((SELECT MAX(REORDER) FROM Reply WHERE REPARENT=TB.id),
+		, IFNULL((SELECT
+		MAX(REORDER) FROM Reply WHERE REPARENT=TB.id),
 		TB.REORDER) REORDER
-		FROM Reply TB
+		FROM
+		Reply TB
 		WHERE
 		id=#{reparent}
 	</select>

@@ -317,6 +317,7 @@ public class ArticleController {
 
 			articleService.deleteArticleById(id);
 		}
+		replyService.deleteReplyByArticleId(id);
 		model.addAttribute("msg", String.format("%d번 글을 삭제하였습니다.", id));
 		model.addAttribute("replaceUri", listUrl);
 		return "common/redirect";

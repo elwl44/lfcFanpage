@@ -33,4 +33,6 @@ public interface ReplyDao {
 	void updateBoard6Reply(Reply reply);
 
 	int getArticleRelTotalCount(int id);
+
+	void deleteReplyByArticleId(int id);
 }

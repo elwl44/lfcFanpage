@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/resource/style.css?after">
+<link rel="stylesheet" href="/resource/style.css?after2">
 
 <link rel="stylesheet" type="text/css" href="/resource/slick/slick.css">
 <link rel="stylesheet" type="text/css"

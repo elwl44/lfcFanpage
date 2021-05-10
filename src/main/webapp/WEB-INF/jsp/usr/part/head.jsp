@@ -6,9 +6,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" href="/resource/style.css?after2">
-
+<title>Liverpool Fans</title>
+<link rel="stylesheet" href="/resource/style.css?after3">
+<link rel="shortcut icon" href="/resource/img/favicon.png">
 <link rel="stylesheet" type="text/css" href="/resource/slick/slick.css">
 <link rel="stylesheet" type="text/css"
 	href="/resource/slick/slick-theme.css">

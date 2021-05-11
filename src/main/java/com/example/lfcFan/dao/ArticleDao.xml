@@ -67,6 +67,7 @@
 	<select id="getForPrintPlayers" resultType="Player">
 		SELECT *
 		FROM player
+		WHERE POSITION !="ONLOAN"
 		ORDER BY backnumber asc
 	</select>
 

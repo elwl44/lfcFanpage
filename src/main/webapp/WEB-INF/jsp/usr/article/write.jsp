@@ -105,7 +105,7 @@
 					</div>
 					<div class="cell">
 						<input type="file" name="file__article__0__common__attachment__${inputNo}"
-							class="add-file1" />
+							class="add-file1"  accept="image/gif, image/jpeg" />
 					</div>
 				</div>
 			</c:forEach>

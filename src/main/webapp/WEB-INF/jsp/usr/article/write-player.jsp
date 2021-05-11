@@ -185,7 +185,7 @@
 					<div class="cell">
 						<input type="file"
 							name="file__player__0__common__attachment__${inputNo}"
-							class="add-file1" id="file-input${inputNo }" />
+							class="add-file1" id="file-input${inputNo }" accept="image/gif, image/jpeg" />
 					</div>
 				</div>
 			</c:forEach>

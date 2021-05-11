@@ -5,7 +5,7 @@
 <mapper namespace="com.example.lfcFan.dao.HomeDao">
 	<select id="getForPrintMatch" resultType="MatchSchedule">
 		SELECT * FROM matchschedule
-		WHERE DATE BETWEEN NOW() AND ADDDATE(CURDATE(), YEAR(CURDATE()))
+		WHERE CONCAT(DATE,' ', TIME) BETWEEN NOW() AND ADDDATE(CURDATE(), YEAR(CURDATE()))
 		ORDER BY DATE ASC
 		LIMIT 0, 4;
 	</select>

@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Liverpool Fans</title>
-<link rel="stylesheet" href="/resource/style.css?after3">
+<link rel="stylesheet" href="/resource/style.css?after5">
 <link rel="shortcut icon" href="/resource/img/favicon.png">
 <link rel="stylesheet" type="text/css" href="/resource/slick/slick.css">
 <link rel="stylesheet" type="text/css"

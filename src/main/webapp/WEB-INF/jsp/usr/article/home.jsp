@@ -217,7 +217,7 @@
 							<img src="${player.extra__thumbImg }" />
 							<div class="player-info">
 								<div class="player-number cell">${player.backNumber }</div>
-								<div class="player-name cell">${player.firstName }</div>
+								<div class="player-name cell">${player.lastName }</div>
 							</div>
 						</div>
 					</a>

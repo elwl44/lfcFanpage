@@ -8,7 +8,9 @@
 	<!--스케줄 시작-->
 	<section class="section-schedule">
 		<c:forEach items="${matches}" var="article">
-			<div class="match1 match cell" OnClick="location.href ='match?input_month=${article.month}'" style="cursor:pointer;">
+			<div class="match1 match cell"
+				OnClick="location.href ='match?input_month=${article.month}'"
+				style="cursor: pointer;">
 				<div class="match-line">
 					<div class="location1 location cell">${article.venue }</div>
 					<div class="match-right cell">
@@ -69,7 +71,8 @@
 
 		<div class="board-mid1 article cell">
 			<div class="board-name">
-				<a href="/usr/article-soccer/list" class="board-name-title">축구 게시판</a>
+				<a href="/usr/article-soccer/list" class="board-name-title">축구
+					게시판</a>
 				<a href="/usr/article-soccer/list" class="cell-right more">더보기></a>
 			</div>
 			<c:forEach items="${soccerArticles}" var="article">
@@ -199,10 +202,12 @@
 		</div>
 	</section>
 	<!--모바일게시판 끝  -->
-	
+
 	<!--타이틀  -->
 	<div class="player-title row">
-		<div class="group-1 cell"><a href="/usr/article/team">1군 선수단</a></div>
+		<div class="group-1 cell">
+			<a href="/usr/article/team">1군 선수단</a>
+		</div>
 		<div class="coach cell">Head Coach</div>
 		<a href="/usr/article/team" class="cell-right more-player">더보기></a>
 	</div>
@@ -212,12 +217,32 @@
 		<div class="player-outside cell">
 			<div class="player-bundle cell">
 				<c:forEach items="${players}" var="player">
-					<a href="/usr/article-player/detail?id=${player.id}&listUrl=/usr/article/team" style="display: flex">
+					<a
+						href="/usr/article-player/detail?id=${player.id}&listUrl=/usr/article/team"
+						style="display: flex">
 						<div class="player cell">
+							<div class="overlay">
+								<p class="fullname">${player.lastName}</p>
+								<p>
+									<label>Pos:</label>
+									${player.position }
+								</p>
+								<p>
+									<label>Nat:</label>
+									${player.nationality }
+								</p>
+								<p>
+									<label>DOB:</label>
+									${player.dateofBirth }
+								</p>
+							</div>
 							<img src="${player.extra__thumbImg }" />
 							<div class="player-info">
 								<div class="player-number cell">${player.backNumber }</div>
-								<div class="player-name cell">${player.lastName }</div>
+								<div class="player-name cell">
+									<div class="fornt">${player.lastName }</div>
+									<div class="back">view profile</div>
+								</div>
 							</div>
 						</div>
 					</a>

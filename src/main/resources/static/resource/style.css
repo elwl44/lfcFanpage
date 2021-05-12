@@ -34,7 +34,7 @@ a {
 	margin: 0 auto;
 	max-width: 1400px;
 	background-color: #fff;
-    min-width: 650px;
+	min-width: 650px;
 }
 
 .site-header-inner .crest-side {
@@ -79,6 +79,7 @@ img {
 .mobile-main-menu {
 	display: none;
 }
+
 @media screen and (min-width: 700px) {
 	.site-header {
 		padding-bottom: 0;
@@ -267,7 +268,7 @@ img {
 		font-size: 13px;
 		font-size: 1.0833333333rem;
 		float: right;
-	    min-width: 400px;
+		min-width: 400px;
 	}
 	.site-header-inner .account-links li {
 		color: #fff;
@@ -358,7 +359,7 @@ img {
 	/*테스트*/
 	.mobile-main-menu {
 		position: relative;
-		display:block;
+		display: block;
 		clear: both;
 		background-color: #e31b23;
 		margin-bottom: 13px;
@@ -366,47 +367,47 @@ img {
 		height: 75px;
 	}
 	.mobile-main-menu>ul>li {
-	    float: left;
-	    height: 75px;
+		float: left;
+		height: 75px;
 	}
 	.mobile-main-menu>ul>li a {
-	    display: flex;
-	    color: #fff;
-	    text-transform: uppercase;
-	    text-decoration: none;
-	    height: 100%;
-	    padding-left: 20px;
-	    padding-left: 1.0666666667rem;
-	    padding-right: 20px;
-	    padding-right: 1.06666666667rem;
-	    align-items: center;
+		display: flex;
+		color: #fff;
+		text-transform: uppercase;
+		text-decoration: none;
+		height: 100%;
+		padding-left: 20px;
+		padding-left: 1.0666666667rem;
+		padding-right: 20px;
+		padding-right: 1.06666666667rem;
+		align-items: center;
 	}
 	.mobile-main-menu>ul>li:hover {
 		background-color: #b8161f;
 	}
 	.mobile-main-menu>ul>li>ul {
-	    display: none;
-	    position: absolute;
-	    top: 75px;
-	    background-color: rgb(227, 27, 35);
-	    background-image: -webkit-linear-gradient(#b8161f 0, #e31b23 50%);
-	    background-image: linear-gradient(#b8161f 0, #e31b23 50%);
-	    box-shadow: 1px 4px 6px 0 rgb(0 0 0 / 40%);
+		display: none;
+		position: absolute;
+		top: 75px;
+		background-color: rgb(227, 27, 35);
+		background-image: -webkit-linear-gradient(#b8161f 0, #e31b23 50%);
+		background-image: linear-gradient(#b8161f 0, #e31b23 50%);
+		box-shadow: 1px 4px 6px 0 rgb(0 0 0/ 40%);
 	}
 	.mobile-main-menu>ul>li>ul>li>a {
-	    color: #fff;
-	    height: auto;
-	    display: block;
-	    border-bottom: solid 1px #e6373e;
-	    padding: 12px 15px;
-	    padding: 1rem 3.14rem;
-	    text-transform: uppercase;
-	    text-decoration: none;
-	    background-color: rgb(227, 27, 35);
+		color: #fff;
+		height: auto;
+		display: block;
+		border-bottom: solid 1px #e6373e;
+		padding: 12px 15px;
+		padding: 1rem 3.14rem;
+		text-transform: uppercase;
+		text-decoration: none;
+		background-color: rgb(227, 27, 35);
 	}
-	.mobile-main-menu>ul>li:hover>ul{
-			display: block;
-			z-index: 100;
+	.mobile-main-menu>ul>li:hover>ul {
+		display: block;
+		z-index: 100;
 	}
 	.mobile-main-menu>ul>li>ul>li>a:hover {
 		background-color: #b8161f;
@@ -471,7 +472,6 @@ img {
 		display: none;
 	}
 }
-
 
 /*스케줄*/
 .section-schedule {
@@ -578,8 +578,8 @@ img {
 	.section-schedule {
 		width: 100%;
 		height: 100%;
-	    display: flex;
-   		justify-content: space-evenly;
+		display: flex;
+		justify-content: space-evenly;
 	}
 }
 
@@ -587,8 +587,8 @@ img {
 	.section-schedule {
 		width: 100%;
 		height: 100%;
-	    display: flex;
-   		justify-content: space-evenly;
+		display: flex;
+		justify-content: space-evenly;
 	}
 }
 
@@ -596,13 +596,13 @@ img {
 	.section-schedule {
 		width: 100%;
 		height: 100%;
-    	display: flex;
-   		justify-content: space-evenly;
+		display: flex;
+		justify-content: space-evenly;
 	}
 }
 
 @media screen and (max-width: 700px) {
-	.section-schedule{
+	.section-schedule {
 		width: 100%;
 	}
 	.match {
@@ -611,7 +611,7 @@ img {
 }
 
 @media screen and (max-width: 680px) {
-	.section-schedule{
+	.section-schedule {
 		min-width: 650px;
 	}
 }
@@ -827,7 +827,7 @@ img {
 		margin: 0 auto;
 		margin-top: 1%;
 		display: flex;
-	    min-width: 650px;
+		min-width: 650px;
 	}
 	.article {
 		position: relative;
@@ -877,12 +877,12 @@ img {
 		display: none;
 	}
 	.table {
-	    color: black;
-	    width: 98%;
-	    height: 100%;
-	    margin-left: 2%;
-	    display: inline-block;
-	    overflow: auto;
+		color: black;
+		width: 98%;
+		height: 100%;
+		margin-left: 2%;
+		display: inline-block;
+		overflow: auto;
 	}
 }
 
@@ -907,12 +907,12 @@ img {
 		display: none;
 	}
 	.table {
-	    color: black;
-	    width: 98%;
-	    height: 100%;
-	    margin-left: 2%;
-	    display: inline-block;
-	    overflow: auto;
+		color: black;
+		width: 98%;
+		height: 100%;
+		margin-left: 2%;
+		display: inline-block;
+		overflow: auto;
 	}
 }
 
@@ -937,13 +937,12 @@ img {
 		display: none;
 	}
 	.table {
-	    color: black;
-	    width: 98%;
-	    height: 100%;
-	    margin-left: 2%;
+		color: black;
+		width: 98%;
+		height: 100%;
+		margin-left: 2%;
 	}
 }
-
 
 /*리그 순위표*/
 .table {
@@ -1064,6 +1063,7 @@ thead {
 }
 
 .player-number {
+	position: relative;
 	height: 100%;
 	width: 25%;
 	background-color: #E31B23;
@@ -1072,18 +1072,130 @@ thead {
 	font-weight: bold;
 	line-height: 55px;
 	text-align: center;
+	height: 100%;
 }
 
 .player-name {
 	height: 55px;
-    display: flex;
-    width: 75%;
-    font-size: 20px;
-    font-weight: bold;
-    align-items: center;
-    justify-content: center;
+	display: flex;
+	width: 75%;
+	font-size: 20px;
+	font-weight: bold;
+	align-items: center;
+	justify-content: center;
 }
 
+.player.cell {
+	position: relative;
+}
+
+.overlay {
+	position: absolute;
+	top: -1px;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	width: 90%;
+	margin-left: 5%;
+	-webkit-transform: translate(0, -100%);
+	-ms-transform: translate(0, -100%);
+	-o-transform: translate(0, -100%);
+	transform: translate(0, -100%);
+	-webkit-transition: transform .2s;
+	-o-transition: transform .2s;
+	transition: transform .2s;
+	-webkit-transition-delay: .1s;
+	transition-delay: .1s;
+	background-color: #e31b23;
+	background-color: rgba(227, 27, 35, 0.8);
+	overflow: hidden;
+	color: white;
+	font-weight: bold;
+}
+
+.overlay .fullname {
+	font-size: 24px;
+	line-height: 24px;
+	line-height: 2rem;
+	text-align: center;
+}
+
+.overlay p {
+	margin-bottom: .5em;
+	text-align: center;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.overlay label {
+	font-weight: normal;
+	display: inline-block;
+	width: 2.5em;
+	text-align: center;
+}
+
+.player:hover .overlay {
+	padding-top: 10%;
+	-webkit-transform: translate(0, 0);
+	-ms-transform: translate(0, 0);
+	-o-transform: translate(0, 0);
+	transform: translate(0, 0);
+	-webkit-transition: transform .4s;
+	-o-transition: transform .4s;
+	transition: transform .4s;
+	-webkit-transition-delay: .3s;
+	transition-delay: .3s;
+}
+
+.player:hover .player-name {
+	color: #E31B23;
+}
+
+.player-number::before {
+	content: '';
+	display: none;
+	height: 0;
+	width: 0;
+	border-top: 10px solid transparent;
+	border-bottom: 10px solid transparent;
+	border-left: 10px solid #e31b23;
+	position: absolute;
+	margin-top: -10px;
+	top: 50%;
+	right: -19%;
+	-webkit-transition: right .2s;
+	-o-transition: right .2s;
+	transition: right .2s;
+	-webkit-transition-delay: .1s;
+	transition-delay: .1s;
+}
+
+.player:hover .player-number::before {
+	display: block;
+	-webkit-transform: translate(0, 0);
+	-ms-transform: translate(0, 0);
+	-o-transform: translate(0, 0);
+	transform: translate(0, 0);
+	-webkit-transition: transform .4s;
+	-o-transition: transform .4s;
+	transition: transform .4s;
+	-webkit-transition-delay: .3s;
+	transition-delay: .3s;
+}
+
+.back {
+	position: absolute;
+	opacity: 0;
+}
+
+.player:hover .back {
+	opacity: 1;
+}
+
+.player:hover .fornt {
+	opacity: 0;
+}
 /*반응형*/
 @media screen and (max-width: 1400px) {
 	.player-title {

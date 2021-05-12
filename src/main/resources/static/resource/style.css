@@ -1151,8 +1151,6 @@ thead {
 	-webkit-transition: transform .4s;
 	-o-transition: transform .4s;
 	transition: transform .4s;
-	-webkit-transition-delay: .3s;
-	transition-delay: .3s;
 }
 
 .player:hover .player-name {

@@ -227,7 +227,7 @@
 									<label>Pos:</label>
 									${player.position }
 								</p>
-								<p>
+								<p class="nation">
 									<label>Nat:</label>
 									${player.nationality }
 								</p>

@@ -1124,6 +1124,13 @@ thead {
 	margin-bottom: .5em;
 	text-align: center;
 	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.nation{
+	margin-bottom: .5em;
+	text-align: center;
+	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;
 }

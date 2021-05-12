@@ -86,6 +86,7 @@ public class HomeController {
 		/*리그 테이블*/
 		List<League> leaguetables = homeService.getForPrintLeagues();
 		
+		param.put("slick-slider", "slick-slider");
 		/*선수 소개*/
 		List<Player> players = articleService.getForPrintPlayers(param);
 		for (Player article : players) {

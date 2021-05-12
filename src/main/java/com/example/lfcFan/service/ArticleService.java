@@ -40,14 +40,18 @@ public class ArticleService {
 	
 	public List<Player> getForPrintPlayers(Map<String, Object> param) {
 		List<Player> players = articleDao.getForPrintPlayers(param);
-		for(Player player : players) {
-			if(player.getBackNumber()==1 || player.getBackNumber()==3 || player.getBackNumber()==6 || player.getBackNumber()==13)
-			{	
-				String firstname=player.getFirstName();
-				player.setFirstName(player.getLastName());
-				player.setLastName(firstname);
+		String key = Util.getAsStr(param.get("slick-slider"),"");
+		if(key.equals("slick-slider") && key!=null) {
+			for(Player player : players) {
+				if(player.getBackNumber()==1 || player.getBackNumber()==3 || player.getBackNumber()==6 || player.getBackNumber()==13)
+				{	
+					String firstname=player.getFirstName();
+					player.setFirstName(player.getLastName());
+					player.setLastName(firstname);
+				}
 			}
 		}
+		
 		return players;
 	}
 	

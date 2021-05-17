@@ -37,9 +37,9 @@ server:
 custom:
   genFileDirPath: /usr/lfcFan-img #C:\work\lfcFan-img /usr/lfcFan-img
   siteName: LiverpoolFanPage
-  siteUrl: http://localhost:8085
-  siteMainUri: http://localhost:8085/usr/article/home
-  siteLoginUri: http://localhost:8085/usr/member/login
+  siteUrl: http://lfcfan.kro.kr
+  siteMainUri: http://lfcfan.kro.kr/usr/article/home
+  siteLoginUri: http://lfcfan.kro.kr/usr/member/login
   emailFrom: no-reply@localhost
   emailFromName: LiverpoolFanPage
   logging:

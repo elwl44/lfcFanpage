@@ -90,4 +90,8 @@ public class AttrService {
 
 		return -1;
 	}
+
+	public void deleteAttrByMemberId(int memberid) {
+		attrDao.deleteAttrByMemberId(memberid);		
+	}
 } 

@@ -35,9 +35,11 @@
 							<li class="subnav">
 								<span>${loginedMember.loginId }님</span>
 							</li>
-							<li class="subnav">
-								<a href="../admin/checkMember">회원 관리</a>
-							</li>
+							<c:if test="${loginedMember.authLevel==7 }">
+								<li class="subnav">
+									<a href="../admin/checkMember">회원 관리</a>
+								</li>
+							</c:if>
 							<li class="subnav">
 								<a href="../member/checkLoginPw">내정보</a>
 							</li>

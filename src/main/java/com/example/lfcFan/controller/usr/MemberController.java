@@ -111,11 +111,10 @@ public class MemberController {
 		}
 		
 		String authedEmail = memberService.getAuthedEmail(member.getId());
-
+		
 		if (authedEmail.equals(member.getEmail()) == false) {
-			model.addAttribute("msg", String.format("이메일 인증 후 시도해주세요."));
-			model.addAttribute("historyBack", true);
-			return "common/redirect";
+			model.addAttribute("email", String.format(member.getEmail()));
+			return "common/resendemail";
 		}
 		memberService.banDateCheck();
 		if(memberService.getMemberBanCheck(member.getId())==1) {
@@ -372,6 +371,13 @@ public class MemberController {
 		
 		model.addAttribute("msg", "회원탈퇴가 완료되었습니다.");
 		model.addAttribute("replaceUri", String.format("/usr/article/home"));
+		return "common/redirect";
+	}
+	
+	@RequestMapping("/usr/member/doReSendJoinCompleteMail")
+	public String doReSendJoinCompleteMail(@RequestParam Map<String, Object> param, Model model) {
+		memberService.doReSendJoinCompleteMail(param);
+		model.addAttribute("replaceUri", String.format("/usr/member/login"));
 		return "common/redirect";
 	}
 }

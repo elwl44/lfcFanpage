@@ -66,7 +66,12 @@ public class MemberService {
 
 		return id;
 	}
-
+	public void doReSendJoinCompleteMail(Map<String, Object> param) {
+		String email = Util.getAsStr(param.get("email"), "");
+		Member member = memberDao.getMemberByEmail(email);
+		String authCode=getEmailAuthCode(member.getId());
+		sendJoinCompleteMail(member.getId(), (String) param.get("email"), authCode);
+	}
 	private String genEmailAuthCode(int actorId) {
 		String authCode = UUID.randomUUID().toString();
 		attrService.setValue("member__" + actorId + "__extra__emailAuthCode", authCode);
@@ -217,7 +222,7 @@ public class MemberService {
 		}
 		articleService.deleteArticlesByMemberId(memberid);
 		replyeService.deleteReplysByMemberId(memberid);
-
+		attrService.deleteAttrByMemberId(memberid);
 		session.removeAttribute("loginedMemberId");
 		session.removeAttribute("loginedMemberName");
 		session.removeAttribute("isAdmin");

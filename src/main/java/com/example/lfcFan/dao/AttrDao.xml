@@ -87,6 +87,11 @@
 		WHERE id = #{id}
 	</update>
 
+	<delete id="deleteAttrByMemberId">
+		DELETE FROM attr
+		WHERE relId = #{memberid}
+	</delete>
+
 	<resultMap type="Article" id="article">
 		<id property="id" column="id" />
 		<id property="regDate" column="regDate" />

@@ -5,6 +5,10 @@
 <%@ include file="../part/head.jsp"%>
 <link rel="stylesheet" type="text/css" href="/resource/findLoginPw.css">
 <script>
+	$(document).ready(function() {
+	    $('#loginId').val('${select_id}');
+	});
+	
 	var findLoginPwFormSubmitDone = false;
 	function findLoginPwFormSubmit(form) {
 		if (findLoginPwFormSubmitDone) {

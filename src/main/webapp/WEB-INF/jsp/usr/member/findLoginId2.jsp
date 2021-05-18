@@ -27,13 +27,14 @@
 					$("#select0").focus();
 					return;
 				}
-
+				$('#select_id').val('${MemberId}');
 				form.submit();
 				findFormSubmitDone = true;
 			}
 		</script>
 
-		<form action="login" onsubmit="FindIdFormSubmit(this); return false;" id="loginform">
+		<form action="findLoginPw" onsubmit="FindIdFormSubmit(this); return false;"
+			id="loginform">
 			<div class="section section_find">
 				<div class="box6" style="text-align: center">
 					<ul class="list_id">
@@ -42,18 +43,18 @@
 									value=""> <label for="select0" class="label_rd">${MemberId }</label>
 							</strong>
 							<span>가입 : ${MemberRegDate}</span>
-							<input type="hidden" name="nv_id0" value="elwl45">
+							<input type="hidden" name="select_id" id="select_id" value="">
 						</li>
 					</ul>
 				</div>
 				<!-- 버튼 영역 -->
 				<div class="btn_area">
 					<div class="cell">
-						<input class="join-btn" type="submit" value="로그인하기" id="join">
+						<input class="join-btn" type="button" value="로그인하기" id="join"
+							onclick="location.href='login'">
 					</div>
 					<div class="cell">
-						<input class="cancel-btn" type="button" value="비밀번호 찾기"
-							onclick="location.href='findLoginPw'">
+						<input class="cancel-btn" type="submit" value="비밀번호 찾기">
 					</div>
 				</div>
 			</div>

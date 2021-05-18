@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@include file="../part/head.jsp"%>
 <%@ page import="com.example.lfcFan.controller.usr.MemberController"%>
-<link rel="stylesheet" type="text/css" href="/resource/join.css">
+<link rel="stylesheet" type="text/css" href="/resource/join.css?after1">
 <head>
 
 </head>

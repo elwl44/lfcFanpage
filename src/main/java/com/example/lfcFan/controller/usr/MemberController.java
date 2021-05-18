@@ -236,7 +236,9 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/usr/member/findLoginPw")
-	public String showFindLoginPw() {
+	public String showFindLoginPw(Model model, @RequestParam Map<String, Object> param) {
+		String slect_id=Util.getAsStr(param.get("select_id"), "");
+		model.addAttribute("select_id", slect_id);
 		return "usr/member/findLoginPw";
 	}
 

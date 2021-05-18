@@ -35,7 +35,7 @@ server:
     include-message: always
     include-binding-errors: always
 custom:
-  genFileDirPath: /usr/lfcFan-img #C:\work\lfcFan-img /usr/lfcFan-img
+  genFileDirPath: C:\work\lfcFan-img #C:\work\lfcFan-img /usr/lfcFan-img
   siteName: LiverpoolFanPage
   siteUrl: http://lfcfan.kro.kr
   siteMainUri: http://lfcfan.kro.kr/usr/article/home

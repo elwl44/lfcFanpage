@@ -42,12 +42,12 @@
 
 		<form action="doFindLoginId" class="join-form"
 			onsubmit="FindFormSubmit(this); return false;" id="loginform">
-			<div>
+			<div class="join-bundle">
 				<p class="join-name cell">이름:</p>
 				<input type="text" maxlength="30" placeholder="이름 입력" name="name"
 					class="join-data" />
 			</div>
-			<div>
+			<div class="join-bundle">
 				<p class="join-name cell">이메일:</p>
 				<input type="text" maxlength="30" placeholder="이메일 주소 입력"
 					name="email" class="join-data" id="email"/>

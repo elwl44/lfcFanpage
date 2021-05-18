@@ -10,8 +10,6 @@ var email = '${email}';
 email = email.trim();
 
 if( retVal == true ){
-   alert(email+"로 인증메일을 재발송하였습니다");
-   
    location.replace("/usr/member/doReSendJoinCompleteMail?email="+email);
 }else{
    history.back();

@@ -152,7 +152,7 @@
 
 		<form action="doJoin" class="join-form"
 			onsubmit="joinFormSubmit(this); return false;" id="loginform">
-			<div>
+			<div class="join-bundle">
 				<p class="join-name cell">아이디:</p>
 				<input type="text" maxlength="30" placeholder="아이디 입력"
 					name="loginId" class="join-data" id="loginId" />
@@ -160,22 +160,25 @@
 				<input class="check-btn active" id="check-btn" type="button"
 					value="중복체크" onclick="fn_idCheck(loginform)" >
 			</div>
-			<div>
+			<div class="join-bundle">
 				<p class="join-name cell">비밀번호:</p>
 				<input type="password" maxlength="30" placeholder="비밀번호 입력"
-					name="loginPw" class="join-data" />
+					name="loginPw" class="join-data cell" />
+				<div class="empty-form cell"></div>
 			</div>
-			<div>
+			<div class="join-bundle">
 				<p class="join-name cell">비밀번호 확인:</p>
 				<input type="password" maxlength="30" placeholder="비밀번호 확인"
 					name="loginPwConfirm" class="join-data" />
+				<div class="empty-form cell"></div>
 			</div>
-			<div>
+			<div class="join-bundle">
 				<p class="join-name cell">이름:</p>
 				<input type="text" maxlength="30" placeholder="이름 입력" name="name"
 					class="join-data" />
+				<div class="empty-form cell"></div>
 			</div>
-			<div>
+			<div class="join-bundle">
 				<p class="join-name cell">이메일:</p>
 				<input type="text" maxlength="30" placeholder="이메일 주소 입력"
 					name="email" class="join-data" id="email"/>

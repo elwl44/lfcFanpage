@@ -377,6 +377,7 @@ public class MemberController {
 	@RequestMapping("/usr/member/doReSendJoinCompleteMail")
 	public String doReSendJoinCompleteMail(@RequestParam Map<String, Object> param, Model model) {
 		memberService.doReSendJoinCompleteMail(param);
+		model.addAttribute("msg", Util.getAsStr(param.get("email"), "")+"로 인증메일을 재발송하였습니다");
 		model.addAttribute("replaceUri", String.format("/usr/member/login"));
 		return "common/redirect";
 	}

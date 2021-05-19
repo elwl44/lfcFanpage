@@ -110,7 +110,7 @@ public class ArticleController {
 		Board board = articleService.getBoardByCode("player");
 		param.put("boardId", board.getId());
 
-		List<Player> players = articleService.getForPrintPlayers(param);
+		List<Player> players = articleService.getForPrintAllPlayers(param);
 		for (Player article : players) {
 			GenFile genFile = genFileService.getGenFile("player", article.getId(), "common", "attachment", 1);
 

@@ -16,6 +16,8 @@ import com.example.lfcFan.dto.Player;
 public interface ArticleDao {
 	List<MatchSchedule> getForPrintMatch(String match);
 	
+	List<Player> getForPrintAllPlayers(Map<String, Object> param);
+	
 	List<Player> getForPrintPlayers(Map<String, Object> param);
 
 	List<Article> getForPrintArticles(Map<String, Object> param);

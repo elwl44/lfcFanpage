@@ -64,6 +64,12 @@
 		ORDER BY point desc, goalGap DESC
 	</select>
 
+	<select id="getForPrintAllPlayers" resultType="Player">
+		SELECT *
+		FROM player
+		ORDER BY backnumber asc
+	</select>
+
 	<select id="getForPrintPlayers" resultType="Player">
 		SELECT *
 		FROM player

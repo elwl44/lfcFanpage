@@ -38,6 +38,11 @@ public class ArticleService {
 		return Util.splitLeague(matches);
 	}
 	
+	public List<Player> getForPrintAllPlayers(Map<String, Object> param) {
+		List<Player> players = articleDao.getForPrintAllPlayers(param);
+		return players;
+	}
+	
 	public List<Player> getForPrintPlayers(Map<String, Object> param) {
 		List<Player> players = articleDao.getForPrintPlayers(param);
 		String key = Util.getAsStr(param.get("slick-slider"),"");

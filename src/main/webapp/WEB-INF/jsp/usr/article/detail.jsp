@@ -348,9 +348,9 @@
 			}
 
 			function fn_cancel(count){
-				var memo="#memo"+count;
+				var memo=".memo"+count;
 				var body="#body"+count;
-				$(memo).show();
+				$(memo).css('display','block');
 				$(body).hide();
 				var test = document.getElementsByName("modify-btn")[count];
 				test.setAttribute('type', 'hidden');

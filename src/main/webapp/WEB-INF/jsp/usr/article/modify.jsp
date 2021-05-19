@@ -116,7 +116,7 @@
 			<input type="hidden" name="redirectUrl" value="${redirectUrl}" />
 			<div>
 				<input type="text" name="title" id="title" placeholder="제목"
-					class="subject" value="${article.title }">
+					class="subject" value='${article.title }'>
 			</div>
 
 			<c:forEach begin="1" end="${fileInputMaxCount}" var="inputNo">

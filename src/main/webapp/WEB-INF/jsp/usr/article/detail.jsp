@@ -133,7 +133,7 @@
 							<div class="comment-user">
 								<strong>${reply.extra.writer}</strong>
 							</div>
-							<div class="memo cell" id="memo${count.index}">${reply.body}</div>
+							<div class="memo${count.index} cell" id="memo${count.index}">${reply.body}</div>
 							<div class="row">
 								<form action="/usr/reply/doModify" method="POST"
 									class="doModify" name="doModify" id="doModify">
@@ -216,7 +216,7 @@
 									</c:if>
 								</div>
 							</c:forEach>
-							<div class="memo cell" id="memo${count.index}">${reply.body}</div>
+							<div class="memo${count.index} cell" id="memo${count.index}">${reply.body}</div>
 							<div class="row">
 								<form action="/usr/reply/doModify" method="POST"
 									class="doModify" name="doModify" id="doModify">
@@ -336,9 +336,9 @@
 			}
 
 			function fn_modify(count) {
-				var memo="#memo"+count;
+				var memo=".memo"+count;
 				var body="#body"+count;
-				$(memo).hide();
+				$(memo).css('display','none');
 				$(body).show();
 				var test = document.getElementsByName("modify-btn")[count];
 				test.setAttribute('type', 'submit');

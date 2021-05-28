@@ -55,44 +55,41 @@ public class MemberService {
 	@Autowired
 	private AdminDao adminDao;
 
+	//회원가입
 	public int join(Map<String, Object> param) {
 		memberDao.join(param);
-
 		int id = Util.getAsInt(param.get("id"));
-
 		String authCode = genEmailAuthCode(id);
-
 		sendJoinCompleteMail(id, (String) param.get("email"), authCode);
-
 		return id;
 	}
+	//회원가입 완료메일
 	public void doReSendJoinCompleteMail(Map<String, Object> param) {
 		String email = Util.getAsStr(param.get("email"), "");
 		Member member = memberDao.getMemberByEmail(email);
 		String authCode=getEmailAuthCode(member.getId());
 		sendJoinCompleteMail(member.getId(), (String) param.get("email"), authCode);
 	}
+	//인증코드 생성
 	private String genEmailAuthCode(int actorId) {
 		String authCode = UUID.randomUUID().toString();
 		attrService.setValue("member__" + actorId + "__extra__emailAuthCode", authCode);
 
 		return authCode;
 	}
-
+	//회원가입 완료메일 전송
 	private void sendJoinCompleteMail(int actorId, String email, String authCode) {
 		String mailTitle = String.format("[%s] 가입이 완료되었습니다. 이메일인증을 진행해주세요.", siteName);
-
 		StringBuilder mailBodySb = new StringBuilder();
 		mailBodySb.append("<h1>가입이 완료되었습니다.</h1>");
 		mailBodySb.append("<div>아래 인증코드를 클릭하여 이메일인증을 마무리 해주세요.</div>");
-
 		String doAuthEmailUrl = siteUrl + "/usr/member/doAuthEmail?authCode=" + authCode + "&email=" + email
 				+ "&actorId=" + actorId;
 		mailBodySb.append(String.format("<p><a href=\"%s\" target=\"_blank\">인증하기</a></p>", doAuthEmailUrl));
-
 		mailService.send(email, mailTitle, mailBodySb.toString());
 	}
 
+	//id중복체크
 	public boolean isJoinAvailableLoginId(String loginId) {
 		Member member = memberDao.getMemberByLoginId(loginId);
 
@@ -103,6 +100,7 @@ public class MemberService {
 		return false;
 	}
 
+	//email중복체크
 	public int isJoinAvailableEmail(String email) {
 		Member member = memberDao.getMemberByEmail(email);
 		int kickcheck = adminDao.getKickCheckByEmail(email);
@@ -112,11 +110,10 @@ public class MemberService {
 		else if(kickcheck ==1) {//사용 정지당한 이메일 처리
 			return 2;
 		}
-		
-
 		return 0;//중복아이디
 	}
 
+	//비밀번호 찾기
 	public Member getMemberByLoginId(String loginId) {
 		return memberDao.getMemberByLoginId(loginId);
 	}
@@ -134,6 +131,7 @@ public class MemberService {
 		}
 	}
 
+	//아이디 찾기
 	public Member getMemberByNameAndEmail(String name, String email) {
 		return memberDao.getMemberByNameAndEmail(name, email);
 	}

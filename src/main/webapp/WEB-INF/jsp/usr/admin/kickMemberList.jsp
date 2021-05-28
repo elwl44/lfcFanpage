@@ -21,7 +21,7 @@
 			alert('유저를 선택해주세요.');
 			return;
 		}
-		if (confirm("활동이 불가능하도록 처리하시겠습니까?") == true) { //확인
+		if (confirm("가입이 불가능하도록 처리하시겠습니까?") == true) { //확인
 			var obj_length = document.getElementsByName("userId").length;
 			var arr = [];
 			for (var i = 0; i < obj_length; i++) {
@@ -42,7 +42,7 @@
 			return;
 		}
 		
-		if (confirm("활동이 가능하도록 처리하시겠습니까?") == true) { //확인
+		if (confirm("가입이 가능하도록 처리하시겠습니까?") == true) { //확인
 			var obj_length = document.getElementsByName("userId").length;
 			var arr = [];
 			for (var i = 0; i < obj_length; i++) {

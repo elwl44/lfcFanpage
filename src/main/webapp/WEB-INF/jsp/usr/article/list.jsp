@@ -45,7 +45,7 @@
 						value="/usr/article-${board.code}/detail?id=${article.id}&listUrl=${encodedCurrentUri}" />
 					<div class="notice-list-box-row">
 						<div class="cell">
-							<a href="#">${article.id}</a>
+							<a href="#">${article.boardNo}</a>
 						</div>
 						<div class="cell">
 							<a href="${detailUrl}">${article.title}</a>

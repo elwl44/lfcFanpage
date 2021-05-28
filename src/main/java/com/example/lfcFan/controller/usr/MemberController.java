@@ -164,9 +164,7 @@ public class MemberController {
 
 			if ( genFile != null ) {
 				member.setExtra__thumbImg(genFile.getForPrintUrl());
-			}
-		
-		
+			}		
 		
 		model.addAttribute("member", member);
 		return "usr/member/info";
@@ -360,8 +358,10 @@ public class MemberController {
 		return "common/redirect";
 	}
 	
+	//회원 탈퇴
 	@RequestMapping("/usr/member/doSecession")
-	public String doSecession(HttpSession session, HttpServletRequest req, int memberid, Model model, String listUrl, String checkLoginPwAuthCode) {
+	public String doSecession(HttpSession session, HttpServletRequest req, int memberid, Model model, 
+			String listUrl, String checkLoginPwAuthCode) {
 		
 		if (checkLoginPwAuthCode == null || checkLoginPwAuthCode.length() == 0) {
 			model.addAttribute("historyBack", true);

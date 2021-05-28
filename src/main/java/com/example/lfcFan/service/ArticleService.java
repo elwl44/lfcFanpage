@@ -84,13 +84,12 @@ public class ArticleService {
 		param.put("limitTake", limitTake);
 		
 		List<Article> articles = articleDao.getForPrintArticles(param);
-
+		int boardNo=articles.size();
 		for ( Article article : articles ) {
-			
 			if ( article.getExtra() == null ) {
 				article.setExtra(new HashMap<>()); 
 			}
-			
+			article.setBoardNo(boardNo);
 			boolean actorCanDelete = false;
 			
 			if (actorMember != null) {
@@ -101,6 +100,7 @@ public class ArticleService {
 
 			article.getExtra().put("actorCanDelete", actorCanDelete);
 			article.getExtra().put("actorCanModify", actorCanModify);
+			boardNo--;
 		}
 		
 		return articles;
